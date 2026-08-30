@@ -2,6 +2,9 @@ const fs=require('fs'), path=require('path');
 const pages=require('../src/pages'), links=require('../src/links');
 const homeContent=require('../src/page-01');
 const conversationsContent=require('../src/conversations');
+const courseContent=require('../src/pages-03-10');
+const renderCoursePage=require('../src/course-pages');
+const renderPagesBatchReview=require('../src/pages-03-10/review');
 const out=path.join(__dirname,'..','public'); fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true});
 fs.cpSync(path.join(__dirname,'..','src','assets'),path.join(out,'assets'),{recursive:true});
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -50,6 +53,8 @@ function main(p){
  const isHome=p.number===1, stage=p.template==='stage';
  if(isHome) return home();
  if(p.number===38) return conversations();
+ const editableCoursePage=courseContent.pages.find(page=>page.number===p.number);
+ if(editableCoursePage) return renderCoursePage(editableCoursePage,courseContent.stages);
  const quote=p.template==='reflection'||p.template==='closing'?`<blockquote>“Transformation asks us to tell the truth about where we are, and to remain open to where love may lead.”</blockquote>`:'';
  const cards=p.template==='library'?`<section class="cards" aria-label="Featured resources">${['Begin here','For reflection','Go deeper'].map((x,i)=>`<article><span>0${i+1}</span><h2>${x}</h2><p>A thoughtfully selected resource for attention, growth, and shared conversation.</p><a href="${links.learnMore}">Explore resource →</a></article>`).join('')}</section>`:`<section class="content-grid"><aside aria-label="Page progress"><p class="overline">On this page</p><ol><li>Arrive</li><li>Reflect</li><li>Practice</li></ol><progress max="40" value="${p.number}" aria-label="Journey progress"></progress></aside><article><p class="lead">${esc(p.summary)}</p><h2>An invitation to notice</h2><p>Formation is not a project to complete. It is the ongoing work of becoming more present, more honest, and more able to receive and offer love.</p>${quote}<h2>A practice for today</h2><p>Take a quiet moment. Notice what feels alive in you, what feels resistant, and what invitation you want to carry into the day.</p><a class="text-link" href="${links.next}">Continue the journey →</a></article></section>`;
  return `${header()}<main>${journey(p.stage)}<section class="hero ${isHome?'home':''} ${stage?'stage':''}"><div class="hero-copy"><p class="overline">${esc(p.stage)} · ${String(p.number).padStart(2,'0')}</p><h1>${esc(p.title)}</h1><p>${esc(p.eyebrow)}</p><a class="button" href="${isHome?links.begin:links.next}">${isHome?'Begin the journey':'Explore this movement'}</a></div><div class="scene" role="img" aria-label="A quiet mountain landscape with native plants"><span class="sun"></span><span class="mountain one"></span><span class="mountain two"></span><img src="/assets/botanical.svg" alt="" class="botanical"></div>${isHome?`<aside class="hero-card" aria-label="Welcome message"><p class="overline">A place to begin</p><h2>Your inner life matters.</h2><p>Make room for a more honest, integrated life with God and others.</p><a href="${links.learnMore}">Learn more →</a></aside>`:''}</section>${cards}<section class="closing"><p class="overline">Reforming the Soul</p><h2>Attend to what is forming you.</h2><a class="button gold" href="${links.join}">Join the journey</a></section></main>${footer()}`;
@@ -58,5 +63,7 @@ function shell(title,body){return `<!DOCTYPE html><html lang="en"><head><meta ch
 for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),shell(p.title,main(p)))}
 const review=`${header()}<main class="review"><p class="overline">Review site</p><h1>All 40 pages</h1><p class="lead">A complete index of the Reforming the Soul journey.</p><ol>${pages.map(p=>`<li><span>${String(p.number).padStart(2,'0')}</span><a href="${p.route}">${esc(p.title)}</a><small>${p.stage} · ${p.template}</small></li>`).join('')}</ol></main>${footer()}`;
 fs.mkdirSync(path.join(out,'review'),{recursive:true});fs.writeFileSync(path.join(out,'review/index.html'),shell('Review all pages',review));
+const batchReviewPages=pages.filter(page=>page.number>=3&&page.number<=10);
+const batchReviewDir=path.join(out,'review','pages-03-10');fs.mkdirSync(batchReviewDir,{recursive:true});fs.writeFileSync(path.join(batchReviewDir,'index.html'),shell('Review Pages 03–10',renderPagesBatchReview(batchReviewPages)));
 fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});fs.writeFileSync(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
-console.log(`Built ${pages.length+2} routes.`);
+console.log(`Built ${pages.length+3} routes.`);
