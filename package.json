@@ -2,13 +2,16 @@
   "name": "reforming-the-soul-static-site",
   "private": true,
   "scripts": {
+    "dev": "vite public",
     "build": "node scripts/build.js",
     "check": "node scripts/check.js",
+    "check:server": "node scripts/serve.test.js",
     "serve": "node scripts/serve.js",
     "check:browser": "node scripts/browser-check.js"
   },
   "devDependencies": {
     "playwright": "^1.55.0",
+    "vite": "^7.1.3",
     "wrangler": "^4.33.2"
   }
 }
