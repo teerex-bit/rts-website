@@ -1,0 +1,4 @@
+const fs=require('fs'),path=require('path'); const root=path.join(__dirname,'..','public');
+const html=[];(function walk(d){for(const f of fs.readdirSync(d)){const p=path.join(d,f),s=fs.statSync(p);s.isDirectory()?walk(p):f.endsWith('.html')&&html.push(p)}})(root);
+let errors=[]; for(const f of html){const s=fs.readFileSync(f,'utf8');if((s.match(/<h1[ >]/g)||[]).length!==1)errors.push(`${f}: expected one h1`);for(const m of s.matchAll(/(?:href|src)="(\/[^"?#]+)"/g)){let u=m[1],p=path.join(root,u);if(u.endsWith('/'))p=path.join(p,'index.html');if(!fs.existsSync(p))errors.push(`${f}: missing ${u}`)}if(/href="#/.test(s))errors.push(`${f}: hash link`)}
+if(html.length!==42)errors.push(`expected 42 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets resolve; one h1 each; no hash links.`);
