@@ -1,0 +1,14 @@
+{
+  "name": "reforming-the-soul-static-site",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "serve": "node scripts/serve.js",
+    "check:browser": "node scripts/browser-check.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0",
+    "wrangler": "^4.33.2"
+  }
+}
