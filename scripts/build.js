@@ -7,6 +7,7 @@ fs.cpSync(path.join(__dirname,'..','src','assets'),path.join(out,'assets'),{recu
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const journey=stage=>`<nav class="journey" aria-label="Journey stages">${['Awaken','See Clearly','Become','Join'].map((x,i)=>`<a class="${x===stage?'active':''}" href="${[links.awaken,links.seeClearly,links.become,links.join][i]}"><img src="/assets/icon-${['awaken','see','become','join'][i]}.svg" alt="">${x}</a>`).join('')}</nav>`;
 const header=()=>`<header class="site-header"><a class="brand" href="${links.home}" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><button type="button" class="menu" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" aria-label="Main navigation"><a href="${links.awaken}">Journey</a><a href="${links.conversations}">Conversations</a><a href="${links.music}">Music</a><a href="${links.books}">Books</a><a class="button small" href="${links.donate}">Give</a></nav></header>`;
+const conversationsHeader=()=>`<header class="site-header"><a class="brand" href="${links.home}" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><button type="button" class="menu" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" aria-label="Main navigation"><a href="${links.awaken}">Awaken</a><a href="${links.seeClearly}">See Clearly</a><a href="${links.become}">Become</a><a href="${links.join}">Join</a><a href="${links.conversations}">Conversations</a><a href="${links.music}">Music</a><a href="${links.books}">Books</a><a class="button small" href="${links.donate}">Give</a></nav></header>`;
 const footer=()=>`<footer><img src="/assets/logo-light.svg" alt="Reforming the Soul"><p>Creating safe places for leaders to be honest and whole.</p><nav aria-label="Footer"><a href="${links.review}">Review all pages</a><a href="${links.join}">Join</a><a href="${links.donate}">Give</a></nav><small>© 2026 Reforming the Soul</small></footer>`;
 const home=()=>{
  const c=homeContent;
@@ -21,7 +22,7 @@ const conversations=()=>{
  const c=conversationsContent;
  const benefitSymbols={person:'●',heart:'♥',leaf:'◒',people:'●●●'};
  const principleSymbols={eye:'◉',heart:'♡',cross:'†'};
- return `${header()}<main class="conversations-page">
+ return `${conversationsHeader()}<main class="conversations-page">
  <div class="conversations-shell">
   <aside class="conversations-rail" aria-label="Formation journey">
    <p class="rail-title">The formation journey</p>

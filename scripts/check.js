@@ -13,6 +13,11 @@ if(fs.existsSync(conversationsPath)){
     'Speak, Lord, for Your servant is listening.'
   ];
   for(const value of required)if(!conversations.includes(value))errors.push(`${conversationsPath}: missing ${value}`);
+  const header=conversations.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0]||'';
+  const headerStages=[...header.matchAll(/<a href="\/(awaken|see-clearly|become|join)\/">([^<]+)<\/a>/g)].map(match=>match[2]);
+  const expectedHeaderStages=['Awaken','See Clearly','Become','Join'];
+  if(JSON.stringify(headerStages)!==JSON.stringify(expectedHeaderStages))errors.push(`${conversationsPath}: expected Conversations header stages ${expectedHeaderStages.join(', ')}, got ${headerStages.join(', ')||'none'}`);
+  if(/>Walk<|\/walk\//i.test(header))errors.push(`${conversationsPath}: Walk must not appear in the Conversations header`);
   if(!fs.existsSync(path.join(root,'assets','conversations-hero.jpg')))errors.push(`${conversationsPath}: missing conversations hero asset`);
 }
 if(html.length!==42)errors.push(`expected 42 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets resolve; one h1 each; no hash links.`);
