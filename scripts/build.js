@@ -1,6 +1,7 @@
 const fs=require('fs'), path=require('path');
 const pages=require('../src/pages'), links=require('../src/links');
 const homeContent=require('../src/page-01');
+const conversationsContent=require('../src/conversations');
 const out=path.join(__dirname,'..','public'); fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true});
 fs.cpSync(path.join(__dirname,'..','src','assets'),path.join(out,'assets'),{recursive:true});
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -16,9 +17,38 @@ const home=()=>{
  <section class="experience" aria-labelledby="experience-title"><h2 id="experience-title">What you’ll experience</h2><div class="experience-layout"><div class="experience-cards">${c.experiences.map(x=>`<article class="experience-${x.image}"><span class="experience-icon" aria-hidden="true">${x.icon}</span><div><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p><a href="${x.action.href}">${esc(x.action.label)}</a></div></article>`).join('')}</div><aside class="home-closing" aria-label="Closing invitation"><img src="/assets/logo-light.svg" alt=""><div><h2>${esc(c.closing.heading)}</h2><h3>${esc(c.closing.emphasis)}</h3><p>${esc(c.closing.copy)}</p><a class="button gold" href="${c.closing.action.href}">${esc(c.closing.action.label)}</a></div></aside></div></section>
  </main>${footer()}`;
 };
+const conversations=()=>{
+ const c=conversationsContent;
+ const benefitSymbols={person:'●',heart:'♥',leaf:'◒',people:'●●●'};
+ const principleSymbols={eye:'◉',heart:'♡',cross:'†'};
+ return `${header()}<main class="conversations-page">
+ <div class="conversations-shell">
+  <aside class="conversations-rail" aria-label="Formation journey">
+   <p class="rail-title">The formation journey</p>
+   <ol>${c.journey.map(x=>`<li><a href="${x.href}"><img src="/assets/icon-${x.icon}.svg" alt=""><span><strong>${esc(x.name)}</strong><small>${esc(x.description)}</small></span></a></li>`).join('')}</ol>
+   <section class="rail-progress" aria-label="Page progress"><p>Your progress</p><div><span>Conversations</span><span>1 of 1</span></div><progress max="1" value="1">1 of 1</progress></section>
+   <section class="rail-support"><h2><span aria-hidden="true">?</span>${esc(c.support.heading)}</h2><p>${esc(c.support.copy)}</p><a href="${c.support.href}">${esc(c.support.label)} <span aria-hidden="true">→</span></a></section>
+  </aside>
+  <section class="conversations-hero" aria-labelledby="conversations-title">
+   <div class="conversations-copy">
+    <p class="conversations-eyebrow"><span aria-hidden="true">♧</span>${esc(c.eyebrow)}</p>
+    <h1 id="conversations-title">${esc(c.title)}</h1>
+    <span class="conversations-rule" aria-hidden="true"></span>
+    <h2>Learn what God wants<br>you to hear.</h2>
+    <p class="conversations-intro">${esc(c.introduction)}</p>
+    <a class="conversations-booking" href="${c.booking.href}"><span class="calendar-icon" aria-hidden="true"></span><span><strong>${esc(c.booking.label)}</strong><small>${esc(c.booking.detail)}</small></span><b aria-hidden="true">→</b></a>
+    <div class="conversation-benefits">${c.benefits.map(x=>`<article><span class="benefit-symbol benefit-${x.icon}" aria-hidden="true">${benefitSymbols[x.icon]}</span><h3>${esc(x.title)}</h3><p>${esc(x.copy)}</p></article>`).join('')}</div>
+   </div>
+   <aside class="conversation-principles" aria-label="Conversation principles"><span class="principles-leaf" aria-hidden="true">♧</span><h2>A different kind<br>of conversation</h2>${c.principles.map(x=>`<div><span aria-hidden="true">${principleSymbols[x.icon]}</span><p>${esc(x.copy)}</p></div>`).join('')}</aside>
+  </section>
+ </div>
+ <section class="conversation-scripture"><div><span aria-hidden="true">“</span><blockquote>${esc(c.scripture)}<cite>— ${esc(c.scriptureReference)}</cite></blockquote></div></section>
+ </main>`;
+};
 function main(p){
  const isHome=p.number===1, stage=p.template==='stage';
  if(isHome) return home();
+ if(p.number===38) return conversations();
  const quote=p.template==='reflection'||p.template==='closing'?`<blockquote>“Transformation asks us to tell the truth about where we are, and to remain open to where love may lead.”</blockquote>`:'';
  const cards=p.template==='library'?`<section class="cards" aria-label="Featured resources">${['Begin here','For reflection','Go deeper'].map((x,i)=>`<article><span>0${i+1}</span><h2>${x}</h2><p>A thoughtfully selected resource for attention, growth, and shared conversation.</p><a href="${links.learnMore}">Explore resource →</a></article>`).join('')}</section>`:`<section class="content-grid"><aside aria-label="Page progress"><p class="overline">On this page</p><ol><li>Arrive</li><li>Reflect</li><li>Practice</li></ol><progress max="40" value="${p.number}" aria-label="Journey progress"></progress></aside><article><p class="lead">${esc(p.summary)}</p><h2>An invitation to notice</h2><p>Formation is not a project to complete. It is the ongoing work of becoming more present, more honest, and more able to receive and offer love.</p>${quote}<h2>A practice for today</h2><p>Take a quiet moment. Notice what feels alive in you, what feels resistant, and what invitation you want to carry into the day.</p><a class="text-link" href="${links.next}">Continue the journey →</a></article></section>`;
  return `${header()}<main>${journey(p.stage)}<section class="hero ${isHome?'home':''} ${stage?'stage':''}"><div class="hero-copy"><p class="overline">${esc(p.stage)} · ${String(p.number).padStart(2,'0')}</p><h1>${esc(p.title)}</h1><p>${esc(p.eyebrow)}</p><a class="button" href="${isHome?links.begin:links.next}">${isHome?'Begin the journey':'Explore this movement'}</a></div><div class="scene" role="img" aria-label="A quiet mountain landscape with native plants"><span class="sun"></span><span class="mountain one"></span><span class="mountain two"></span><img src="/assets/botanical.svg" alt="" class="botanical"></div>${isHome?`<aside class="hero-card" aria-label="Welcome message"><p class="overline">A place to begin</p><h2>Your inner life matters.</h2><p>Make room for a more honest, integrated life with God and others.</p><a href="${links.learnMore}">Learn more →</a></aside>`:''}</section>${cards}<section class="closing"><p class="overline">Reforming the Soul</p><h2>Attend to what is forming you.</h2><a class="button gold" href="${links.join}">Join the journey</a></section></main>${footer()}`;
