@@ -1,0 +1,63 @@
+module.exports = {
+  number: 22,
+  route: '/become/rule-of-life/',
+  stage: 'Become',
+  title: 'Learn to Recognize His Voice',
+  eyebrow: 'BECOMING  •  PART ONE  •  LESSON 2 OF 6  •  SCREEN 2 OF 2',
+  lesson: 2,
+  screen: 2,
+  previous: { label: 'PREVIOUS: SCREEN 1', href: '/become/practice-change/' },
+  next: { label: 'NEXT: LESSON 3 — RELEASE CONTROL', href: '/become/relationships/' },
+  content: [
+    { className: 'p22-intro', blocks: [
+      { type: 'lead', text: 'Knowing someone’s voice comes from knowing the person.' },
+      { type: 'p', text: 'God communicates in many ways, not always in dramatic or audible ways. He uses the entire life you live to draw your attention, shape your understanding, and guide your steps.' },
+      { type: 'accent', text: 'The channel is not the authority — His character is.' },
+      { type: 'strong', text: 'How we recognize God is far more important than the way He chooses to speak.' },
+    ] },
+    { className: 'p22-perspective', blocks: [
+      { type: 'heading', text: 'A HEALTHY PERSPECTIVE' },
+      { type: 'p', text: 'You do not have to turn every thought into something God said.' },
+      { type: 'p', text: 'Some moments we are certain. Some moments something seems significant and we hold it before Him. Some moments we simply do not know.' },
+      { type: 'gold', text: 'Maturity isn’t claiming certainty. Maturity includes learning to listen without needing to manufacture an answer.' },
+    ] },
+    { className: 'p22-ways', blocks: [
+      { type: 'heading', text: 'WAYS GOD COMMUNICATES' },
+      { type: 'p', text: 'God is not limited to any one method. He often speaks in the ordinary, through the things we already encounter.' },
+      { type: 'richList', items: [
+        ['Through Scripture', 'A verse comes alive, exposes, corrects, encourages, or directs.'],
+        ['Through thoughts', 'A thought brings clarity, conviction, comfort, or insight that aligns with Him.'],
+        ['Through other people', 'A conversation, counsel, or question becomes the very answer you needed.'],
+        ['Through teaching or preaching', 'God illuminates what you are hearing.'],
+        ['Through creation', 'Beauty, order, or circumstances reveal something about His heart or direction.'],
+        ['Through circumstances', 'Doors open or close. Delays teach.'],
+        ['Through conviction', 'The Spirit presses on something in you that needs attention.'],
+        ['Through peace', 'A deep inner peace confirms direction.'],
+        ['Through unease', 'Disquiet or resistance can be His warning.'],
+        ['And sometimes, through silence', 'Silence is still communication. He can be teaching, waiting, preparing you, or inviting trust.'],
+      ] },
+    ] },
+    { className: 'p22-recognize', blocks: [
+      { type: 'heading', text: 'HOW TO RECOGNIZE HIS VOICE' },
+      { type: 'p', text: 'Familiarity with God is built over time through a cycle of listening and discernment.' },
+      { type: 'steps', items: [
+        ['Ask', 'Begin with a sincere question. “Father, what do You want me to see right now?”'],
+        ['Listen', 'Pay attention without strain. Be still. Be alert. Live in awareness.'],
+        ['Notice', 'What thoughts, Scriptures, people, circumstances, or impressions stand out?'],
+        ['Test', 'Bring what you sense before the truth of God’s Word and the character of Jesus. Does it agree with who He is?'],
+        ['Respond', 'If it aligns, take the next right step. If it does not, let it go. If you’re unsure, wait.'],
+      ] },
+      { type: 'softCallout', title: 'Discernment protects relationship.', text: 'It keeps us from confusing our own desires, fears, or assumptions with the voice of God.' },
+    ] },
+    { className: 'p22-reminders', blocks: [
+      { type: 'heading', text: 'THREE IMPORTANT REMINDERS' },
+      { type: 'reminders', items: [
+        ['God will never contradict who He is.', 'He is good, loving, truthful, just, merciful, and faithful. If what you think you are hearing conflicts with that, it is not His voice.'],
+        ['God’s voice leads toward life, not fear.', 'His leading may include truth and correction, but His heart is never to manipulate, shame, or control you.'],
+        ['Obedience is the best amplifier of His voice.', 'As you take the next right steps He shows you, you become increasingly familiar with His way of communicating.'],
+      ] },
+      { type: 'softCallout', text: 'The goal is not to become an expert at hearing God. The goal is to become familiar with Him.' },
+      { type: 'accent', text: 'The more you know Him, the more clearly you will recognize His voice.' },
+    ] },
+  ],
+};

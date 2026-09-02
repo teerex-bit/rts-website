@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="tree" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29"/><path d="M32 8v47M32 18 21 11M32 22l12-9M32 29 16 21M32 34l17-10M32 42 15 50M32 44l18 8M20 56c5-7 9-9 12-10 4 2 8 5 12 10"/></symbol>
+    <symbol id="person" viewBox="0 0 32 32"><circle cx="16" cy="10" r="5"/><path d="M7 28c1-7 4-11 9-11s8 4 9 11"/></symbol>
+    <symbol id="question" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><path d="M12 12c.5-5 8-5 8 0 0 4-4 4-4 7M16 24h.01"/></symbol>
+    <symbol id="awaken" viewBox="0 0 32 32"><path d="M5 24h22M8 24a8 8 0 0 1 16 0M16 3v7M6 8l5 5M26 8l-5 5M2 16h6M24 16h6"/></symbol>
+    <symbol id="eye" viewBox="0 0 32 32"><path d="M2 16s5-9 14-9 14 9 14 9-5 9-14 9S2 16 2 16Z"/><circle cx="16" cy="16" r="4"/></symbol>
+    <symbol id="walk" viewBox="0 0 32 32"><circle cx="18" cy="5" r="2"/><path d="m17 9-4 7 5 3 2 10M14 16l-6 4M18 19l6-4M13 29l5-10"/></symbol>
+    <symbol id="people" viewBox="0 0 32 32"><circle cx="16" cy="9" r="4"/><circle cx="6" cy="13" r="3"/><circle cx="26" cy="13" r="3"/><path d="M9 28v-5c0-5 3-8 7-8s7 3 7 8v5M1 27v-4c0-4 2-6 5-6M31 27v-4c0-4-2-6-5-6"/></symbol>
+    <symbol id="chevron" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14"/><path d="m13 9 7 7-7 7"/></symbol>
+    <symbol id="check" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14"/><path d="m9 16 5 5 9-10"/></symbol>
+    <symbol id="cross" viewBox="0 0 32 32"><path d="M12 3h8v9h7v8h-7v9h-8v-9H5v-8h7Z"/></symbol>
+    <symbol id="temple" viewBox="0 0 32 32"><path d="m3 11 13-8 13 8M5 27h22M7 11h18M9 11v14M15 11v14M21 11v14"/></symbol>
+    <symbol id="mask" viewBox="0 0 32 32"><path d="M5 5c5 3 17 3 22 0v12c0 7-6 11-11 13-5-2-11-6-11-13Z"/><path d="M9 14c2-2 4-2 6 0M17 14c2-2 4-2 6 0M11 21c3 2 7 2 10 0"/></symbol>
+    <symbol id="tear" viewBox="0 0 32 32"><path d="M16 2C13 9 7 14 7 21a9 9 0 0 0 18 0c0-7-6-12-9-19Z"/></symbol>
+    <symbol id="justice" viewBox="0 0 32 32"><path d="M16 3v25M8 28h16M5 8h22M8 8 3 18h10L8 8ZM24 8l-5 10h10L24 8Z"/></symbol>
+    <symbol id="idol" viewBox="0 0 32 32"><path d="M10 29h12M12 29l2-15M20 29l-2-15M11 7h10l-2 7h-6Z"/><circle cx="16" cy="5" r="3"/></symbol>
+    <symbol id="flame" viewBox="0 0 32 32"><path d="M17 2c2 8-6 9-6 16 0 3 2 5 5 5-1-5 4-6 3-11 5 4 7 8 5 13-2 5-8 7-13 4-7-4-5-13 6-27Z"/></symbol>
+    <symbol id="branch" viewBox="0 0 32 32"><path d="M6 29c8-6 14-13 20-25M11 23C6 22 4 18 4 14c5 0 8 2 9 6M17 16c-1-5 2-9 6-11 2 5 0 9-4 13M20 12c4 1 7-1 9-4"/></symbol>
+    <symbol id="heart" viewBox="0 0 32 32"><path d="M16 28 5 17C-2 9 9 1 16 9c7-8 18 0 11 8Z"/></symbol>
+    <symbol id="book" viewBox="0 0 32 32"><path d="M3 6c6-2 10 0 13 4v18c-3-4-7-6-13-4ZM29 6c-6-2-10 0-13 4v18c3-4 7-6 13-4Z"/></symbol>
+    <symbol id="leaf" viewBox="0 0 32 32"><path d="M5 27C4 13 11 4 27 3c1 15-8 23-22 24ZM7 25 25 6M13 19l-1-8M17 15l8 1"/></symbol>
+    <symbol id="ear" viewBox="0 0 32 32"><path d="M24 21c0-6 5-8 3-14-2-8-15-7-18 0-3 6 1 10 3 13 2 4-1 8 4 9 4 1 5-2 5-5M14 9c4-4 9 1 6 5-2 3-6 3-5 8"/></symbol>
+    <symbol id="hand" viewBox="0 0 32 32"><path d="M8 14V7c0-3 4-3 4 0v6-9c0-3 4-3 4 0v9-8c0-3 4-3 4 0v8-5c0-3 4-3 4 0v10c0 7-4 11-10 11-7 0-10-5-11-10-1-4 4-5 5-1"/></symbol>
+    <symbol id="drop" viewBox="0 0 32 32"><path d="M16 2C13 9 7 15 7 21a9 9 0 0 0 18 0c0-6-6-12-9-19Z"/></symbol>
+    <symbol id="repeat" viewBox="0 0 32 32"><path d="M25 10a11 11 0 0 0-18 2M7 12H2V7M7 22a11 11 0 0 0 18-2M25 20h5v5"/></symbol>
+    <symbol id="mind" viewBox="0 0 32 32"><path d="M10 26c-5 0-6-6-3-9-4-4 0-9 4-8 1-6 10-6 11 0 5 0 7 6 4 9 3 5-1 9-5 8-2 4-9 3-11 0Z"/><path d="M12 9v16M20 9v16M12 16h8"/></symbol>
+    <symbol id="target" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><circle cx="16" cy="16" r="8"/><circle cx="16" cy="16" r="3"/></symbol>
+    <symbol id="warning" viewBox="0 0 32 32"><path d="m16 3 14 26H2Z"/><path d="M16 11v9M16 25h.01"/></symbol>
+    <symbol id="shield" viewBox="0 0 32 32"><path d="M16 2c4 4 8 5 13 5v9c0 8-6 12-13 15C9 28 3 24 3 16V7c5 0 9-1 13-5Z"/><path d="m10 16 4 4 8-8"/></symbol>
+    <symbol id="clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><path d="M16 7v10l7 4"/></symbol>
+  </defs>
+</svg>
