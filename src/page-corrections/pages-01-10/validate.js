@@ -31,8 +31,9 @@ for (const number of [2, 7]) {
 
 const page02 = adapter.patches.get(2).render();
 assert.ok(page02.includes('You Have Already Been Formed'));
-assert.ok(page02.includes('class="p02-brand"'), 'Page 02 must use the editable growth-stage brand lockup');
-assert.ok(page02.includes('/assets/page-awaken/tree-mark.svg'), 'Page 02 must use its isolated Tree of Life mark');
+assert.ok(page02.includes('class="p02-brand"'), 'Page 02 must use the growth-stage brand lockup');
+assert.ok(page02.includes('/assets/page-awaken/curriculum-logo.png'), 'Page 02 must use the approved Tree of Life curriculum logo graphic');
+assert.ok(!page02.includes('<strong>Reforming</strong>'), 'Page 02 must not reconstruct the approved curriculum logo with live type');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#formation'), 'Page 02 must use a formation SVG outcome icon');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#notice'), 'Page 02 must use a noticing SVG outcome icon');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#leaf'), 'Page 02 must use a leaf SVG outcome icon');
