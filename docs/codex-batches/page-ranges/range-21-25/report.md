@@ -34,7 +34,7 @@ Additional checks cover JavaScript syntax for every range module, successful ren
 ## Concerns and integration notes
 
 - Full screenshot automation could not run in this worker: Playwright’s bundled headless shell is absent, and the available Chromium binary exits because this environment blocks its process-singleton socket (`Operation not permitted`). The original references were still inspected at full resolution, and responsive behavior received static CSS/HTML review. The coordinator should include these pages in the integrated browser screenshot pass.
-- The Page 23 olive tree and Page 24/25 open hands are complex engraving-like art. Editable SVG approximations preserve current balance. `missing-raster-assets.md` provides precise transparent-asset briefs if higher-fidelity production art is desired.
+- Page 23 now uses an independent, text-free crop of the approved olive-tree engraving. Pages 24 and 25 use an independent, text-free crop of the approved open-hands engraving. The editable SVG approximations remain available as fallbacks, and `missing-raster-assets.md` retains the briefs for any later transparent-art refresh.
 - The range is intentionally not wired into shared build/check files; integration belongs to the coordinator. No build was run because the shared build recreates `public/`, which is outside this range’s ownership.
 
 ## Final QA — 2026-09-02

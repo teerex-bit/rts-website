@@ -76,3 +76,7 @@ A Playwright capture was attempted with the repository’s installed Chromium, b
 ## Final QA addendum
 
 A second source-to-reference pass confirmed the five pages remain componentized and use live HTML/CSS rather than the reference PNGs. It also found and fixed a navigation defect: the shared pager previously sent every page to the same generic destinations. Pages 31–35 now connect to their actual adjacent lesson routes, and the validator asserts the complete previous/next route matrix. The unresolved visual-fidelity limitation remains the four independent photographs listed above; the current CSS/SVG scenic treatments preserve balance but are not photorealistic substitutes.
+
+## Fidelity asset pass
+
+The approved Page 32, 33, and 34 references contained clean photographic regions with no text, cards, or controls baked into them. Those regions were extracted as independent JPEG assets under `src/assets/page-ranges/range-31-35/fidelity/` and now replace the generic CSS scenic treatments. Page 35 retains its independently editable vector orchard because its reference photograph cannot be separated cleanly from the overlaid quote card. Page 31 contains no photographic hero.

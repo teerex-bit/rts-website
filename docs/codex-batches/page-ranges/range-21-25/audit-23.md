@@ -24,4 +24,4 @@ Lower right: “A NECESSARY DISTINCTION”; “Control says:”; “I need to kn
 
 ## Separable assets
 
-The olive tree is separable complex line art. `olive-tree.svg` is an editable proportional approximation used for layout; a production-fidelity replacement brief is recorded in `missing-raster-assets.md`.
+The olive tree is separable complex line art. `olive-tree-reference.webp` is an independent, text-free crop of the approved reference artwork; `olive-tree.svg` remains as a code-native fallback. A production-fidelity transparent replacement brief is recorded in `missing-raster-assets.md`.

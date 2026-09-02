@@ -23,7 +23,7 @@ module.exports = {
       { type: 'p', text: 'Surrender does not require having no will. Jesus had a will. Surrender meant His will was placed beneath the Father’s will.' },
     ] },
     { className: 'p23-tree', blocks: [
-      { type: 'imageText', icon: 'olive-tree.svg', alt: 'An olive tree with roots spreading into the earth', text: 'Whole surrender isn’t the absence of desire.', accent: 'It is the surrender of desire’s authority.' },
+      { type: 'imageText', icon: 'olive-tree-reference.webp', alt: 'An olive tree with roots spreading into the earth', text: 'Whole surrender isn’t the absence of desire.', accent: 'It is the surrender of desire’s authority.' },
     ] },
     { className: 'p23-surrendering', blocks: [
       { type: 'heading', text: 'WHAT ARE WE ACTUALLY SURRENDERING?' },

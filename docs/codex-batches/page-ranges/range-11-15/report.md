@@ -1,5 +1,13 @@
 # Range 11–15 implementation report
 
+## Fidelity pass — 2026-09-02
+
+- Replaced generic vector photography on Pages 11–15 with independent, text-free photographic crops from each page's approved `done/` reference.
+- Kept all headings, body copy, comparison cards, questions, tables, calls to action, navigation, and overlays as live HTML/CSS.
+- Added `identity-forest.jpg`, `wineskin-forest.jpg`, `seeing-god-forest.jpg`, `trust-overlook.jpg`, and `jesus-child.jpg` as replaceable page assets.
+- Confirmed the runtime does not reference the full-page `done/` compositions.
+- Range validation, full build, and 44-route link/asset check pass.
+
 ## Status
 
 Pages 11–15 are implemented as an isolated CommonJS range with the required `{ pages, render, css }` contract. Each page has a dedicated data module, semantic renderer output, responsive namespaced CSS, independent code-native SVG assets, and an original-resolution audit.
@@ -26,7 +34,7 @@ Pages 11–15 are implemented as an isolated CommonJS range with the required `{
 
 ## Raster concerns
 
-The forest-path person (Pages 11–13), seated trust reflection (Page 14), and Jesus-with-child scene (Page 15) are complex photographic subjects. Current editable SVGs preserve composition and color balance without pretending to be source photography. `missing-raster-assets.md` contains exact briefs, crop guidance, dimensions, and intended filenames for later replacement.
+The approved references now supply independent, text-free photographic crops for Pages 11–15. The original code-native SVG stand-ins remain in the source asset directory as inactive fallbacks; no page renders them.
 
 ## Verification
 

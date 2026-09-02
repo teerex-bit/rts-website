@@ -20,7 +20,7 @@ module.exports = {
     'Your view of God shapes everything—how you relate, how you trust, how you grow, and how you live.'
   ],
   invitation: 'It’s time to discover who He truly is.',
-  heroImage: '/assets/page-ranges/range-11-15/forest-path.svg',
+  heroImage: '/assets/page-ranges/range-11-15/seeing-god-forest.jpg',
   parts: [
     { label: 'Part 1', title: 'See Yourself Clearly', text: ['Identity is settled.', 'Formation is the journey.'], icon: 'profile' },
     { label: 'Part 2', title: 'See God Clearly', text: ['Relationship is the foundation.', 'Everything flows from Him.'], icon: 'crown', active: true }

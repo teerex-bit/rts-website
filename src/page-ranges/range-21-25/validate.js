@@ -45,7 +45,7 @@ const sourceFiles = fs.readdirSync(__dirname).filter(file => /^page-(?:21|22|23|
 assert.strictEqual(sourceFiles.length, 5, 'one source module is required per page');
 
 const assetRoot = path.join(__dirname, '..', '..', 'assets', 'page-ranges', 'range-21-25');
-for (const asset of ['logo.svg', 'stage-awaken.svg', 'stage-see.svg', 'stage-become.svg', 'stage-join.svg', 'ear.svg', 'heart.svg', 'clock.svg', 'olive-tree.svg', 'open-hands.svg']) {
+for (const asset of ['logo.svg', 'stage-awaken.svg', 'stage-see.svg', 'stage-become.svg', 'stage-join.svg', 'ear.svg', 'heart.svg', 'clock.svg', 'olive-tree.svg', 'open-hands.svg', 'olive-tree-reference.webp', 'open-hands-reference.webp']) {
   assert(fs.existsSync(path.join(assetRoot, asset)), `missing code-native asset ${asset}`);
 }
 

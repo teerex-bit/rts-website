@@ -24,4 +24,4 @@ Bottom: “GOD IS FORMING A SURRENDERED PERSON”; “God isn’t only asking yo
 
 ## Separable assets
 
-The open-hand engraving is separable complex art. `open-hands.svg` provides editable compositional line art. A production-fidelity replacement brief is in `missing-raster-assets.md`.
+The open-hand engraving is separable complex art. `open-hands-reference.webp` is an independent, text-free crop of the approved reference artwork; `open-hands.svg` remains as a code-native fallback. A production-fidelity transparent replacement brief is in `missing-raster-assets.md`.

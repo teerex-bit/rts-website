@@ -20,7 +20,7 @@ module.exports = {
         { title: 'TOMORROW HASN’T BEEN GIVEN TO YOU.', text: 'You can make plans, but you cannot live in it. Worrying about it steals the life you have right now.' },
         { title: 'GOD MEETS YOU IN “NOW.”', text: 'This moment is the only moment in which you can choose to live in relationship with Him.' },
       ] },
-      { type: 'practicePrompt', icon: 'open-hands.svg', eyebrow: 'THE PRACTICAL QUESTION FOR THIS MOMENT', title: 'Father, how do You want me to receive this moment with You?', text: 'I don’t have to escape the moment to be close to You. I can receive this moment and You together.' },
+      { type: 'practicePrompt', icon: 'open-hands-reference.webp', eyebrow: 'THE PRACTICAL QUESTION FOR THIS MOMENT', title: 'Father, how do You want me to receive this moment with You?', text: 'I don’t have to escape the moment to be close to You. I can receive this moment and You together.' },
     ] },
     { className: 'p25-aside', blocks: [
       { type: 'heading', text: 'STOP ASKING YOUR PRESENT MOMENT TO BECOME SOMETHING ELSE BEFORE YOU ARE WILLING TO RECEIVE IT.' },

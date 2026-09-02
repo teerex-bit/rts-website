@@ -220,4 +220,21 @@ module.exports = String.raw`
   .rts-r31-35__flow li { flex-basis: 50%; }
   .rts-r31-35__questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rts-r31-35__pager > a { padding: 0 10px; font-size: 10px; }
-}`;
+}
+/* Reference-derived, text-free photography remains independently replaceable. */
+.rts-r31-35--page-32 .rts-r31-35__scenic--lake {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-32-lakeside.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-33 .rts-r31-35__scenic--conversation {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-33-conversation.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-34 .rts-r31-35__scenic--mountains {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-34-mountain.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-32 .rts-r31-35__scenic::before,
+.rts-r31-35--page-32 .rts-r31-35__scenic::after,
+.rts-r31-35--page-33 .rts-r31-35__scenic::before,
+.rts-r31-35--page-33 .rts-r31-35__scenic::after,
+.rts-r31-35--page-34 .rts-r31-35__scenic::before,
+.rts-r31-35--page-34 .rts-r31-35__scenic::after { display: none; }
+`;

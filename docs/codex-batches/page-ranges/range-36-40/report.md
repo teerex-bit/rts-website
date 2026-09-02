@@ -57,6 +57,17 @@ Fresh final checks are recorded at handoff.
 - Browser screenshot smoke testing could not run in this executor: Playwright’s headless-shell binary is absent, while the available full Chromium aborts because process sockets are restricted. Structural viewport dimensions and responsive rules were self-reviewed in source; the integration coordinator should perform the requested final screenshot comparison after registering the range in the shared build.
 - Page 40 includes every title readable at original resolution; titles partly obscured or artistically ambiguous in the cover artwork are transcribed conservatively and should receive editorial confirmation before publication.
 
+## Fidelity asset pass
+
+The generic placeholders for Pages 36, 37, 39, and 40 were replaced with independently addressable assets derived from clean regions of the approved references:
+
+- Page 36 now uses six separate editorial portraits.
+- Page 37 now uses the four-person mountain overlook photograph.
+- Page 39 now uses the illuminated valley photograph behind live hero copy.
+- Page 40 now uses a text-free mountain/book hero crop plus 24 separate real book-cover assets; cover images have meaningful alternative text.
+
+No full-page reference image is loaded at runtime. Page 38 Conversations code and assets were intentionally not changed in this pass.
+
 ## Final QA addendum
 
 A second source-to-reference pass confirmed semantic structure, responsive reflow, route safety, separate asset slots, and the four-stage rule across Pages 36–40. Page 38 now explicitly avoids highlighting Join in its journey rail: Conversations is a separate service page, while its four header stage links remain text-only. Its ordinary sentence “Walk forward with confidence and peace” remains valid prose. The principal fidelity gap is still the independent raster set in `missing-raster-assets.json`—especially the six Page 36 portraits, Pages 37–39 heroes, Page 38 chairs scene, and Page 40 cover art.

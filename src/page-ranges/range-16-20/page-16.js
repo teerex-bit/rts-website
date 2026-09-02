@@ -14,8 +14,8 @@ module.exports = {
   comparisons: [
     {
       heading: 'Jesus’ Righteous Anger',
-      image: 'anger-jesus.svg',
-      imageAlt: 'Code-native illustration of Jesus confronting harm and hypocrisy',
+      image: 'jesus-righteous-anger.jpg',
+      imageAlt: 'Jesus confronting people who were harming others',
       items: [
         ['cross', 'Angry when people were being harmed', '(Mark 3:5)'],
         ['temple', 'Angry at injustice and exploitation in God’s house', '(John 2:13–17)'],
@@ -25,8 +25,8 @@ module.exports = {
     },
     {
       heading: 'God’s Righteous Anger (Old Testament)',
-      image: 'anger-storm.svg',
-      imageAlt: 'Code-native illustration of a storm over a desert valley',
+      image: 'righteous-anger-storm.jpg',
+      imageAlt: 'Lightning over a dark mountain valley',
       items: [
         ['justice', 'Angry against injustice and oppression', '(Isaiah 5:8; Amos 5:11–12)'],
         ['idol', 'Angry at idolatry and turning away from Him', '(Deuteronomy 32:16–21)'],

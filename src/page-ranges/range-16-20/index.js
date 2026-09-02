@@ -115,7 +115,7 @@ function renderLanding(page) {
   return `<main class="r1620 r1620--landing" data-page-number="${page.number}" data-editable-source="range-16-20">
     ${topbar(page.stage)}
     <section class="r1620-landing-hero">
-      <img src="${assetRoot}/becoming-hero.svg" alt="Code-native mountain valley at sunrise with a seated traveler">
+      <img src="${assetRoot}/becoming-overlook.jpg" alt="A woman overlooking a mountain valley at sunrise">
       <div class="r1620-landing-copy"><p class="r1620-eyebrow">${icon('leaf')} ${page.kicker}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline.join('<br>')}</h2><p>${page.intro.join('<br>')}</p><strong>${page.emphasis}</strong><div class="r1620-actions"><a href="/become/true-self/">Begin This Journey →</a><a href="/become/">▷ &nbsp; Watch the Overview</a></div></div>
       <aside class="r1620-landing-steps">${[['awaken','Live with God in every moment.'],['heart','Let His life change you.'],['leaf','Become more like Him.'],['people','Then join Him in what He is doing in the world.']].map(([symbol, text]) => `<span>${icon(symbol)}<b>${text}</b></span>`).join('')}</aside>
     </section>
@@ -139,7 +139,7 @@ function lessonPager(page, nextLabel) {
 
 function renderLessonOne(page) {
   const content = `<section class="r1620-lesson-hero">
-      <img src="${assetRoot}/presence-path.svg" alt="Code-native sunrise over a mountain trail">
+      <img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise">
       <div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p><div class="r1620-actions"><a href="${page.route}">Begin Lesson →</a><a href="/become/">▷ &nbsp; Watch Overview</a></div></div>
       <blockquote><b>“</b><p>${page.quote[0]}</p><cite>${page.quote[1]}</cite></blockquote>
     </section>
@@ -151,7 +151,7 @@ function renderLessonOne(page) {
 }
 
 function renderLessonTwo(page) {
-  const content = `<section class="r1620-pattern-hero"><img src="${assetRoot}/presence-path.svg" alt="Code-native sunrise over a mountain trail"><div><p class="r1620-eyebrow">${page.course}</p><p class="r1620-screen-label">${page.screen}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p></div>
+  const content = `<section class="r1620-pattern-hero"><img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise"><div><p class="r1620-eyebrow">${page.course}</p><p class="r1620-screen-label">${page.screen}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p></div>
     <aside class="r1620-practice"><h2>${icon('branch')}${page.practice.title}</h2>${page.practice.paragraphs.map(p => `<p>${p}</p>`).join('')}<hr><h3>${page.practice.heading}</h3><p>${page.practice.body}</p><hr><div class="r1620-reassurance">${icon('person')}<p>${page.practice.reassurance.join('<br>')}</p></div><strong>${page.practice.prayer.join('<br>')}</strong></aside>
     <div class="r1620-patterns"><section><p class="r1620-chip">Old Pattern</p><h3>We react from what we see.</h3><ol>${page.oldPattern.map((item, i) => `<li>${icon(['warning','ear','target','shield','repeat','person','clock'][i])}<span>${item}</span></li>`).join('')}</ol></section><span class="r1620-pattern-arrow">→</span><section><p class="r1620-chip r1620-chip--new">A New First Response</p><h3>We respond from who is already here.</h3><ol>${page.newResponse.map((item, i) => `<li><b>${i < 5 ? i + 1 : '♥'}</b><span>${item}</span></li>`).join('')}</ol></section></div>
     <blockquote class="r1620-goal"><b>“</b><p>${page.quote[0]}<br><strong>${page.quote[1]}</strong></p></blockquote>

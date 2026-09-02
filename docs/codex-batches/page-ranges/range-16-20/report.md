@@ -1,5 +1,14 @@
 # Range 16–20 implementation report
 
+## Fidelity pass — 2026-09-02
+
+- Replaced the generic Page 16 anger illustrations with independent, text-free crops matching the approved reference.
+- Replaced the generic Page 18 and Pages 19–20 mountain artwork with independent photographic crops matching their approved references.
+- Kept titles, lesson content, quote cards, practice panels, navigation, and controls as live HTML/CSS.
+- Added `jesus-righteous-anger.jpg`, `righteous-anger-storm.jpg`, `becoming-overlook.jpg`, and `presence-mountain-path.jpg` as replaceable page assets.
+- Confirmed the runtime does not reference the full-page `done/` compositions.
+- Range validation, full build, and 44-route link/asset check pass.
+
 ## Status
 
 Implemented Pages 16–20 as an isolated editable range. The entry module exports exactly `pages`, `render`, and `css`; `pages` is an ordered `Map` keyed 16 through 20. Each page has a dedicated data module and renders one semantic `h1` with route metadata.

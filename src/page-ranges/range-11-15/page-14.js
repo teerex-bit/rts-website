@@ -19,7 +19,7 @@ module.exports = {
     'You’ve looked at Jesus, the clearest revelation of the Father.'
   ],
   prompt: 'Now the question is personal.',
-  heroImage: '/assets/page-ranges/range-11-15/trust-reflection.svg',
+  heroImage: '/assets/page-ranges/range-11-15/trust-overlook.jpg',
   questions: [
     'Does His character consistently reflect what is good, true, just, and life-giving?',
     'Does He keep His promises—even when I don’t understand the timing?',

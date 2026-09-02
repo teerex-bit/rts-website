@@ -36,7 +36,7 @@ module.exports = {
         ['Offer it to Him.', 'But I want You more than I need this to happen my way.'],
         ['Invite His leading.', 'Show me what is mine to do. I will leave what is Yours with You.'],
       ] },
-      { type: 'imageChecklist', icon: 'open-hands.svg', alt: 'Two open hands', items: ['Release what isn’t yours to control.', 'Receive what God has actually given you.', 'Do what is yours to do.', 'Trust Him with the rest.'], footer: 'This is surrender, not passivity.' },
+      { type: 'imageChecklist', icon: 'open-hands-reference.webp', alt: 'Two open hands', items: ['Release what isn’t yours to control.', 'Receive what God has actually given you.', 'Do what is yours to do.', 'Trust Him with the rest.'], footer: 'This is surrender, not passivity.' },
     ] },
     { className: 'p24-formation', blocks: [
       { type: 'heading', text: 'GOD IS FORMING A SURRENDERED PERSON' },

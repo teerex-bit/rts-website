@@ -47,7 +47,7 @@ function renderHeader() {
   return `<header class="rts2521-header">
     <a class="rts2521-brand" href="/" aria-label="Reforming the Soul home">${icon('logo.svg', 'Reforming the Soul')}</a>
     <nav aria-label="Main navigation">
-      <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOMING</a><a href="/join/">JOIN</a>
+      <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOME</a><a href="/join/">JOIN</a>
     </nav>
     <a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a>
     <span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>

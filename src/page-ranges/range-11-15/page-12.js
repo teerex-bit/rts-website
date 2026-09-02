@@ -33,7 +33,7 @@ module.exports = {
   assurance: ['God is not trying to patch the old wineskin.', 'Jesus has already given you a new one—one that can hold the abundant life He has given you.', 'The life is already in you. Let’s make room for it.'],
   choice: ['Awareness leads to choice.', 'Choice leads to change.', 'Today, you choose to live from what is already true: you are new in Christ.'],
   side: {
-    image: '/assets/page-ranges/range-11-15/forest-path.svg',
+    image: '/assets/page-ranges/range-11-15/wineskin-forest.jpg',
     why: ['God’s goal is not to shame you into changing. His goal is to make more room for the new life He has already given you.', 'When the wineskin changes, the wine flows. When the wine flows, you live the life you were created for.'],
     outcomes: ['See why your old reactions don’t define who you are.', 'Understand that old formation can still influence you.', 'Choose to make room for the new life God has already given you.'],
     remember: ['You are new in Christ.', 'God is forming you.', 'Make room for life.']
