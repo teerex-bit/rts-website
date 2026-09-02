@@ -1,0 +1,20 @@
+.home-hero { min-height: 620px; display: grid; align-items: center; background: radial-gradient(circle at 58% 35%, #ffe7b7 0 8%, transparent 30%), linear-gradient(120deg, #fbf8f1 0 42%, #dfc39b 73%, #9f764b); }
+.home-hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 70px; padding-block: 72px; }
+.home-hero__copy { max-width: 680px; }
+.home-hero__copy .lead { margin: 14px 0 20px; color: #51603c; font-size: 1.35rem; }
+.home-hero__copy .button { margin-top: 14px; }
+.formation-card { justify-self: end; max-width: 330px; margin-top: 180px; padding: 30px; color: white; background: rgb(3 20 31 / 88%); border: 1px solid #b58c58; border-radius: 12px; font-size: 1.12rem; }
+.formation-card::before { content: "❧"; display: block; color: var(--gold); font-size: 2.3rem; }
+.path-section { padding: 34px 0; background: var(--cream); }
+.path-grid { display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 52px; }
+.path-card { display: grid; grid-template-columns: 90px 1fr; gap: 24px; align-items: center; padding: 26px 32px; border: 1px solid #d8c3a3; border-radius: 12px; }
+.path-card .plant { color: var(--olive); font-size: 5rem; }
+.experience { padding: 38px 0 0; }
+.experience-grid { display: grid; grid-template-columns: repeat(3, 1fr) 1.8fr; gap: 12px; }
+.experience-card { min-height: 310px; padding: 120px 20px 22px; color: white; background: linear-gradient(0deg, rgb(3 20 31 / 92%), rgb(78 98 79 / 28%)), linear-gradient(135deg,#567063,#c39a55); border-radius: 10px; }
+.experience-card h3 { margin: 0 0 8px; font-size: 1.6rem; }
+.closing-statement { min-height: 310px; display: flex; align-items: center; padding: 44px 50px; background: var(--navy); }
+.closing-statement h2 { margin: 0; color: white; font-size: 2rem; }
+.closing-statement h2 em { color: var(--gold); }
+@media (max-width: 1050px) { .path-grid, .experience-grid { grid-template-columns: 1fr 1fr; } .closing-statement { grid-column: 1 / -1; } }
+@media (max-width: 700px) { .home-hero { min-height: auto; } .home-hero__grid { grid-template-columns: 1fr; gap: 28px; padding-block: 50px; } .formation-card { justify-self: stretch; margin-top: 0; } .path-grid, .experience-grid { grid-template-columns: 1fr; } .path-card { grid-template-columns: 64px 1fr; } .closing-statement { grid-column: auto; padding: 38px 28px; } }

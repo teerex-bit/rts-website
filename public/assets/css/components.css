@@ -1,0 +1,48 @@
+.site-header { position: relative; z-index: 20; background: rgb(255 253 249 / 96%); border-bottom: 1px solid #e9e2d8; }
+.header-inner { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font: 1.45rem/1.05 var(--serif); letter-spacing: .03em; }
+.brand-mark { width: 62px; height: 62px; flex: none; }
+.brand span { display: block; }
+.site-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); font-size: .88rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+.site-nav a { text-decoration: none; padding-block: 10px; border-bottom: 2px solid transparent; }
+.site-nav a[aria-current="page"] { color: #1359a0; border-color: #1359a0; }
+.menu-toggle { display: none; min-width: 48px; min-height: 48px; border: 1px solid var(--navy); border-radius: 50%; background: transparent; font-size: 1.35rem; }
+.button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 14px; padding: 12px 24px; border: 1px solid var(--navy); border-radius: 5px; color: white; background: var(--navy); text-decoration: none; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.button--olive { border-color: var(--olive); background: var(--olive); }
+.button--outline { color: var(--navy); background: transparent; }
+.journey { padding: 28px 0; background: var(--cream); }
+.journey-title { margin: 0 0 20px; text-align: center; font: 700 .98rem var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--olive); }
+.journey-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0; padding: 0; list-style: none; }
+.journey-step { position: relative; display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: 12px; padding: 14px; border: 1px solid transparent; border-radius: 8px; text-decoration: none; }
+.journey-step[aria-current="step"] { color: white; background: var(--olive); }
+.journey-icon { width: 58px; aspect-ratio: 1; padding: 11px; border-radius: 50%; background: var(--navy); }
+.journey-step strong { display: block; text-transform: uppercase; letter-spacing: .05em; }
+.journey-step small { display: block; margin-top: 3px; line-height: 1.35; }
+.course-shell { display: grid; grid-template-columns: 270px minmax(0,1fr); min-height: calc(100vh - 96px); }
+.course-sidebar { padding: 34px 22px; color: white; background: var(--navy-deep); }
+.course-sidebar .journey-list { display: flex; flex-direction: column; gap: 12px; }
+.course-sidebar .journey-step { grid-template-columns: 54px 1fr; }
+.course-main { min-width: 0; }
+.card { border: 1px solid #e5ddd1; border-radius: 12px; background: rgb(255 253 249 / 94%); box-shadow: 0 3px 10px rgb(26 35 33 / 7%); }
+.quote { position: relative; padding-left: 46px; font: italic 1.15rem/1.6 var(--serif); }
+.quote::before { content: "“"; position: absolute; left: 0; top: -20px; color: var(--gold); font-size: 5rem; line-height: 1; }
+
+@media (max-width: 980px) {
+  .header-inner { min-height: 78px; }
+  .menu-toggle { display: block; }
+  .site-nav { display: none; position: absolute; inset: 78px 0 auto; padding: 22px 24px; flex-direction: column; align-items: stretch; gap: 4px; background: var(--paper); box-shadow: var(--shadow); }
+  .site-nav[data-open="true"] { display: flex; }
+  .course-shell { grid-template-columns: 1fr; }
+  .course-sidebar { padding: 20px 16px; }
+  .course-sidebar > .eyebrow { display: none; }
+  .course-sidebar .journey-list { display: grid; grid-template-columns: repeat(4, minmax(150px,1fr)); overflow-x: auto; }
+  .course-sidebar .journey-step { grid-template-columns: 40px 1fr; }
+  .course-sidebar .journey-icon { width: 40px; padding: 7px; }
+}
+@media (max-width: 700px) {
+  .brand { font-size: 1rem; }
+  .brand-mark { width: 48px; height: 48px; }
+  .journey-list { grid-template-columns: 1fr 1fr; }
+  .journey-step { grid-template-columns: 46px 1fr; padding: 8px; }
+  .journey-icon { width: 46px; }
+}
