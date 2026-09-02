@@ -11,7 +11,7 @@ module.exports = {
   heading: 'Conversations',
   headline: 'Learn what God wants you to hear.',
   introduction: 'Sometimes we just need a conversation that helps us see what we can’t see on our own. In these mentoring conversations, we invite God into the room and listen together for what He wants you to notice, understand, and do next.',
-  booking: { label: 'Schedule a conversation', detail: 'Book via Calendly', href: '/coming-soon/' },
+  booking: { label: 'Book an appointment', detail: 'Schedule a video conversation', href: '/coming-soon/' },
   benefits: [
     { icon: 'person', title: 'God-Centered', copy: 'We seek His voice together.' },
     { icon: 'heart', title: 'Safe & Trusting', copy: 'A space to be honest, open, and heard.' },

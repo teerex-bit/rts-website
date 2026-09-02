@@ -16,6 +16,7 @@ function formationHeader(page, active = page.stage, auxiliary = []) {
 }
 
 function journeyRail(page, { progress, support, activeStage = page.number === 38 ? '' : page.stage } = {}) {
+  if (page.number === 38) progress = null;
   return `<aside class="rts-36-40__rail" aria-label="The formation journey"><h2>The Formation Journey</h2><ol>${page.stages.map(stage => `<li class="${stage.name === activeStage ? 'is-active' : ''}"><a data-stage="${escapeHtml(stage.name)}" href="${stage.href}">${icon(stage.icon)}<span><strong>${escapeHtml(stage.name)}</strong><small>${escapeHtml(stage.description)}</small></span></a></li>`).join('')}</ol>${progress ? `<section class="rts-36-40__progress"><h3>Your progress</h3><p><span>${escapeHtml(progress.label)}</span><span>${escapeHtml(progress.count)}</span></p><progress max="${progress.max}" value="${progress.value}">${escapeHtml(progress.count)}</progress></section>` : ''}${support ? `<section class="rts-36-40__support"><h3>${icon('help')}${escapeHtml(support.heading)}</h3><p>${escapeHtml(support.copy)}</p><a href="${support.href}">${escapeHtml(support.label)} <span aria-hidden="true">→</span></a></section>` : ''}</aside>`;
 }
 

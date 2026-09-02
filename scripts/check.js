@@ -9,7 +9,7 @@ if(fs.existsSync(conversationsPath)){
     'class="conversations-page"',
     'The formation journey',
     'Learn what God wants<br>you to hear.',
-    'Schedule a conversation',
+    'Book an appointment',
     'A different kind<br>of conversation',
     'Speak, Lord, for Your servant is listening.'
   ];
