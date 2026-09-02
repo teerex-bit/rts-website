@@ -76,3 +76,8 @@
 .site-header:has(+.conversations-page) nav{flex:1;justify-content:flex-end;gap:clamp(24px,3.7vw,64px)}
 .site-header:has(+.conversations-page) nav .is-active{color:#1651a0;border-bottom:2px solid #1651a0;padding-block:12px}
 @media(max-width:840px){.site-header:has(+.conversations-page) .brand img{width:195px}.site-header:has(+.conversations-page) nav{justify-content:center;gap:20px}}
+
+/* Approved primary brand: circle/flame mark with live script Soul wordmark. */
+@font-face{font-family:'RTS Script';src:url('/assets/Z003-MediumItalic.otf') format('opentype');font-style:italic;font-weight:400;font-display:swap}
+.brand-main{display:flex;align-items:center;gap:10px;height:60px;color:var(--navy);text-decoration:none}.brand-main-mark{position:relative;display:block;flex:0 0 64px;width:64px;height:60px;overflow:hidden}.brand-main-mark img{position:absolute;left:0;top:0;width:auto!important;height:60px;max-width:none}.brand-words{display:flex;flex-direction:column;justify-content:center;line-height:1}.brand-word-reforming{font:1.22rem/1 var(--serif);letter-spacing:.02em}.brand-word-lower{display:flex;align-items:baseline;gap:6px;margin-top:3px;font:1rem/1 var(--serif)}.brand-word-soul{font:400 1.72rem/.8 'RTS Script',cursive;text-transform:none;letter-spacing:0}
+@media(max-width:840px){.brand-main{height:52px}.brand-main-mark{flex-basis:55px;width:55px;height:52px}.brand-main-mark img{height:52px}.brand-word-reforming{font-size:1.05rem}.brand-word-soul{font-size:1.5rem}}
