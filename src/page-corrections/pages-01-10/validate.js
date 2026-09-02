@@ -29,7 +29,16 @@ for (const number of [2, 7]) {
   assert.ok(!/done\//.test(html), `Page ${number} uses a reference PNG`);
 }
 
-assert.ok(adapter.patches.get(2).render().includes('You Have Already Been Formed'));
+const page02 = adapter.patches.get(2).render();
+assert.ok(page02.includes('You Have Already Been Formed'));
+assert.ok(page02.includes('class="p02-brand"'), 'Page 02 must use the editable growth-stage brand lockup');
+assert.ok(page02.includes('/assets/page-awaken/tree-mark.svg'), 'Page 02 must use its isolated Tree of Life mark');
+assert.ok(page02.includes('/assets/page-awaken/icons.svg#formation'), 'Page 02 must use a formation SVG outcome icon');
+assert.ok(page02.includes('/assets/page-awaken/icons.svg#notice'), 'Page 02 must use a noticing SVG outcome icon');
+assert.ok(page02.includes('/assets/page-awaken/icons.svg#leaf'), 'Page 02 must use a leaf SVG outcome icon');
+assert.ok(page02.includes('/assets/page-awaken/icons.svg#account'), 'Page 02 must use an SVG account icon');
+assert.ok(!/[◉◌❧●]/.test(page02), 'Page 02 must not use keyboard characters as icons');
+assert.ok(adapter.css.includes("/assets/page-awaken/awaken-sunrise-path"), 'Page 02 must use its replaceable mountain-path hero asset');
 assert.ok(adapter.patches.get(7).render().includes('See Who You Really Are'));
 assert.deepStrictEqual(adapter.patches.get(6).data, {
   continueLabel: 'I’ve Noticed Something I’m Ready to Look At'
