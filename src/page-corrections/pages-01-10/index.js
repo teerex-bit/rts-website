@@ -1,4 +1,5 @@
 const page07 = require('../../pages-03-10/page-07');
+const awakenPages = [3, 4, 5, 6].map(number => require(`../../pages-03-10/page-${String(number).padStart(2, '0')}`));
 
 const esc = value => String(value).replace(/[&<>]/g, character => ({
   '&': '&amp;',
@@ -23,7 +24,8 @@ function renderPage02() {
     ['notice', 'Learn to notice what happens inside you in real life.'],
     ['leaf', 'Take your first step in the journey of transformation with God.']
   ];
-  const steps = ['Watch & Learn', 'Practice: Catch Yourself Being You', 'Reflect & Record', 'What You Noticed', 'Key Takeaways'];
+  const routes = ['/awaken/pay-attention/', '/awaken/name-your-desire/', '/awaken/listen-within/', '/awaken/practice-presence/'];
+  const steps = awakenPages.map((page, index) => ({ title: page.title, href: routes[index] }));
   return `<div class="p02-awaken" data-page-number="02" data-editable-source="pages-01-10-corrections">
     <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
     <main class="p02-shell">
@@ -32,7 +34,7 @@ function renderPage02() {
         <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken 1</p><h1 id="p02-title">You Have Already Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
         <section class="p02-outcomes" aria-label="In this lesson you will"><h2>In This Lesson You Will</h2><div>${outcomes.map(([icon, copy]) => `<article><span aria-hidden="true"><svg><use href="/assets/page-awaken/icons.svg#${icon}"></use></svg></span><p>${esc(copy)}</p></article>`).join('')}</div></section>
         <blockquote class="p02-quote"><span aria-hidden="true">“</span><p>Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.</p><cite>— Dallas Willard</cite></blockquote>
-        <aside class="p02-progress" aria-label="Your progress"><h2>Your Progress</h2><p>Awaken 1 of 7</p><progress max="7" value="1">Awaken 1 of 7</progress><ol>${steps.map((step, index) => `<li class="${index === 0 ? 'is-current' : ''}"><span>${index + 1}</span>${esc(step)}</li>`).join('')}</ol></aside>
+        <aside class="p02-progress" aria-label="Your progress"><h2>Your Progress</h2><p>Awaken 1 of 7</p><progress max="7" value="1">Awaken 1 of 7</progress><ol>${steps.map((step, index) => `<li class="p02-progress__step ${index === 0 ? 'is-current' : ''}"><a href="${step.href}"><span>${index + 1}</span>${esc(step.title)}</a></li>`).join('')}</ol></aside>
       </section>
     </main>
   </div>`;
@@ -161,9 +163,10 @@ const css = `
 .p02-progress p{margin:10px 0 0;font-size:.8rem}
 .p02-progress progress{height:8px;margin:10px 0 15px}
 .p02-progress ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.p02-progress li{display:grid;grid-template-columns:25px 1fr;gap:8px;align-items:center;font-size:.7rem}
-.p02-progress li>span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
-.p02-progress li.is-current>span{color:#fff;background:#667e4e}
+.p02-progress li{font-size:.7rem}
+.p02-progress li a{display:grid;grid-template-columns:25px 1fr;gap:8px;align-items:center;color:inherit;text-decoration:none}
+.p02-progress li span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
+.p02-progress li.is-current span{color:#fff;background:#667e4e}
 .p07-top{height:84px;padding:8px 28px}
 .p07-top>a img{width:210px}
 .p07-top nav{gap:42px}
