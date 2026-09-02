@@ -24,7 +24,7 @@ module.exports = {
   composition: 'origin-map',
   center: [
     'I tend to…',
-    'Example) I need to fix things when they go wrong.'
+    'Example: I need to fix things when things go wrong.'
   ],
   cards: [
     ['home', 'What I experienced growing up'],

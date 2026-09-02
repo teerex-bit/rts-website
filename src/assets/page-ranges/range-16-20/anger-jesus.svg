@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-labelledby="title desc">
+  <title id="title">Jesus confronting injustice</title><desc id="desc">A warm, editable vector scene of a teacher in a stone courtyard addressing a gathered crowd.</desc>
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#8a7357"/><stop offset="1" stop-color="#2c2927"/></linearGradient><linearGradient id="robe"><stop stop-color="#d6b584"/><stop offset="1" stop-color="#694631"/></linearGradient></defs>
+  <rect width="760" height="320" fill="url(#sky)"/><path d="M0 75h760v245H0z" fill="#332e29"/><g fill="#665749"><path d="M0 44h125v205H0zM150 20h104v230H150zM550 35h105v215H550zM680 58h80v192H680z"/><path d="M0 35h760v23H0z"/></g>
+  <g fill="#211e1d"><circle cx="95" cy="190" r="32"/><path d="M50 320c2-74 20-100 45-100s43 26 45 100Z"/><circle cx="670" cy="188" r="34"/><path d="M620 320c4-70 20-99 50-99s45 29 49 99Z"/><circle cx="175" cy="218" r="25"/><circle cx="590" cy="217" r="25"/></g>
+  <g stroke="#251d18" stroke-width="8" stroke-linecap="round"><path d="m340 164-102 5-59-47" fill="none"/><path d="m423 168 82 19 55-34" fill="none"/></g>
+  <circle cx="380" cy="90" r="42" fill="#4c3024"/><path d="M338 85c6-54 79-61 88-5-17-10-69-12-88 5Z" fill="#1d1916"/><path d="M337 320c0-111 7-171 43-171 42 0 54 58 51 171Z" fill="url(#robe)"/><path d="M368 104c7 10 17 15 29 0" fill="none" stroke="#2d1f19" stroke-width="4"/><circle cx="365" cy="87" r="3"/><circle cx="396" cy="87" r="3"/>
+  <g fill="#aa865e"><circle cx="176" cy="121" r="11"/><circle cx="559" cy="151" r="11"/></g><g opacity=".18" fill="#f0c783"><circle cx="380" cy="105" r="83"/></g>
+</svg>

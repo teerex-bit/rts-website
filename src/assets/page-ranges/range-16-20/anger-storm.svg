@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" role="img" aria-labelledby="title desc">
+  <title id="title">Storm over a desert valley</title><desc id="desc">Editable vector mountains under a dark purple thunderstorm with a bright lightning strike.</desc>
+  <defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#151827"/><stop offset=".65" stop-color="#463345"/><stop offset="1" stop-color="#b37155"/></linearGradient><linearGradient id="g"><stop stop-color="#38283f"/><stop offset="1" stop-color="#080b15"/></linearGradient></defs>
+  <rect width="760" height="320" fill="url(#s)"/><g fill="#202130"><ellipse cx="165" cy="94" rx="155" ry="57"/><ellipse cx="365" cy="72" rx="190" ry="64"/><ellipse cx="590" cy="94" rx="180" ry="67"/></g>
+  <path d="m450 82-44 79h39l-51 90 94-108h-43l48-61Z" fill="#fff6d8"/><path d="M430 90 407 153" stroke="#cbb8ff" stroke-width="7" opacity=".7"/>
+  <path d="M0 226 118 140l90 64 115-84 109 89 94-65 99 73 135-58v161H0Z" fill="#1b1a29"/><path d="M0 255 135 191l85 57 132-66 128 69 117-61 163 78v52H0Z" fill="url(#g)"/><path d="M0 289c167-35 280-23 382 1 118 27 220-8 378-17v47H0Z" fill="#090b11"/>
+</svg>

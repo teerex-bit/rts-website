@@ -8,7 +8,7 @@ module.exports = {
   progress: 1,
   progressMax: 7,
   step: 3,
-  dotCount: 6,
+  dotCount: 5,
   continueLabel: 'I’ve Noticed Something — I’m Ready to Look At',
   deferLabel: 'I’ll come back later',
   title: 'Catch Yourself Being You',

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title desc">
+  <title id="title">Young seedling emerging from earth</title><desc id="desc">A young green plant growing from warm, sunlit soil.</desc>
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#f8f3e9"/><stop offset=".65" stop-color="#e5d1ae"/><stop offset="1" stop-color="#b9915e"/></linearGradient><linearGradient id="soil" x2="0" y2="1"><stop stop-color="#755338"/><stop offset="1" stop-color="#2f2119"/></linearGradient><linearGradient id="leaf" x2="1" y2="1"><stop stop-color="#b0b54d"/><stop offset="1" stop-color="#4e6e2d"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="10"/></filter></defs>
+  <rect width="720" height="360" fill="url(#sky)"/><circle cx="120" cy="95" r="50" fill="#fff8df" opacity=".55" filter="url(#blur)"/><path d="M0 265c120-25 220 9 336-12 123-22 252-17 384 10v97H0Z" fill="url(#soil)"/>
+  <path d="M401 281c8-80 2-142-12-205" fill="none" stroke="#4c672e" stroke-width="8" stroke-linecap="round"/><path d="M393 153c-68-58-122-45-151-31 41 48 91 65 151 31Z" fill="url(#leaf)"/><path d="M394 151c68-69 121-60 156-49-32 54-80 78-156 49Z" fill="url(#leaf)"/><path d="M389 92c-20-49-4-78 12-92 24 39 20 69-12 92Z" fill="url(#leaf)"/>
+  <path d="M238 122c61 12 106 24 155 31M550 102c-63 14-111 28-156 49M401 0c-4 28-8 58-12 92" fill="none" stroke="#d8d680" stroke-width="2" opacity=".7"/>
+  <g fill="#9e7650"><circle cx="364" cy="270" r="19"/><circle cx="420" cy="275" r="24"/><circle cx="392" cy="250" r="16"/><circle cx="449" cy="290" r="15"/><circle cx="340" cy="291" r="13"/></g>
+</svg>

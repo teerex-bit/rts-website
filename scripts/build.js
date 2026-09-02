@@ -5,8 +5,24 @@ const conversationsContent=require('../src/conversations');
 const courseContent=require('../src/pages-03-10');
 const renderCoursePage=require('../src/course-pages');
 const renderPagesBatchReview=require('../src/pages-03-10/review');
+const renderPagesFinalReview=require('../src/pages-01-40-review');
+const pageCorrections=require('../src/page-corrections/pages-01-10');
+const rangeDefinitions=[
+  ['11-15',require('../src/page-ranges/range-11-15')],
+  ['16-20',require('../src/page-ranges/range-16-20')],
+  ['21-25',require('../src/page-ranges/range-21-25')],
+  ['26-30',require('../src/page-ranges/range-26-30')],
+  ['31-35',require('../src/page-ranges/range-31-35')],
+  ['36-40',require('../src/page-ranges/range-36-40')]
+];
+for(const [label,range] of rangeDefinitions){
+ const [first,last]=label.split('-').map(Number),expected=Array.from({length:last-first+1},(_,index)=>first+index);
+ if(!(range.pages instanceof Map)||typeof range.render!=='function'||typeof range.css!=='string'||JSON.stringify([...range.pages.keys()])!==JSON.stringify(expected))throw new TypeError(`Range ${label} must export exact { pages, render, css } contract`);
+}
 const out=path.join(__dirname,'..','public'); fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true});
 fs.cpSync(path.join(__dirname,'..','src','assets'),path.join(out,'assets'),{recursive:true});
+const builtStylesPath=path.join(out,'assets','styles.css');
+fs.appendFileSync(builtStylesPath,`\n/* Pages 01-10 correction styles */\n${pageCorrections.css.trim()}\n`+rangeDefinitions.map(([label,range])=>`\n/* Pages ${label} range styles */\n${range.css.trim()}\n`).join('')+`\n/* Pages 01-40 review styles */\n${renderPagesFinalReview.css.trim()}\n`);
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const journey=stage=>`<nav class="journey" aria-label="Journey stages">${['Awaken','See Clearly','Become','Join'].map((x,i)=>`<a class="${x===stage?'active':''}" href="${[links.awaken,links.seeClearly,links.become,links.join][i]}"><img src="/assets/icon-${['awaken','see','become','join'][i]}.svg" alt="">${x}</a>`).join('')}</nav>`;
 const header=()=>`<header class="site-header"><a class="brand" href="${links.home}" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><button type="button" class="menu" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" aria-label="Main navigation"><a href="${links.awaken}">Journey</a><a href="${links.conversations}">Conversations</a><a href="${links.music}">Music</a><a href="${links.books}">Books</a><a class="button small" href="${links.donate}">Give</a></nav></header>`;
@@ -51,19 +67,25 @@ const conversations=()=>{
 };
 function main(p){
  const isHome=p.number===1, stage=p.template==='stage';
+ const correction=pageCorrections.patches.get(p.number);
+ if(correction?.mode==='replace')return correction.render();
  if(isHome) return home();
  if(p.number===38) return conversations();
  const editableCoursePage=courseContent.pages.find(page=>page.number===p.number);
- if(editableCoursePage) return renderCoursePage(editableCoursePage,courseContent.stages);
+ if(editableCoursePage){const corrected=correction?.mode==='merge'?{...editableCoursePage,...correction.data}:editableCoursePage;return renderCoursePage(corrected,courseContent.stages)}
+ const range=rangeDefinitions.find(([,candidate])=>candidate.pages.has(p.number));
+ if(range) return range[1].render(range[1].pages.get(p.number));
  const quote=p.template==='reflection'||p.template==='closing'?`<blockquote>“Transformation asks us to tell the truth about where we are, and to remain open to where love may lead.”</blockquote>`:'';
  const cards=p.template==='library'?`<section class="cards" aria-label="Featured resources">${['Begin here','For reflection','Go deeper'].map((x,i)=>`<article><span>0${i+1}</span><h2>${x}</h2><p>A thoughtfully selected resource for attention, growth, and shared conversation.</p><a href="${links.learnMore}">Explore resource →</a></article>`).join('')}</section>`:`<section class="content-grid"><aside aria-label="Page progress"><p class="overline">On this page</p><ol><li>Arrive</li><li>Reflect</li><li>Practice</li></ol><progress max="40" value="${p.number}" aria-label="Journey progress"></progress></aside><article><p class="lead">${esc(p.summary)}</p><h2>An invitation to notice</h2><p>Formation is not a project to complete. It is the ongoing work of becoming more present, more honest, and more able to receive and offer love.</p>${quote}<h2>A practice for today</h2><p>Take a quiet moment. Notice what feels alive in you, what feels resistant, and what invitation you want to carry into the day.</p><a class="text-link" href="${links.next}">Continue the journey →</a></article></section>`;
  return `${header()}<main>${journey(p.stage)}<section class="hero ${isHome?'home':''} ${stage?'stage':''}"><div class="hero-copy"><p class="overline">${esc(p.stage)} · ${String(p.number).padStart(2,'0')}</p><h1>${esc(p.title)}</h1><p>${esc(p.eyebrow)}</p><a class="button" href="${isHome?links.begin:links.next}">${isHome?'Begin the journey':'Explore this movement'}</a></div><div class="scene" role="img" aria-label="A quiet mountain landscape with native plants"><span class="sun"></span><span class="mountain one"></span><span class="mountain two"></span><img src="/assets/botanical.svg" alt="" class="botanical"></div>${isHome?`<aside class="hero-card" aria-label="Welcome message"><p class="overline">A place to begin</p><h2>Your inner life matters.</h2><p>Make room for a more honest, integrated life with God and others.</p><a href="${links.learnMore}">Learn more →</a></aside>`:''}</section>${cards}<section class="closing"><p class="overline">Reforming the Soul</p><h2>Attend to what is forming you.</h2><a class="button gold" href="${links.join}">Join the journey</a></section></main>${footer()}`;
 }
 function shell(title,body){return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Reforming the Soul — ${esc(title)}"><title>${esc(title)} | Reforming the Soul</title><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script></head><body>${body}</body></html>`}
-for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),shell(p.title,main(p)))}
+const writeHtml=(file,html)=>fs.writeFileSync(file,html.replace(/[ \t]+$/gm,''));
+for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});writeHtml(path.join(dir,'index.html'),shell(p.title,main(p)))}
 const review=`${header()}<main class="review"><p class="overline">Review site</p><h1>All 40 pages</h1><p class="lead">A complete index of the Reforming the Soul journey.</p><ol>${pages.map(p=>`<li><span>${String(p.number).padStart(2,'0')}</span><a href="${p.route}">${esc(p.title)}</a><small>${p.stage} · ${p.template}</small></li>`).join('')}</ol></main>${footer()}`;
-fs.mkdirSync(path.join(out,'review'),{recursive:true});fs.writeFileSync(path.join(out,'review/index.html'),shell('Review all pages',review));
+fs.mkdirSync(path.join(out,'review'),{recursive:true});writeHtml(path.join(out,'review/index.html'),shell('Review all pages',review));
 const batchReviewPages=pages.filter(page=>page.number>=3&&page.number<=10);
-const batchReviewDir=path.join(out,'review','pages-03-10');fs.mkdirSync(batchReviewDir,{recursive:true});fs.writeFileSync(path.join(batchReviewDir,'index.html'),shell('Review Pages 03–10',renderPagesBatchReview(batchReviewPages)));
-fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});fs.writeFileSync(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
-console.log(`Built ${pages.length+3} routes.`);
+const batchReviewDir=path.join(out,'review','pages-03-10');fs.mkdirSync(batchReviewDir,{recursive:true});writeHtml(path.join(batchReviewDir,'index.html'),shell('Review Pages 03–10',renderPagesBatchReview(batchReviewPages)));
+const finalReviewDir=path.join(out,'review','pages-01-40');fs.mkdirSync(finalReviewDir,{recursive:true});writeHtml(path.join(finalReviewDir,'index.html'),shell('Review Pages 01–40',renderPagesFinalReview(pages)));
+fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});writeHtml(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
+console.log(`Built ${pages.length+4} routes.`);
