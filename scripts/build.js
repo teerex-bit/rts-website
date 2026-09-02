@@ -39,8 +39,9 @@ const home=()=>{
 };
 const conversations=()=>{
  const c=conversationsContent;
- const benefitSymbols={person:'●',heart:'♥',leaf:'◒',people:'●●●'};
- const principleSymbols={eye:'◉',heart:'♡',cross:'†'};
+ const conversationIcon=name=>`<svg class="conversation-icon" aria-hidden="true"><use href="/assets/page-ranges/range-36-40/icons.svg#${name}"></use></svg>`;
+ const benefitIcons={person:'person',heart:'heart',leaf:'leaf',people:'relationships'};
+ const principleIcons={eye:'see',heart:'heart',cross:'cross'};
  return `${conversationsHeader()}<main class="conversations-page">
  <div class="conversations-shell">
   <aside class="conversations-rail" aria-label="Formation journey">
@@ -50,15 +51,15 @@ const conversations=()=>{
   </aside>
   <section class="conversations-hero" aria-labelledby="conversations-title">
    <div class="conversations-copy">
-    <p class="conversations-eyebrow"><span aria-hidden="true">♧</span>${esc(c.eyebrow)}</p>
+    <p class="conversations-eyebrow">${conversationIcon('leaf')}${esc(c.eyebrow)}</p>
     <h1 id="conversations-title">${esc(c.title)}</h1>
     <span class="conversations-rule" aria-hidden="true"></span>
     <h2>Learn what God wants<br>you to hear.</h2>
     <p class="conversations-intro">${esc(c.introduction)}</p>
     <a class="conversations-booking" href="${c.booking.href}"><span class="calendar-icon" aria-hidden="true"></span><span><strong>${esc(c.booking.label)}</strong><small>${esc(c.booking.detail)}</small></span><b aria-hidden="true">→</b></a>
-    <div class="conversation-benefits">${c.benefits.map(x=>`<article><span class="benefit-symbol benefit-${x.icon}" aria-hidden="true">${benefitSymbols[x.icon]}</span><h3>${esc(x.title)}</h3><p>${esc(x.copy)}</p></article>`).join('')}</div>
+    <div class="conversation-benefits">${c.benefits.map(x=>`<article><span class="benefit-symbol benefit-${x.icon}">${conversationIcon(benefitIcons[x.icon])}</span><h3>${esc(x.title)}</h3><p>${esc(x.copy)}</p></article>`).join('')}</div>
    </div>
-   <aside class="conversation-principles" aria-label="Conversation principles"><span class="principles-leaf" aria-hidden="true">♧</span><h2>A different kind<br>of conversation</h2>${c.principles.map(x=>`<div><span aria-hidden="true">${principleSymbols[x.icon]}</span><p>${esc(x.copy)}</p></div>`).join('')}</aside>
+   <aside class="conversation-principles" aria-label="Conversation principles"><span class="principles-leaf">${conversationIcon('leaf')}</span><h2>A different kind<br>of conversation</h2>${c.principles.map(x=>`<div><span>${conversationIcon(principleIcons[x.icon])}</span><p>${esc(x.copy)}</p></div>`).join('')}</aside>
   </section>
  </div>
  <section class="conversation-scripture"><div><span aria-hidden="true">“</span><blockquote>${esc(c.scripture)}<cite>— ${esc(c.scriptureReference)}</cite></blockquote></div></section>
