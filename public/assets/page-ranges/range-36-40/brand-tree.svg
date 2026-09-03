@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Reforming the Soul tree mark">
+  <defs><clipPath id="c"><circle cx="40" cy="40" r="36"/></clipPath></defs>
+  <circle cx="40" cy="40" r="36" fill="#f6a300" stroke="#082744" stroke-width="2"/>
+  <g clip-path="url(#c)" fill="none" stroke="#082744" stroke-width="2"><path d="M40 69V30M40 38 22 22M40 42 58 21M37 50 19 42M43 50l21-11M27 70c2-11 7-18 13-23M53 70c-2-11-7-18-13-23"/><path d="M13 59h54M10 66h60"/></g>
+</svg>

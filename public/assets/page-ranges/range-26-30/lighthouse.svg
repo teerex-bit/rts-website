@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Lighthouse beside the sea</title><desc id="desc">A navy lighthouse casting beams across pale sky above stylized waves.</desc>
+  <rect width="300" height="300" fill="#edf0f1"/>
+  <path d="M120 238 137 91h42l20 147Z" fill="#102844"/>
+  <path d="M131 92h55l-7-14h-42Z" fill="#102844"/><path d="M147 58h21v20h-21z" fill="#102844"/>
+  <path d="M152 58V43m-7 10h28" stroke="#102844" stroke-width="4"/>
+  <path d="m186 93 100-34v14L188 111m-58-18L17 65v15l112 31" fill="#fff" opacity=".9"/>
+  <g fill="#edf0f1"><circle cx="153" cy="126" r="5"/><circle cx="158" cy="158" r="5"/><circle cx="163" cy="190" r="5"/></g>
+  <path d="M0 241c25-9 47-9 70 0 22 9 45 9 68 0 23-9 46-9 69 0 31 12 62 7 93-3v62H0Z" fill="#102844"/>
+  <path d="M0 254c25-10 49-10 72 0s46 10 69 0 46-10 69 0 53 10 90-3M0 274c25-10 49-10 72 0s46 10 69 0 46-10 69 0 53 10 90-3" fill="none" stroke="#edf0f1" stroke-width="5"/>
+</svg>

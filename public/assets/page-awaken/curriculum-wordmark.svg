@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265 82" role="img" aria-labelledby="title desc">
+  <title id="title">Reforming the Soul</title><desc id="desc">Curriculum Tree of Life logo</desc>
+  <g fill="none" stroke="#18382c" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="2.5" d="M43 67V34m0 12L26 31m17 8 15-18m-15 8-5-16m6 19 8-22M26 31l-9-7m10 7-1-12m32 2 10-6m-16-5 4-6"/>
+    <path stroke-width="1.7" d="M20 66c8-8 16-10 23-5 7-5 15-3 24 5M22 71c9-6 16-7 21-3 6-4 13-3 22 3M43 66 32 78m11-12 11 12m-19-9-9 7m25-7 9 7"/>
+    <g stroke-width="1.4">
+      <circle cx="16" cy="25" r="4"/><circle cx="24" cy="15" r="4"/><circle cx="34" cy="10" r="4"/><circle cx="46" cy="9" r="4"/><circle cx="58" cy="13" r="4"/><circle cx="67" cy="22" r="4"/><circle cx="17" cy="37" r="4"/><circle cx="29" cy="27" r="4"/><circle cx="40" cy="21" r="4"/><circle cx="52" cy="25" r="4"/><circle cx="64" cy="35" r="4"/>
+    </g>
+  </g>
+  <text x="82" y="34" fill="#0a2038" font-family="Georgia,serif" font-size="22" letter-spacing=".8">REFORMING</text>
+  <text x="101" y="61" fill="#0a2038" font-family="Georgia,serif" font-size="17" font-style="italic">the</text>
+  <text x="130" y="62" fill="#0a2038" font-family="cursive" font-size="26" font-style="italic">SOUL</text>
+</svg>

@@ -1,0 +1,45 @@
+module.exports = {
+  number: 23,
+  route: '/become/relationships/',
+  stage: 'Become',
+  title: 'Release Control — Whole Surrender to God and His Will',
+  eyebrow: 'BECOMING  •  PART ONE  •  LESSON 3 OF 6  •  SCREEN 1 OF 2',
+  lesson: 3,
+  screen: 1,
+  previous: { label: 'PREVIOUS: LISTEN DEEPLY', href: '/become/rule-of-life/' },
+  next: { label: 'NEXT: SCREEN 2', href: '/become/boundaries/' },
+  content: [
+    { className: 'p23-intro', blocks: [
+      { type: 'lead', text: 'You cannot fully follow God while reserving the right to decide where He may lead you.' },
+      { type: 'p', text: 'We often want God to take control of what we cannot control while keeping control of everything we think we can. That is not yet whole surrender.' },
+      { type: 'p', text: 'A person can pray sincerely, listen for God’s direction, seek His help, and still approach Him with an unspoken boundary:' },
+      { type: 'quote', text: '“Show me what You want—and then I will decide whether I agree.”' },
+      { type: 'p', text: 'Listening deeply eventually brings us to the question: What happens when God’s will and mine are not the same?' },
+    ] },
+    { className: 'p23-jesus', blocks: [
+      { type: 'heading', text: 'JESUS GIVES US THE CLEAREST PICTURE' },
+      { type: 'p', text: 'In Gethsemane, Jesus does not pretend not to have a preference:' },
+      { type: 'gold', text: '“Yet not as I will, but as you will.” — Matthew 26:39' },
+      { type: 'p', text: 'Surrender does not require having no will. Jesus had a will. Surrender meant His will was placed beneath the Father’s will.' },
+    ] },
+    { className: 'p23-tree', blocks: [
+      { type: 'imageText', icon: 'olive-tree-reference.webp', alt: 'An olive tree with roots spreading into the earth', text: 'Whole surrender isn’t the absence of desire.', accent: 'It is the surrender of desire’s authority.' },
+    ] },
+    { className: 'p23-surrendering', blocks: [
+      { type: 'heading', text: 'WHAT ARE WE ACTUALLY SURRENDERING?' },
+      { type: 'p', text: 'We surrender more than outcomes.' },
+      { type: 'list', items: ['My need to understand before obeying.', 'My need to know what happens next.', 'My preferred timing.', 'My preferred outcome.', 'My right to protect the version of myself I have constructed.', 'My demand that God accomplish His purposes in ways that make sense to me.', 'And ultimately: my claim to be the final authority over my own life.'] },
+    ] },
+    { className: 'p23-distinction', blocks: [
+      { type: 'heading', text: 'A NECESSARY DISTINCTION' },
+      { type: 'gold', text: 'Control says:' },
+      { type: 'p', text: '“I need to know enough to make myself safe.”' },
+      { type: 'rule' },
+      { type: 'gold', text: 'Surrender says:' },
+      { type: 'p', text: '“I need to know the One I am trusting.”' },
+      { type: 'p', text: 'Surrender is only reasonable if God is trustworthy. If God is unpredictable, controlling, manipulative, withholding, or fundamentally against my good, surrender would be terrifying.' },
+      { type: 'p', text: 'But if Jesus really shows us the Father—if God really is good, really loves us, really knows what we cannot see—then surrender stops being resignation.' },
+      { type: 'accent', text: 'Surrender becomes the reasonable response to trust.' },
+    ] },
+  ],
+};

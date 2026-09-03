@@ -2,11 +2,31 @@ const fs=require('fs'), path=require('path');
 const pages=require('../src/pages'), links=require('../src/links');
 const homeContent=require('../src/page-01');
 const conversationsContent=require('../src/conversations');
+const courseContent=require('../src/pages-03-10');
+const renderCoursePage=require('../src/course-pages');
+const renderPagesBatchReview=require('../src/pages-03-10/review');
+const renderPagesFinalReview=require('../src/pages-01-40-review');
+const pageCorrections=require('../src/page-corrections/pages-01-10');
+const rangeDefinitions=[
+  ['11-15',require('../src/page-ranges/range-11-15')],
+  ['16-20',require('../src/page-ranges/range-16-20')],
+  ['21-25',require('../src/page-ranges/range-21-25')],
+  ['26-30',require('../src/page-ranges/range-26-30')],
+  ['31-35',require('../src/page-ranges/range-31-35')],
+  ['36-40',require('../src/page-ranges/range-36-40')]
+];
+for(const [label,range] of rangeDefinitions){
+ const [first,last]=label.split('-').map(Number),expected=Array.from({length:last-first+1},(_,index)=>first+index);
+ if(!(range.pages instanceof Map)||typeof range.render!=='function'||typeof range.css!=='string'||JSON.stringify([...range.pages.keys()])!==JSON.stringify(expected))throw new TypeError(`Range ${label} must export exact { pages, render, css } contract`);
+}
 const out=path.join(__dirname,'..','public'); fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true});
 fs.cpSync(path.join(__dirname,'..','src','assets'),path.join(out,'assets'),{recursive:true});
+const builtStylesPath=path.join(out,'assets','styles.css');
+fs.appendFileSync(builtStylesPath,`\n/* Pages 01-10 correction styles */\n${pageCorrections.css.trim()}\n`+rangeDefinitions.map(([label,range])=>`\n/* Pages ${label} range styles */\n${range.css.trim()}\n`).join('')+`\n/* Pages 01-40 review styles */\n${renderPagesFinalReview.css.trim()}\n`);
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const journey=stage=>`<nav class="journey" aria-label="Journey stages">${['Awaken','See Clearly','Become','Join'].map((x,i)=>`<a class="${x===stage?'active':''}" href="${[links.awaken,links.seeClearly,links.become,links.join][i]}"><img src="/assets/icon-${['awaken','see','become','join'][i]}.svg" alt="">${x}</a>`).join('')}</nav>`;
 const header=()=>`<header class="site-header"><a class="brand" href="${links.home}" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><button type="button" class="menu" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" aria-label="Main navigation"><a href="${links.awaken}">Journey</a><a href="${links.conversations}">Conversations</a><a href="${links.music}">Music</a><a href="${links.books}">Books</a><a class="button small" href="${links.donate}">Give</a></nav></header>`;
+const conversationsHeader=()=>`<header class="site-header"><a class="brand brand-main" href="${links.home}" aria-label="Reforming the Soul home"><span class="brand-main-mark" aria-hidden="true"><img src="/assets/brand-main-source.png" alt=""></span><span class="brand-words" aria-hidden="true"><span class="brand-word-reforming">REFORMING</span><span class="brand-word-lower"><span>THE</span> <span class="brand-word-soul">Soul</span></span></span></a><button type="button" class="menu" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" aria-label="Main navigation"><a href="${links.awaken}">Awaken</a><a href="${links.seeClearly}">See Clearly</a><a href="${links.become}">Become</a><a href="${links.join}">Join</a><a class="is-active" href="${links.conversations}">Conversations</a></nav></header>`;
 const footer=()=>`<footer><img src="/assets/logo-light.svg" alt="Reforming the Soul"><p>Creating safe places for leaders to be honest and whole.</p><nav aria-label="Footer"><a href="${links.review}">Review all pages</a><a href="${links.join}">Join</a><a href="${links.donate}">Give</a></nav><small>© 2026 Reforming the Soul</small></footer>`;
 const home=()=>{
  const c=homeContent;
@@ -19,43 +39,56 @@ const home=()=>{
 };
 const conversations=()=>{
  const c=conversationsContent;
- const benefitSymbols={person:'●',heart:'♥',leaf:'◒',people:'●●●'};
- const principleSymbols={eye:'◉',heart:'♡',cross:'†'};
- return `${header()}<main class="conversations-page">
+ const conversationIcon=name=>`<svg class="conversation-icon" aria-hidden="true"><use href="/assets/page-ranges/range-36-40/icons.svg#${name}"></use></svg>`;
+ const benefitIcons={person:'person',heart:'heart',leaf:'leaf',people:'relationships'};
+ const principleIcons={eye:'see',heart:'heart',cross:'cross'};
+ return `${conversationsHeader()}<main class="conversations-page">
  <div class="conversations-shell">
   <aside class="conversations-rail" aria-label="Formation journey">
    <p class="rail-title">The formation journey</p>
    <ol>${c.journey.map(x=>`<li><a href="${x.href}"><img src="/assets/icon-${x.icon}.svg" alt=""><span><strong>${esc(x.name)}</strong><small>${esc(x.description)}</small></span></a></li>`).join('')}</ol>
-   <section class="rail-progress" aria-label="Page progress"><p>Your progress</p><div><span>Conversations</span><span>1 of 1</span></div><progress max="1" value="1">1 of 1</progress></section>
    <section class="rail-support"><h2><span aria-hidden="true">?</span>${esc(c.support.heading)}</h2><p>${esc(c.support.copy)}</p><a href="${c.support.href}">${esc(c.support.label)} <span aria-hidden="true">→</span></a></section>
   </aside>
   <section class="conversations-hero" aria-labelledby="conversations-title">
    <div class="conversations-copy">
-    <p class="conversations-eyebrow"><span aria-hidden="true">♧</span>${esc(c.eyebrow)}</p>
+    <p class="conversations-eyebrow">${conversationIcon('leaf')}${esc(c.eyebrow)}</p>
     <h1 id="conversations-title">${esc(c.title)}</h1>
     <span class="conversations-rule" aria-hidden="true"></span>
     <h2>Learn what God wants<br>you to hear.</h2>
     <p class="conversations-intro">${esc(c.introduction)}</p>
     <a class="conversations-booking" href="${c.booking.href}"><span class="calendar-icon" aria-hidden="true"></span><span><strong>${esc(c.booking.label)}</strong><small>${esc(c.booking.detail)}</small></span><b aria-hidden="true">→</b></a>
-    <div class="conversation-benefits">${c.benefits.map(x=>`<article><span class="benefit-symbol benefit-${x.icon}" aria-hidden="true">${benefitSymbols[x.icon]}</span><h3>${esc(x.title)}</h3><p>${esc(x.copy)}</p></article>`).join('')}</div>
+    <div class="conversation-benefits">${c.benefits.map(x=>`<article><span class="benefit-symbol benefit-${x.icon}">${conversationIcon(benefitIcons[x.icon])}</span><h3>${esc(x.title)}</h3><p>${esc(x.copy)}</p></article>`).join('')}</div>
    </div>
-   <aside class="conversation-principles" aria-label="Conversation principles"><span class="principles-leaf" aria-hidden="true">♧</span><h2>A different kind<br>of conversation</h2>${c.principles.map(x=>`<div><span aria-hidden="true">${principleSymbols[x.icon]}</span><p>${esc(x.copy)}</p></div>`).join('')}</aside>
+   <aside class="conversation-principles" aria-label="Conversation principles"><span class="principles-leaf">${conversationIcon('leaf')}</span><h2>A different kind<br>of conversation</h2>${c.principles.map(x=>`<div><span>${conversationIcon(principleIcons[x.icon])}</span><p>${esc(x.copy)}</p></div>`).join('')}</aside>
   </section>
  </div>
  <section class="conversation-scripture"><div><span aria-hidden="true">“</span><blockquote>${esc(c.scripture)}<cite>— ${esc(c.scriptureReference)}</cite></blockquote></div></section>
  </main>`;
 };
 function main(p){
+ const correction=pageCorrections.patches.get(p.number);
+ if(correction?.mode==='replace') return correction.render();
  const isHome=p.number===1, stage=p.template==='stage';
  if(isHome) return home();
  if(p.number===38) return conversations();
+ const editableCoursePage=courseContent.pages.find(page=>page.number===p.number);
+ if(editableCoursePage&&correction?.mode==='merge') Object.assign(editableCoursePage,correction.data);
+ if(editableCoursePage) return renderCoursePage(editableCoursePage,courseContent.stages);
+ const range=rangeDefinitions.find(([,candidate])=>candidate.pages.has(p.number));
+ if(range) return range[1].render(range[1].pages.get(p.number));
  const quote=p.template==='reflection'||p.template==='closing'?`<blockquote>“Transformation asks us to tell the truth about where we are, and to remain open to where love may lead.”</blockquote>`:'';
  const cards=p.template==='library'?`<section class="cards" aria-label="Featured resources">${['Begin here','For reflection','Go deeper'].map((x,i)=>`<article><span>0${i+1}</span><h2>${x}</h2><p>A thoughtfully selected resource for attention, growth, and shared conversation.</p><a href="${links.learnMore}">Explore resource →</a></article>`).join('')}</section>`:`<section class="content-grid"><aside aria-label="Page progress"><p class="overline">On this page</p><ol><li>Arrive</li><li>Reflect</li><li>Practice</li></ol><progress max="40" value="${p.number}" aria-label="Journey progress"></progress></aside><article><p class="lead">${esc(p.summary)}</p><h2>An invitation to notice</h2><p>Formation is not a project to complete. It is the ongoing work of becoming more present, more honest, and more able to receive and offer love.</p>${quote}<h2>A practice for today</h2><p>Take a quiet moment. Notice what feels alive in you, what feels resistant, and what invitation you want to carry into the day.</p><a class="text-link" href="${links.next}">Continue the journey →</a></article></section>`;
  return `${header()}<main>${journey(p.stage)}<section class="hero ${isHome?'home':''} ${stage?'stage':''}"><div class="hero-copy"><p class="overline">${esc(p.stage)} · ${String(p.number).padStart(2,'0')}</p><h1>${esc(p.title)}</h1><p>${esc(p.eyebrow)}</p><a class="button" href="${isHome?links.begin:links.next}">${isHome?'Begin the journey':'Explore this movement'}</a></div><div class="scene" role="img" aria-label="A quiet mountain landscape with native plants"><span class="sun"></span><span class="mountain one"></span><span class="mountain two"></span><img src="/assets/botanical.svg" alt="" class="botanical"></div>${isHome?`<aside class="hero-card" aria-label="Welcome message"><p class="overline">A place to begin</p><h2>Your inner life matters.</h2><p>Make room for a more honest, integrated life with God and others.</p><a href="${links.learnMore}">Learn more →</a></aside>`:''}</section>${cards}<section class="closing"><p class="overline">Reforming the Soul</p><h2>Attend to what is forming you.</h2><a class="button gold" href="${links.join}">Join the journey</a></section></main>${footer()}`;
 }
-function shell(title,body){return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Reforming the Soul — ${esc(title)}"><title>${esc(title)} | Reforming the Soul</title><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script></head><body>${body}</body></html>`}
-for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),shell(p.title,main(p)))}
+function shell(title,body){return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Reforming the Soul — ${esc(title)}"><title>${esc(title)} | Reforming the Soul</title><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script></head><body>${body}</body></html>`.replace(/[ \t]+\n/g,'\n')}
+for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});const html=p.number===1?fs.readFileSync(path.join(__dirname,'..','src','page-01-approved.html'),'utf8').replace('/assets/styles.css','/assets/page-01-approved.css'):p.number===38?fs.readFileSync(path.join(__dirname,'..','src','conversations-approved.html'),'utf8').replace('/assets/styles.css','/assets/conversations-approved.css'):shell(p.title,main(p));fs.writeFileSync(path.join(dir,'index.html'),html)}
 const review=`${header()}<main class="review"><p class="overline">Review site</p><h1>All 40 pages</h1><p class="lead">A complete index of the Reforming the Soul journey.</p><ol>${pages.map(p=>`<li><span>${String(p.number).padStart(2,'0')}</span><a href="${p.route}">${esc(p.title)}</a><small>${p.stage} · ${p.template}</small></li>`).join('')}</ol></main>${footer()}`;
 fs.mkdirSync(path.join(out,'review'),{recursive:true});fs.writeFileSync(path.join(out,'review/index.html'),shell('Review all pages',review));
+const batchReviewPages=pages.filter(page=>page.number>=3&&page.number<=10);
+const batchReviewDir=path.join(out,'review','pages-03-10');fs.mkdirSync(batchReviewDir,{recursive:true});fs.writeFileSync(path.join(batchReviewDir,'index.html'),shell('Review Pages 03–10',renderPagesBatchReview(batchReviewPages)));
+const finalReviewDir=path.join(out,'review','pages-01-40');fs.mkdirSync(finalReviewDir,{recursive:true});fs.writeFileSync(path.join(finalReviewDir,'index.html'),shell('Review Pages 01–40',renderPagesFinalReview(pages)));
 fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});fs.writeFileSync(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
-console.log(`Built ${pages.length+2} routes.`);
+const deployOut=path.join(__dirname,'..','dist');
+fs.rmSync(deployOut,{recursive:true,force:true});
+fs.cpSync(out,deployOut,{recursive:true});
+console.log(`Built ${pages.length+4} routes.`);

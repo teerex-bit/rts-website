@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Sunrise mountain path</title><desc id="desc">Editable vector landscape with a gold sunrise, layered mountains, flowering meadow, and a winding stone path.</desc>
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#f5d5a4"/><stop offset=".45" stop-color="#f9e7c8"/><stop offset="1" stop-color="#7d835c"/></linearGradient><radialGradient id="sun"><stop stop-color="#fffbdc"/><stop offset=".2" stop-color="#ffd474"/><stop offset="1" stop-color="#f0a220" stop-opacity="0"/></radialGradient><linearGradient id="hill" x2="1"><stop stop-color="#27321f"/><stop offset="1" stop-color="#66734d"/></linearGradient></defs>
+  <rect width="1200" height="760" fill="url(#sky)"/><circle cx="875" cy="165" r="170" fill="url(#sun)"/><circle cx="875" cy="165" r="28" fill="#fff4bd"/>
+  <g opacity=".75"><path d="M0 400 228 181l180 150 204-225 211 249 142-179 235 239v345H0Z" fill="#858472"/><path d="M0 463 231 270l176 123 189-151 225 180 173-127 206 172v293H0Z" fill="#5e6752"/></g>
+  <path d="M0 510c230-67 376-39 526 34 158 77 328 78 674-22v238H0Z" fill="url(#hill)"/><path d="M740 760c-86-82-61-156 31-223 70-50 99-102 95-173 50 63 55 127 0 188-66 74-70 132 13 208Z" fill="#b99468"/><path d="M769 760c-54-79-31-142 44-203 61-49 77-104 54-173" fill="none" stroke="#ead2aa" stroke-width="18" opacity=".72"/>
+  <g fill="#d180a2"><circle cx="1000" cy="560" r="6"/><circle cx="1050" cy="600" r="7"/><circle cx="1110" cy="535" r="5"/><circle cx="942" cy="635" r="7"/><circle cx="1150" cy="650" r="6"/></g><g stroke="#304525" stroke-width="5"><path d="M1000 760V560M1050 760V600M1110 760V535M1150 760V650"/></g>
+  <path d="M1080 0c-18 113-1 210 35 297 39 93 30 208-52 327h137V0Z" fill="#1c291d"/><g stroke="#35422c" stroke-width="22"><path d="m1100 160-92-90M1110 210l79-93M1095 265 960 174"/></g>
+</svg>

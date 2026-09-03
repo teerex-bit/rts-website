@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="title description">
+  <title id="title">Sunrise over a mountain valley</title>
+  <desc id="description">An editorial illustration of a seated person watching sunrise in a layered mountain landscape.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7dfaa"/><stop offset=".48" stop-color="#d9b578"/><stop offset="1" stop-color="#718072"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#fff8d8"/><stop offset="1" stop-color="#e8b454" stop-opacity=".15"/></radialGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#44564b"/><stop offset="1" stop-color="#182c32"/></linearGradient>
+  </defs>
+  <rect width="960" height="500" fill="url(#sky)"/>
+  <circle cx="710" cy="140" r="98" fill="url(#sun)"/><circle cx="710" cy="140" r="31" fill="#fff2bb"/>
+  <path d="M0 274 165 155 315 251 448 132 640 270 795 170 960 271V500H0Z" fill="#778176" opacity=".74"/>
+  <path d="M0 326 188 219 345 315 516 206 682 319 835 232 960 303V500H0Z" fill="#52645a"/>
+  <path d="M0 370c152-50 276-29 387 9 114 39 209-27 302-25 95 1 181 36 271 65v81H0Z" fill="url(#ground)"/>
+  <path d="M700 500c-55-95-48-150-5-199 37-42 62-71 62-114" fill="none" stroke="#c9b071" stroke-width="17" opacity=".58"/>
+  <g fill="#15272d"><circle cx="524" cy="280" r="28"/><path d="M491 312c10-25 63-28 77-2l12 91-109 4Z"/><path d="m500 388-82 71h54l70-48 72 49h54l-98-77Z"/></g>
+  <g fill="#9c8b57" opacity=".72"><circle cx="75" cy="388" r="5"/><circle cx="102" cy="364" r="4"/><circle cx="820" cy="362" r="5"/><circle cx="865" cy="389" r="4"/></g>
+</svg>

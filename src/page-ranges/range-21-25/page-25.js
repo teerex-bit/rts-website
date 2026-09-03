@@ -1,0 +1,36 @@
+module.exports = {
+  number: 25,
+  route: '/become/repair/',
+  stage: 'Become',
+  title: 'This Is the Moment You Have Been Given',
+  eyebrow: 'BECOMING  •  PART ONE  •  LESSON 4 OF 6  •  SCREEN 1 OF 2',
+  lesson: 4,
+  screen: 1,
+  previous: { label: 'PREVIOUS: RELEASE CONTROL', href: '/become/boundaries/' },
+  next: { label: 'NEXT: SCREEN 2', href: '/become/embodied-faith/' },
+  content: [
+    { className: 'p25-main', blocks: [
+      { type: 'lead', text: 'There is no other moment in which you can live with God except the one you have been given.' },
+      { type: 'p', text: 'We resist the moment we’re in more than we realize. We wait for work to end. We wait for the problem to resolve. We wait for an answer. We wish something had happened differently. We imagine what might happen tomorrow. Meanwhile, this moment passes.' },
+      { type: 'iconCallout', icon: 'clock.svg', text: 'Some moments are extraordinary. Most aren’t.', detail: 'Making dinner. Sitting in traffic. Answering an email. Waiting in line. Cleaning the house. Having the same conversation again. Going to work. Sitting quietly.' },
+      { type: 'p', text: 'If God is already present—as the last lesson taught—then there are no moments in which life with God is unavailable.' },
+      { type: 'accent', text: 'The ordinary moment is not what happens between the important moments. It is where most of your life with God will actually happen.' },
+      { type: 'columns', items: [
+        { title: 'YESTERDAY IS INACCESSIBLE.', text: 'You cannot go back and change it. You can learn from it, confess what needs confessing, and receive grace for what has been.' },
+        { title: 'TOMORROW HASN’T BEEN GIVEN TO YOU.', text: 'You can make plans, but you cannot live in it. Worrying about it steals the life you have right now.' },
+        { title: 'GOD MEETS YOU IN “NOW.”', text: 'This moment is the only moment in which you can choose to live in relationship with Him.' },
+      ] },
+      { type: 'practicePrompt', icon: 'open-hands-reference.webp', eyebrow: 'THE PRACTICAL QUESTION FOR THIS MOMENT', title: 'Father, how do You want me to receive this moment with You?', text: 'I don’t have to escape the moment to be close to You. I can receive this moment and You together.' },
+    ] },
+    { className: 'p25-aside', blocks: [
+      { type: 'heading', text: 'STOP ASKING YOUR PRESENT MOMENT TO BECOME SOMETHING ELSE BEFORE YOU ARE WILLING TO RECEIVE IT.' },
+      { type: 'p', text: 'Receiving the moment doesn’t mean believing everything happening is God’s ideal will.' },
+      { type: 'p', text: 'It means recognizing:' },
+      { type: 'accent', text: 'This is where I actually am.' },
+      { type: 'rule' },
+      { type: 'accent', text: 'God is here.' },
+      { type: 'rule' },
+      { type: 'accent', text: 'This is the reality in which I have been given the opportunity to live with Him now.' },
+    ] },
+  ],
+};

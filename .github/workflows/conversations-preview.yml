@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - codex/build-complete-reforming-the-soul-website-ce2woj
-    paths-ignore:
-      - review-artifacts/**
-
-permissions:
-  contents: write
 
 jobs:
   screenshot:
@@ -38,13 +33,3 @@ jobs:
           path: |
             artifacts/conversations-desktop.png
             artifacts/conversations-mobile.png
-      - name: Publish review images
-        run: |
-          mkdir -p review-artifacts
-          cp artifacts/conversations-desktop.png review-artifacts/conversations-desktop.png
-          cp artifacts/conversations-mobile.png review-artifacts/conversations-mobile.png
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -f review-artifacts/conversations-desktop.png review-artifacts/conversations-mobile.png
-          git commit -m "Add Conversations review screenshots [skip ci]"
-          git push

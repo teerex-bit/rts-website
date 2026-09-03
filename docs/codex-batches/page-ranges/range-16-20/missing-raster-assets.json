@@ -1,0 +1,38 @@
+{
+  "range": [16, 20],
+  "referenceOnlyPolicy": "No done/ reference image is active. Approved reference photography is used only through independent text-free crops.",
+  "assets": [
+    {
+      "pages": [16],
+      "filename": "jesus-righteous-anger.jpg",
+      "status": "resolved from approved reference crop",
+      "aspectRatio": "2.38:1 wide cinematic crop",
+      "prompt": "Photorealistic cinematic biblical-era courtyard at warm dusk, Jesus centered in a light linen robe with one hand raised while firmly confronting exploitation, diverse attentive crowd around him, sandstone colonnade and market details, compassionate resolve rather than violence, muted umber and olive palette, realistic natural skin and cloth, shallow atmospheric depth, no text, no symbols, no modern objects, respectful historical styling, wide banner composition with safe central crop.",
+      "alt": "Jesus confronting exploitation in a crowded stone courtyard"
+    },
+    {
+      "pages": [16],
+      "filename": "righteous-anger-storm.jpg",
+      "status": "resolved from approved reference crop",
+      "aspectRatio": "2.38:1 wide cinematic crop",
+      "prompt": "Photorealistic night thunderstorm over a broad arid mountain valley, one branching lightning strike illuminating layered ridgelines, deep charcoal and violet cloud mass with a restrained warm horizon, dramatic but not apocalyptic, high natural detail, no buildings, no people, no lettering, no fantasy effects, panoramic banner with the lightning slightly right of center and ample dark negative space at both sides.",
+      "alt": "Lightning over a dark desert mountain valley"
+    },
+    {
+      "pages": [18],
+      "filename": "becoming-overlook.jpg",
+      "status": "resolved from approved reference crop",
+      "aspectRatio": "1.97:1 landscape hero",
+      "prompt": "Photorealistic contemplative woman seen from behind sitting on a rocky mountain overlook at golden sunrise, long wavy brown hair, neutral knit sweater and dark trousers, winding river through a vast layered valley, delicate purple wildflowers in the foreground, glowing clouds and gentle haze, emotionally hopeful and quiet, premium editorial realism, no text, no logos, subject placed in the right third with generous bright low-detail space on the left for live webpage copy.",
+      "alt": "Woman overlooking a sunlit mountain valley and winding river"
+    },
+    {
+      "pages": [19, 20],
+      "filename": "presence-mountain-path.jpg",
+      "status": "resolved from approved reference crop",
+      "aspectRatio": "1.58:1 landscape with right-side crop safety",
+      "prompt": "Photorealistic stone footpath curving through a high mountain meadow at sunrise, radiant sun between layered ridges, mature tree framing the upper right, purple and rose wildflowers along the path, warm gold light and misty distance, peaceful spiritually suggestive atmosphere without religious symbols, no people, no text, premium natural landscape photography, key trail and sunlight concentrated on the right half while the left half remains softly hazy for live lesson text.",
+      "alt": "Sunrise over a stone path through a mountain meadow"
+    }
+  ]
+}

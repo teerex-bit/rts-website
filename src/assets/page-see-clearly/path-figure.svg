@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="title description">
+  <title id="title">Woodland path opening to a bright valley</title>
+  <desc id="description">An editorial illustration of a person pausing on a forest path above a sunlit mountain valley.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8e4ae"/><stop offset="1" stop-color="#79909a"/></linearGradient>
+    <linearGradient id="forest" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#142d2b"/><stop offset="1" stop-color="#3f4d31"/></linearGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d6be83"/><stop offset="1" stop-color="#7a5b34"/></linearGradient>
+  </defs>
+  <rect width="960" height="500" fill="url(#sky)"/>
+  <circle cx="720" cy="108" r="52" fill="#fff2b2" opacity=".82"/>
+  <path d="M178 299 345 154 495 281 646 174 820 300 960 220V500H0V322Z" fill="#708173"/>
+  <path d="M0 345 172 229 340 349 516 251 669 338 825 264 960 331V500H0Z" fill="#40534a"/>
+  <path d="M0 0h220l38 500H0ZM960 0H785l-71 500h246Z" fill="url(#forest)"/>
+  <g stroke="#203a30" stroke-width="18"><path d="M92 0v430M172 0l-30 430M870 0l-20 430M798 0l37 430"/></g>
+  <path d="M486 500c-45-79-25-146 42-199 37-30 71-73 84-130 22 74-2 127-45 169-46 44-40 100 6 160Z" fill="url(#trail)"/>
+  <g fill="#1a2927"><circle cx="439" cy="236" r="25"/><path d="M408 268c18-27 65-25 77 6l5 123-81 8Z"/><path d="m413 389-21 100h31l33-91 26 91h32l-25-105Z"/></g>
+  <g fill="#c6983e"><circle cx="281" cy="372" r="4"/><circle cx="304" cy="349" r="3"/><circle cx="682" cy="384" r="4"/><circle cx="706" cy="353" r="3"/></g>
+</svg>

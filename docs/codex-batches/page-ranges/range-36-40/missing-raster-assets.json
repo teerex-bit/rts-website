@@ -1,0 +1,90 @@
+{
+  "range": "36-40",
+  "policy": "Generate independent replaceable imagery only. Do not reproduce the reference screenshot, add UI, logos, borders, captions, lettering, book titles, watermarks, or any other text.",
+  "assets": [
+    {
+      "slot": "p36-sunset-portrait",
+      "target": "src/assets/page-ranges/range-36-40/p36-sunset-portrait.webp",
+      "aspectRatio": "1.75:1",
+      "minimumPixels": "1600x915",
+      "prompt": "Editorial photorealism, late-afternoon amber light over a broad mountain valley, mature gray-haired man in a plain black short-sleeve shirt seated on a grassy ridge at the far right, seen in three-quarter back profile looking toward the horizon, quiet reflective mood, landscape kept open and softly defocused across the left half for a separate HTML quote card, natural earth colors, no typography, no logo, no interface."
+    },
+    {
+      "slot": "p36-domain-1",
+      "target": "src/assets/page-ranges/range-36-40/p36-thoughts.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Warm editorial portrait of a thoughtful adult man with glasses seated beside bookshelves, hand near chin, soft window light, contemplative but hopeful, medium crop, uncluttered background, no text or logo."
+    },
+    {
+      "slot": "p36-domain-2",
+      "target": "src/assets/page-ranges/range-36-40/p36-emotional-life.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Warm editorial portrait of an adult woman outdoors in sunlight, eyes gently closed and relaxed expression suggesting gratitude and peace, soft green background, medium crop, realistic skin, no text or logo."
+    },
+    {
+      "slot": "p36-domain-3",
+      "target": "src/assets/page-ranges/range-36-40/p36-will.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Editorial portrait of a Black adult man pausing on a wooded walking trail, simple outdoor jacket, gaze lifted toward light through trees, grounded and resolved expression, medium crop, photoreal, no text or logo."
+    },
+    {
+      "slot": "p36-domain-4",
+      "target": "src/assets/page-ranges/range-36-40/p36-body.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Editorial portrait of an athletic adult woman seated calmly in a sunlit park after movement, upright relaxed posture, healthy embodiment rather than fitness advertising, warm natural color, medium crop, no text or logo."
+    },
+    {
+      "slot": "p36-domain-5",
+      "target": "src/assets/page-ranges/range-36-40/p36-relationships.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Two diverse adult women in an honest attentive conversation across a small table near a bright window, natural gestures, mutual warmth without posing, editorial documentary realism, no text or logo."
+    },
+    {
+      "slot": "p36-domain-6",
+      "target": "src/assets/page-ranges/range-36-40/p36-inner-life.webp",
+      "aspectRatio": "1.42:1",
+      "minimumPixels": "700x493",
+      "prompt": "Adult man sitting alone in a quiet sunlit reading room, side profile, reflective and settled, books and houseplants softly out of focus, warm neutral palette, editorial realism, no text or logo."
+    },
+    {
+      "slot": "p37-community-overlook",
+      "target": "src/assets/page-ranges/range-36-40/p37-community-overlook.webp",
+      "aspectRatio": "2.0:1",
+      "minimumPixels": "1800x900",
+      "prompt": "Photoreal cinematic golden-hour mountain overlook, four adults of varied ages and ethnicities standing side by side from behind, quietly looking across a river valley toward the setting sun, natural everyday clothing, people occupy the lower right two-thirds, warm rim light, no text, no logo, no interface."
+    },
+    {
+      "slot": "p38-chairs-overlook",
+      "target": "src/assets/page-ranges/range-36-40/p38-chairs-overlook.webp",
+      "aspectRatio": "1.1:1",
+      "minimumPixels": "1400x1273",
+      "prompt": "Photoreal golden-hour wooded mountain overlook with two empty Adirondack chairs angled toward a river valley, a small round stone table with two simple ceramic coffee mugs and a closed journal, large leafy tree framing the bright upper right, stone terrace foreground, contemplative hospitality, preserve open space at upper right for a separate HTML card, no text or logo."
+    },
+    {
+      "slot": "p39-alluminate-valley",
+      "target": "src/assets/page-ranges/range-36-40/p39-alluminate-valley.webp",
+      "aspectRatio": "2.9:1",
+      "minimumPixels": "2400x828",
+      "prompt": "Epic painterly-photoreal night valley and calm lake surrounded by dark mountain silhouettes, luminous gold-white vertical light breaking through dramatic plum and charcoal clouds near the right two-thirds and reflecting on water, tiny warm embers in the atmosphere, spiritual wonder without religious symbols, keep the left third dark and quiet for live HTML copy, no lettering, no logo, no interface."
+    },
+    {
+      "slot": "p40-books-mountain-table",
+      "target": "src/assets/page-ranges/range-36-40/p40-books-mountain-table.webp",
+      "aspectRatio": "2.9:1",
+      "minimumPixels": "2400x828",
+      "prompt": "Warm photoreal sunrise mountain valley viewed from a rustic wooden table, stack of three worn unbranded hardback books and a dark ceramic mug on the right, folded neutral wool blanket at far right, soft sun rays and mist, left third bright and low-detail for live HTML copy, no lettering on book spines, no text, no logo."
+    },
+    {
+      "slot": "p40-cover-1-through-24",
+      "target": "src/assets/page-ranges/range-36-40/p40-cover-{01..24}.webp",
+      "aspectRatio": "0.72:1 each",
+      "minimumPixels": "720x1000 each",
+      "prompt": "Create a coherent set of 24 distinct vertical literary cover-art backgrounds using moody navy, charcoal, parchment, forest green and restrained amber light. Each image should use one symbolic scene only—examples across the set: distant solitary figure, doorway, forest path, cracked vessel repaired with gold, empty bench, branching road, throne silhouette, bar-code abstraction, classical bust with broken chain, sea voyage, desert ruins, eclipse, city threshold, long road home, signposts, or light through trees. Sophisticated spiritual-formation nonfiction tone, strong focal center, sufficient contrast for separate HTML title overlays, absolutely no words, letters, numbers, logos, frames, mock book objects, or watermarks. Export each artwork as an independent flat background, consistently graded but visibly unique."
+    }
+  ]
+}
