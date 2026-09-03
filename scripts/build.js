@@ -88,4 +88,7 @@ const batchReviewPages=pages.filter(page=>page.number>=3&&page.number<=10);
 const batchReviewDir=path.join(out,'review','pages-03-10');fs.mkdirSync(batchReviewDir,{recursive:true});fs.writeFileSync(path.join(batchReviewDir,'index.html'),shell('Review Pages 03–10',renderPagesBatchReview(batchReviewPages)));
 const finalReviewDir=path.join(out,'review','pages-01-40');fs.mkdirSync(finalReviewDir,{recursive:true});fs.writeFileSync(path.join(finalReviewDir,'index.html'),shell('Review Pages 01–40',renderPagesFinalReview(pages)));
 fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});fs.writeFileSync(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
+const deployOut=path.join(__dirname,'..','dist');
+fs.rmSync(deployOut,{recursive:true,force:true});
+fs.cpSync(out,deployOut,{recursive:true});
 console.log(`Built ${pages.length+4} routes.`);
