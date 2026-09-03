@@ -10,11 +10,11 @@ module.exports = {
   progress: 'Reflection 5 of 6',
   progressValue: 5,
   progressMax: 6,
-  step: 4,
+  step: 5,
   journey,
   eyebrow: 'Reflection 5 of 6',
   introduction: ['Jesus does not reveal a different God from the Old Testament. He reveals clearly the God who was there all along.', 'Look at the heart of God in both Testaments.', 'What do we see?'],
-  heroImage: '/assets/page-ranges/range-11-15/jesus-child.svg',
+  heroImage: '/assets/page-ranges/range-11-15/jesus-child.jpg',
   columns: ['In Jesus (New Testament)', 'In God (Old Testament)'],
   rows: [
     { trait: 'Compassion', icon: 'heart', new: 'Jesus was moved with compassion toward suffering people. (Matthew 9:36)', old: 'God saw their suffering and said, “I am concerned about their suffering.” (Exodus 3:7)' },
@@ -23,7 +23,7 @@ module.exports = {
     { trait: 'Kindness', icon: 'gift', new: 'Jesus provided, healed, and gave good gifts. (Matthew 7:11)', old: '“The Lord is good to all, and His mercy is over all that He has made.” (Psalm 145:9)' },
     { trait: 'Patience', icon: 'clock', new: 'Jesus patiently taught and endured slow, confused disciples. (Mark 4:33–34)', old: 'God bore with Israel again and again for many generations. (Nehemiah 9:28–31)' }
   ],
-  backRoute: '/see-god-clearly/',
-  nextRoute: '/see-god-clearly/images/',
+  previous: '/see-god-clearly/images/',
+  next: '/see-god-clearly/with-us/',
   continueLabel: 'Continue'
 };

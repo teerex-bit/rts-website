@@ -47,7 +47,7 @@ function renderHeader() {
   return `<header class="rts2521-header">
     <a class="rts2521-brand" href="/" aria-label="Reforming the Soul home">${icon('logo.svg', 'Reforming the Soul')}</a>
     <nav aria-label="Main navigation">
-      <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOMING</a><a href="/join/">JOIN</a>
+      <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOME</a><a href="/join/">JOIN</a>
     </nav>
     <a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a>
     <span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>
@@ -69,15 +69,10 @@ function renderRail(page) {
 }
 
 function renderProgress(page) {
-  const style = page.progressStyle || 'checks-outline';
-  const [completedStyle, currentStyle] = style.split('-');
-  return `<div class="rts2521-progress" data-progress-style="${escapeHtml(style)}" aria-label="Lesson progress">${lessons.map((_, index) => {
+  return `<div class="rts2521-progress" aria-label="Lesson progress">${lessons.map((_, index) => {
     const lesson = index + 1;
-    const isPrevious = lesson < page.lesson;
-    const isCurrent = lesson === page.lesson;
-    const state = isPrevious ? 'is-complete' : isCurrent ? `is-current${currentStyle === 'filled' ? ' is-filled' : ''}` : '';
-    const label = isPrevious && completedStyle === 'checks' ? '✓' : lesson;
-    return `<span class="${state}">${label}</span>`;
+    const state = lesson < page.lesson ? 'is-complete' : lesson === page.lesson ? (page.screen === 2 ? 'is-complete is-current' : 'is-current') : '';
+    return `<span class="${state}">${lesson < page.lesson || (lesson === page.lesson && page.screen === 2) ? '✓' : lesson}</span>`;
   }).join('<i aria-hidden="true"></i>')}</div>`;
 }
 

@@ -6,7 +6,6 @@ module.exports = {
   eyebrow: 'BECOMING  •  PART ONE  •  LESSON 2 OF 6  •  SCREEN 1 OF 2',
   lesson: 2,
   screen: 1,
-  progressStyle: 'numbers-outline',
   previous: { label: 'PREVIOUS: RECOGNIZE HIS PRESENCE', href: '/become/living-from-love/' },
   next: { label: 'NEXT: SCREEN 2', href: '/become/rule-of-life/' },
   content: [

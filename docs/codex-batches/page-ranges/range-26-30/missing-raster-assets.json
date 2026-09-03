@@ -1,0 +1,23 @@
+{
+  "range": "26-30",
+  "assets": [
+    {
+      "id": "seedling-growth-photo",
+      "page": 30,
+      "reference": "done/30 Becoming  2 landing.png",
+      "status": "resolved-independent-reference-crop",
+      "intendedPath": "/assets/page-ranges/range-26-30/seedling-growth.webp",
+      "currentAsset": "/assets/page-ranges/range-26-30/seedling-growth.webp",
+      "output": {
+        "width": 500,
+        "height": 395,
+        "format": "webp",
+        "colorSpace": "sRGB",
+        "quality": 88
+      },
+      "prompt": "Editorial macro photograph, landscape orientation: one healthy young green seedling with a slender vertical stem and exactly three prominent leaf groupings emerging from cracked dry brown soil. Place the plant just right of center. Shoot at soil level with a shallow depth of field; the foreground soil should retain crisp tactile clods while the far ground melts into creamy blur. Warm sunrise backlight from the left creates a pale cream-to-golden background and delicate translucent veins in the leaves. Natural olive and fresh green leaves, muted earth browns, restrained contrast, calm spiritual-formation mood, premium nonprofit editorial photography. Leave generous light negative space across the left 35 percent so the image can fade into an off-white content background. No people, pots, gardening tools, typography, logos, borders, extra seedlings, flowers, lens flares, illustration, or oversaturated green.",
+      "cropAndPlacement": "Resolved from the reference's clean, text-free upper-right photographic region. Use object-fit: cover in an approximately 430×365 desktop frame anchored top-right. Preserve the full plant and soil emergence point. Apply a left-to-right transparency mask so the photo dissolves into the content canvas without a hard edge.",
+      "alt": "Young green seedling emerging through dry soil in warm light"
+    }
+  ]
+}

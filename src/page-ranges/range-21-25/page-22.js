@@ -6,7 +6,6 @@ module.exports = {
   eyebrow: 'BECOMING  •  PART ONE  •  LESSON 2 OF 6  •  SCREEN 2 OF 2',
   lesson: 2,
   screen: 2,
-  progressStyle: 'checks-filled',
   previous: { label: 'PREVIOUS: SCREEN 1', href: '/become/practice-change/' },
   next: { label: 'NEXT: LESSON 3 — RELEASE CONTROL', href: '/become/relationships/' },
   content: [

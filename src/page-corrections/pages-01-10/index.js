@@ -20,43 +20,32 @@ function renderStageLinks(active, className) {
 
 function renderPage02() {
   const outcomes = [
-    ['person', 'Discover how formation happens in visible and invisible ways.'],
-    ['search', 'Learn to notice what happens inside you in real life.'],
+    ['formation', 'Discover how formation happens in visible and invisible ways.'],
+    ['notice', 'Learn to notice what happens inside you in real life.'],
     ['leaf', 'Take your first step in the journey of transformation with God.']
   ];
   const routes = ['/awaken/pay-attention/', '/awaken/name-your-desire/', '/awaken/listen-within/', '/awaken/practice-presence/'];
   const steps = awakenPages.map((page, index) => ({ title: page.title, href: routes[index] }));
   return `<div class="p02-awaken" data-page-number="02" data-editable-source="pages-01-10-corrections">
-    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-wordmark.svg" alt="Reforming the Soul"></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a>${conceptIcon('person')}</nav></header>
+    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
     <main class="p02-shell">
       <aside class="p02-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks('Awaken')}</nav></aside>
       <section class="p02-main">
-        <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken 1</p><h1 id="p02-title">You Have Already<br>Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
-        <section class="p02-outcomes" aria-label="In this lesson you will"><h2>In This Lesson You Will</h2><div>${outcomes.map(([icon, copy]) => `<article>${conceptIcon(icon)}<p>${esc(copy)}</p></article>`).join('')}</div></section>
-        <blockquote class="p02-quote">Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.<cite>— Dallas Willard</cite></blockquote>
+        <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken 1</p><h1 id="p02-title">You Have Already Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
+        <section class="p02-outcomes" aria-label="In this lesson you will"><h2>In This Lesson You Will</h2><div>${outcomes.map(([icon, copy]) => `<article><span aria-hidden="true"><svg><use href="/assets/page-awaken/icons.svg#${icon}"></use></svg></span><p>${esc(copy)}</p></article>`).join('')}</div></section>
+        <blockquote class="p02-quote"><span aria-hidden="true">“</span><p>Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.</p><cite>— Dallas Willard</cite></blockquote>
         <aside class="p02-progress" aria-label="Your progress"><h2>Your Progress</h2><p>Awaken 1 of 7</p><progress max="7" value="1">Awaken 1 of 7</progress><ol>${steps.map((step, index) => `<li class="p02-progress__step ${index === 0 ? 'is-current' : ''}"><a href="${step.href}"><span>${index + 1}</span>${esc(step.title)}</a></li>`).join('')}</ol></aside>
       </section>
     </main>
   </div>`;
 }
 
-const iconPaths = {
-  person: '<circle cx="12" cy="7" r="3"/><path d="M5 20c.5-5 2.8-7 7-7s6.5 2 7 7"/>',
-  people: '<circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M2.5 20c.4-4 2.2-6 5.5-6s5.1 2 5.5 6M10.5 20c.4-4 2.2-6 5.5-6s5.1 2 5.5 6"/>',
-  heart: '<path d="M12 20S4 15.2 4 9.5C4 5.6 9 4.2 12 8c3-3.8 8-2.4 8 1.5C20 15.2 12 20 12 20Z"/>',
-  search: '<circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/>',
-  sign: '<path d="M12 21V4M7 7h10l-2.5 3L17 13H7l2.5-3L7 7Z"/>',
-  leaf: '<path d="M5 18C6 9 11 4 20 4c-1 9-6 14-15 14Z"/><path d="M5 20c3-5 6-8 11-11"/>',
-  eye: '<path d="M2.5 12s3.7-6 9.5-6 9.5 6 9.5 6-3.7 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/>'
+const conceptIcons = {
+  person: '●', heart: '♥', search: '⌕', sign: '†', leaf: '❧', eye: '◉'
 };
 
-function conceptIcon(name) {
-  const paths = iconPaths[name] || iconPaths.leaf;
-  return `<span class="p07-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">${paths}</svg></span>`;
-}
-
 function renderPage07SideCards() {
-  return page07.sideCards.map(card => `<section class="p07-side-card"><h2>${esc(card.title)}</h2>${(card.paragraphs || []).map(text => `<p>${esc(text)}</p>`).join('')}${card.quote ? `<blockquote>${esc(card.quote)}${card.quoteBy ? `<cite>— ${esc(card.quoteBy)}</cite>` : ''}</blockquote>` : ''}${card.items ? `<ul>${card.items.map((item, index) => `<li>${conceptIcon(['eye', 'search', 'heart', 'leaf'][index % 4])}${esc(item)}</li>`).join('')}</ul>` : ''}</section>`).join('');
+  return page07.sideCards.map(card => `<section class="p07-side-card"><h2>${esc(card.title)}</h2>${(card.paragraphs || []).map(text => `<p>${esc(text)}</p>`).join('')}${card.quote ? `<blockquote>${esc(card.quote)}${card.quoteBy ? `<cite>— ${esc(card.quoteBy)}</cite>` : ''}</blockquote>` : ''}${card.items ? `<ul>${card.items.map((item, index) => `<li><span aria-hidden="true">${['◉', '⌕', '♥', '❧'][index % 4]}</span>${esc(item)}</li>`).join('')}</ul>` : ''}</section>`).join('');
 }
 
 function renderPage07() {
@@ -67,8 +56,8 @@ function renderPage07() {
       <section class="p07-work">
         <article class="p07-main">
           <section class="p07-hero" aria-labelledby="p07-title"><div><p>${esc(page07.courseLabel)} <span aria-hidden="true">•</span> ${esc(page07.lessonLabel)}</p><h1 id="p07-title">${esc(page07.title)}</h1><i aria-hidden="true"></i>${page07.introduction.map((line, index) => `<p class="${index === 0 || index === 2 ? 'is-emphasis' : ''}">${esc(line)}</p>`).join('')}<a href="/see-clearly/your-formation/">Begin This Phase <span aria-hidden="true">→</span></a></div></section>
-          <section class="p07-outcomes" aria-label="In this phase you will"><h2>In This Phase You Will</h2><div>${page07.outcomes.map((outcome, index) => `<article>${conceptIcon(['person', 'search', 'leaf'][index])}<p>${esc(outcome)}</p></article>`).join('')}</div></section>
-          <section class="p07-journey"><h2>${esc(page07.journeyTitle)}</h2><div>${page07.cards.map((card, index) => `<article>${conceptIcon(card[0])}<h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></article>${index < page07.cards.length - 1 ? '<b aria-hidden="true">→</b>' : ''}`).join('')}</div></section>
+          <section class="p07-outcomes" aria-label="In this phase you will"><h2>In This Phase You Will</h2><div>${page07.outcomes.map((outcome, index) => `<article><span aria-hidden="true">${['●', '◌', '❧'][index]}</span><p>${esc(outcome)}</p></article>`).join('')}</div></section>
+          <section class="p07-journey"><h2>${esc(page07.journeyTitle)}</h2><div>${page07.cards.map((card, index) => `<article><span aria-hidden="true">${conceptIcons[card[0]] || '•'}</span><h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></article>${index < page07.cards.length - 1 ? '<b aria-hidden="true">→</b>' : ''}`).join('')}</div></section>
           <blockquote class="p07-quote">${esc(page07.note[0])}</blockquote>
         </article>
         <aside class="p07-aside">${renderPage07SideCards()}</aside>
@@ -120,58 +109,28 @@ const css = `
   .formation-course-page[data-page-number="08"] .course-callout--note{order:4}
   .formation-course-page[data-page-number="08"] .lesson-navigation{order:5}
   .formation-course-page[data-page-number="08"] .course-callout--note .course-symbol:before{content:'◉'}
-
-  /* Pages 03–10 reference-scale refinements. The references use a compact
-     editorial canvas at 1536×1024; these rules keep the full lesson visible
-     while leaving every card, field, heading and image as a separate node. */
-  .formation-course-page[data-page-number="03"],
-  .formation-course-page[data-page-number="04"],
-  .formation-course-page[data-page-number="05"],
-  .formation-course-page[data-page-number="08"],
-  .formation-course-page[data-page-number="09"],
-  .formation-course-page[data-page-number="10"]{font-size:13px;line-height:1.43}
-  .formation-course-page[data-page-number="03"] .course-content,
-  .formation-course-page[data-page-number="04"] .course-content,
-  .formation-course-page[data-page-number="05"] .course-content,
-  .formation-course-page[data-page-number="08"] .course-content,
-  .formation-course-page[data-page-number="09"] .course-content,
-  .formation-course-page[data-page-number="10"] .course-content{padding-left:24px;padding-right:24px}
-  .formation-course-page[data-page-number="03"] .course-hero h1{font-size:2.55rem}
-  .formation-course-page[data-page-number="04"] .course-hero h1{font-size:2.5rem}
-  .formation-course-page[data-page-number="05"] .course-hero h1{font-size:2.85rem}
-  .formation-course-page[data-page-number="06"] .course-hero h1{font-size:2.55rem}
-  .formation-course-page[data-page-number="08"] .course-hero h1{font-size:2.85rem}
-  .formation-course-page[data-page-number="09"] .course-hero h1{font-size:2.7rem}
-  .formation-course-page[data-page-number="10"] .course-hero h1{font-size:2.62rem}
-  .formation-course-page[data-page-number="03"] .course-card{min-height:158px;padding:12px 14px}
-  .formation-course-page[data-page-number="03"] .course-card .course-symbol{width:55px;height:55px}
-  .formation-course-page[data-page-number="03"] .course-callout--note{margin-top:14px;padding:12px 18px}
-  .formation-course-page[data-page-number="04"] .origin-choice{min-height:67px;padding:8px 12px}
-  .formation-course-page[data-page-number="04"] .origin-map__choices{gap:9px 265px}
-  .formation-course-page[data-page-number="04"] .origin-map__center{width:190px;height:190px;padding:19px}
-  .formation-course-page[data-page-number="04"] .origin-choice--wide{margin-top:10px}
-  .formation-course-page[data-page-number="05"] .course-card{min-height:183px}
-  .formation-course-page[data-page-number="05"] .course-callout{margin:9px 0 13px;padding:12px 17px}
-  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card{min-height:108px;padding:11px 14px}
-  .formation-course-page[data-page-number="08"] .course-callout--note{margin-top:12px;padding:13px 17px}
-  .formation-course-page[data-page-number="09"] .truth-panels article{min-height:350px}
-  .formation-course-page[data-page-number="09"] .truth-panels .course-symbol{margin-top:12px}
-  .formation-course-page[data-page-number="09"] .course-callout{margin:10px 0;padding:12px 18px}
-  .formation-course-page[data-page-number="10"] .comparison-row article{min-height:65px;padding:5px 10px}
-  .formation-course-page[data-page-number="10"] .comparison-row .course-symbol{width:45px;height:45px}
-  .formation-course-page[data-page-number="10"] .comparison-row{margin-bottom:6px}
 }
 .p02-awaken,.p07-overview{min-height:100vh;color:#092039;background:#fbf8f2;font-family:var(--sans)}
 .p02-top,.p07-top{height:96px;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:#fffdfa;border-bottom:1px solid #e2ddd4}
-.p02-top>a img,.p07-top>a img{display:block;width:220px}
+.p02-brand{display:flex;align-items:center;gap:10px;color:#092039;text-decoration:none}
+.p02-brand__mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
+.p02-brand__mark img{display:block;width:196px;height:67px;max-width:none}
+.p02-brand__type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
+.p02-brand__type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+.p02-brand__type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
+.p02-brand__the{font:italic 1.05rem var(--serif)}
+.p02-brand__soul{font:italic 2rem/1 'RTS Script',cursive;text-transform:none}
+.p07-top>a img{display:block;width:220px}
 .p02-top nav,.p07-top nav,.p07-top>div{display:flex;align-items:center;gap:36px}
-.p02-top nav a,.p07-top a{font-size:.76rem;text-decoration:none;text-transform:uppercase}
+.p02-top nav a,.p07-top a{font-size:.76rem;text-decoration:none}
 .p02-top nav span,.p07-top>div span{display:grid;place-items:center;width:34px;height:34px;color:#fff;background:#0b253a;border-radius:50%}
+.p02-account svg{width:25px;height:25px;fill:#fff;stroke:#fff;stroke-width:2}
 .p02-shell{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 96px)}
 .p02-rail,.p07-rail{color:#fff;background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31)}
 .p02-rail{padding:28px 24px}
 .p02-rail>p,.p07-rail>p{margin:0 0 24px;color:#d6a740;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .p02-rail nav,.p07-rail nav{display:grid;gap:11px}
+.p02-rail nav{gap:22px}
 .p02-rail nav>a,.p07-rail nav>a{display:grid;grid-template-columns:56px 1fr;gap:13px;align-items:center;padding:14px 12px;color:#fff;border-radius:8px;text-decoration:none}
 .p02-rail nav>a.is-active,.p07-rail nav>a.is-active{background:linear-gradient(135deg,#78925b,#627d48)}
 .p02-rail nav img,.p07-rail nav img{width:48px;height:48px;filter:brightness(0) invert(1)}
@@ -179,8 +138,8 @@ const css = `
 .p02-rail nav strong,.p07-rail nav strong{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
 .p02-rail nav small,.p07-rail nav small{font-size:.74rem;line-height:1.4}
 .p02-main{position:relative;min-width:0;background:#fffdfa}
-.p02-hero{min-height:475px;padding:54px 54px;background:#e8dfce url('/assets/page-awaken/sunrise-figure.svg') center/cover no-repeat}
-.p02-hero>div{width:54%;min-height:360px;padding:0 45px 30px 0;background:linear-gradient(90deg,rgba(255,253,248,.98) 0%,rgba(255,253,248,.93) 72%,transparent)}
+.p02-hero{min-height:475px;padding:54px 54px;background:#e8dfce url('/assets/page-awaken/awaken-sunrise-path.png') center/cover no-repeat}
+.p02-hero>div{width:54%;min-height:360px;padding:0 45px 30px 0}
 .p02-hero>div>p:first-child{margin:0;color:#5f7547;font-size:1.05rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .p02-hero h1{margin:9px 0;color:#092039;font:400 clamp(3.4rem,4.2vw,4.8rem)/.98 var(--serif)}
 .p02-hero>div>p:nth-of-type(2){font-size:1rem;line-height:1.55}
@@ -191,9 +150,14 @@ const css = `
 .p02-outcomes article{display:grid;grid-template-columns:46px 1fr;gap:13px;align-items:center;padding:4px 22px;border-right:1px solid #ded7cc}
 .p02-outcomes article:last-child{border:0}
 .p02-outcomes article>span{display:grid;place-items:center;width:42px;height:42px;color:#fff;background:#6b7750;border-radius:50%}
+.p02-outcomes article svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.p02-outcomes article:first-child svg{fill:currentColor;stroke:none}
 .p02-outcomes article p{margin:0;font-size:.72rem;line-height:1.45}
-.p02-quote{max-width:760px;margin:24px 360px 0 50px;padding:20px 30px;color:#28341f;background:transparent;border:0;border-top:1px solid #d9d1c4;font:italic 1rem/1.65 var(--serif)}
+.p02-quote{display:grid;grid-template-columns:34px 1fr;max-width:760px;margin:24px 360px 0 50px;padding:20px 30px;color:#28341f;background:transparent;border:0;border-top:1px solid #d9d1c4;font:italic 1rem/1.65 var(--serif)}
+.p02-quote>span{color:#aab38e;font:700 3.3rem/1 var(--serif)}
+.p02-quote p{margin:0}
 .p02-quote cite{display:block;margin-top:10px;color:#5c7444;font:700 .68rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.p02-quote cite{grid-column:2}
 .p02-progress{position:absolute;right:30px;top:385px;width:300px;padding:24px;background:#fffdfa;border:1px solid #dfd8cd;border-radius:10px;box-shadow:0 12px 30px #13283a22}
 .p02-progress h2{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
 .p02-progress p{margin:10px 0 0;font-size:.8rem}
@@ -201,8 +165,8 @@ const css = `
 .p02-progress ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}
 .p02-progress li{font-size:.7rem}
 .p02-progress li a{display:grid;grid-template-columns:25px 1fr;gap:8px;align-items:center;color:inherit;text-decoration:none}
-.p02-progress li a>span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
-.p02-progress li.is-current a>span{color:#fff;background:#667e4e}
+.p02-progress li span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
+.p02-progress li.is-current span{color:#fff;background:#667e4e}
 .p07-top{height:84px;padding:8px 28px}
 .p07-top>a img{width:210px}
 .p07-top nav{gap:42px}
@@ -234,7 +198,6 @@ const css = `
 .p07-outcomes article{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;padding:4px 15px;border-right:1px solid #ddd6cb}
 .p07-outcomes article:last-child{border:0}
 .p07-outcomes article>span,.p07-journey article>span{display:grid;place-items:center;width:43px;height:43px;color:#fff;background:#145ca7;border-radius:50%}
-.p07-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .p07-outcomes article p{margin:0;font-size:.66rem;line-height:1.4}
 .p07-journey{padding:0 30px 10px}
 .p07-journey>h2{display:flex;align-items:center;gap:15px;margin:3px 0 8px}.p07-journey>h2:before,.p07-journey>h2:after{content:"";flex:1;border-top:1px solid #ded6ca}
@@ -248,7 +211,7 @@ const css = `
 .p07-side-card p,.p07-side-card li{font-size:.69rem;line-height:1.5}
 .p07-side-card blockquote{margin:0;padding:7px 4px;border:0;background:transparent;font:italic .78rem/1.55 var(--serif)}
 .p07-side-card cite{display:block;margin-top:8px;color:#145ca7;font:700 .6rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
-.p07-side-card ul{display:grid;gap:9px;margin:0;padding:0;list-style:none}.p07-side-card li{display:grid;grid-template-columns:35px 1fr;gap:9px;align-items:start}.p07-side-card li>.p07-icon{display:grid;place-items:center;width:30px;height:30px;color:#145ca7}.p07-side-card li>.p07-icon svg{width:22px;height:22px}
+.p07-side-card ul{display:grid;gap:9px;margin:0;padding:0;list-style:none}.p07-side-card li{display:grid;grid-template-columns:35px 1fr;gap:9px;align-items:start}.p07-side-card li>span{font-size:1.35rem;color:#145ca7}
 @media (max-width:1180px){
   .p02-shell,.p07-shell{grid-template-columns:220px 1fr}.p02-rail nav>a,.p07-rail nav>a{grid-template-columns:38px 1fr;padding:10px 5px}.p02-rail nav img,.p07-rail nav img{width:36px}.p07-top>div a:nth-child(-n+2){display:none}.p07-work{grid-template-columns:minmax(0,1fr) 270px}.p07-hero>div{width:60%}
 }
@@ -256,7 +219,7 @@ const css = `
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p02-progress{position:relative;right:auto;top:auto;width:auto;margin:18px;order:4}.p02-outcomes{padding-right:50px}.p02-quote{margin-right:50px}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
-  .p02-top>a img,.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
+  .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
 }`;
 
 module.exports = { patches, css };

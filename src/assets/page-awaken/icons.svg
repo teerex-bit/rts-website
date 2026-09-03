@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" width="1" height="1">
+  <symbol id="formation" viewBox="0 0 48 48"><circle cx="24" cy="15" r="7"/><path d="M9 42c1-10 6-16 15-16s14 6 15 16"/></symbol>
+  <symbol id="notice" viewBox="0 0 48 48"><path d="M7 18h10l3 5h8l3-5h10l4 24H29l-1-10h-8l-1 10H3l4-24Z"/><circle cx="13" cy="31" r="5"/><circle cx="35" cy="31" r="5"/><path d="M13 18v-7M35 18v-7"/></symbol>
+  <symbol id="leaf" viewBox="0 0 48 48"><path d="M8 41c2-18 12-28 32-33-1 19-11 30-29 31M10 39c8-9 15-16 25-25M22 29l-9-2M28 23l-1-9"/></symbol>
+  <symbol id="account" viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M9 42c1-10 6-16 15-16s14 6 15 16"/></symbol>
+</svg>

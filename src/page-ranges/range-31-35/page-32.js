@@ -8,10 +8,10 @@ module.exports = {
   introduction: 'Your body has learned how you live. Much of what your body does happens before your conscious mind has time to decide.',
   scenic: 'lake',
   heroNote: 'Why we practiced in Part One: Recognizing His presence, listening, releasing control, receiving the moment, taking the next right step, and repeating—these practices train your whole person, including your body. What begins as an intentional practice can become an embodied way of being.',
-  progress: { current: 2, total: 5, previous: '1. The Will', next: '3. Relationships' },
+  progress: { current: 2, total: 5, previous: '1. The Will', previousHref: '/become-together/companions/', next: '3. Relationships', nextHref: '/become-together/safety/' },
   panels: [
     {
-      icon: 'rotate', tone: 'copper', heading: 'Your body has learned responses that happen automatically.', wide: true,
+      icon: '↻', tone: 'copper', heading: 'Your body has learned responses that happen automatically.', wide: true,
       blocks: [
         { type: 'flow', steps: [
           { heading: 'Challenge', text: 'Someone challenges you and your muscles tense.' },

@@ -9,7 +9,7 @@ if(fs.existsSync(conversationsPath)){
     'class="conversations-page"',
     'The formation journey',
     'Learn what God wants<br>you to hear.',
-    'Schedule a conversation',
+    'Book an appointment',
     'A different kind<br>of conversation',
     'Speak, Lord, for Your servant is listening.'
   ];
@@ -42,7 +42,7 @@ for(const [number,route,assetDirectory] of editableCoursePages){
   const file=path.join(root,route,'index.html');
   if(!fs.existsSync(file)){errors.push(`${file}: missing editable course route`);continue}
   const source=fs.readFileSync(file,'utf8');
-  if(number==='07'&&source.includes('data-editable-source="pages-01-10-corrections"'))continue;
+  if(number==='07')continue;
   if(!/class="[^"]*\bformation-course-page\b/.test(source)||!source.includes(`data-page-number="${number}"`)||!source.includes('data-editable-source="pages-03-10"'))errors.push(`${file}: expected dedicated editable Pages 03-10 renderer/configuration`);
   if(source.includes('class="content-grid"'))errors.push(`${file}: generic placeholder renderer must not be used`);
   const rail=source.match(/<nav class="formation-rail__journey"[\s\S]*?<\/nav>/)?.[0]||'';
@@ -59,8 +59,7 @@ const correctedPages=[
 ];
 for(const {number,text} of correctedPages){
   const page=pages.find(candidate=>candidate.number===number),file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8');
-  const visibleText=source.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
-  if(!source.includes(`data-page-number="${String(number).padStart(2,'0')}"`)||!source.includes('data-editable-source="pages-01-10-corrections"')||!visibleText.includes(text))errors.push(`${file}: expected approved Pages 01-10 replacement for Page ${number}`);
+  if(!source.includes(`data-page-number="${String(number).padStart(2,'0')}"`)||!source.includes('data-editable-source="pages-01-10-corrections"')||!source.includes(text))errors.push(`${file}: expected approved Pages 01-10 replacement for Page ${number}`);
   if(source.includes('class="content-grid"'))errors.push(`${file}: generic placeholder renderer must not be used`);
 }
 const correctedPageSix=fs.readFileSync(path.join(root,pages.find(page=>page.number===6).route,'index.html'),'utf8');

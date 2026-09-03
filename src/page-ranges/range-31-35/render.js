@@ -4,14 +4,17 @@ const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (character)
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[character]));
 
-const iconNames = new Set(['sun', 'eye', 'leaf', 'people', 'person', 'thought', 'heart', 'flame', 'hand', 'search', 'cross', 'star', 'broken', 'link', 'home', 'rotate']);
+const iconGlyphs = {
+  thought: '◌', heart: '♡', flame: '♨', hand: '✋', search: '⌕', cross: '†',
+  people: '♧', star: '☆', broken: '♢', link: '∞', home: '⌂', charcoal: '○',
+  gold: '✦', violet: '♡'
+};
 
 function renderIcon(name) {
   if (name === 'tree') return `<img src="${ASSET_ROOT}/fruit-tree.svg" alt="">`;
   if (name === 'person') return `<img src="${ASSET_ROOT}/person.svg" alt="">`;
   if (name === 'growth') return `<img src="${ASSET_ROOT}/growth.svg" alt="">`;
-  if (iconNames.has(name)) return `<svg aria-hidden="true"><use href="${ASSET_ROOT}/icons.svg#${name}"></use></svg>`;
-  return `<span aria-hidden="true">${escapeHtml(name || '•')}</span>`;
+  return `<span aria-hidden="true">${escapeHtml(iconGlyphs[name] || name || '•')}</span>`;
 }
 
 function renderList(items) {
@@ -66,42 +69,39 @@ function renderHeader() {
     <a class="rts-r31-35__brand" href="/" aria-label="Reforming the Soul home"><img src="${ASSET_ROOT}/brand-tree.svg" alt=""><span><b>REFORMING</b><i>the</i> SOUL</span></a>
     <nav aria-label="Main journey">${stages.map(([label, href]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}">${label}</a>`).join('')}</nav>
     <a class="rts-r31-35__conversation" href="/conversations/">Enter a conversation</a>
-    <a class="rts-r31-35__account" href="/join/" aria-label="Account">${renderIcon('person')}</a>
+    <a class="rts-r31-35__account" href="/join/" aria-label="Account"><span aria-hidden="true">●</span></a>
   </header>`;
 }
 
 function renderRail() {
   const stages = [
-    ['Awaken', 'Notice what has formed you.', '/awaken/', 'sun'],
-    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', 'eye'],
-    ['Become', 'Learn to recognize and cooperate with what life with God is forming in you.', '/become/', 'leaf'],
-    ['Join', 'Participate in what God is doing.', '/join/', 'people']
+    ['Awaken', 'Notice what has formed you.', '/awaken/', '☀'],
+    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', '◉'],
+    ['Become', 'Learn to recognize and cooperate with what life with God is forming in you.', '/become/', '♧'],
+    ['Join', 'Participate in what God is doing.', '/join/', '♧']
   ];
   return `<aside class="rts-r31-35__rail">
     <p class="rts-r31-35__rail-title">The formation journey</p>
-    <nav aria-label="Formation journey">${stages.map(([label, text, href, icon]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}"><span class="rts-r31-35__rail-icon">${renderIcon(icon)}</span><span><b>${label}</b><small>${text}</small></span>${label !== 'Join' ? '<i aria-hidden="true">✓</i>' : ''}</a>`).join('')}</nav>
+    <nav aria-label="Formation journey">${stages.map(([label, text, href, icon]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}"><span class="rts-r31-35__rail-icon" aria-hidden="true">${icon}</span><span><b>${label}</b><small>${text}</small></span>${label !== 'Join' ? '<i aria-hidden="true">✓</i>' : ''}</a>`).join('')}</nav>
     <section class="rts-r31-35__support"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>
   </aside>`;
 }
 
-function renderProgress(progress, pageNumber) {
+function renderProgress(progress) {
   const dots = Array.from({ length: progress.total }, (_, index) => {
     const step = index + 1;
     return `<li class="${step < progress.current ? 'is-complete' : step === progress.current ? 'is-current' : ''}">${step < progress.current ? '✓' : step}</li>`;
   }).join('');
-  const routes = ['/become/', '/become-together/companions/', '/become-together/listening/', '/become-together/safety/', '/become-together/shared-practice/', '/become-together/guided-conversation/'];
-  const index = pageNumber - 30;
   return `<nav class="rts-r31-35__pager" aria-label="Lesson navigation">
-    <a class="rts-r31-35__pager-previous" href="${routes[index - 1]}">← <span>Previous: ${escapeHtml(progress.previous)}</span></a>
+    <a class="rts-r31-35__pager-previous" href="${escapeHtml(progress.previousHref)}">← <span>Previous: ${escapeHtml(progress.previous)}</span></a>
     <ol>${dots}</ol>
-    <a class="rts-r31-35__pager-next" href="${routes[index + 1] || '/become-together/guided-conversation/'}">Next: ${escapeHtml(progress.next)} <span aria-hidden="true">→</span></a>
+    <a class="rts-r31-35__pager-next" href="${escapeHtml(progress.nextHref)}">Next: ${escapeHtml(progress.next)} <span aria-hidden="true">→</span></a>
   </nav>`;
 }
 
 function render(page) {
   if (!page || !Number.isInteger(page.number)) throw new TypeError('render(page) requires a valid page module');
-  const scenicAssets = { lake: 'body-lake.jpg', conversation: 'relationships.jpg', mountains: 'soul-mountains.jpg', orchard: 'fruit-orchard.jpg' };
-  const scenic = page.scenic ? `<div class="rts-r31-35__scenic rts-r31-35__scenic--${escapeHtml(page.scenic)}"><img src="${ASSET_ROOT}/${scenicAssets[page.scenic]}" alt="" loading="eager"></div>` : '';
+  const scenic = page.scenic ? `<div class="rts-r31-35__scenic rts-r31-35__scenic--${escapeHtml(page.scenic)}" role="img" aria-label="Editorial scenic illustration"><span></span>${page.scenic === 'orchard' ? `<img src="${ASSET_ROOT}/fruit-tree.svg" alt="">` : ''}</div>` : '';
   return `<div class="rts-r31-35 rts-r31-35--page-${page.number}" data-page-number="${page.number}" data-editable-source="range-31-35">
     ${renderHeader()}
     <div class="rts-r31-35__shell">
@@ -113,7 +113,7 @@ function render(page) {
           ${page.heroNote ? `<aside class="rts-r31-35__hero-note"><span aria-hidden="true">${page.scenic ? '“' : 'ⓘ'}</span><p>${escapeHtml(page.heroNote)}</p></aside>` : ''}
         </header>
         <section class="rts-r31-35__dashboard" aria-label="Lesson content">${page.panels.map(renderPanel).join('')}</section>
-        ${renderProgress(page.progress, page.number)}
+        ${renderProgress(page.progress)}
       </main>
     </div>
   </div>`;

@@ -22,8 +22,6 @@ module.exports = String.raw`
 .r1620-account{margin-left:24px;width:42px;height:42px;border-radius:50%;background:#0d2030;color:#fff;display:grid;place-items:center}
 .r1620-account .r1620-icon{width:24px}
 .r1620-rail{background:linear-gradient(165deg,#10281f,#0b251c 56%,#18282a);color:#f8f8f1;width:348px;min-height:100vh;flex:0 0 348px;padding:0 20px 20px}
-.r1620--reflection .r1620-rail>.r1620-logo{background:#fbfaf7;color:#162434;margin:0 -20px;width:calc(100% + 40px);height:116px;padding:18px 30px;border-bottom:1px solid #ddd5cb}
-.r1620--reflection .r1620-rail>.r1620-logo .r1620-icon{color:#263927}
 .r1620-rail__label{color:#c5ad55;text-transform:uppercase;letter-spacing:.14em;font-size:11px;margin:22px 20px 10px}
 .r1620-rail__journey>a{display:flex;gap:16px;align-items:center;min-height:72px;padding:12px 18px;border-radius:10px;margin-bottom:5px}
 .r1620-rail__journey>a>.r1620-icon{width:34px;height:34px}
@@ -32,11 +30,6 @@ module.exports = String.raw`
 .r1620-rail__journey small{font-size:11px;line-height:1.4;margin-top:3px;max-width:145px}
 .r1620-rail__journey>a.is-active{background:linear-gradient(100deg,#5f633b,#727749);box-shadow:0 8px 20px rgba(0,0,0,.18)}
 .r1620-rail__journey>a>.r1620-icon:last-child{width:20px;height:20px;color:#f2d983}
-.r1620-rail__progress{border-top:1px solid rgba(255,255,255,.2);margin:18px 4px 0;padding:16px 8px 0;display:grid;gap:8px}
-.r1620-rail__progress small{text-transform:uppercase;letter-spacing:.1em;font-size:10px}
-.r1620-rail__progress span{font-size:12px}
-.r1620-rail__progress i{height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
-.r1620-rail__progress i b{display:block;height:100%;border-radius:inherit;background:#858b43}
 .r1620-help{border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:15px;margin:34px 4px 0;display:flex;gap:12px;font-size:11px}
 .r1620-help>span{display:flex;flex-direction:column;gap:4px}
 .r1620-help b{font-size:12px}
@@ -115,8 +108,8 @@ module.exports = String.raw`
 .r1620-movements>h2 span{width:45px;height:1px;background:#d09d53}
 .r1620-movements__grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:1fr 54px 1fr;background:linear-gradient(90deg,#f1eaf4,#fcf8ef);border-radius:18px;overflow:hidden;min-height:410px;box-shadow:0 8px 25px rgba(45,34,23,.12)}
 .r1620-movement{padding:28px 34px;position:relative}
-.r1620-movement--1{background:linear-gradient(90deg,rgba(247,244,240,.2),rgba(247,242,249,.96) 38%,rgba(255,255,255,.92)),url('/assets/page-ranges/range-16-20/movement-live.webp') left center/48% 100% no-repeat}
-.r1620-movement--2{background:linear-gradient(90deg,rgba(255,255,255,.94),rgba(255,250,241,.94) 62%,rgba(255,250,241,.2)),url('/assets/page-ranges/range-16-20/movement-become.webp') right center/48% 100% no-repeat}
+.r1620-movement--1{background:linear-gradient(90deg,rgba(25,45,45,.15),rgba(255,255,255,.7))}
+.r1620-movement--2{background:linear-gradient(90deg,rgba(255,255,255,.72),rgba(174,145,86,.15))}
 .r1620-movement__heading{display:flex;gap:18px;align-items:flex-start}
 .r1620-movement__heading>.r1620-icon{width:62px;height:62px;background:var(--purple);color:#fff;border-radius:50%;padding:13px}
 .r1620-movement--2 .r1620-movement__heading>.r1620-icon{background:#be7a20}
@@ -161,7 +154,7 @@ module.exports = String.raw`
 .r1620-rail__lessons .r1620-icon{margin-left:auto;color:#e0b052;width:18px}
 .r1620-lesson-main{flex:1;min-width:0}
 .r1620-lesson-hero{height:425px;position:relative;overflow:hidden}
-.r1620-lesson-hero>img,.r1620-pattern-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center right}
+.r1620-lesson-hero>img,.r1620-pattern-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .r1620-lesson-hero::after,.r1620-pattern-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#faf8f3 3%,rgba(250,248,243,.96) 43%,rgba(250,248,243,.15) 72%);pointer-events:none}
 .r1620-lesson-hero>div{position:absolute;z-index:2;left:48px;top:40px;width:570px}
 .r1620-lesson-hero h1{font-size:55px;margin:18px 0}
@@ -235,7 +228,7 @@ module.exports = String.raw`
 }
 @media(max-width:760px){
   .r1620-topbar{height:auto;min-height:82px;flex-wrap:wrap;padding:10px 16px}.r1620-topbar .r1620-logo{width:190px}.r1620-topbar .r1620-logo .r1620-icon{width:42px;height:42px}.r1620-topbar__nav{order:4;width:100%;justify-content:space-between;height:42px}.r1620-topbar__nav a.is-active::after{bottom:0}.r1620-conversation{font-size:10px;padding:9px}.r1620-account{display:none}
-  .r1620--reflection{display:block}.r1620-rail,.r1620--lesson .r1620-rail{width:100%;min-height:auto;display:block;padding:8px}.r1620-rail>.r1620-logo,.r1620-rail__label,.r1620-help,.r1620-rail__progress{display:none}.r1620-rail__journey{display:grid;grid-template-columns:repeat(4,1fr)}.r1620-rail__journey>a{display:block;text-align:center;min-height:56px;padding:8px 4px}.r1620-rail__journey>a>.r1620-icon{width:22px;height:22px}.r1620-rail__journey small,.r1620-rail__journey>a>.r1620-icon:last-child{display:none}.r1620-rail__lessons,.r1620-rail__part{display:none}
+  .r1620--reflection{display:block}.r1620-rail,.r1620--lesson .r1620-rail{width:100%;min-height:auto;display:block;padding:8px}.r1620-rail>.r1620-logo,.r1620-rail__label,.r1620-help{display:none}.r1620-rail__journey{display:grid;grid-template-columns:repeat(4,1fr)}.r1620-rail__journey>a{display:block;text-align:center;min-height:56px;padding:8px 4px}.r1620-rail__journey>a>.r1620-icon{width:22px;height:22px}.r1620-rail__journey small,.r1620-rail__journey>a>.r1620-icon:last-child{display:none}.r1620-rail__lessons,.r1620-rail__part{display:none}
   .r1620-coursebar{height:74px;padding-inline:16px}.r1620-coursebar__tools{display:none}.r1620-reflection__content{padding:18px 16px}.r1620-reflection__content>h1{font-size:36px}.r1620-anger-grid{grid-template-columns:1fr}.r1620-look-rows article{grid-template-columns:1fr 42px}.r1620-look-rows article>div:nth-of-type(2){grid-column:1}.r1620-row-arrow{grid-row:1/3;grid-column:2}.r1620-book{grid-column:2;display:none}.r1620-dots{display:none}
   .r1620-landing-hero{height:720px}.r1620-landing-hero::after{background:linear-gradient(180deg,rgba(251,248,243,.98) 0%,rgba(251,248,243,.87) 62%,rgba(10,15,31,.2))}.r1620-landing-copy{left:22px;right:22px;top:25px;width:auto}.r1620-landing-copy h1{font-size:54px}.r1620-landing-steps{left:22px;right:22px;top:auto;bottom:18px;width:auto;display:grid;grid-template-columns:1fr 1fr}.r1620-landing-steps span{min-height:70px}.r1620-way{grid-template-columns:1fr;padding:25px;text-align:center}.r1620-way__art{margin:auto}.r1620-way p{border:0;padding:0}.r1620-movements__grid{grid-template-columns:1fr}.r1620-between{transform:rotate(90deg)}.r1620-movement--2 .r1620-movement__steps{grid-template-columns:repeat(4,1fr)}.r1620-landing-quote{grid-template-columns:1fr;padding:25px}.r1620-landing-quote blockquote{border-left:0;border-top:1px solid #a77837;padding:25px 0 0}.r1620-principles{grid-template-columns:1fr;margin:0;padding:14px}.r1620-principles>span{border-right:0;border-bottom:1px solid #ddd5cc;padding:14px}
   .r1620-lesson-shell{display:block}.r1620-lesson-hero{height:650px}.r1620-lesson-hero::after{background:linear-gradient(180deg,#faf8f3 3%,rgba(250,248,243,.92) 68%,rgba(250,248,243,.3))}.r1620-lesson-hero>div{left:22px;right:22px;top:22px;width:auto}.r1620-lesson-hero h1{font-size:39px}.r1620-lesson-hero blockquote{right:22px;left:22px;top:auto;bottom:20px;width:auto}.r1620-screen-card{margin:0;border-radius:0;padding-inline:15px}.r1620-screen-columns{grid-template-columns:1fr}.r1620-screen-columns>article{padding:15px}.r1620-screen-columns>article+article{border-left:0;border-top:1px solid #ddd5cc;padding-left:15px}.r1620-life-list{grid-template-columns:1fr}.r1620-lesson-pager a{padding:10px;font-size:10px}

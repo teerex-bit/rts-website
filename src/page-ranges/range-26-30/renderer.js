@@ -10,7 +10,7 @@ const bullets = (values, className = '') => `<ul class="${className}">${values.m
 
 function header() {
   return `<header class="rts-r2630__top">
-    <a class="rts-r2630__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-ranges/range-26-30/brand-logo.svg" alt="Reforming the Soul"></a>
+    <a class="rts-r2630__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a>
     <nav class="rts-r2630__stages" aria-label="Formation journey stages">
       <a href="/awaken/">Awaken</a><a href="/see-clearly/">See Clearly</a><a class="is-active" href="/become/" aria-current="step">Become</a><a href="/join/">Join</a>
     </nav>
@@ -93,7 +93,7 @@ function page29(page) {
 
 function page30(page) {
   return `<article class="rts-r2630__landing"><header><p>${esc(page.stage)} <span>•</span> ${esc(page.part)}</p><h1>${esc(page.heading)}</h1><i aria-hidden="true"></i><h2>${esc(page.lead)}</h2>${lines(page.introduction)}</header>
-    <img class="rts-r2630__seedling" src="/assets/page-ranges/range-26-30/seedling.svg" alt="Young green seedling emerging through dry soil in warm light">
+    <img class="rts-r2630__seedling" src="/assets/page-ranges/range-26-30/seedling-growth.webp" alt="Young green seedling emerging through dry soil in warm light">
     <section class="rts-r2630__areas"><h2>${esc(page.areasHeading)}</h2><ol>${page.areas.map(area => `<li>${icon(area.icon)}<h3>${area.number}. ${esc(area.heading)}${area.subheading ? `<span>${esc(area.subheading)}</span>` : ''}</h3><i aria-hidden="true"></i><p>${esc(area.copy)}</p><small>${esc(area.screens)}</small></li>`).join('')}</ol></section>
     <aside class="rts-r2630__lifetime">${icon('repeat')}<div><h2>${esc(page.lifetime.heading)}</h2><p>${esc(page.lifetime.copy)}</p></div><a href="${esc(page.actionRoute)}">${esc(page.action)} →</a></aside><p class="rts-r2630__landing-close">${esc(page.close)}</p>
   </article>`;
@@ -101,8 +101,9 @@ function page30(page) {
 
 function render(page) {
   if (!page || ![26, 27, 28, 29, 30].includes(page.number)) throw new RangeError('Page is outside range 26–30');
+  const tall = page.number === 28 || page.number === 29 ? ' rts-r2630--legacy-tall' : '';
   const body = ({26: page26, 27: page27, 28: page28, 29: page29, 30: page30})[page.number](page);
-  return `<div class="rts-r2630 rts-r2630--p${page.number}">${header()}<main class="rts-r2630__shell">${rail(page)}${body}</main></div>`;
+  return `<div class="rts-r2630 rts-r2630--p${page.number}${tall}">${header()}<main class="rts-r2630__shell">${rail(page)}${body}</main></div>`;
 }
 
 module.exports = render;

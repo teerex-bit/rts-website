@@ -39,7 +39,6 @@ module.exports = String.raw`
 .rts-r31-35__site-header > nav a.is-active::before { content: ""; position: absolute; bottom: 20px; width: 6px; height: 6px; border-radius: 50%; background: var(--r31-violet); }
 .rts-r31-35__conversation { min-width: 220px; border: 1.5px solid var(--r31-violet); border-radius: 24px; padding: 11px 20px; text-align: center; text-transform: uppercase; color: var(--r31-violet)!important; font-weight: 800; letter-spacing: .02em; }
 .rts-r31-35__account { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--r31-ink); color: white!important; font-size: 20px; }
-.rts-r31-35__account svg { width: 25px; height: 25px; }
 .rts-r31-35__shell { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: calc(100vh - 80px); }
 .rts-r31-35__rail { display: flex; flex-direction: column; padding: 26px 17px 22px; color: #fff; background: radial-gradient(circle at 30% 15%, #123860 0, #062847 35%, #031b35 100%); }
 .rts-r31-35__rail-title { margin: 0 5px 12px; color: #ffc130; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; }
@@ -47,7 +46,6 @@ module.exports = String.raw`
 .rts-r31-35__rail nav a { min-height: 72px; display: grid; grid-template-columns: 42px 1fr 22px; align-items: start; gap: 8px; padding: 12px 8px; border-radius: 10px; }
 .rts-r31-35__rail nav a.is-active { min-height: 132px; background: linear-gradient(120deg, #38307d, #33206d 75%, #3a2c7c); }
 .rts-r31-35__rail-icon { color: #f5c35b; font-size: 33px; line-height: 1; text-align: center; }
-.rts-r31-35__rail-icon svg { width: 38px; height: 38px; }
 .rts-r31-35__rail nav b { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 600; text-transform: uppercase; }
 .rts-r31-35__rail nav small { display: block; font-size: 13px; line-height: 1.7; }
 .rts-r31-35__rail nav i { display: grid; place-items: center; align-self: center; width: 21px; height: 21px; border-radius: 50%; background: #e5a126; font-style: normal; font-size: 12px; }
@@ -72,12 +70,16 @@ module.exports = String.raw`
 .rts-r31-35__hero-note > span { font-family: Georgia, serif; font-size: 27px; line-height: 1; }
 .rts-r31-35__hero-note p { margin: 0; line-height: 1.6; }
 .rts-r31-35__hero--scenic .rts-r31-35__hero-note { position: absolute; right: 385px; bottom: 15px; max-width: 185px; padding: 14px; font-style: italic; }
-.rts-r31-35__scenic { position: absolute; z-index: 1; top: 0; right: 0; width: 46%; height: 100%; overflow: hidden; background: #d8c49e; }
-.rts-r31-35__scenic::before { content: ""; position: absolute; z-index: 2; inset: 0 auto 0 0; width: 28%; background: linear-gradient(90deg, var(--r31-paper), transparent); }
-.rts-r31-35__scenic > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.rts-r31-35__scenic--conversation > img { object-position: 62% center; }
-.rts-r31-35__scenic--orchard { width: 52%; }
-.rts-r31-35__scenic--orchard > img { object-position: 60% center; }
+.rts-r31-35__scenic { position: absolute; z-index: 1; top: 0; right: 0; width: 46%; height: 100%; overflow: hidden; background: linear-gradient(145deg, #f5ddae, #cc8a40 55%, #345235); }
+.rts-r31-35__scenic::before, .rts-r31-35__scenic::after { content: ""; position: absolute; }
+.rts-r31-35__scenic::before { inset: 0; background: radial-gradient(circle at 50% 45%, #fff8c5 0 5%, transparent 6%), linear-gradient(160deg, transparent 43%, rgba(30, 59, 50, .48) 44% 57%, transparent 58%); }
+.rts-r31-35__scenic::after { inset: auto -5% -25% -8%; height: 62%; border-radius: 50% 50% 0 0; background: linear-gradient(#5f745e, #1e3d30); transform: rotate(-5deg); }
+.rts-r31-35__scenic--lake { background: linear-gradient(165deg, #f6d6a3 0 36%, #fef1c8 37% 48%, #c89656 49% 58%, #4b382a 59%); }
+.rts-r31-35__scenic--conversation { background: linear-gradient(145deg, #bfca84, #48663c 45%, #172d2b); }
+.rts-r31-35__scenic--conversation::after { width: 46%; height: 70%; left: 11%; bottom: -10%; border-radius: 50% 50% 10% 10%; background: radial-gradient(circle at 50% 18%, #d9c4a0 0 13%, #eee 14% 16%, transparent 17%), linear-gradient(90deg, transparent 20%, #252b2c 21% 80%, transparent 81%); transform: none; }
+.rts-r31-35__scenic--mountains { background: linear-gradient(#ffd79a 0 33%, #778b80 34% 54%, #315048 55% 70%, #23352f 71%); }
+.rts-r31-35__scenic--orchard { background: linear-gradient(155deg, #f5dfb0, #aab073 46%, #385331); }
+.rts-r31-35__scenic--orchard > img { position: absolute; z-index: 2; right: 3%; bottom: -9%; width: 72%; height: 106%; filter: drop-shadow(0 8px 5px rgba(0,0,0,.2)); }
 .rts-r31-35__dashboard { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 9px; }
 .rts-r31-35__panel { grid-column: span 4; min-width: 0; padding: 14px; border: 1px solid #e5ded5; border-radius: 10px; background: rgba(255, 255, 255, .43); }
 .rts-r31-35__panel--wide { grid-column: 1 / -1; }
@@ -89,7 +91,6 @@ module.exports = String.raw`
 .rts-r31-35__panel-header h2 { margin: 0; color: currentColor; font-family: Georgia, serif; font-size: 19px; line-height: 1.15; }
 .rts-r31-35__panel-icon { flex: 0 0 43px; display: grid; place-items: center; width: 43px; height: 43px; border-radius: 50%; background: currentColor; color: white; font-family: Georgia, serif; font-size: 24px; }
 .rts-r31-35__panel-icon img { width: 30px; height: 30px; filter: brightness(0) invert(1); }
-.rts-r31-35__panel-icon svg { width: 27px; height: 27px; }
 .rts-r31-35__panel--navy { color: #0b2344; }
 .rts-r31-35__panel--copper { color: #74370e; }
 .rts-r31-35__panel--green { color: #315326; }
@@ -113,7 +114,6 @@ module.exports = String.raw`
 .rts-r31-35__mini-cards h3 { display: inline; margin-right: 4px; color: #315076; font-size: 13px; text-transform: uppercase; }
 .rts-r31-35__mini-cards p { display: inline; }
 .rts-r31-35__mini-icon { flex: 0 0 38px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #315c7d; color: white; font-size: 20px; }
-.rts-r31-35__mini-icon svg { width: 23px; height: 23px; }
 .rts-r31-35__columns { display: grid; gap: 8px; }
 .rts-r31-35__columns--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .rts-r31-35__columns--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -220,4 +220,21 @@ module.exports = String.raw`
   .rts-r31-35__flow li { flex-basis: 50%; }
   .rts-r31-35__questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rts-r31-35__pager > a { padding: 0 10px; font-size: 10px; }
-}`;
+}
+/* Reference-derived, text-free photography remains independently replaceable. */
+.rts-r31-35--page-32 .rts-r31-35__scenic--lake {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-32-lakeside.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-33 .rts-r31-35__scenic--conversation {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-33-conversation.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-34 .rts-r31-35__scenic--mountains {
+  background: url('/assets/page-ranges/range-31-35/fidelity/page-34-mountain.jpg') center/cover no-repeat;
+}
+.rts-r31-35--page-32 .rts-r31-35__scenic::before,
+.rts-r31-35--page-32 .rts-r31-35__scenic::after,
+.rts-r31-35--page-33 .rts-r31-35__scenic::before,
+.rts-r31-35--page-33 .rts-r31-35__scenic::after,
+.rts-r31-35--page-34 .rts-r31-35__scenic::before,
+.rts-r31-35--page-34 .rts-r31-35__scenic::after { display: none; }
+`;

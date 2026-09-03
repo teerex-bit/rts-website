@@ -6,7 +6,7 @@ module.exports = {
   kicker: 'Becoming · Part Two · Lesson 1 of 5',
   subtitle: 'Where the inner life becomes a life actually lived.',
   heroNote: 'This lesson is in three parts. Follow the flow, then return whenever you need it.',
-  progress: { current: 1, total: 5, previous: 'Join', next: '2. The Body' },
+  progress: { current: 1, total: 5, previous: 'Become Overview', previousHref: '/become/', next: '2. The Body', nextHref: '/become-together/listening/' },
   panels: [
     {
       icon: '1', tone: 'navy', heading: 'The Executive Center of the Person',

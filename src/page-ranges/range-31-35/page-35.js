@@ -8,7 +8,7 @@ module.exports = {
   introduction: 'Fruit is not the behavior you are trying to produce. Fruit is the evidence of the life that is actually growing within you.',
   statement: 'We can imitate patience. Suppress anger. Make ourselves say something kind. We can behave generously while resenting the person we’re helping. These actions may be important acts of obedience during formation—but behavior alone doesn’t tell us what has happened to the person.',
   heroNote: '“A good tree cannot bear bad fruit, and a bad tree cannot bear good fruit.” — Matthew 7:18',
-  progress: { current: 1, total: 3, previous: '4. The Soul', next: 'Screen 2 — What a Changed Person Looks Like' },
+  progress: { current: 1, total: 3, previous: '4. The Soul', previousHref: '/become-together/shared-practice/', next: 'Screen 2 — What a Changed Person Looks Like', nextHref: '/become-together/sending/' },
   panels: [
     {
       icon: 'tree', tone: 'green', heading: 'The real question', wide: true,

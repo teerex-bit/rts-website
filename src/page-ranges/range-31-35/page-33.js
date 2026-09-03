@@ -3,13 +3,13 @@ module.exports = {
   route: '/become-together/safety/',
   stage: 'Become',
   title: 'Relationships',
-  kicker: 'Becoming · Part Two · Lesson 3 of 5',
+  kicker: 'Becoming · Part Three · Lesson 3 of 5',
   subtitle: 'What Comes Out of You Toward Others',
   scenic: 'conversation',
   introduction: 'Relationships reveal what solitude can conceal. It is possible to feel patient when no one is irritating you. To feel humble when no one is challenging you. To believe you have surrendered control when no one is resisting what you want. Then another person enters the situation.',
   heroNote: '“I delight to do Your will, O my God.” — Psalm 40:8. Life with God changes the source from which we relate to others.',
   statement: 'People do not create everything that comes out of us. Very often, they reveal what was already there.',
-  progress: { current: 3, total: 5, previous: '2. The Body', next: '4. The Soul' },
+  progress: { current: 3, total: 5, previous: '2. The Body', previousHref: '/become-together/listening/', next: '4. The Soul', nextHref: '/become-together/shared-practice/' },
   panels: [
     {
       icon: 'heart', tone: 'violet', heading: 'I become free to love you without needing to control what I receive from you.', wide: true,

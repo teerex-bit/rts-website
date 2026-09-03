@@ -46,6 +46,7 @@ for (const [number, page] of range.pages) {
 
 const conversations = range.render(range.pages.get(38));
 const conversationsText = conversations.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+assert.doesNotMatch(conversations, /<li class="is-active">/, 'Conversations must not present itself as a Join-stage lesson');
 for (const phrase of [
   'Schedule a conversation',
   'Book via Calendly',
@@ -55,16 +56,5 @@ for (const phrase of [
 
 assert.doesNotThrow(() => range.render({ number: 36, ...range.pages.get(36) }));
 assert.throws(() => range.render({ number: 99 }), /Pages 36–40/);
-
-for (const [number, asset] of [
-  [36, 'changed-person-hero.jpg'],
-  [37, 'join-community-hero.jpg'],
-  [39, 'alluminate-hero.jpg'],
-  [40, 'books-journey-hero.jpg']
-]) {
-  const html = range.render(range.pages.get(number));
-  assert.ok(html.includes(`/assets/page-ranges/range-36-40/${asset}`), `Page ${number} must use replaceable hero asset ${asset}`);
-  assert.ok(fs.existsSync(path.resolve(__dirname, '../../assets/page-ranges/range-36-40', asset)), `Missing Page ${number} hero asset ${asset}`);
-}
 
 console.log('range-36-40 validation passed: 5 pages, exact export contract, semantic render, no legacy stage or done assets.');

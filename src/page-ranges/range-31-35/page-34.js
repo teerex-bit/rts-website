@@ -3,13 +3,13 @@ module.exports = {
   route: '/become-together/shared-practice/',
   stage: 'Become',
   title: 'The Soul',
-  kicker: 'Becoming · Part Two · Lesson 4 of 5',
+  kicker: 'Becoming · Part Four · Lesson 4 of 5',
   subtitle: 'The Whole Person Coming Together Under God',
   scenic: 'mountains',
   introduction: 'A soul is not one more compartment in us. It is what integrates us into one life.',
   statement: 'The question is not, “Am I trying harder?” The question is, “Is my whole life becoming one under God?”',
   heroNote: '“And may the God of peace sanctify you completely; and may your whole spirit and soul and body be preserved blameless at the coming of our Lord Jesus Christ.” — 1 Thessalonians 5:23',
-  progress: { current: 4, total: 5, previous: '3. Relationships', next: '5. Fruit' },
+  progress: { current: 4, total: 5, previous: '3. Relationships', previousHref: '/become-together/safety/', next: '5. Fruit', nextHref: '/become-together/guided-conversation/' },
   panels: [
     {
       icon: 'broken', tone: 'burgundy', heading: 'The problem: A divided life',

@@ -2,24 +2,11 @@ const esc = value => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[character]));
 
-const iconPaths = {
-  sun: '<path d="M4 15h24M8 13a8 8 0 0 1 16 0M16 2v5M5 6l4 4M27 6l-4 4"/>',
-  eye: '<path d="M2 16s5-8 14-8 14 8 14 8-5 8-14 8S2 16 2 16Z"/><circle cx="16" cy="16" r="4"/>',
-  leaf: '<path d="M7 25C8 13 15 5 27 4c-1 12-8 20-20 21Zm1 0c5-7 10-11 17-17"/>',
-  people: '<circle cx="11" cy="11" r="4"/><circle cx="22" cy="11" r="4"/><path d="M3 27v-4c0-5 3-8 8-8s8 3 8 8v4M17 27v-4c0-4 2-7 6-7s6 3 6 7v4"/>',
-  check: '<path d="m7 16 6 6L26 9"/>', close: '<path d="M9 9l14 14M23 9 9 23"/>', renew: '<path d="M25 12a10 10 0 1 0 1 9M25 5v7h-7"/>',
-  heart: '<path d="M16 27S5 20 5 12a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 8-11 15-11 15Z"/>', search: '<circle cx="14" cy="14" r="8"/><path d="m20 20 7 7"/>', mountain: '<path d="m3 26 9-13 5 7 4-6 8 12H3Z"/>',
-  idea: '<path d="M10 22h12M12 26h8M9 14a7 7 0 1 1 14 0c0 4-3 5-4 8h-6c-1-3-4-4-4-8Z"/>', botanical: '<path d="M16 29V8M16 14c-6 0-9-3-10-8 6 0 9 3 10 8Zm0 7c6 0 9-3 10-8-6 0-9 3-10 8Z"/>',
-  profile: '<circle cx="16" cy="11" r="5"/><path d="M7 28c0-7 3-11 9-11s9 4 9 11"/>', crown: '<path d="m4 10 7 6 5-10 5 10 7-6-3 16H7L4 10Z"/>', cross: '<path d="M16 4v24M8 12h16"/>',
-  shield: '<path d="M16 3 27 7v8c0 7-4 12-11 15C9 27 5 22 5 15V7l11-4Z"/>', key: '<circle cx="11" cy="13" r="6"/><path d="m16 17 12 11m-5-6 3-3"/>', path: '<path d="M7 29c12-8 4-15 18-26M10 25h8M15 18h7"/>',
-  hand: '<path d="M9 16V8m4 8V5m4 11V6m4 11V9m-12 7-3-4c-3-3-6 0-3 4l7 11h9c5-4 6-8 6-13"/>', gift: '<path d="M4 13h24v16H4zM3 9h26v6H3zM16 9v20M16 9c-5 0-8-2-8-5 4-2 7 0 8 5Zm0 0c5 0 8-2 8-5-4-2-7 0-8 5Z"/>',
-  clock: '<circle cx="16" cy="16" r="12"/><path d="M16 9v8l5 3"/>', book: '<path d="M4 7h9c2 0 3 1 3 3v17c0-2-1-3-3-3H4V7Zm24 0h-9c-2 0-3 1-3 3v17c0-2 1-3 3-3h9V7Z"/>', quote: '<path d="M7 19c0-7 3-11 9-13v4c-3 2-4 4-4 6h4v10H7V19Zm14 0c0-7 3-11 9-13v4c-3 2-4 4-4 6h4v10H7V19Z"/>'
-};
-const icon = name => `<span class="rts-11-15__icon rts-11-15__icon--${esc(name)}" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false">${iconPaths[name] || iconPaths.leaf}</svg></span>`;
+const icon = name => `<span class="rts-11-15__icon rts-11-15__icon--${esc(name)}" aria-hidden="true"></span>`;
 
 function rail(page) {
   return `<aside class="rts-11-15__rail">
-    <a class="rts-11-15__brand" href="/"><img src="/assets/page-ranges/range-11-15/curriculum-wordmark.svg" alt="Reforming the Soul"></a>
+    <a class="rts-11-15__brand" href="/"><img src="/assets/logo.svg" alt="Reforming the Soul"></a>
     <p class="rts-11-15__rail-title">The Formation Journey</p>
     <nav class="rts-11-15__stages" aria-label="Formation journey">${page.journey.map(stage => `<a data-stage="${esc(stage.name)}" class="${stage.name === 'See Clearly' ? 'is-active' : ''}" href="${esc(stage.route)}">${icon(stage.icon)}<span><strong>${esc(stage.name)}</strong><small>${esc(stage.description)}</small></span>${stage.name === 'Awaken' ? '<b aria-label="Completed">✓</b>' : ''}</a>`).join('')}</nav>
     <section class="rts-11-15__progress" aria-label="Course progress"><h2>Your Progress</h2><p>${esc(page.progress)}</p><progress max="${page.progressMax}" value="${page.progressValue}">${esc(page.progress)}</progress></section>
@@ -28,7 +15,7 @@ function rail(page) {
 }
 
 function top(page) {
-  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><a href="/see-clearly/">← &nbsp; Course Overview</a><div aria-label="Account tools"><span class="rts-11-15__tool" title="Help">?</span><span class="rts-11-15__tool" title="Account">${icon('profile')}</span></div></header>`;
+  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><a href="/see-clearly/">← &nbsp; Course Overview</a><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
 }
 
 function dots(page) {
@@ -37,7 +24,7 @@ function dots(page) {
 }
 
 function lessonNav(page) {
-  return `<nav class="rts-11-15__lesson-nav" aria-label="Lesson navigation"><a href="${esc(page.backRoute || '/see-clearly/')}">← &nbsp; Back</a>${dots(page)}<div><a class="rts-11-15__continue" href="${esc(page.nextRoute || '/become/')}">${esc(page.continueLabel)} &nbsp; →</a>${page.continueNote ? `<small>${esc(page.continueNote)}</small>` : ''}</div></nav>`;
+  return `<nav class="rts-11-15__lesson-nav" aria-label="Lesson navigation"><a href="${esc(page.previous)}">← &nbsp; Back</a>${dots(page)}<div><a class="rts-11-15__continue" href="${esc(page.next)}">${esc(page.continueLabel)} &nbsp; →</a>${page.continueNote ? `<small>${esc(page.continueNote)}</small>` : ''}</div></nav>`;
 }
 
 function sideCards(page) {

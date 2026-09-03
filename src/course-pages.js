@@ -3,6 +3,17 @@ const links = require('./links');
 const esc = value => String(value).replace(/[&<>]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[character]));
 const symbol = icon => `<span class="course-symbol course-symbol--${esc(icon)}" aria-hidden="true"></span>`;
 
+const lessonRoutes = new Map([
+  [3, { back: '/awaken/', next: '/awaken/name-your-desire/' }],
+  [4, { back: '/awaken/pay-attention/', next: '/awaken/listen-within/' }],
+  [5, { back: '/awaken/name-your-desire/', next: '/awaken/practice-presence/' }],
+  [6, { back: '/awaken/listen-within/', next: '/see-clearly/' }],
+  [7, { back: '/awaken/practice-presence/', next: '/see-clearly/your-formation/' }],
+  [8, { back: '/see-clearly/', next: '/see-clearly/family-of-origin/' }],
+  [9, { back: '/see-clearly/your-formation/', next: '/see-clearly/patterns/' }],
+  [10, { back: '/see-clearly/family-of-origin/', next: '/see-clearly/false-self/' }]
+]);
+
 function journeyRail(page, stages) {
   return `<aside class="formation-rail">
     <a class="formation-rail__brand" href="${links.home}"><img src="/assets/logo-light.svg" alt="Reforming the Soul"></a>
@@ -69,7 +80,8 @@ function composition(page) {
 
 function lessonNavigation(page) {
   const dotCount = page.dotCount || (page.number < 7 ? 5 : 6);
-  return `<nav class="lesson-navigation" aria-label="Lesson navigation"><a href="${page.activeStage === 'Awaken' ? links.awaken : links.seeClearly}">← &nbsp; Back</a><div aria-label="Step ${Math.max(page.step, 1)} of ${dotCount}">${Array.from({ length: dotCount }, (_, index) => `<span class="${index === Math.max(page.step - 1, 0) ? 'is-current' : ''}"></span>`).join('')}</div><a class="lesson-navigation__continue" href="${links.next}">${esc(page.continueLabel || 'Continue')} &nbsp; →</a>${page.deferLabel ? `<a class="lesson-navigation__defer" href="${links.next}">${esc(page.deferLabel)}</a>` : ''}</nav>`;
+  const routes = lessonRoutes.get(page.number) || { back: page.activeStage === 'Awaken' ? links.awaken : links.seeClearly, next: links.next };
+  return `<nav class="lesson-navigation" aria-label="Lesson navigation"><a href="${routes.back}">← &nbsp; Back</a><div aria-label="Step ${Math.max(page.step, 1)} of ${dotCount}">${Array.from({ length: dotCount }, (_, index) => `<span class="${index === Math.max(page.step - 1, 0) ? 'is-current' : ''}"></span>`).join('')}</div><a class="lesson-navigation__continue" href="${routes.next}">${esc(page.continueLabel || 'Continue')} &nbsp; →</a>${page.deferLabel ? `<a class="lesson-navigation__defer" href="${routes.next}">${esc(page.deferLabel)}</a>` : ''}</nav>`;
 }
 
 function renderCoursePage(page, stages) {
@@ -77,7 +89,7 @@ function renderCoursePage(page, stages) {
   return `${courseTop(page)}<main class="formation-course-page formation-course-page--${page.family} ${isOverview ? 'formation-course-page--overview' : ''}" data-page-number="${String(page.number).padStart(2, '0')}" data-editable-source="pages-03-10">
     ${journeyRail(page, stages)}
     <article class="course-content">
-      <section class="course-hero"><p>${esc(page.courseLabel)} <span aria-hidden="true">•</span> ${esc(page.lessonLabel)}</p><h1>${esc(page.title)}</h1><span class="course-rule" aria-hidden="true"></span><div class="course-intro">${page.introduction.map((line, index) => `<p class="${index === page.introduction.length - 1 ? 'course-intro__last' : ''}">${esc(line)}</p>`).join('')}</div>${isOverview ? `<a class="course-primary-action" href="${links.next}">Begin This Phase &nbsp; →</a>` : ''}</section>
+      <section class="course-hero"><p>${esc(page.courseLabel)} <span aria-hidden="true">•</span> ${esc(page.lessonLabel)}</p><h1>${esc(page.title)}</h1><span class="course-rule" aria-hidden="true"></span><div class="course-intro">${page.introduction.map((line, index) => `<p class="${index === page.introduction.length - 1 ? 'course-intro__last' : ''}">${esc(line)}</p>`).join('')}</div>${isOverview ? `<a class="course-primary-action" href="${(lessonRoutes.get(page.number) || {}).next || links.next}">Begin This Phase &nbsp; →</a>` : ''}</section>
       <div class="course-body">${renderCallout(page.callout)}${page.sectionTitle ? `<header class="course-section-heading">${symbol(page.family === 'awaken' ? 'leaf' : 'person')}<div><h2>${esc(page.sectionTitle)}</h2>${(page.sectionCopy || []).map(text => `<p>${esc(text)}</p>`).join('')}</div></header>` : ''}${composition(page)}${renderCallout(page.note, 'course-callout--note')}${page.secondaryTitle ? `<h2 class="course-secondary-title">${esc(page.secondaryTitle)}</h2>` : ''}${renderCallout(page.secondaryNote, 'course-callout--secondary')}${isOverview ? '' : lessonNavigation(page)}</div>
     </article>
     ${renderSideCards(page)}

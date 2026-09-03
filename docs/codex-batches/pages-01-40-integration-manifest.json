@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "reviewViewport": {
+    "width": 1536,
+    "height": 1024
+  },
+  "generatedRouteCount": 44,
+  "reviewRoute": "/review/pages-01-40/",
+  "preservedRenderers": [
+    {
+      "pages": [1],
+      "source": "src/page-01.js",
+      "reason": "specialized home renderer"
+    },
+    {
+      "pages": [3, 4, 5, 6, 8, 9, 10],
+      "source": "src/pages-03-10/",
+      "reason": "specialized editable course renderer"
+    },
+    {
+      "pages": [2, 7],
+      "source": "src/page-corrections/pages-01-10/",
+      "reason": "reference-specific replacement renderers"
+    },
+    {
+      "pages": [38],
+      "source": "src/conversations.js",
+      "reason": "specialized Conversations renderer and independent hero asset"
+    }
+  ],
+  "rangeContracts": [
+    {
+      "label": "11-15",
+      "module": "src/page-ranges/range-11-15/index.js",
+      "pages": [11, 12, 13, 14, 15],
+      "cssMarker": "Pages 11-15 range styles"
+    },
+    {
+      "label": "16-20",
+      "module": "src/page-ranges/range-16-20/index.js",
+      "pages": [16, 17, 18, 19, 20],
+      "cssMarker": "Pages 16-20 range styles"
+    },
+    {
+      "label": "21-25",
+      "module": "src/page-ranges/range-21-25/index.js",
+      "pages": [21, 22, 23, 24, 25],
+      "cssMarker": "Pages 21-25 range styles"
+    },
+    {
+      "label": "26-30",
+      "module": "src/page-ranges/range-26-30/index.js",
+      "pages": [26, 27, 28, 29, 30],
+      "cssMarker": "Pages 26-30 range styles"
+    },
+    {
+      "label": "31-35",
+      "module": "src/page-ranges/range-31-35/index.js",
+      "pages": [31, 32, 33, 34, 35],
+      "cssMarker": "Pages 31-35 range styles"
+    },
+    {
+      "label": "36-40",
+      "module": "src/page-ranges/range-36-40/index.js",
+      "pages": [36, 37, 38, 39, 40],
+      "integratedPages": [36, 37, 39, 40],
+      "cssMarker": "Pages 36-40 range styles"
+    }
+  ],
+  "build": "scripts/build.js",
+  "structuralChecks": "scripts/check.js",
+  "courseRouting": "src/course-pages.js",
+  "generatedDirectory": "public/"
+}
