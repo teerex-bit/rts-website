@@ -25,7 +25,8 @@ function journeyRail(page, stages) {
 }
 
 function courseTop(page) {
-  return `<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p>${page.number === 3 ? '' : `<a href="${page.activeStage === 'Awaken' ? links.awaken : links.seeClearly}">← &nbsp; Course Overview</a>`}<div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
+  const page03LogoOverride = page.number === 3 ? `<style>.course-top:has(+.formation-course-page[data-page-number="03"]):before{background-image:url('/assets/page-awaken/curriculum-wordmark.svg')!important}</style>` : '';
+  return `${page03LogoOverride}<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p>${page.number === 3 ? '' : `<a href="${page.activeStage === 'Awaken' ? links.awaken : links.seeClearly}">← &nbsp; Course Overview</a>`}<div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
 }
 
 function renderCallout(lines, tone = '') {
