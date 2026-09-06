@@ -37,7 +37,9 @@ module.exports = {
       paragraphs: [
         'Spiritual formation begins in the hidden places of life—long before it shows outwardly.',
         'God already sees what is happening inside you. Together, we are learning to see it too.'
-      ]
+      ],
+      quote: 'Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.',
+      quoteBy: 'Dallas Willard'
     },
     {
       title: 'In This Lesson You Will',
