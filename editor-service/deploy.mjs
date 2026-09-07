@@ -20,7 +20,7 @@ const matches=found.filter(n=>n.title==='rts-private-editor-oauth');
 if(matches.length>1)throw Error('Ambiguous editor namespace');
 const namespace=matches[0]||(await cf('storage/kv/namespaces','POST',{title:'rts-private-editor-oauth'})).result;
 const config=JSON.parse(fs.readFileSync('editor-service/wrangler.jsonc','utf8'));
-if(config.name!=='rts-private-editor'||config.vars.EDITOR_WRITES_ENABLED!=='false')throw Error('Unsafe deployment target');
+if(config.name!=='rts-private-editor'||config.vars.EDITOR_WRITES_ENABLED!=='true')throw Error('Unsafe deployment target');
 config.kv_namespaces=[{binding:'OAUTH_KV',id:namespace.id}];
 const configFile='editor-service/wrangler.runtime.jsonc';
 fs.writeFileSync(configFile,JSON.stringify(config));
@@ -36,8 +36,8 @@ try{
 }finally{if(fs.existsSync(file))fs.unlinkSync(file);fs.rmdirSync(temporary);fs.unlinkSync(configFile);}
 const origin='https://rts-private-editor.teerex1066.workers.dev';
 const health=await fetch(origin+'/health');const state=await health.json();
-if(!health.ok||state.writesEnabled!==false)throw Error('Editor health check failed');
+if(!health.ok||state.writesEnabled!==true)throw Error('Editor health check failed');
 const unauth=await fetch(origin+'/mcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/list'})});
 if(unauth.status!==401)throw Error('Unauthenticated access was not rejected');
-console.log('PASS: Private editor deployed with writes disabled; anonymous access rejected.');
+console.log('PASS: Private editor deployed with review-only saving enabled; anonymous access rejected.');
 console.log('GitHub OAuth callback: '+origin+'/github/callback');
