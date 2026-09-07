@@ -37,6 +37,11 @@ function createRepository({appId,privateKey,fetcher=fetch,now=Date.now}) {
    if(file.encoding!=='base64'||typeof file.content!=='string')throw new Error('UNSUPPORTED_REFERENCE');
    return {data:file.content.replace(/\s/g,''),mimeType:'image/png'};
   },
+  async assets(head) {
+   if(typeof head!=='string'||!/^[a-f0-9]{40}$/i.test(head))throw new Error('INVALID_COMMIT');
+   const tree=await read('/git/trees/'+head+'?recursive=1');
+   return tree.tree.filter(item=>item.type==='blob'&&item.path.startsWith('public/assets/')&&/\.(png|jpe?g|webp|svg)$/i.test(item.path)).map(item=>'/assets/'+item.path.slice('public/assets/'.length));
+  },
   async commit(parent,document) {
    validateOverrideDocument(document);
    const t=await token();const base=await request(REPO+'/git/commits/'+parent,t);
