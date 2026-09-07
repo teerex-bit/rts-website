@@ -1,10 +1,11 @@
 const esc = value => String(value).replace(/[&<>]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[character]));
 
 function renderPagesFinalReview(pages) {
+  const reviewOrigin = 'https://rts-editor-review.teerex1066.workers.dev';
   const targets = pages.map(page => ({
     number: String(page.number).padStart(2, '0'),
     label: page.title,
-    route: page.route,
+    route: reviewOrigin + page.route,
     stage: page.stage
   }));
   return `<main class="pages-final-review">
