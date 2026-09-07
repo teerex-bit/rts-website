@@ -30,4 +30,5 @@ jobs:
           RTS_APP_PRIVATE_KEY: ${{ secrets.RTS_APP_PRIVATE_KEY }}
           RTS_OAUTH_CLIENT_ID: ${{ secrets.RTS_OAUTH_CLIENT_ID }}
           RTS_OAUTH_CLIENT_SECRET: ${{ secrets.RTS_OAUTH_CLIENT_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node editor-service/deploy.mjs
