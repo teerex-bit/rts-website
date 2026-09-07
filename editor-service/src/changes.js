@@ -1,6 +1,7 @@
 const {createHmac,createHash,timingSafeEqual,randomUUID} = require('node:crypto');
 const {validateOverride,validateOverrideDocument} = require('../../src/editor/override-schema');
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const publicEdit = edit => ({pageNumber:edit.pageNumber,route:edit.route,sectionId:edit.sectionId,fieldId:edit.fieldId,kind:edit.kind,value:edit.value});
 
 // Caller identity must come from verified authentication, never tool arguments.
 function createEditor({repo,secret,owner,now=Date.now}) {
@@ -27,9 +28,10 @@ function createEditor({repo,secret,owner,now=Date.now}) {
    const payload={edit,before:hash(snapshot.document),expires:now()+15*60*1000};
    return {changeToken:encode(payload),sourceCommit:snapshot.head,summary:`Page ${edit.pageNumber}: ${edit.sectionId}.${edit.fieldId} (${edit.kind})`,proposedValue:edit.value,validationState:'schema-valid; build validation pending',untouched:['production','Page 01','Page 38']};
   },
-  async apply(token,user) {
+  async apply(token,user,confirmation) {
    authorize(user);const payload=decode(token);const edit=validateOverride(payload.edit);
    if(edit.requestedBy!==user)throw new Error('FORBIDDEN');
+   if(!confirmation||JSON.stringify(publicEdit(edit))!==JSON.stringify(publicEdit(confirmation)))throw new Error('MISMATCH_CHANGE');
    const snapshot=await repo.snapshot();validateOverrideDocument(snapshot.document);
    if(snapshot.head!==edit.sourceCommit||hash(snapshot.document)!==payload.before)throw new Error('STALE_CHANGE');
    const document={version:1,overrides:[...snapshot.document.overrides,edit]};validateOverrideDocument(document);
