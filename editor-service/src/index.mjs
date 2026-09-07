@@ -3,12 +3,14 @@ import {WorkerEntrypoint} from 'cloudflare:workers';
 import changes from './changes.js';
 import github from './github.js';
 import registry from '../../src/editor/field-registry.js';
+import references from '../../src/editor/reference-images.js';
 import {authHandler,ORIGIN,OWNER} from './auth.mjs';
 const schema=properties=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 const tools=[
  {name:'get_page',description:'Read registered editable fields and saved review overrides. Pages 01 and 38 are locked.',inputSchema:schema({pageNumber:{type:'integer',minimum:1,maximum:40}}),annotations:{readOnlyHint:true}},
+ {name:'get_page_reference',description:'Show the approved done-folder design reference image for a page. Read-only: use it to compare the live editable page and identify missing visual components.',inputSchema:schema({pageNumber:{type:'integer',minimum:1,maximum:40}}),annotations:{readOnlyHint:true}},
  {name:'preview_change',description:'Validate a proposed review-only change and obtain a short-lived approval token. Does not save.',inputSchema:schema({pageNumber:{type:'integer'},route:{type:'string'},sectionId:{type:'string'},fieldId:{type:'string'},kind:{enum:['text','link','image','alt','spacing','align','color','visibility','order']},value:{type:['string','boolean','integer']}}),annotations:{readOnlyHint:true}},
- {name:'apply_change',description:'Save a previously previewed change only after the owner approves it. Never changes production.',inputSchema:schema({changeToken:{type:'string'}}),annotations:{readOnlyHint:false,destructiveHint:false,idempotentHint:false}}
+ {name:'apply_change',description:'Save the exact previously previewed review-only change after approval. The page, field, and proposed value must match the signed preview. Never changes production.',inputSchema:schema({changeToken:{type:'string'},pageNumber:{type:'integer'},route:{type:'string'},sectionId:{type:'string'},fieldId:{type:'string'},kind:{enum:['text','link','image','alt','spacing','align','color','visibility','order']},value:{type:['string','boolean','integer']}}),annotations:{readOnlyHint:false,destructiveHint:false,idempotentHint:false}}
 ];
 export class McpHandler extends WorkerEntrypoint{
  async fetch(request){
@@ -30,11 +32,15 @@ export class McpHandler extends WorkerEntrypoint{
     if(!Number.isInteger(args.pageNumber)||args.pageNumber<1||args.pageNumber>40||Object.keys(args).length!==1)throw Error('Invalid page number');
     if([1,38].includes(args.pageNumber))result={pageNumber:args.pageNumber,locked:true};
     else{const snapshot=await repo.snapshot();result={pageNumber:args.pageNumber,sourceCommit:snapshot.head,fields:registry.fields.filter(f=>f.pageNumber===args.pageNumber),overrides:snapshot.document.overrides.filter(e=>e.pageNumber===args.pageNumber),note:'Base page content is not included. Do not infer current text from these overrides alone.'};}
+   }else if(msg.params?.name==='get_page_reference'){
+    if(!Number.isInteger(args.pageNumber)||args.pageNumber<1||args.pageNumber>40||Object.keys(args).length!==1)throw Error('Invalid page number');
+    const reference=references.referenceForPage(args.pageNumber);const image=await repo.reference(reference.path);
+    return reply({content:[{type:'text',text:JSON.stringify({pageNumber:reference.pageNumber,referencePath:reference.path,note:'Approved design reference only. Do not use this screenshot as a webpage.'})},{type:'image',data:image.data,mimeType:image.mimeType}]});
    }else if(msg.params?.name==='preview_change')result=await editor.preview(args,OWNER);
    else if(msg.params?.name==='apply_change'){
     if(this.env.EDITOR_WRITES_ENABLED!=='true')throw Error('Saving is disabled until review deployment acceptance is complete.');
-    if(Object.keys(args).length!==1||typeof args.changeToken!=='string')throw Error('Invalid approval');
-    result=await editor.apply(args.changeToken,OWNER);
+    if(typeof args.changeToken!=='string')throw Error('Invalid approval');
+    result=await editor.apply(args.changeToken,OWNER,args);
    }else throw Error('Unknown tool');
    return reply({content:[{type:'text',text:JSON.stringify(result)}]});
   }catch{return reply({isError:true,content:[{type:'text',text:'The request could not be completed. No successful save is confirmed. Check configuration, approval expiry, and review status before retrying.'}]});}
