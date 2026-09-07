@@ -61,3 +61,16 @@ jobs:
               except urllib.error.HTTPError as err:
                   raise SystemExit("Editor app access failed: HTTP " + str(err.code))
           print("PASS: Editor app authenticated; repository and workflow reads succeeded. No website files changed.")
+
+      - name: Check owner sign-in configuration is present
+        env:
+          CLIENT_ID: ${{ secrets.RTS_OAUTH_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.RTS_OAUTH_CLIENT_SECRET }}
+        shell: python
+        run: |
+          import os
+          if not os.environ.get("CLIENT_ID", "").strip():
+              raise SystemExit("Missing RTS_OAUTH_CLIENT_ID")
+          if not os.environ.get("CLIENT_SECRET", "").strip():
+              raise SystemExit("Missing RTS_OAUTH_CLIENT_SECRET")
+          print("PASS: Owner sign-in entries are present. OAuth login is not yet tested.")
