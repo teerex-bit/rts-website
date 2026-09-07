@@ -36,9 +36,9 @@ export const authHandler={async fetch(request,env){
    return page(`<h1>Connect your website editor?</h1><p>Allow ${escape(stored.clientName)} to request review edits for Reforming the Soul? Approved pages and production remain protected by the editor.</p><form method="post" action="/consent"><input type="hidden" name="consent" value="${consent}"><button name="decision" value="allow">Allow editor access</button><button name="decision" value="deny">Cancel</button></form>`);
   }
   if(url.pathname==='/consent'&&request.method==='POST'){
-   // Some top-level browser form navigations omit Origin. The bound, HttpOnly
-   // session cookie and single-use consent record remain mandatory CSRF checks.
-   if(request.headers.get('Origin')&&request.headers.get('Origin')!==ORIGIN)return new Response('Forbidden',{status:403});
+   // The approval page is opened in a delegated ChatGPT browser context, whose
+   // Origin may be ChatGPT rather than this Worker. CSRF protection instead
+   // relies on the HttpOnly session cookie plus this single-use consent record.
    const form=await request.formData();const id=form.get('consent');
    const stored=typeof id==='string'&&await env.OAUTH_KV.get('rts-consent/'+id,'json');
    if(!stored||stored.session!==cookie(request))return new Response('Consent expired. Start again.',{status:403});
