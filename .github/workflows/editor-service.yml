@@ -1,0 +1,33 @@
+name: Private editor deployment
+on:
+  push:
+    branches: [codex/rts-chat-editor-checkpoint]
+    paths: ['editor-service/**', 'src/editor/**', 'package*.json', '.github/workflows/editor-service.yml']
+permissions:
+  contents: read
+concurrency:
+  group: rts-private-editor-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:editor
+      - run: npm run build
+      - run: npm run check:locked
+      - name: Deploy separate editor with writes disabled
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          RTS_APP_ID: ${{ secrets.RTS_APP_ID }}
+          RTS_APP_PRIVATE_KEY: ${{ secrets.RTS_APP_PRIVATE_KEY }}
+          RTS_OAUTH_CLIENT_ID: ${{ secrets.RTS_OAUTH_CLIENT_ID }}
+          RTS_OAUTH_CLIENT_SECRET: ${{ secrets.RTS_OAUTH_CLIENT_SECRET }}
+        run: node editor-service/deploy.mjs

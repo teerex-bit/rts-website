@@ -1,0 +1,8 @@
+{
+  "name": "rts-private-editor",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-09-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {"EDITOR_WRITES_ENABLED": "false"}
+}
