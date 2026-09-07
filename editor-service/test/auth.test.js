@@ -5,6 +5,15 @@ test('sign-in rejects wrong host, unbound callbacks, and cross-origin consent',a
  assert.equal((await authHandler.fetch(new Request(ORIGIN+'/github/callback?state=forged&code=fake'),{})).status,403);
  assert.equal((await authHandler.fetch(new Request(ORIGIN+'/consent',{method:'POST',headers:{Origin:'https://evil.invalid'}}),{})).status,403);
 });
+test('consent accepts a same-session form submission when browsers omit Origin',async()=>{
+ const {authHandler,ORIGIN}=await import('../src/auth.mjs');
+ const env={OAUTH_KV:{get:async()=>({session:'browser-session',auth:{scope:['rts:edit']},clientName:'Chat'}),delete:async()=>{}},OAUTH_PROVIDER:{completeAuthorization:async()=>({redirectTo:'https://chatgpt.com/return'})}};
+ const form=new FormData();form.set('consent','consent-id');form.set('decision','allow');
+ const request=new Request(ORIGIN+'/consent',{method:'POST',headers:{Cookie:'__Host-rts-auth=browser-session'},body:form});
+ const response=await authHandler.fetch(request,env);
+ assert.equal(response.status,302);
+ assert.equal(response.headers.get('Location'),'https://chatgpt.com/return');
+});
 test('authorization request binds a short-lived browser cookie to the login state',async()=>{
  const {authHandler,ORIGIN}=await import('../src/auth.mjs');let record;
  const env={RTS_OAUTH_CLIENT_ID:'client',OAUTH_PROVIDER:{parseAuthRequest:async()=>({clientId:'chat',scope:['rts:edit']}),lookupClient:async()=>({clientName:'Private Chat'})},OAUTH_KV:{put:async(...args)=>{record=args;}}};
