@@ -4,5 +4,5 @@
   "compatibility_date": "2026-09-07",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
-  "vars": {"EDITOR_WRITES_ENABLED": "true"}
+  "vars": {"EDITOR_WRITES_ENABLED": "true", "VISUAL_MODEL": "gpt-6"}
 }
