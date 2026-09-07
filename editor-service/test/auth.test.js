@@ -5,6 +5,13 @@ test('sign-in rejects wrong host, unbound callbacks, and unbound consent',async(
  assert.equal((await authHandler.fetch(new Request(ORIGIN+'/github/callback?state=forged&code=fake'),{})).status,403);
  assert.equal((await authHandler.fetch(new Request(ORIGIN+'/consent?consent=forged&decision=allow'),{OAUTH_KV:{get:async()=>null}})).status,403);
 });
+test('health reports whether the visual planner is configured without exposing the key',async()=>{
+ const {authHandler,ORIGIN}=await import('../src/auth.mjs');
+ const result=await authHandler.fetch(new Request(ORIGIN+'/health'),{EDITOR_WRITES_ENABLED:'true',OPENAI_API_KEY:'sk-secret-not-disclosed'});
+ const body=await result.json();
+ assert.equal(body.visualPlannerEnabled,true);
+ assert.equal(JSON.stringify(body).includes('sk-secret'),false);
+});
 test('consent accepts a same-session approval link from a delegated browser',async()=>{
  const {authHandler,ORIGIN}=await import('../src/auth.mjs');
  const env={OAUTH_KV:{get:async()=>({session:'browser-session',auth:{scope:['rts:edit']},clientName:'Chat'}),delete:async()=>{}},OAUTH_PROVIDER:{completeAuthorization:async()=>({redirectTo:'https://chatgpt.com/return'})}};
