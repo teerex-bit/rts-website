@@ -31,6 +31,12 @@ function createRepository({appId,privateKey,fetcher=fetch,now=Date.now}) {
    const document=JSON.parse(Buffer.from(file.content,'base64').toString('utf8'));
    validateOverrideDocument(document);return {head,document};
   },
+  async reference(path) {
+   if(typeof path!=='string'||!path.startsWith('done/')||!path.endsWith('.png'))throw new Error('INVALID_REFERENCE');
+   const file=await read('/contents/'+encodeURIComponent(path)+'?ref='+BRANCH);
+   if(file.encoding!=='base64'||typeof file.content!=='string')throw new Error('UNSUPPORTED_REFERENCE');
+   return {data:file.content.replace(/\s/g,''),mimeType:'image/png'};
+  },
   async commit(parent,document) {
    validateOverrideDocument(document);
    const t=await token();const base=await request(REPO+'/git/commits/'+parent,t);
