@@ -32,3 +32,32 @@ jobs:
               except urllib.error.HTTPError as err:
                   raise SystemExit("Cloudflare access check failed: HTTP " + str(err.code))
           print("PASS: Cloudflare Workers and KV read access confirmed. No deployment performed.")
+
+      - name: Authenticate the private editor app
+        id: editor-app
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349
+        with:
+          app-id: ${{ secrets.RTS_APP_ID }}
+          private-key: ${{ secrets.RTS_APP_PRIVATE_KEY }}
+          owner: teerex-bit
+          repositories: rts-website
+          permission-contents: write
+          permission-actions: read
+      - name: Verify repository access without changing files
+        env:
+          GH_TOKEN: ${{ steps.editor-app.outputs.token }}
+        shell: python
+        run: |
+          import os, json, urllib.request, urllib.error
+          headers = {"Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                     "Accept": "application/vnd.github+json"}
+          for path in ("contents/AGENTS.md", "actions/runs?per_page=1"):
+              req = urllib.request.Request(
+                  "https://api.github.com/repos/teerex-bit/rts-website/" + path,
+                  headers=headers)
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      json.load(response)
+              except urllib.error.HTTPError as err:
+                  raise SystemExit("Editor app access failed: HTTP " + str(err.code))
+          print("PASS: Editor app authenticated; repository and workflow reads succeeded. No website files changed.")
