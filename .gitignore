@@ -2,5 +2,6 @@ node_modules/
 artifacts/
 .wrangler/
 dist/
+.worktrees/
 
 *.zip

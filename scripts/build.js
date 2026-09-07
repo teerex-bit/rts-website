@@ -1,5 +1,9 @@
 const fs=require('fs'), path=require('path');
 const pages=require('../src/pages'), links=require('../src/links');
+const {applyOverrides}=require('../src/editor/apply-overrides');
+const {validateOverrideDocument}=require('../src/editor/override-schema');
+const overrideDocument=require('../src/editor/overrides.json');
+validateOverrideDocument(overrideDocument);
 const homeContent=require('../src/page-01');
 const conversationsContent=require('../src/conversations');
 const courseContent=require('../src/pages-03-10');
@@ -81,7 +85,7 @@ function main(p){
  return `${header()}<main>${journey(p.stage)}<section class="hero ${isHome?'home':''} ${stage?'stage':''}"><div class="hero-copy"><p class="overline">${esc(p.stage)} · ${String(p.number).padStart(2,'0')}</p><h1>${esc(p.title)}</h1><p>${esc(p.eyebrow)}</p><a class="button" href="${isHome?links.begin:links.next}">${isHome?'Begin the journey':'Explore this movement'}</a></div><div class="scene" role="img" aria-label="A quiet mountain landscape with native plants"><span class="sun"></span><span class="mountain one"></span><span class="mountain two"></span><img src="/assets/botanical.svg" alt="" class="botanical"></div>${isHome?`<aside class="hero-card" aria-label="Welcome message"><p class="overline">A place to begin</p><h2>Your inner life matters.</h2><p>Make room for a more honest, integrated life with God and others.</p><a href="${links.learnMore}">Learn more →</a></aside>`:''}</section>${cards}<section class="closing"><p class="overline">Reforming the Soul</p><h2>Attend to what is forming you.</h2><a class="button gold" href="${links.join}">Join the journey</a></section></main>${footer()}`;
 }
 function shell(title,body){return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Reforming the Soul — ${esc(title)}"><title>${esc(title)} | Reforming the Soul</title><link rel="stylesheet" href="/assets/styles.css"><script defer src="/assets/site.js"></script></head><body>${body}</body></html>`.replace(/[ \t]+\n/g,'\n')}
-for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});const html=p.number===1?fs.readFileSync(path.join(__dirname,'..','src','page-01-approved.html'),'utf8').replace('/assets/styles.css','/assets/page-01-approved.css'):p.number===38?fs.readFileSync(path.join(__dirname,'..','src','conversations-approved.html'),'utf8').replace('/assets/styles.css','/assets/conversations-approved.css'):shell(p.title,main(p));fs.writeFileSync(path.join(dir,'index.html'),html)}
+for(const p of pages){const dir=path.join(out,p.route);fs.mkdirSync(dir,{recursive:true});const html=p.number===1?fs.readFileSync(path.join(__dirname,'..','src','page-01-approved.html'),'utf8').replace('/assets/styles.css','/assets/page-01-approved.css'):p.number===38?fs.readFileSync(path.join(__dirname,'..','src','conversations-approved.html'),'utf8').replace('/assets/styles.css','/assets/conversations-approved.css'):applyOverrides({html:shell(p.title,main(p)),page:p,document:overrideDocument});fs.writeFileSync(path.join(dir,'index.html'),html)}
 const review=`${header()}<main class="review"><p class="overline">Review site</p><h1>All 40 pages</h1><p class="lead">A complete index of the Reforming the Soul journey.</p><ol>${pages.map(p=>`<li><span>${String(p.number).padStart(2,'0')}</span><a href="${p.route}">${esc(p.title)}</a><small>${p.stage} · ${p.template}</small></li>`).join('')}</ol></main>${footer()}`;
 fs.mkdirSync(path.join(out,'review'),{recursive:true});fs.writeFileSync(path.join(out,'review/index.html'),shell('Review all pages',review));
 const batchReviewPages=pages.filter(page=>page.number>=3&&page.number<=10);
