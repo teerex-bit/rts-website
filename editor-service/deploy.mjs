@@ -3,7 +3,9 @@ import os from 'node:os';
 import path from 'node:path';
 import {randomBytes} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
-const names=['RTS_APP_ID','RTS_APP_PRIVATE_KEY','RTS_OAUTH_CLIENT_ID','RTS_OAUTH_CLIENT_SECRET'];
+// API key is kept only as a Worker secret. It is never exposed to ChatGPT,
+// browser clients, GitHub logs, or the static review site.
+const names=['RTS_APP_ID','RTS_APP_PRIVATE_KEY','RTS_OAUTH_CLIENT_ID','RTS_OAUTH_CLIENT_SECRET','OPENAI_API_KEY'];
 for(const name of ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID',...names])if(!process.env[name])throw Error('Missing configuration: '+name);
 const account=process.env.CLOUDFLARE_ACCOUNT_ID;
 if(!/^[a-f0-9]{32}$/i.test(account))throw Error('Invalid account ID');
