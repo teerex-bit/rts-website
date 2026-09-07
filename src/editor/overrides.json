@@ -12,6 +12,18 @@
       "sourceCommit": "8d8f61af5376e291e3d2a46da2ebfc7244a8e578",
       "requestedBy": "320403715",
       "createdAt": "2026-09-07T20:36:16.578Z"
+    },
+    {
+      "pageNumber": 3,
+      "route": "/awaken/pay-attention/",
+      "sectionId": "hero",
+      "fieldId": "heading",
+      "kind": "text",
+      "value": "Where Did That Come From?",
+      "id": "d8d47321-dc04-41e5-a29a-0a9b811b53e9",
+      "sourceCommit": "c8f124657d141e8203a255a0c9c0d977dd4a04fe",
+      "requestedBy": "320403715",
+      "createdAt": "2026-09-07T20:56:05.181Z"
     }
   ]
 }
