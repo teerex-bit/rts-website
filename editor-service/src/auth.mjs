@@ -33,17 +33,17 @@ export const authHandler={async fetch(request,env){
    if(!userResponse.ok||String(user.id)!==OWNER)return new Response('Only the website owner can connect this editor.',{status:403});
    const consent=crypto.randomUUID();
    await env.OAUTH_KV.put('rts-consent/'+consent,JSON.stringify({...stored,userId:OWNER,session:state}),{expirationTtl:300});
-   return page(`<h1>Connect your website editor?</h1><p>Allow ${escape(stored.clientName)} to request review edits for Reforming the Soul? Approved pages and production remain protected by the editor.</p><form method="post" action="/consent"><input type="hidden" name="consent" value="${consent}"><button name="decision" value="allow">Allow editor access</button><button name="decision" value="deny">Cancel</button></form>`);
+   return page(`<h1>Connect your website editor?</h1><p>Allow ${escape(stored.clientName)} to request review edits for Reforming the Soul? Approved pages and production remain protected by the editor.</p><p><a href="/consent?consent=${encodeURIComponent(consent)}&decision=allow">Allow editor access</a> &nbsp; <a href="/consent?consent=${encodeURIComponent(consent)}&decision=deny">Cancel</a></p>`);
   }
-  if(url.pathname==='/consent'&&request.method==='POST'){
+  if(url.pathname==='/consent'&&request.method==='GET'){
    // The approval page is opened in a delegated ChatGPT browser context, whose
    // Origin may be ChatGPT rather than this Worker. CSRF protection instead
    // relies on the HttpOnly session cookie plus this single-use consent record.
-   const form=await request.formData();const id=form.get('consent');
+   const id=url.searchParams.get('consent');
    const stored=typeof id==='string'&&await env.OAUTH_KV.get('rts-consent/'+id,'json');
    if(!stored||stored.session!==cookie(request))return new Response('Consent expired. Start again.',{status:403});
    await env.OAUTH_KV.delete('rts-consent/'+id);
-   if(form.get('decision')!=='allow')return page('<p>Connection cancelled.</p>');
+   if(url.searchParams.get('decision')!=='allow')return page('<p>Connection cancelled.</p>');
    const result=await env.OAUTH_PROVIDER.completeAuthorization({request:stored.auth,userId:OWNER,metadata:{clientName:stored.clientName},scope:stored.auth.scope.filter(s=>s==='rts:edit'),props:{userId:OWNER}});
    return new Response(null,{status:302,headers:{Location:result.redirectTo,'Cache-Control':'no-store','Set-Cookie':'__Host-rts-auth=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0'}});
   }
