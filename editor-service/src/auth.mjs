@@ -7,7 +7,7 @@ const page=body=>new Response('<!doctype html><meta name="viewport" content="wid
 export const authHandler={async fetch(request,env){
  const url=new URL(request.url);
  if(url.origin!==ORIGIN)return new Response('Invalid host',{status:400});
- if(url.pathname==='/health')return Response.json({service:'RTS private editor',writesEnabled:env.EDITOR_WRITES_ENABLED==='true'},{headers:{'Cache-Control':'no-store'}});
+ if(url.pathname==='/health')return Response.json({service:'RTS private editor',writesEnabled:env.EDITOR_WRITES_ENABLED==='true',visualPlannerEnabled:typeof env.OPENAI_API_KEY==='string'&&env.OPENAI_API_KEY.length>=20},{headers:{'Cache-Control':'no-store'}});
  if(url.pathname==='/')return page('<h1>Reforming the Soul Editor</h1><p>This private service connects your chat to website review edits. It is not the public website.</p>');
  try{
   if(url.pathname==='/authorize'&&request.method==='GET'){
