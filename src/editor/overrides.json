@@ -1,4 +1,17 @@
 {
   "version": 1,
-  "overrides": []
+  "overrides": [
+    {
+      "pageNumber": 3,
+      "route": "/awaken/pay-attention/",
+      "sectionId": "hero",
+      "fieldId": "heading",
+      "kind": "text",
+      "value": "Temporary editor test.",
+      "id": "46e36e4e-67aa-4196-95df-0e5c48fbad14",
+      "sourceCommit": "8d8f61af5376e291e3d2a46da2ebfc7244a8e578",
+      "requestedBy": "320403715",
+      "createdAt": "2026-09-07T20:36:16.578Z"
+    }
+  ]
 }
