@@ -50,7 +50,7 @@ function renderPage07SideCards() {
 
 function renderPage07() {
   return `<div class="p07-overview" data-page-number="07" data-editable-source="pages-01-10-corrections">
-    <header class="p07-top"><a href="/" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><nav aria-label="Formation stages">${stages.map(([name, , href]) => `<a class="${name === page07.activeStage ? 'is-active' : ''}" href="${href}">${esc(name)}</a>`).join('')}</nav><div><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span aria-label="Account">●</span></div></header>
+    <header class="p07-top"><a href="/" aria-label="Reforming the Soul home"><img src="/assets/brand-main-source.png" alt="Reforming the Soul"></a><nav aria-label="Formation stages">${stages.map(([name, , href]) => `<a class="${name === page07.activeStage ? 'is-active' : ''}" href="${href}">${esc(name)}</a>`).join('')}</nav><div><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span aria-label="Account">●</span></div></header>
     <main class="p07-shell">
       <aside class="p07-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks(page07.activeStage)}</nav><section><h2>Your Progress</h2><p>${esc(page07.progressLabel)}</p><progress max="${page07.progressMax}" value="${page07.progress}">${esc(page07.progressLabel)}</progress></section><aside><strong><span aria-hidden="true">?</span> Need help?</strong><p>We’re here if you have questions along the way.</p><a href="/coming-soon/">Contact Support →</a></aside></aside>
       <section class="p07-work">
@@ -198,7 +198,7 @@ const css = `
 .p02-progress li span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
 .p02-progress li.is-current span{color:#fff;background:#667e4e}
 .p07-top{height:84px;padding:8px 28px}
-.p07-top>a img{width:210px}
+.p07-top>a img{width:196px;height:auto}
 .p07-top nav{gap:42px}
 .p07-top nav a{padding:25px 5px 17px;border-bottom:2px solid transparent}
 .p07-top nav a.is-active{color:#145ca7;border-color:#145ca7;font-weight:700}
@@ -214,22 +214,22 @@ const css = `
 .p07-rail>aside strong{font-size:.8rem}.p07-rail>aside p,.p07-rail>aside a{font-size:.72rem}.p07-rail>aside a{color:#51b6f2}
 .p07-work{display:grid;grid-template-columns:minmax(0,1fr) 318px;min-width:0}
 .p07-main{min-width:0;background:#fffdfa}
-.p07-hero{min-height:530px;padding:42px 38px;background:#dfe6e0 url('/assets/page-see-clearly/path-figure.svg') center/cover no-repeat}
-.p07-hero>div{width:48%;min-height:446px;padding:0 70px 18px 0;background:linear-gradient(90deg,#fffdfa 0%,rgba(255,253,250,.95) 76%,transparent 100%)}
+.p07-hero{min-height:530px;padding:42px 38px;background:#fffdfa url('/assets/page-see-clearly/see-clearly-landing-hero.png') right center/auto 100% no-repeat}
+.p07-hero>div{width:48%;min-height:446px;padding:0 70px 18px 0;background:linear-gradient(90deg,#fffdfa 0%,#fffdfa 68%,rgba(255,253,250,.94) 84%,transparent 100%)}
 .p07-hero>div>p:first-child{margin:0;color:#145ca7;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .p07-hero h1{margin:13px 0 6px;color:#092039;font:400 clamp(3.4rem,4.4vw,5rem)/.96 var(--serif)}
 .p07-hero i{display:block;width:58px;margin:19px 0;border-top:2px solid #c48a25}
 .p07-hero>div>p:not(:first-child){margin:8px 0;font-size:.9rem;line-height:1.52}
 .p07-hero>div>p.is-emphasis{font-weight:700}
 .p07-hero a{background:#145ca7}
-.p07-outcomes{padding:17px 30px 12px}
+.p07-outcomes{padding:20px 30px 18px}
 .p07-outcomes h2,.p07-journey h2{color:#145ca7;text-align:center}
 .p07-outcomes>div{display:grid;grid-template-columns:repeat(3,1fr)}
 .p07-outcomes article{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;padding:4px 15px;border-right:1px solid #ddd6cb}
 .p07-outcomes article:last-child{border:0}
 .p07-outcomes article>span,.p07-journey article>span{display:grid;place-items:center;width:43px;height:43px;color:#fff;background:#145ca7;border-radius:50%}
 .p07-outcomes article p{margin:0;font-size:.66rem;line-height:1.4}
-.p07-journey{padding:0 30px 10px}
+.p07-journey{padding:4px 30px 18px}
 .p07-journey>h2{display:flex;align-items:center;gap:15px;margin:3px 0 8px}.p07-journey>h2:before,.p07-journey>h2:after{content:"";flex:1;border-top:1px solid #ded6ca}
 .p07-journey>div{display:flex;align-items:flex-start;justify-content:space-between}
 .p07-journey article{width:16%;text-align:center}.p07-journey article>span{margin:auto}.p07-journey article:nth-of-type(2) span,.p07-journey article:nth-of-type(4) span{background:#53713b}.p07-journey article:nth-of-type(3) span{background:#0c3b68}
