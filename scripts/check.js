@@ -103,6 +103,7 @@ else{
   const reviewTargets=[...review.matchAll(/data-final-review-route="([^"]+)"/g)].map(match=>match[1]);
   const expectedTargets=pages.map(page=>page.route);
   if(JSON.stringify(reviewTargets)!==JSON.stringify(expectedTargets))errors.push(`${finalReviewPath}: expected 40 ordered review targets`);
+  if(reviewTargets.some(target=>/^https?:\/\//.test(target)))errors.push(`${finalReviewPath}: review routes must stay within this website`);
   if(!review.includes('id="pages-01-40-review-frame"')||!review.includes('data-final-review-previous')||!review.includes('data-final-review-next'))errors.push(`${finalReviewPath}: missing viewer or Previous/Next controls`);
 }
 const builtStylesPath=path.join(root,'assets','styles.css');
