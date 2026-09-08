@@ -41,6 +41,8 @@ assert.ok(page02.includes('/assets/page-awaken/icons.svg#leaf'), 'Page 02 must u
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#account'), 'Page 02 must use an SVG account icon');
 assert.ok(!/[◉◌❧●]/.test(page02), 'Page 02 must not use keyboard characters as icons');
 assert.ok(adapter.css.includes("/assets/page-awaken/awaken-sunrise-path"), 'Page 02 must use its replaceable mountain-path hero asset');
+assert.ok(adapter.css.includes('[data-page-number="05"]):before{background-image:url(\'/assets/page-awaken/curriculum-logo.png\')}'), 'Page 05 must use the approved curriculum logo treatment');
+assert.strictEqual(require('../../pages-03-10/page-05').image, '/assets/page-awaken/page-03-seated-sunrise.png', 'Page 05 must reuse the approved seated-sunrise asset');
 const awakenSequence = [
   ['/awaken/pay-attention/', 'Where Did That Come From?'],
   ['/awaken/name-your-desire/', 'Those Reactions Came From Somewhere'],

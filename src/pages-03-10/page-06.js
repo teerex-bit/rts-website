@@ -68,5 +68,5 @@ module.exports = {
       paragraphs: ['God already sees everything inside you. You are simply learning to see it with Him.']
     }
   ],
-  image: '/assets/page-awaken/sunrise-figure.svg'
+  image: '/assets/page-awaken/page-03-seated-sunrise.png'
 };
