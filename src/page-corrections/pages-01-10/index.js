@@ -80,10 +80,27 @@ const css = `
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
   .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{background-image:url('/assets/page-awaken/curriculum-logo.png')}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
+  /* With Course Overview removed, let the remaining lesson label and tools use
+     the full header. This prevents the former center-control slot from leaving
+     a visual gap above the lesson canvas. */
+  .course-top:has(+.formation-course-page[data-page-number="03"]),
+  .course-top:has(+.formation-course-page[data-page-number="04"]){grid-template-columns:minmax(0,1fr) auto;column-gap:24px}
+  .course-top:has(+.formation-course-page[data-page-number="03"])>p,
+  .course-top:has(+.formation-course-page[data-page-number="04"])>p{grid-column:1}
+  .course-top:has(+.formation-course-page[data-page-number="03"]) .course-tools,
+  .course-top:has(+.formation-course-page[data-page-number="04"]) .course-tools{grid-column:2}
   .formation-course-page[data-page-number] .course-hero>p{display:none}
   .formation-course-page[data-page-number] .course-hero{padding-top:10px}
   .formation-course-page[data-page-number] .course-aside__image{height:218px}
   .formation-course-page[data-page-number] .course-aside__leaf{top:192px}
+  /* Keep the lesson prompt, its round icon, and the first card row in one
+     deliberate vertical rhythm on the first two Awaken lessons. */
+  .formation-course-page[data-page-number="03"] .course-section-heading,
+  .formation-course-page[data-page-number="04"] .course-section-heading{grid-template-columns:58px minmax(0,1fr);gap:16px;align-items:center;margin:20px 0 18px}
+  .formation-course-page[data-page-number="03"] .course-section-heading h2,
+  .formation-course-page[data-page-number="04"] .course-section-heading h2{margin:0 0 7px}
+  .formation-course-page[data-page-number="03"] .course-section-heading .course-symbol,
+  .formation-course-page[data-page-number="04"] .course-section-heading .course-symbol{width:58px;height:58px}
   .formation-course-page[data-page-number="05"] .course-card-grid,
   .formation-course-page[data-page-number="06"] .course-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .formation-course-page[data-page-number="05"] .course-card,

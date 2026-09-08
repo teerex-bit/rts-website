@@ -3,10 +3,10 @@ module.exports = {
   family: 'awaken',
   activeStage: 'Awaken',
   courseLabel: 'Awaken 1',
-  lessonLabel: 'Lesson 1 of 7',
-  progressLabel: 'Awaken 1 of 7',
+  lessonLabel: 'Lesson 1 of 4',
+  progressLabel: 'Awaken 1 of 4',
   progress: 1,
-  progressMax: 7,
+  progressMax: 4,
   step: 1,
   title: 'Where Did That Come From?',
   introduction: [
