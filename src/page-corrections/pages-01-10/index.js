@@ -78,7 +78,7 @@ const css = `
 @media (min-width:1181px){
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
-  .course-top:has(+.formation-course-page[data-page-number="03"]):before{background-image:url('/assets/page-awaken/curriculum-logo.png')}
+  .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before{background-image:url('/assets/page-awaken/curriculum-logo.png')}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
   .formation-course-page[data-page-number] .course-hero>p{display:none}
   .formation-course-page[data-page-number] .course-hero{padding-top:10px}

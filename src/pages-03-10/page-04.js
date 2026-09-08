@@ -65,5 +65,5 @@ module.exports = {
       ]
     }
   ],
-  image: '/assets/page-awaken/sunrise-figure.svg'
+  image: '/assets/page-awaken/page-03-seated-sunrise.png'
 };
