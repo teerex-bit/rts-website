@@ -50,5 +50,5 @@ module.exports = {
       ]
     }
   ],
-  image: '/assets/page-awaken/sunrise-figure.svg'
+  image: '/assets/page-awaken/awaken-sunrise-path.png'
 };
