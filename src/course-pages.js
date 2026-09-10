@@ -25,8 +25,7 @@ function journeyRail(page, stages) {
 }
 
 function courseTop(page) {
-  const awakenBrand = page.family === 'awaken' ? `<a class="course-top__brand" href="${links.home}" aria-label="Reforming the Soul home"><span class="course-top__brand-mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt=""></span><span class="course-top__brand-type"><strong>Reforming</strong><span><em>the</em> <em>Soul</em></span></span></a>` : '';
-  return `<header class="course-top">${awakenBrand}<p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p>${page.family === 'awaken' ? '' : `<a href="${links.seeClearly}">← &nbsp; Course Overview</a>`}<div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
+  return `<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p>${page.family === 'awaken' ? '' : `<a href="${links.seeClearly}">← &nbsp; Course Overview</a>`}<div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
 }
 
 function renderCallout(lines, tone = '') {
