@@ -75,14 +75,14 @@ function renderHeader() {
 
 function renderRail() {
   const stages = [
-    ['Awaken', 'Notice what has formed you.', '/awaken/', '☀'],
-    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', '◉'],
-    ['Become', 'Learn to recognize and cooperate with what life with God is forming in you.', '/become/', '♧'],
-    ['Join', 'Participate in what God is doing.', '/join/', '♧']
+    ['Awaken', 'Notice what has formed you.', '/awaken/', 'awaken'],
+    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', 'see'],
+    ['Become', 'Learn to recognize and cooperate with what life with God is forming in you.', '/become/', 'become'],
+    ['Join', 'Participate in what God is doing.', '/join/', 'join']
   ];
   return `<aside class="rts-r31-35__rail">
     <p class="rts-r31-35__rail-title">The formation journey</p>
-    <nav aria-label="Formation journey">${stages.map(([label, text, href, icon]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}"><span class="rts-r31-35__rail-icon" aria-hidden="true">${icon}</span><span><b>${label}</b><small>${text}</small></span>${label !== 'Join' ? '<i aria-hidden="true">✓</i>' : ''}</a>`).join('')}</nav>
+    <nav aria-label="Formation journey">${stages.map(([label, text, href, icon]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}"><img class="rts-r31-35__rail-icon" src="/assets/icon-${icon}.svg" alt=""><span><b>${label}</b><small>${text}</small></span>${label !== 'Join' ? '<i aria-hidden="true">✓</i>' : ''}</a>`).join('')}</nav>
     <section class="rts-r31-35__support"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>
   </aside>`;
 }

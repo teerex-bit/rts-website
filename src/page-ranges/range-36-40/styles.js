@@ -25,4 +25,7 @@ module.exports = String.raw`
 .rts-36-40--p40 .rts-36-40__cover{padding:0;background:none;align-items:stretch}
 .rts-36-40--p40 .rts-36-40__cover:after{display:none}
 .rts-36-40--p40 .rts-36-40__cover img{display:block;width:100%;height:100%;object-fit:cover}
+/* Use the shared formation icons only in the journey rail and stage bar. */
+.rts-36-40__rail li .rts-36-40__stage-icon{width:28px;height:28px;margin-top:3px;object-fit:contain;filter:brightness(0) invert(1)}
+.rts-36-40__stage-bar .rts-36-40__stage-icon{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}
 `;

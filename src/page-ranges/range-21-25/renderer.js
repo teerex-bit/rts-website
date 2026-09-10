@@ -5,6 +5,7 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
 }[character]));
 
 const icon = (name, alt = '') => `<img src="${ASSET_ROOT}${escapeHtml(name)}" alt="${escapeHtml(alt)}">`;
+const stageIcon = name => `<img class="rts2521-stage-icon" src="/assets/icon-${escapeHtml(name)}.svg" alt="">`;
 
 function renderBlock(block) {
   switch (block.type) {
@@ -56,14 +57,14 @@ function renderHeader() {
 
 function renderRail(page) {
   const stages = [
-    ['Awaken', 'Notice what has formed you.', '/awaken/', 'stage-awaken.svg', 'is-complete'],
-    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', 'stage-see.svg', 'is-complete'],
-    ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', '/become/', 'stage-become.svg', 'is-current'],
-    ['Join', 'Participate in what God is doing.', '/join/', 'stage-join.svg', ''],
+    ['Awaken', 'Notice what has formed you.', '/awaken/', 'awaken', 'is-complete'],
+    ['See Clearly', 'Learn what is actually true.', '/see-clearly/', 'see', 'is-complete'],
+    ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', '/become/', 'become', 'is-current'],
+    ['Join', 'Participate in what God is doing.', '/join/', 'join', ''],
   ];
   return `<aside class="rts2521-rail" aria-label="The formation journey">
     <p class="rts2521-rail-title">THE FORMATION JOURNEY</p>
-    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${icon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' ? '<b aria-label="Complete">✓</b>' : state === 'is-current' ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
+    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${stageIcon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' ? '<b aria-label="Complete">✓</b>' : state === 'is-current' ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
     <aside class="rts2521-support"><span aria-hidden="true">?</span><div><strong>Need help?</strong><p>We’re here if you have questions along the way.</p><a href="/conversations/">Contact Support&nbsp; →</a></div></aside>
   </aside>`;
 }

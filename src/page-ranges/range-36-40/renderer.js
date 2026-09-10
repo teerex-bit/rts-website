@@ -5,6 +5,7 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
 }[character]));
 
 const icon = (name, label = '') => `<svg class="rts-36-40__icon"${label ? ` role="img" aria-label="${escapeHtml(label)}"` : ' aria-hidden="true"'}><use href="${ASSET_ROOT}/icons.svg#${escapeHtml(name)}"></use></svg>`;
+const stageIcon = name => `<img class="rts-36-40__stage-icon" src="/assets/icon-${escapeHtml(name)}.svg" alt="">`;
 
 function brand(mark = 'tree') {
   return `<a class="rts-36-40__brand" href="/" aria-label="Reforming the Soul home"><img src="${ASSET_ROOT}/${mark === 'tree' ? 'brand-tree.svg' : 'brand-crescent.svg'}" alt=""><span>Reforming<em>the Soul</em></span></a>`;
@@ -17,11 +18,11 @@ function formationHeader(page, active = page.stage, auxiliary = []) {
 
 function journeyRail(page, { progress, support, activeStage = page.number === 38 ? '' : page.stage } = {}) {
   if (page.number === 38) progress = null;
-  return `<aside class="rts-36-40__rail" aria-label="The formation journey"><h2>The Formation Journey</h2><ol>${page.stages.map(stage => `<li class="${stage.name === activeStage ? 'is-active' : ''}"><a data-stage="${escapeHtml(stage.name)}" href="${stage.href}">${icon(stage.icon)}<span><strong>${escapeHtml(stage.name)}</strong><small>${escapeHtml(stage.description)}</small></span></a></li>`).join('')}</ol>${progress ? `<section class="rts-36-40__progress"><h3>Your progress</h3><p><span>${escapeHtml(progress.label)}</span><span>${escapeHtml(progress.count)}</span></p><progress max="${progress.max}" value="${progress.value}">${escapeHtml(progress.count)}</progress></section>` : ''}${support ? `<section class="rts-36-40__support"><h3>${icon('help')}${escapeHtml(support.heading)}</h3><p>${escapeHtml(support.copy)}</p><a href="${support.href}">${escapeHtml(support.label)} <span aria-hidden="true">→</span></a></section>` : ''}</aside>`;
+  return `<aside class="rts-36-40__rail" aria-label="The formation journey"><h2>The Formation Journey</h2><ol>${page.stages.map(stage => `<li class="${stage.name === activeStage ? 'is-active' : ''}"><a data-stage="${escapeHtml(stage.name)}" href="${stage.href}">${stageIcon(stage.icon)}<span><strong>${escapeHtml(stage.name)}</strong><small>${escapeHtml(stage.description)}</small></span></a></li>`).join('')}</ol>${progress ? `<section class="rts-36-40__progress"><h3>Your progress</h3><p><span>${escapeHtml(progress.label)}</span><span>${escapeHtml(progress.count)}</span></p><progress max="${progress.max}" value="${progress.value}">${escapeHtml(progress.count)}</progress></section>` : ''}${support ? `<section class="rts-36-40__support"><h3>${icon('help')}${escapeHtml(support.heading)}</h3><p>${escapeHtml(support.copy)}</p><a href="${support.href}">${escapeHtml(support.label)} <span aria-hidden="true">→</span></a></section>` : ''}</aside>`;
 }
 
 function stageBar(page) {
-  return `<div class="rts-36-40__stage-bar"><strong>The Formation Journey</strong><nav aria-label="Journey progress">${page.stages.map(stage => `<a data-stage="${escapeHtml(stage.name)}" class="${stage.name === page.stage ? 'is-active' : ''}" href="${stage.href}">${icon(stage.icon)}<span>${escapeHtml(stage.name)}</span>${stage.name !== page.stage ? '<b aria-hidden="true">✓</b>' : ''}</a>`).join('')}</nav></div>`;
+  return `<div class="rts-36-40__stage-bar"><strong>The Formation Journey</strong><nav aria-label="Journey progress">${page.stages.map(stage => `<a data-stage="${escapeHtml(stage.name)}" class="${stage.name === page.stage ? 'is-active' : ''}" href="${stage.href}">${stageIcon(stage.icon)}<span>${escapeHtml(stage.name)}</span>${stage.name !== page.stage ? '<b aria-hidden="true">✓</b>' : ''}</a>`).join('')}</nav></div>`;
 }
 
 function render36(page) {
