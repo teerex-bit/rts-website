@@ -1,0 +1,17 @@
+/* Page 01 lower composition: preserve editable cards while giving the icon a
+   clear seam position and dedicated clearance before the title. */
+.home-page[data-landing-page="new"] .experience{padding:42px clamp(26px,4vw,72px) 48px}
+.home-page[data-landing-page="new"] .experience>p{margin:17px 0 30px}
+.home-page[data-landing-page="new"] .ways-grid{max-width:1240px;gap:24px}
+.home-page[data-landing-page="new"] .ways-card{grid-template-rows:156px 66px 42px;min-height:264px}
+.home-page[data-landing-page="new"] .ways-card__icon{top:128px;width:58px;height:58px;font-size:1.7rem}
+.home-page[data-landing-page="new"] .ways-card strong{align-self:end;margin:0 20px 7px;font-size:1.27rem;line-height:1}
+.home-page[data-landing-page="new"] .ways-card small{align-self:start;margin:2px 20px 0;font-size:1rem;line-height:1.25}
+.home-page[data-landing-page="new"] .ways-card b{align-self:start;margin:2px 22px 0}
+.home-page[data-landing-page="new"] .landing-closing{min-height:286px;padding:44px 20px;background:linear-gradient(rgba(250,244,233,.38),rgba(250,244,233,.54)),url('/assets/conversations-hero.jpg') center 52%/cover no-repeat}
+.home-page[data-landing-page="new"] .landing-closing blockquote{max-width:800px;font-size:clamp(2rem,2.9vw,3.25rem)}
+
+@media(max-width:600px){
+  .home-page[data-landing-page="new"] .ways-card{grid-template-rows:156px 66px 44px}
+  .home-page[data-landing-page="new"] .landing-closing{min-height:230px;padding:34px 20px}
+}
