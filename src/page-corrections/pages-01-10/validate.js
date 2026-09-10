@@ -32,7 +32,7 @@ for (const number of [2, 7]) {
 const page02 = adapter.patches.get(2).render();
 assert.ok(page02.includes('You Have Already Been Formed'));
 assert.ok(page02.includes('class="p02-brand"'), 'Page 02 must use the growth-stage brand lockup');
-assert.ok(page02.includes('/assets/page-awaken/curriculum-logo.png'), 'Page 02 must use the approved Tree of Life curriculum logo graphic');
+assert.ok(page02.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Page 02 must use the clean Tree of Life curriculum logo graphic');
 assert.ok(page02.includes('class="p02-brand__the"'), 'Page 02 must keep “the” separate from the script word');
 assert.ok(page02.includes('class="p02-brand__soul"'), 'Page 02 must render “Soul” as the script word');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#formation'), 'Page 02 must use a formation SVG outcome icon');

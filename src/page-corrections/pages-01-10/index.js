@@ -25,7 +25,7 @@ function renderPage02() {
     ['leaf', 'Take your first step in the journey of transformation with God.']
   ];
   return `<div class="p02-awaken" data-page-number="02" data-editable-source="pages-01-10-corrections">
-    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
+    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
     <main class="p02-shell">
       <aside class="p02-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks('Awaken')}</nav></aside>
       <section class="p02-main">
@@ -72,20 +72,18 @@ const patches = new Map([
 const css = `
 /* Pages 01–10 final-review corrections. All selectors are page-specific. */
 .home-actions .outline,.home-closing .button{display:none}
+.course-top__brand{position:absolute;left:24px;top:15px;z-index:1;display:flex;align-items:center;gap:10px;height:67px;color:#092039;text-decoration:none}
+.course-top__brand-mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
+.course-top__brand-mark img{display:block;width:196px;height:67px;max-width:none}
+.course-top__brand-type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
+.course-top__brand-type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+.course-top__brand-type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
+.course-top__brand-type em:first-child{font:italic 1.05rem var(--serif)}
+.course-top__brand-type em:last-child{font:italic 2rem/1 'RTS Script',cursive;text-transform:none}
 @media (min-width:1181px){
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
   .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:none}
-  .course-top__brand{position:absolute;left:24px;top:15px;display:flex;align-items:center;gap:10px;height:67px;color:#092039;text-decoration:none}
-  .course-top__brand-mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
-  /* Blend the existing Tree of Life mark into the header so its source-image
-     background never appears as a separate color block. */
-  .course-top__brand-mark img{display:block;width:196px;height:67px;max-width:none;mix-blend-mode:multiply}
-  .course-top__brand-type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
-  .course-top__brand-type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
-  .course-top__brand-type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
-  .course-top__brand-type em:first-child{font:italic 1.05rem var(--serif)}
-  .course-top__brand-type em:last-child{font:italic 2rem/1 'RTS Script',cursive;text-transform:none}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
   /* With Course Overview removed, let the remaining lesson label and tools use
      the full header. This prevents the former center-control slot from leaving
@@ -269,6 +267,7 @@ const css = `
   .p02-shell,.p07-shell{grid-template-columns:220px 1fr}.p02-rail nav>a,.p07-rail nav>a{grid-template-columns:38px 1fr;padding:10px 5px}.p02-rail nav img,.p07-rail nav img{width:36px}.p07-top>div a:nth-child(-n+2){display:none}.p07-work{grid-template-columns:minmax(0,1fr) 270px}.p07-hero>div{width:60%}
 }
 @media (max-width:900px){
+  .course-top__brand{position:static;height:55px}.course-top__brand-mark{width:55px;height:55px;flex-basis:55px}.course-top__brand-mark img{width:161px;height:55px}.course-top__brand-type strong{font-size:1.1rem}.course-top__brand-type em:first-child{font-size:.85rem}.course-top__brand-type em:last-child{font-size:1.55rem}
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
