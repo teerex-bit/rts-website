@@ -58,8 +58,8 @@ const correctedPages=[
   {number:7,text:'See Who You Really Are'}
 ];
 for(const {number,text} of correctedPages){
-  const page=pages.find(candidate=>candidate.number===number),file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8');
-  if(!source.includes(`data-page-number="${String(number).padStart(2,'0')}"`)||!source.includes('data-editable-source="pages-01-10-corrections"')||!source.includes(text))errors.push(`${file}: expected approved Pages 01-10 replacement for Page ${number}`);
+  const page=pages.find(candidate=>candidate.number===number),file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8'),visibleText=source.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+  if(!source.includes(`data-page-number="${String(number).padStart(2,'0')}"`)||!source.includes('data-editable-source="pages-01-10-corrections"')||!visibleText.includes(text))errors.push(`${file}: expected approved Pages 01-10 replacement for Page ${number}`);
   if(source.includes('class="content-grid"'))errors.push(`${file}: generic placeholder renderer must not be used`);
 }
 const correctedPageSix=fs.readFileSync(path.join(root,pages.find(page=>page.number===6).route,'index.html'),'utf8');

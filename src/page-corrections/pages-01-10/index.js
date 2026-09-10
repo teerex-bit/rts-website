@@ -49,12 +49,11 @@ function renderPage07() {
   return `<div class="p07-overview" data-page-number="07" data-editable-source="pages-01-10-corrections">
     <header class="p07-top"><a href="/" aria-label="Reforming the Soul home"><img src="/assets/brand-main-source.png" alt="Reforming the Soul"></a><nav aria-label="Formation stages">${stages.map(([name, , href]) => `<a class="${name === page07.activeStage ? 'is-active' : ''}" href="${href}">${esc(name)}</a>`).join('')}</nav><div><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span aria-label="Account">●</span></div></header>
     <main class="p07-shell">
-      <aside class="p07-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks(page07.activeStage)}</nav><section><h2>Your Progress</h2><p>${esc(page07.progressLabel)}</p><progress max="${page07.progressMax}" value="${page07.progress}">${esc(page07.progressLabel)}</progress></section><aside><strong><span aria-hidden="true">?</span> Need help?</strong><p>We’re here if you have questions along the way.</p><a href="/coming-soon/">Contact Support →</a></aside></aside>
+      <aside class="p07-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks(page07.activeStage)}</nav></aside>
       <section class="p07-work">
         <article class="p07-main">
-          <section class="p07-hero" aria-labelledby="p07-title"><div><p>${esc(page07.courseLabel)} <span aria-hidden="true">•</span> ${esc(page07.lessonLabel)}</p><h1 id="p07-title">${esc(page07.title)}</h1><i aria-hidden="true"></i>${page07.introduction.map((line, index) => `<p class="${index === 0 || index === 2 ? 'is-emphasis' : ''}">${esc(line)}</p>`).join('')}<a href="/see-clearly/your-formation/">Begin This Phase <span aria-hidden="true">→</span></a></div></section>
+          <section class="p07-hero" aria-labelledby="p07-title"><div><h1 id="p07-title">See Who You<br>Really Are</h1><i aria-hidden="true"></i>${page07.introduction.map((line, index) => `<p class="${index === 0 || index === 2 ? 'is-emphasis' : ''}">${esc(line)}</p>`).join('')}</div></section>
           <section class="p07-movements" aria-labelledby="p07-movements-title"><div class="p07-movements__heading"><span aria-hidden="true"><img src="/assets/icon-see.svg" alt=""></span><p id="p07-movements-title">Two movements in learning to see clearly</p></div><div class="p07-movements__steps">${page07.movements.map((movement, index) => `<article><span>${esc(movement.number)}</span><div><h3>${esc(movement.title)}</h3><p>${esc(movement.text)}</p></div></article>${index === 0 ? '<i aria-hidden="true">→</i>' : ''}`).join('')}</div></section>
-          <section class="p07-journey"><h2>${esc(page07.journeyTitle)}</h2><div>${page07.cards.map((card, index) => `<article><span aria-hidden="true">${conceptIcons[card[0]] || '•'}</span><h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></article>${index < page07.cards.length - 1 ? '<b aria-hidden="true">→</b>' : ''}`).join('')}</div></section>
           <blockquote class="p07-quote">${esc(page07.note[0])}</blockquote>
         </article>
         <aside class="p07-aside">${renderPage07SideCards()}</aside>
@@ -228,24 +227,16 @@ const css = `
 .p07-top nav a.is-active{color:#145ca7;border-color:#145ca7;font-weight:700}
 .p07-top>div{gap:27px}
 .p07-shell{display:grid;grid-template-columns:268px 1fr;min-height:calc(100vh - 84px)}
-.p07-rail{display:flex;flex-direction:column;padding:28px 20px 20px}
+.p07-rail{display:flex;flex-direction:column;align-self:stretch;padding:28px 20px 30px}
 .p07-rail nav>a.is-active{background:linear-gradient(135deg,#145ca7,#2878c5)}
-.p07-rail>section{margin-top:auto;padding-top:20px;border-top:1px solid #ffffff2a}
-.p07-rail>section h2{margin:0;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
-.p07-rail>section p{margin:9px 0;font-size:.8rem}
-.p07-rail>section progress{height:7px;margin:0}
-.p07-rail>aside{margin-top:22px;padding:15px 17px;border:1px solid #ffffff25;border-radius:9px}
-.p07-rail>aside strong{font-size:.8rem}.p07-rail>aside p,.p07-rail>aside a{font-size:.72rem}.p07-rail>aside a{color:#51b6f2}
 .p07-work{display:grid;grid-template-columns:minmax(0,1fr) 318px;min-width:0}
 .p07-main{min-width:0;background:#fffdfa}
 .p07-hero{min-height:530px;padding:42px 38px;background:#fffdfa url('/assets/page-see-clearly/see-clearly-landing-hero.png') right center/auto 100% no-repeat}
-.p07-hero>div{width:48%;min-height:446px;padding:0 70px 18px 0;background:linear-gradient(90deg,#fffdfa 0%,#fffdfa 68%,rgba(255,253,250,.94) 84%,transparent 100%)}
-.p07-hero>div>p:first-child{margin:0;color:#145ca7;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.p07-hero h1{margin:13px 0 6px;color:#092039;font:400 clamp(3.4rem,4.4vw,5rem)/.96 var(--serif)}
+.p07-hero>div{width:51%;min-height:446px;padding:36px 84px 28px 4px;background:linear-gradient(90deg,#fffdfa 0%,#fffdfa 57%,rgba(255,253,250,.96) 73%,rgba(255,253,250,.58) 88%,transparent 100%)}
+.p07-hero h1{margin:0 0 10px;color:#092039;font:400 clamp(3.25rem,4.1vw,4.65rem)/.98 var(--serif)}
 .p07-hero i{display:block;width:58px;margin:19px 0;border-top:2px solid #c48a25}
 .p07-hero>div>p:not(:first-child){margin:8px 0;font-size:.9rem;line-height:1.52}
 .p07-hero>div>p.is-emphasis{font-weight:700}
-.p07-hero a{background:#145ca7}
 .p07-outcomes{padding:20px 30px 18px}
 .p07-outcomes h2,.p07-journey h2{color:#145ca7;text-align:center}
 .p07-outcomes>div{display:grid;grid-template-columns:repeat(3,1fr)}
@@ -253,7 +244,7 @@ const css = `
 .p07-outcomes article:last-child{border:0}
 .p07-outcomes article>span,.p07-journey article>span{display:grid;place-items:center;width:43px;height:43px;color:#fff;background:#145ca7;border-radius:50%}
 .p07-outcomes article p{margin:0;font-size:.66rem;line-height:1.4}
-.p07-movements{display:grid;gap:16px;margin:0 30px;padding:28px 30px 30px;border-top:1px solid #ded6ca;border-bottom:1px solid #ded6ca}
+.p07-movements{display:grid;gap:16px;margin:0 30px;padding:32px 30px 38px;border-top:1px solid #ded6ca}
 .p07-movements__heading{display:flex;align-items:center;justify-content:center;gap:8px;color:#145ca7}
 .p07-movements__heading>span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #a9c3dc;border-radius:50%}
 .p07-movements__heading img{width:20px;height:20px;filter:invert(30%) sepia(30%) saturate(1317%) hue-rotate(168deg) brightness(82%) contrast(96%)}
@@ -270,11 +261,14 @@ const css = `
 .p07-journey>div{display:flex;align-items:flex-start;justify-content:space-between}
 .p07-journey article{width:16%;text-align:center}.p07-journey article>span{width:54px;height:54px;margin:auto}.p07-journey article:nth-of-type(2) span,.p07-journey article:nth-of-type(4) span{background:#53713b}.p07-journey article:nth-of-type(3) span{background:#0c3b68}
 .p07-journey article h3{margin:9px 0 4px;font-size:.72rem;text-transform:uppercase}.p07-journey article p{margin:0;font-size:.68rem;line-height:1.45}.p07-journey b{padding-top:16px;color:#c68b24;font-size:1.45rem;font-weight:400}
-.p07-quote{margin:0;padding:14px 40px;color:#fff;background:#092e52;border:0;font:italic 1.05rem/1.5 var(--serif)}
+.p07-quote{margin:0;padding:24px 40px;color:#fff;background:#092e52;border:0;font:italic 1.05rem/1.5 var(--serif)}
 .p07-aside{display:grid;align-content:start;gap:12px;padding:8px 12px;background:#f4f0e9}
 .p07-side-card{padding:18px 20px;background:#fffdfa;border:1px solid #e2dbd1;border-radius:9px}
 .p07-side-card h2{margin:0 0 11px;font-size:.7rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
 .p07-side-card p,.p07-side-card li{font-size:.69rem;line-height:1.5}
+.p07-side-card:last-child{display:grid;align-content:center;min-height:150px;padding:24px 22px}
+.p07-side-card:last-child h2{margin-bottom:15px}
+.p07-side-card:last-child p{margin:0;font:italic 1rem/1.6 var(--serif)}
 .p07-side-card blockquote{margin:0;padding:7px 4px;border:0;background:transparent;font:italic .78rem/1.55 var(--serif)}
 .p07-side-card cite{display:block;margin-top:8px;color:#145ca7;font:700 .6rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
 .p07-side-card ul{display:grid;gap:9px;margin:0;padding:0;list-style:none}.p07-side-card li{display:grid;grid-template-columns:35px 1fr;gap:9px;align-items:start}.p07-side-card li>span{font-size:1.35rem;color:#145ca7}

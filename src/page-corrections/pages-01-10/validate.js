@@ -44,7 +44,13 @@ assert.ok(adapter.css.includes("/assets/page-awaken/awaken-sunrise-path"), 'Page
 assert.ok(adapter.css.includes("curriculum-logo-transparent.png"), 'Pages 03–06 must use the approved Tree of Life wordmark');
 assert.strictEqual(require('../../pages-03-10/page-05').image, '/assets/page-awaken/page-03-seated-sunrise.png', 'Page 05 must reuse the approved seated-sunrise asset');
 assert.ok(!page02.includes('p02-progress'), 'Page 02 must not show a separate progress card');
-assert.ok(adapter.patches.get(7).render().includes('See Who You Really Are'));
+const page07 = adapter.patches.get(7).render();
+const page07VisibleText = page07.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+assert.ok(page07VisibleText.includes('See Who You Really Are'));
+assert.ok(!page07.includes('Phase Overview'), 'Page 07 must not show the phase-overview label');
+assert.ok(!page07.includes('Begin This Phase'), 'Page 07 must not show the removed phase CTA');
+assert.ok(!page07.includes('class="p07-journey"'), 'Page 07 must not show the removed five-step journey row');
+assert.ok(!page07.includes('Your Progress') && !page07.includes('Need help?'), 'Page 07 rail must not show progress or help blocks');
 assert.deepStrictEqual(adapter.patches.get(6).data, {
   continueLabel: 'I’ve Noticed Something I’m Ready to Look At'
 });
