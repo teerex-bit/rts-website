@@ -43,9 +43,9 @@ function renderIconCards(page, choice = false) {
 }
 
 function renderOriginMap(page) {
-  const items = page.cards.slice(0, 6).map(card => `<label class="origin-choice">${symbol(card[0])}<span>${esc(card[1])}</span><input type="checkbox" aria-label="${esc(card[1])}"></label>`).join('');
+  const items = page.cards.slice(0, 6).map(card => `<article class="origin-choice">${symbol(card[0])}<span>${esc(card[1])}</span></article>`).join('');
   const unsure = page.cards[6];
-  return `<div class="origin-map"><div class="origin-map__choices">${items}</div><div class="origin-map__center">${symbol('person')}<strong>${esc(page.center[0])}</strong><em>(${esc(page.center[1])})</em></div><label class="origin-choice origin-choice--wide">${symbol(unsure[0])}<span>${esc(unsure[1])}</span><input type="checkbox" aria-label="${esc(unsure[1])}"></label></div>`;
+  return `<div class="origin-map"><div class="origin-map__choices">${items}</div><div class="origin-map__center">${symbol('person')}<strong>${esc(page.center[0])}</strong><em>(${esc(page.center[1])})</em></div><article class="origin-choice origin-choice--wide">${symbol(unsure[0])}<span>${esc(unsure[1])}</span></article></div>`;
 }
 
 function renderPracticeForm(page) {
