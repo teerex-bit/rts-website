@@ -29,7 +29,7 @@ function renderPage02() {
     <main class="p02-shell">
       <aside class="p02-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks('Awaken')}</nav></aside>
       <section class="p02-main">
-        <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken 1</p><h1 id="p02-title">You Have Already Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
+        <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken</p><h1 id="p02-title">You Have Already Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
         <section class="p02-outcomes" aria-label="In this lesson you will"><h2>In This Lesson You Will</h2><div>${outcomes.map(([icon, copy]) => `<article><span aria-hidden="true"><svg><use href="/assets/page-awaken/icons.svg#${icon}"></use></svg></span><p>${esc(copy)}</p></article>`).join('')}</div></section>
         <blockquote class="p02-quote"><span aria-hidden="true">“</span><p>Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.</p><cite>— Dallas Willard</cite></blockquote>
       </section>

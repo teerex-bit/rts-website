@@ -2,7 +2,7 @@ module.exports = {
   number: 3,
   family: 'awaken',
   activeStage: 'Awaken',
-  courseLabel: 'Awaken 1',
+  courseLabel: 'Awaken',
   lessonLabel: 'Lesson 1 of 4',
   progressLabel: 'Awaken 1 of 4',
   progress: 1,
