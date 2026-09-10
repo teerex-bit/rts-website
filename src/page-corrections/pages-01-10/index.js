@@ -134,8 +134,11 @@ const css = `
   .formation-course-page[data-page-number="05"] .course-section-heading,
   .formation-course-page[data-page-number="06"] .course-section-heading{grid-template-columns:1fr;margin:24px 0 20px}
   .formation-course-page[data-page-number="05"] .course-card-grid{gap:16px;margin-top:4px}
-  .formation-course-page[data-page-number="05"] .course-card{min-height:214px;padding:20px 14px}
-  .formation-course-page[data-page-number="05"] .course-card .course-symbol{margin-bottom:3px}
+  .formation-course-page[data-page-number="05"] .course-card{display:grid;grid-template-rows:66px 1fr;gap:7px;min-height:214px;padding:20px 14px}
+  .formation-course-page[data-page-number="05"] .course-card .course-symbol{margin:0}
+  .formation-course-page[data-page-number="05"] .course-card>div{display:grid;height:100%;grid-template-rows:20px minmax(44px,1fr) 26px;align-items:start}
+  .formation-course-page[data-page-number="05"] .course-card h3,.formation-course-page[data-page-number="05"] .course-card p,.formation-course-page[data-page-number="05"] .course-card small{margin:0}
+  .formation-course-page[data-page-number="05"] .course-card small{align-self:end}
   .formation-course-page[data-page-number="06"]{font-size:13px;line-height:1.43}
   .formation-course-page[data-page-number="06"] .course-content{padding-bottom:10px}
   .formation-course-page[data-page-number="06"] .course-hero{padding-bottom:8px}
