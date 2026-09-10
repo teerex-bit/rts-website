@@ -88,11 +88,12 @@
 @media (min-width:1181px){
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
-  .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{background-image:url('/assets/page-awaken/curriculum-logo.png')}
   .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:none}
   .course-top__brand{position:absolute;left:24px;top:15px;display:flex;align-items:center;gap:10px;height:67px;color:#092039;text-decoration:none}
   .course-top__brand-mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
-  .course-top__brand-mark img{display:block;width:196px;height:67px;max-width:none}
+  /* Blend the existing Tree of Life mark into the header so its source-image
+     background never appears as a separate color block. */
+  .course-top__brand-mark img{display:block;width:196px;height:67px;max-width:none;mix-blend-mode:multiply}
   .course-top__brand-type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
   .course-top__brand-type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
   .course-top__brand-type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
@@ -187,7 +188,8 @@
 .p02-top,.p07-top{height:96px;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:#fffdfa;border-bottom:1px solid #e2ddd4}
 .p02-brand{display:flex;align-items:center;gap:10px;color:#092039;text-decoration:none}
 .p02-brand__mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
-.p02-brand__mark img{display:block;width:196px;height:67px;max-width:none}
+/* Use the same clean Tree of Life treatment on Page 02 and Pages 03–06. */
+.p02-brand__mark img{display:block;width:196px;height:67px;max-width:none;mix-blend-mode:multiply}
 .p02-brand__type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
 .p02-brand__type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
 .p02-brand__type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
