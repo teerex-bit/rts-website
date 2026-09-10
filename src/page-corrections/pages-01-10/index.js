@@ -76,7 +76,7 @@ const css = `
 .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:"";position:absolute;left:24px;top:9px;z-index:2;width:196px;height:67px;background:url('/assets/page-awaken/curriculum-logo-transparent.png') left center/contain no-repeat}
 @media (min-width:1181px){
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
-  .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
+  .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/page-awaken/curriculum-logo-transparent.png') left center/contain no-repeat}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
   /* With Course Overview removed, let the remaining lesson label and tools use
      the full header. This prevents the former center-control slot from leaving
