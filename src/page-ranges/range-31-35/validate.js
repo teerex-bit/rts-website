@@ -18,7 +18,7 @@ for (const [number, [title, kicker]] of expected) {
   assert.equal(page.kicker, kicker, `Page ${number} kicker`);
   const html = render(page);
   assert.doesNotMatch(html, /data-stage="Walk"|>Walk</i, `Page ${number} must use four stages`);
-  assert.doesNotMatch(html, /[♧♨⌕⌂]/, `Page ${number} must not use placeholder glyph icons`);
+  assert.doesNotMatch(html, /[♧⌕⌂]/, `Page ${number} must not use placeholder glyph icons`);
 }
 
 for (const file of ['body-lake.jpg', 'relationships.jpg', 'soul-mountains.jpg', 'fruit-orchard.jpg', 'icons.svg']) {

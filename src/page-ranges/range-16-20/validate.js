@@ -12,7 +12,7 @@ for (const page of range.pages.values()) {
   assert.deepEqual([...new Set(stages)], ['Awaken', 'See Clearly', 'Become', 'Join'], `page ${page.number}: exactly four stages`);
   assert.doesNotMatch(html, /data-stage="Walk"/, `page ${page.number}: Walk is not a stage`);
   if (page.family === 'see-clearly-reflection') {
-    assert.match(html, /class="r1620-rail__progress"/, `page ${page.number}: rail progress is visible`);
+    assert.match(html, /class="r1620-rail__journey"/, `page ${page.number}: formation rail is visible`);
     assert.match(html, new RegExp(page.progress), `page ${page.number}: rail progress matches the page`);
   }
 }

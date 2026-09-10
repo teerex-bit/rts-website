@@ -48,8 +48,8 @@ const conversations = range.render(range.pages.get(38));
 const conversationsText = conversations.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 assert.doesNotMatch(conversations, /<li class="is-active">/, 'Conversations must not present itself as a Join-stage lesson');
 for (const phrase of [
-  'Schedule a conversation',
-  'Book via Calendly',
+  'Book an appointment',
+  'Schedule a video conversation',
   'A different kind of conversation',
   'Speak, Lord, for Your servant is listening.'
 ]) assert.match(conversationsText, new RegExp(phrase, 'i'));

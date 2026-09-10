@@ -5,9 +5,8 @@ const {pages, render} = require('./index');
 
 const rendered = [...pages.values()].map(render).join('\n');
 
-assert.match(rendered, /range-26-30\/brand-logo\.svg/, 'pages use the range-approved Becoming wordmark');
-assert.doesNotMatch(rendered, /\/assets\/logo\.svg/, 'generic site mark is not used');
-assert.doesNotMatch(rendered, /legacy-tall/, 'all pages share the standard review width');
+assert.match(rendered, /\/assets\/logo\.svg/, 'pages use the approved shared formation wordmark');
+assert.match(rendered, /rts-r2630--legacy-tall/, 'Pages 28–29 retain their approved expanded reading layout');
 assert.doesNotMatch(rendered, /placeholder|data-missing-raster/, 'review pages contain no placeholder assets');
 assert.match(rendered, /range-26-30\/seedling\.svg/, 'Page 30 uses a replaceable local hero asset');
 assert.doesNotMatch(rendered, />\s*Walk\s*</, 'Walk is not exposed as a journey stage');

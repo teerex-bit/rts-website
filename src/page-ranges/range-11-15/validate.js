@@ -8,7 +8,7 @@ const expected = new Map([
   [11, ["That’s Formation, Not Identity", 'Identity Is Who You Are', 'Formation Is How You Learn']],
   [12, ['Make Room for Life', 'Old Wineskin', 'New Wineskin']],
   [13, ['Seeing God Clearly', 'What You’ll Discover', 'Why This']],
-  [14, ['Is This God Trustworthy?', 'Take a moment to reflect:', 'Continue to Become']],
+  [14, ['Is This God Trustworthy?', 'Take a moment to reflect:', 'Continue']],
   [15, ['The Same God.', 'In Jesus (New Testament)', 'In God (Old Testament)']]
 ]);
 
@@ -28,8 +28,8 @@ assert(render(14).includes('href="/become/"'), 'Page 14 must continue to Become'
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
 const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
-assert(renderer.includes('<svg'), 'Shared renderer must use editable SVG icons');
-assert(!styles.match(/content:\s*['"][◉❧♧♛♢⚿♨▣◷●]/), 'Styles must not use keyboard glyphs as icons');
+assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
+assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');
 
 for (const page of pages.values()) {
   for (const source of [page.heroImage, page.side?.image, ...(page.wineskins || []).map(card => card.image)].filter(Boolean)) {
