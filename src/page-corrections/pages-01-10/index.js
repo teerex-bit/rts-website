@@ -138,7 +138,7 @@ const css = `
   .formation-course-page[data-page-number="05"] .course-card{display:grid;grid-template-rows:20px 66px minmax(48px,1fr) 24px;gap:6px;min-height:214px;padding:20px 14px}
   .formation-course-page[data-page-number="05"] .course-card>div{display:contents}
   .formation-course-page[data-page-number="05"] .course-card h3{grid-row:1;align-self:start}
-  .formation-course-page[data-page-number="05"] .course-card .course-symbol{grid-row:2;margin:0;align-self:start}
+  .formation-course-page[data-page-number="05"] .course-card .course-symbol{grid-row:2;justify-self:center;margin:0;align-self:start}
   .formation-course-page[data-page-number="05"] .course-card p{grid-row:3;align-self:center}
   .formation-course-page[data-page-number="05"] .course-card small{grid-row:4;align-self:end;color:#52683d;font:italic .7rem/1.2 var(--serif)}
   .formation-course-page[data-page-number="05"] .course-card h3,.formation-course-page[data-page-number="05"] .course-card p,.formation-course-page[data-page-number="05"] .course-card small{margin:0}
@@ -150,7 +150,7 @@ const css = `
   .formation-course-page[data-page-number="06"] .course-card{display:grid;grid-template-rows:20px 66px minmax(48px,1fr) 24px;gap:6px;min-height:214px;padding:20px 14px}
   .formation-course-page[data-page-number="06"] .course-card>div{display:contents}
   .formation-course-page[data-page-number="06"] .course-card h3{grid-row:1;align-self:start}
-  .formation-course-page[data-page-number="06"] .course-card .course-symbol{grid-row:2;width:66px;height:66px;margin:0;align-self:start}
+  .formation-course-page[data-page-number="06"] .course-card .course-symbol{grid-row:2;justify-self:center;width:66px;height:66px;margin:0;align-self:start}
   .formation-course-page[data-page-number="06"] .course-card p{grid-row:3;align-self:center}
   .formation-course-page[data-page-number="06"] .course-card small{grid-row:4;align-self:end;color:#52683d;font:italic .7rem/1.2 var(--serif)}
   .formation-course-page[data-page-number="06"] .course-card h3,.formation-course-page[data-page-number="06"] .course-card p,.formation-course-page[data-page-number="06"] .course-card small{margin:0}
