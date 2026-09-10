@@ -14,7 +14,8 @@ const required = [
 const cssRequired = [
   ['single-line desktop title', 'white-space:nowrap'],
   ['smooth shifted hero gradient', 'rgba(251,248,241,.60) 49%'],
-  ['message moved to the far right of the hero', 'right:2.1%'],
+  ['tall narrow message beside the woman', 'width:190px;min-height:156px'],
+  ['more-visible gold botanical message icon', 'width:42px;transform:translateY(-50%)'],
   ['clean logo background matches header', '.landing-header .landing-logo'],
   ['conversation photo', "ways-conversations.jpg"],
   ['music photo', "ways-music.jpg"],
