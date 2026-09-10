@@ -48,6 +48,8 @@ const page07 = adapter.patches.get(7).render();
 const page07VisibleText = page07.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 assert.ok(page07VisibleText.includes('See Who You Really Are'));
 assert.ok(!page07.includes('Phase Overview'), 'Page 07 must not show the phase-overview label');
+assert.ok(page07.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Page 07 must use the approved Tree of Life wordmark');
+assert.ok(!page07.includes('/assets/brand-main-source.png'), 'Page 07 must not use the circle-flame logo');
 assert.ok(!page07.includes('Begin This Phase'), 'Page 07 must not show the removed phase CTA');
 assert.ok(!page07.includes('class="p07-journey"'), 'Page 07 must not show the removed five-step journey row');
 assert.ok(!page07.includes('Your Progress') && !page07.includes('Need help?'), 'Page 07 rail must not show progress or help blocks');

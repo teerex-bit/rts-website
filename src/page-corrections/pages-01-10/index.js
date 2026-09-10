@@ -47,7 +47,7 @@ function renderPage07SideCards() {
 
 function renderPage07() {
   return `<div class="p07-overview" data-page-number="07" data-editable-source="pages-01-10-corrections">
-    <header class="p07-top"><a href="/" aria-label="Reforming the Soul home"><img src="/assets/brand-main-source.png" alt="Reforming the Soul"></a><nav aria-label="Formation stages">${stages.map(([name, , href]) => `<a class="${name === page07.activeStage ? 'is-active' : ''}" href="${href}">${esc(name)}</a>`).join('')}</nav><div><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span aria-label="Account">●</span></div></header>
+    <header class="p07-top"><a href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a><nav aria-label="Formation stages">${stages.map(([name, , href]) => `<a class="${name === page07.activeStage ? 'is-active' : ''}" href="${href}">${esc(name)}</a>`).join('')}</nav><div><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span aria-label="Account">●</span></div></header>
     <main class="p07-shell">
       <aside class="p07-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks(page07.activeStage)}</nav></aside>
       <section class="p07-work">
