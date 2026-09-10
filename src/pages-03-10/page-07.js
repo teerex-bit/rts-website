@@ -20,6 +20,18 @@ module.exports = {
     'Recognize assumptions and patterns that distort what is actually true.',
     'Look to Jesus, the One who reveals the Father and shows us reality.'
   ],
+  movements: [
+    {
+      number: '01',
+      title: 'See Yourself',
+      text: 'Notice the stories, assumptions, and patterns that have shaped the way you see.'
+    },
+    {
+      number: '02',
+      title: 'See God',
+      text: 'Look again through Jesus and receive the truer reality of God’s love and goodness.'
+    }
+  ],
   journeyTitle: 'A Journey of Seeing Differently',
   cards: [
     ['person', 'Who Am I?', 'Discover the truth of your identity as a new creation.'],

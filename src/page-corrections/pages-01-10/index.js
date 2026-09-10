@@ -54,6 +54,7 @@ function renderPage07() {
         <article class="p07-main">
           <section class="p07-hero" aria-labelledby="p07-title"><div><p>${esc(page07.courseLabel)} <span aria-hidden="true">•</span> ${esc(page07.lessonLabel)}</p><h1 id="p07-title">${esc(page07.title)}</h1><i aria-hidden="true"></i>${page07.introduction.map((line, index) => `<p class="${index === 0 || index === 2 ? 'is-emphasis' : ''}">${esc(line)}</p>`).join('')}<a href="/see-clearly/your-formation/">Begin This Phase <span aria-hidden="true">→</span></a></div></section>
           <section class="p07-outcomes" aria-label="In this phase you will"><h2>In This Phase You Will</h2><div>${page07.outcomes.map((outcome, index) => `<article><span aria-hidden="true">${['●', '◌', '❧'][index]}</span><p>${esc(outcome)}</p></article>`).join('')}</div></section>
+          <section class="p07-movements" aria-labelledby="p07-movements-title"><div class="p07-movements__heading"><span aria-hidden="true"><img src="/assets/icon-see.svg" alt=""></span><p id="p07-movements-title">Two movements in learning to see clearly</p></div><div class="p07-movements__steps">${page07.movements.map((movement, index) => `<article><span>${esc(movement.number)}</span><div><h3>${esc(movement.title)}</h3><p>${esc(movement.text)}</p></div></article>${index === 0 ? '<i aria-hidden="true">→</i>' : ''}`).join('')}</div></section>
           <section class="p07-journey"><h2>${esc(page07.journeyTitle)}</h2><div>${page07.cards.map((card, index) => `<article><span aria-hidden="true">${conceptIcons[card[0]] || '•'}</span><h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></article>${index < page07.cards.length - 1 ? '<b aria-hidden="true">→</b>' : ''}`).join('')}</div></section>
           <blockquote class="p07-quote">${esc(page07.note[0])}</blockquote>
         </article>
@@ -253,6 +254,18 @@ const css = `
 .p07-outcomes article:last-child{border:0}
 .p07-outcomes article>span,.p07-journey article>span{display:grid;place-items:center;width:43px;height:43px;color:#fff;background:#145ca7;border-radius:50%}
 .p07-outcomes article p{margin:0;font-size:.66rem;line-height:1.4}
+.p07-movements{display:grid;gap:10px;margin:0 30px;padding:14px 18px 15px;border-top:1px solid #ded6ca;border-bottom:1px solid #ded6ca}
+.p07-movements__heading{display:flex;align-items:center;justify-content:center;gap:8px;color:#145ca7}
+.p07-movements__heading>span{display:grid;place-items:center;width:25px;height:25px;border:1px solid #a9c3dc;border-radius:50%}
+.p07-movements__heading img{width:15px;height:15px;filter:invert(30%) sepia(30%) saturate(1317%) hue-rotate(168deg) brightness(82%) contrast(96%)}
+.p07-movements__heading p{margin:0;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.p07-movements__steps{display:grid;grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr);gap:14px;align-items:center;max-width:600px;margin:auto}
+.p07-movements__steps article{display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;align-items:start}
+.p07-movements__steps article>span{display:grid;place-items:center;width:24px;height:24px;color:#fff;background:#145ca7;border-radius:50%;font-size:.58rem;font-weight:700}
+.p07-movements__steps article:last-child>span{background:#53713b}
+.p07-movements__steps h3{margin:1px 0 2px;color:#092039;font-size:.69rem;letter-spacing:.06em;text-transform:uppercase}
+.p07-movements__steps p{margin:0;font-size:.61rem;line-height:1.4}
+.p07-movements__steps>i{color:#c68b24;font-size:1.15rem;font-style:normal;text-align:center}
 .p07-journey{padding:4px 30px 18px}
 .p07-journey>h2{display:flex;align-items:center;gap:15px;margin:3px 0 8px}.p07-journey>h2:before,.p07-journey>h2:after{content:"";flex:1;border-top:1px solid #ded6ca}
 .p07-journey>div{display:flex;align-items:flex-start;justify-content:space-between}
@@ -274,7 +287,7 @@ const css = `
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
-  .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
+  .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-movements{margin:0 22px}.p07-movements__steps{grid-template-columns:1fr}.p07-movements__steps>i{transform:rotate(90deg)}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
 }`;
 
 module.exports = { patches, css };
