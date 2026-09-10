@@ -9,7 +9,7 @@ module.exports = {
   progressMax: 4,
   step: 1,
   dotCount: 5,
-  title: 'Those Reactions Came From Somewhere',
+  title: 'Look Beneath the Surface',
   introduction: [
     'The reactions you just noticed didn’t appear from nowhere.',
     'They were learned, reinforced, absorbed, or developed over time.',

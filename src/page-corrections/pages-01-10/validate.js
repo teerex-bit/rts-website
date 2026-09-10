@@ -45,7 +45,7 @@ assert.ok(adapter.css.includes('[data-page-number="05"]):before{background-image
 assert.strictEqual(require('../../pages-03-10/page-05').image, '/assets/page-awaken/page-03-seated-sunrise.png', 'Page 05 must reuse the approved seated-sunrise asset');
 const awakenSequence = [
   ['/awaken/pay-attention/', 'Where Did That Come From?'],
-  ['/awaken/name-your-desire/', 'Those Reactions Came From Somewhere'],
+  ['/awaken/name-your-desire/', 'Look Beneath the Surface'],
   ['/awaken/listen-within/', 'God Already Sees It'],
   ['/awaken/practice-presence/', 'Catch Yourself Being You']
 ];
