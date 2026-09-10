@@ -79,7 +79,6 @@ const css = `
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
   .course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{background-image:url('/assets/page-awaken/curriculum-logo.png')}
-  .course-top:has(+.formation-course-page[data-page-number="03"]):after,.course-top:has(+.formation-course-page[data-page-number="04"]):after,.course-top:has(+.formation-course-page[data-page-number="05"]):after,.course-top:has(+.formation-course-page[data-page-number="06"]):after{content:"";position:absolute;left:92px;top:23px;width:140px;height:58px;background:#fff url('/assets/page-awaken/awaken-wordmark.png') center/contain no-repeat}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
   /* With Course Overview removed, let the remaining lesson label and tools use
      the full header. This prevents the former center-control slot from leaving
@@ -118,6 +117,15 @@ const css = `
   .formation-course-page[data-page-number="06"] .course-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .formation-course-page[data-page-number="05"] .course-card,
   .formation-course-page[data-page-number="06"] .course-card{min-height:206px;padding:13px 10px}
+  /* Page 05: the repeated leaf badges do not add meaning here. Keep the four
+     distinct practice icons and give that row clear, even breathing room. */
+  .formation-course-page[data-page-number="05"] .course-callout{grid-template-columns:1fr;padding:18px 22px}
+  .formation-course-page[data-page-number="05"] .course-callout>.course-symbol,
+  .formation-course-page[data-page-number="05"] .course-section-heading>.course-symbol{display:none}
+  .formation-course-page[data-page-number="05"] .course-section-heading{grid-template-columns:1fr;margin:24px 0 20px}
+  .formation-course-page[data-page-number="05"] .course-card-grid{gap:16px;margin-top:4px}
+  .formation-course-page[data-page-number="05"] .course-card{min-height:214px;padding:20px 14px}
+  .formation-course-page[data-page-number="05"] .course-card .course-symbol{margin-bottom:3px}
   .formation-course-page[data-page-number="06"]{font-size:13px;line-height:1.43}
   .formation-course-page[data-page-number="06"] .course-content{padding-bottom:10px}
   .formation-course-page[data-page-number="06"] .course-hero{padding-bottom:8px}
@@ -139,6 +147,10 @@ const css = `
   .formation-course-page[data-page-number="08"] .course-callout--note{order:4}
   .formation-course-page[data-page-number="08"] .lesson-navigation{order:5}
   .formation-course-page[data-page-number="08"] .course-callout--note .course-symbol:before{content:'◉'}
+  .formation-rail__progress{margin-top:14px}
+  .lesson-navigation{grid-template-columns:150px minmax(0,1fr)}
+  .lesson-navigation .lesson-navigation__continue{grid-column:2}
+  .lesson-navigation .lesson-navigation__defer{grid-column:2;justify-self:end}
 }
 .p02-awaken,.p07-overview{min-height:100vh;color:#092039;background:#fbf8f2;font-family:var(--sans)}
 .p02-top,.p07-top{height:96px;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:#fffdfa;border-bottom:1px solid #e2ddd4}

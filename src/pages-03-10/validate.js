@@ -25,17 +25,16 @@ assert.strictEqual(byNumber.get(4).cards.length, 7, 'Page 04 must show six origi
 assert.strictEqual(byNumber.get(4).center[1], 'Example: I need to fix things when things go wrong.', 'Page 04 center example must match the reference');
 assert.strictEqual(byNumber.get(5).cards.length, 4, 'Page 05 must show the four-part practice');
 assert.strictEqual(byNumber.get(6).cards.length, 4, 'Page 06 must show the four-part practice');
-assert.strictEqual(byNumber.get(6).dotCount, 5, 'Page 06 reference uses five lesson navigation dots');
 assert.strictEqual(byNumber.get(7).cards.length, 5, 'Page 07 must show five seeing-differently steps');
 assert.strictEqual(byNumber.get(8).cards.length, 4, 'Page 08 must show four identity choices');
 assert.strictEqual(byNumber.get(9).cards.length, 3, 'Page 09 must show the three-part identity picture');
 assert.strictEqual(byNumber.get(10).cards.length, 5, 'Page 10 must show five formation comparisons');
 
-for (const number of [3, 4, 5, 6]) {
+for (const [number, progress] of [[3, 1], [4, 2], [5, 3], [6, 4]]) {
   const page = byNumber.get(number);
-  assert.strictEqual(page.progressLabel, 'Awaken 1 of 7');
-  assert.strictEqual(page.progress, 1);
-  assert.strictEqual(page.progressMax, 7);
+  assert.strictEqual(page.progressLabel, `Awaken ${progress} of 4`);
+  assert.strictEqual(page.progress, progress);
+  assert.strictEqual(page.progressMax, 4);
 }
 
 assert.strictEqual(byNumber.get(7).progressLabel, 'See Clearly 0 of 7');

@@ -79,9 +79,8 @@ function composition(page) {
 }
 
 function lessonNavigation(page) {
-  const dotCount = page.dotCount || (page.number < 7 ? 5 : 6);
   const routes = lessonRoutes.get(page.number) || { back: page.activeStage === 'Awaken' ? links.awaken : links.seeClearly, next: links.next };
-  return `<nav class="lesson-navigation" aria-label="Lesson navigation"><a href="${routes.back}">← &nbsp; Back</a><div aria-label="Step ${Math.max(page.step, 1)} of ${dotCount}">${Array.from({ length: dotCount }, (_, index) => `<span class="${index === Math.max(page.step - 1, 0) ? 'is-current' : ''}"></span>`).join('')}</div><a class="lesson-navigation__continue" href="${routes.next}">${esc(page.continueLabel || 'Continue')} &nbsp; →</a>${page.deferLabel ? `<a class="lesson-navigation__defer" href="${routes.next}">${esc(page.deferLabel)}</a>` : ''}</nav>`;
+  return `<nav class="lesson-navigation" aria-label="Lesson navigation"><a href="${routes.back}">← &nbsp; Back</a><a class="lesson-navigation__continue" href="${routes.next}">${esc(page.continueLabel || 'Continue')} &nbsp; →</a>${page.deferLabel ? `<a class="lesson-navigation__defer" href="${routes.next}">${esc(page.deferLabel)}</a>` : ''}</nav>`;
 }
 
 function renderCoursePage(page, stages) {

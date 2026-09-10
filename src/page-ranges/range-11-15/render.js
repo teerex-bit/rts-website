@@ -18,13 +18,8 @@ function top(page) {
   return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><a href="/see-clearly/">← &nbsp; Course Overview</a><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
 }
 
-function dots(page) {
-  const max = page.progressMax;
-  return `<div class="rts-11-15__dots" aria-label="Step ${page.step} of ${max}">${Array.from({ length: max }, (_, index) => `<span class="${index + 1 === page.step ? 'is-current' : ''}"></span>`).join('')}</div>`;
-}
-
 function lessonNav(page) {
-  return `<nav class="rts-11-15__lesson-nav" aria-label="Lesson navigation"><a href="${esc(page.previous)}">← &nbsp; Back</a>${dots(page)}<div><a class="rts-11-15__continue" href="${esc(page.next)}">${esc(page.continueLabel)} &nbsp; →</a>${page.continueNote ? `<small>${esc(page.continueNote)}</small>` : ''}</div></nav>`;
+  return `<nav class="rts-11-15__lesson-nav" aria-label="Lesson navigation"><a href="${esc(page.previous)}">← &nbsp; Back</a><div><a class="rts-11-15__continue" href="${esc(page.next)}">${esc(page.continueLabel)} &nbsp; →</a>${page.continueNote ? `<small>${esc(page.continueNote)}</small>` : ''}</div></nav>`;
 }
 
 function sideCards(page) {
