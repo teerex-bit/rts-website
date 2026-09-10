@@ -85,7 +85,7 @@
 /* Pages 01-10 correction styles */
 /* Pages 01–10 final-review corrections. All selectors are page-specific. */
 .home-actions .outline,.home-closing .button{display:none}
-.course-top__brand{position:absolute;left:24px;top:15px;z-index:1;display:flex;align-items:center;gap:10px;height:67px;color:#092039;text-decoration:none}
+.course-top>a.course-top__brand{position:absolute;left:24px;top:15px;z-index:1;display:flex;align-items:center;gap:10px;height:67px;min-width:0;margin:0;padding:0;color:#092039;border:0;border-radius:0;text-align:left;text-decoration:none}
 .course-top__brand-mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
 .course-top__brand-mark img{display:block;width:196px;height:67px;max-width:none}
 .course-top__brand-type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
@@ -280,7 +280,7 @@
   .p02-shell,.p07-shell{grid-template-columns:220px 1fr}.p02-rail nav>a,.p07-rail nav>a{grid-template-columns:38px 1fr;padding:10px 5px}.p02-rail nav img,.p07-rail nav img{width:36px}.p07-top>div a:nth-child(-n+2){display:none}.p07-work{grid-template-columns:minmax(0,1fr) 270px}.p07-hero>div{width:60%}
 }
 @media (max-width:900px){
-  .course-top__brand{position:static;height:55px}.course-top__brand-mark{width:55px;height:55px;flex-basis:55px}.course-top__brand-mark img{width:161px;height:55px}.course-top__brand-type strong{font-size:1.1rem}.course-top__brand-type em:first-child{font-size:.85rem}.course-top__brand-type em:last-child{font-size:1.55rem}
+  .course-top>a.course-top__brand{position:static;height:55px;margin:0!important}.course-top__brand-mark{width:55px;height:55px;flex-basis:55px}.course-top__brand-mark img{width:161px;height:55px}.course-top__brand-type strong{font-size:1.1rem}.course-top__brand-type em:first-child{font-size:.85rem}.course-top__brand-type em:last-child{font-size:1.55rem}
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
