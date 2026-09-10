@@ -135,11 +135,13 @@ const css = `
   .formation-course-page[data-page-number="05"] .course-section-heading,
   .formation-course-page[data-page-number="06"] .course-section-heading{grid-template-columns:1fr;margin:24px 0 20px}
   .formation-course-page[data-page-number="05"] .course-card-grid{gap:16px;margin-top:4px}
-  .formation-course-page[data-page-number="05"] .course-card{display:grid;grid-template-rows:66px 1fr;gap:7px;min-height:214px;padding:20px 14px}
-  .formation-course-page[data-page-number="05"] .course-card .course-symbol{margin:0}
-  .formation-course-page[data-page-number="05"] .course-card>div{display:grid;height:100%;grid-template-rows:20px minmax(44px,1fr) 26px;align-items:start}
+  .formation-course-page[data-page-number="05"] .course-card{display:grid;grid-template-rows:20px 66px minmax(48px,1fr) 24px;gap:6px;min-height:214px;padding:20px 14px}
+  .formation-course-page[data-page-number="05"] .course-card>div{display:contents}
+  .formation-course-page[data-page-number="05"] .course-card h3{grid-row:1;align-self:start}
+  .formation-course-page[data-page-number="05"] .course-card .course-symbol{grid-row:2;margin:0;align-self:start}
+  .formation-course-page[data-page-number="05"] .course-card p{grid-row:3;align-self:center}
+  .formation-course-page[data-page-number="05"] .course-card small{grid-row:4;align-self:end;color:#52683d;font:italic .7rem/1.2 var(--serif)}
   .formation-course-page[data-page-number="05"] .course-card h3,.formation-course-page[data-page-number="05"] .course-card p,.formation-course-page[data-page-number="05"] .course-card small{margin:0}
-  .formation-course-page[data-page-number="05"] .course-card small{align-self:end}
   .formation-course-page[data-page-number="06"]{font-size:13px;line-height:1.43}
   .formation-course-page[data-page-number="06"] .course-content{padding-bottom:10px}
   .formation-course-page[data-page-number="06"] .course-hero{padding-bottom:8px}

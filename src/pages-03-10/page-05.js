@@ -25,7 +25,7 @@ module.exports = {
   cards: [
     ['eye', 'Notice', 'What just happened inside me?', 'Be honest and specific.'],
     ['speech', 'Ask', 'God, what do You want me to see?', 'Invite Him to show you.'],
-    ['ear', 'Listen', 'Pay attention to what comes to mind.', 'It may be a thought, a memory, or a conviction.'],
+    ['ear', 'Listen', 'Pay attention to what comes to mind.', 'Thought, memory, or conviction.'],
     ['heart', 'Receive', 'Don’t force an answer. Receive what He gives you.', 'Even if nothing comes.']
   ],
   note: [
