@@ -7,7 +7,7 @@ const css = fs.readFileSync(path.join(root, 'public', 'assets', 'page-01-approve
 const required = [
   ['Page 01 uses its dedicated stylesheet', '/assets/page-01-approved.css'],
   ['editable landing marker is present', 'data-landing-page="new"'],
-  ['circle flame logo is used', 'src="/assets/logo-circle.svg"'],
+  ['approved transparent circle flame logo is used', 'src="/assets/brand-main-transparent.png"'],
   ['hero message is present', 'class="home-message"'],
   ['three editable ways cards are present', 'class="ways-grid"'],
 ];

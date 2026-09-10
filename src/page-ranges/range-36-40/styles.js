@@ -28,4 +28,5 @@ module.exports = String.raw`
 /* Use the shared formation icons only in the journey rail and stage bar. */
 .rts-36-40__rail li .rts-36-40__stage-icon{width:28px;height:28px;margin-top:3px;object-fit:contain;filter:brightness(0) invert(1)}
 .rts-36-40__stage-bar .rts-36-40__stage-icon{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}
+.rts-36-40__brand--approved-circle{width:224px;height:60px}.rts-36-40__brand--approved-circle img{display:block;width:224px;height:auto;max-width:none;object-fit:contain}
 `;

@@ -8,6 +8,7 @@ const icon = (name, label = '') => `<svg class="rts-36-40__icon"${label ? ` role
 const stageIcon = name => `<img class="rts-36-40__stage-icon" src="/assets/icon-${escapeHtml(name)}.svg" alt="">`;
 
 function brand(mark = 'tree') {
+  if (mark === 'crescent') return `<a class="rts-36-40__brand rts-36-40__brand--approved-circle" href="/" aria-label="Reforming the Soul home"><img src="/assets/brand-main-transparent.png" alt="Reforming the Soul"></a>`;
   return `<a class="rts-36-40__brand" href="/" aria-label="Reforming the Soul home"><img src="${ASSET_ROOT}/${mark === 'tree' ? 'brand-tree.svg' : 'brand-crescent.svg'}" alt=""><span>Reforming<em>the Soul</em></span></a>`;
 }
 
