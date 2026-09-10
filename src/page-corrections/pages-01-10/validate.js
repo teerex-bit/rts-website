@@ -43,18 +43,7 @@ assert.ok(!/[◉◌❧●]/.test(page02), 'Page 02 must not use keyboard charact
 assert.ok(adapter.css.includes("/assets/page-awaken/awaken-sunrise-path"), 'Page 02 must use its replaceable mountain-path hero asset');
 assert.ok(adapter.css.includes('.course-top__brand-mark img'), 'Pages 03–06 must use the shared Tree of Life logo treatment');
 assert.strictEqual(require('../../pages-03-10/page-05').image, '/assets/page-awaken/page-03-seated-sunrise.png', 'Page 05 must reuse the approved seated-sunrise asset');
-const awakenSequence = [
-  ['/awaken/pay-attention/', 'Where Did That Come From?'],
-  ['/awaken/name-your-desire/', 'Look Beneath the Surface'],
-  ['/awaken/listen-within/', 'God Already Sees It'],
-  ['/awaken/practice-presence/', 'Catch Yourself Being You']
-];
-for (const [href, label] of awakenSequence) {
-  assert.ok(page02.includes(`href="${href}"`), `Page 02 progress card missing route ${href}`);
-  assert.ok(page02.includes(label), `Page 02 progress card missing page label “${label}”`);
-}
-assert.ok(!page02.includes('Watch &amp; Learn'), 'Page 02 must not show generic progress labels');
-assert.strictEqual((page02.match(/class="p02-progress__step/g) || []).length, 4, 'Page 02 progress card must match the four supplied Awaken pages');
+assert.ok(!page02.includes('p02-progress'), 'Page 02 must not show a separate progress card');
 assert.ok(adapter.patches.get(7).render().includes('See Who You Really Are'));
 assert.deepStrictEqual(adapter.patches.get(6).data, {
   continueLabel: 'I’ve Noticed Something I’m Ready to Look At'

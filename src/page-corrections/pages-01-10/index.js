@@ -24,8 +24,6 @@ function renderPage02() {
     ['notice', 'Learn to notice what happens inside you in real life.'],
     ['leaf', 'Take your first step in the journey of transformation with God.']
   ];
-  const routes = ['/awaken/pay-attention/', '/awaken/name-your-desire/', '/awaken/listen-within/', '/awaken/practice-presence/'];
-  const steps = awakenPages.map((page, index) => ({ title: page.title, href: routes[index] }));
   return `<div class="p02-awaken" data-page-number="02" data-editable-source="pages-01-10-corrections">
     <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
     <main class="p02-shell">
@@ -34,7 +32,6 @@ function renderPage02() {
         <section class="p02-hero" aria-labelledby="p02-title"><div><p>Awaken 1</p><h1 id="p02-title">You Have Already Been Formed</h1><p>Before we can be re-formed into Christlikeness,<br>we must first recognize that we have already<br>been formed.</p><a href="/awaken/pay-attention/">Begin Lesson <span aria-hidden="true">→</span></a></div></section>
         <section class="p02-outcomes" aria-label="In this lesson you will"><h2>In This Lesson You Will</h2><div>${outcomes.map(([icon, copy]) => `<article><span aria-hidden="true"><svg><use href="/assets/page-awaken/icons.svg#${icon}"></use></svg></span><p>${esc(copy)}</p></article>`).join('')}</div></section>
         <blockquote class="p02-quote"><span aria-hidden="true">“</span><p>Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.</p><cite>— Dallas Willard</cite></blockquote>
-        <aside class="p02-progress" aria-label="Your progress"><h2>Your Progress</h2><p>Awaken 1 of 7</p><progress max="7" value="1">Awaken 1 of 7</progress><ol>${steps.map((step, index) => `<li class="p02-progress__step ${index === 0 ? 'is-current' : ''}"><a href="${step.href}"><span>${index + 1}</span>${esc(step.title)}</a></li>`).join('')}</ol></aside>
       </section>
     </main>
   </div>`;
@@ -209,29 +206,20 @@ const css = `
 .p02-hero h1{margin:9px 0;color:#092039;font:400 clamp(3.4rem,4.2vw,4.8rem)/.98 var(--serif)}
 .p02-hero>div>p:nth-of-type(2){font-size:1rem;line-height:1.55}
 .p02-hero a,.p07-hero a{display:inline-flex;gap:22px;align-items:center;margin-top:7px;padding:10px 26px;color:#fff;background:#637f49;border-radius:999px;text-decoration:none}
-.p02-outcomes{padding:23px 350px 24px 50px;border-bottom:1px solid #ddd6ca}
+.p02-outcomes{padding:28px 50px;border-bottom:1px solid #ddd6ca}
 .p02-outcomes h2,.p07-outcomes h2,.p07-journey h2{margin:0 0 13px;color:#526a3e;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
-.p02-outcomes>div{display:grid;grid-template-columns:repeat(3,1fr)}
+.p02-outcomes>div{display:grid;grid-template-columns:repeat(3,1fr);max-width:960px}
 .p02-outcomes article{display:grid;grid-template-columns:46px 1fr;gap:13px;align-items:center;padding:4px 22px;border-right:1px solid #ded7cc}
 .p02-outcomes article:last-child{border:0}
 .p02-outcomes article>span{display:grid;place-items:center;width:42px;height:42px;color:#fff;background:#6b7750;border-radius:50%}
 .p02-outcomes article svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .p02-outcomes article:first-child svg{fill:currentColor;stroke:none}
 .p02-outcomes article p{margin:0;font-size:.72rem;line-height:1.45}
-.p02-quote{display:grid;grid-template-columns:34px 1fr;max-width:760px;margin:24px 360px 0 50px;padding:20px 30px;color:#28341f;background:transparent;border:0;border-top:1px solid #d9d1c4;font:italic 1rem/1.65 var(--serif)}
+.p02-quote{display:grid;grid-template-columns:34px 1fr;max-width:900px;margin:24px 50px 0;padding:20px 30px;color:#28341f;background:transparent;border:0;border-top:1px solid #d9d1c4;font:italic 1rem/1.65 var(--serif)}
 .p02-quote>span{color:#aab38e;font:700 3.3rem/1 var(--serif)}
 .p02-quote p{margin:0}
 .p02-quote cite{display:block;margin-top:10px;color:#5c7444;font:700 .68rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
 .p02-quote cite{grid-column:2}
-.p02-progress{position:absolute;right:30px;top:385px;width:300px;padding:24px;background:#fffdfa;border:1px solid #dfd8cd;border-radius:10px;box-shadow:0 12px 30px #13283a22}
-.p02-progress h2{margin:0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
-.p02-progress p{margin:10px 0 0;font-size:.8rem}
-.p02-progress progress{height:8px;margin:10px 0 15px}
-.p02-progress ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.p02-progress li{font-size:.7rem}
-.p02-progress li a{display:grid;grid-template-columns:25px 1fr;gap:8px;align-items:center;color:inherit;text-decoration:none}
-.p02-progress li span{display:grid;place-items:center;width:23px;height:23px;border:1px solid #74816c;border-radius:50%}
-.p02-progress li.is-current span{color:#fff;background:#667e4e}
 .p07-top{height:84px;padding:8px 28px}
 .p07-top>a img{width:196px;height:auto}
 .p07-top nav{gap:42px}
@@ -281,7 +269,7 @@ const css = `
   .p02-shell,.p07-shell{grid-template-columns:220px 1fr}.p02-rail nav>a,.p07-rail nav>a{grid-template-columns:38px 1fr;padding:10px 5px}.p02-rail nav img,.p07-rail nav img{width:36px}.p07-top>div a:nth-child(-n+2){display:none}.p07-work{grid-template-columns:minmax(0,1fr) 270px}.p07-hero>div{width:60%}
 }
 @media (max-width:900px){
-  .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p02-progress{position:relative;right:auto;top:auto;width:auto;margin:18px;order:4}.p02-outcomes{padding-right:50px}.p02-quote{margin-right:50px}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
+  .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
   .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
