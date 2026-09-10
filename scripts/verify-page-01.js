@@ -20,6 +20,7 @@ const cssRequired = [
   ['conversation photo', "ways-conversations.jpg"],
   ['music photo', "ways-music.jpg"],
   ['books photo', "ways-books.jpg"],
+  ['Start the Journey button styling', '.home-journey-cta{display:inline-flex'],
 ];
 const forbidden = ['experience-notice', 'experience-look-again', 'experience-respond'];
 const failures = [];
