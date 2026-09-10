@@ -126,6 +126,7 @@
   .formation-course-page[data-page-number="06"] .course-section-heading .course-symbol{width:58px;height:58px}
   .formation-course-page[data-page-number="05"] .course-card-grid,
   .formation-course-page[data-page-number="06"] .course-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .formation-course-page[data-page-number="04"] .origin-map__center{top:39%;transform:translate(-50%,-50%)}
   .formation-course-page[data-page-number="05"] .course-card,
   .formation-course-page[data-page-number="06"] .course-card{min-height:206px;padding:13px 10px}
   /* The generic leaf badge does not carry enough meaning to repeat through
