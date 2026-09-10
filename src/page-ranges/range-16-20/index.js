@@ -24,6 +24,10 @@ function icon(name, className = '') {
   return `<svg class="r1620-icon ${className}" aria-hidden="true"><use href="${assetRoot}/journey-icons.svg#${escapeHtml(name)}"></use></svg>`;
 }
 
+function journeyIcon(name) {
+  return `<img class="r1620-journey-icon" src="/assets/icon-${escapeHtml(name)}.svg" alt="">`;
+}
+
 function logo(light = false) {
   return `<a class="r1620-logo ${light ? 'r1620-logo--light' : ''}" href="/" aria-label="Reforming the Soul home">
     ${icon('tree')}
@@ -51,9 +55,9 @@ function topbar(active = '') {
 function rail(active, detailed = false) {
   const stages = [
     ['Awaken', 'Notice what has formed you.', 'awaken', '/awaken/'],
-    ['See Clearly', 'Learn what is actually true.', 'eye', '/see-clearly/'],
-    ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', 'walk', '/become/'],
-    ['Join', 'Live from that growing wholeness in participation with God.', 'people', '/join/']
+    ['See Clearly', 'Learn what is actually true.', 'see', '/see-clearly/'],
+    ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', 'become', '/become/'],
+    ['Join', 'Live from that growing wholeness in participation with God.', 'join', '/join/']
   ];
   const lessonList = detailed ? `<div class="r1620-rail__part"><b>Part One</b><strong>Live With God</strong></div>
     <ol class="r1620-rail__lessons">
@@ -63,7 +67,7 @@ function rail(active, detailed = false) {
     ${detailed ? '' : logo(true)}
     <p class="r1620-rail__label">The Formation Journey</p>
     <nav class="r1620-rail__journey" aria-label="Formation journey">
-      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${icon(symbol)}<span><b>${label}</b><small>${description}</small></span>${active === label ? icon('chevron') : label !== 'Join' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
+      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${active === label ? icon('chevron') : label !== 'Join' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
     </nav>
     <div class="r1620-help">${icon('question')}<span><b>Need help?</b><small>We’re here if you have questions along the way.</small><a href="/conversations/">Contact Support →</a></span></div>
   </aside>`;

@@ -3,12 +3,13 @@ const esc = value => String(value).replace(/[&<>"']/g, character => ({
 }[character]));
 
 const icon = name => `<span class="rts-11-15__icon rts-11-15__icon--${esc(name)}" aria-hidden="true"></span>`;
+const journeyIcon = name => `<img class="rts-11-15__stage-icon" src="/assets/icon-${esc(name)}.svg" alt="">`;
 
 function rail(page) {
   return `<aside class="rts-11-15__rail">
     <a class="rts-11-15__brand" href="/"><img src="/assets/logo.svg" alt="Reforming the Soul"></a>
     <p class="rts-11-15__rail-title">The Formation Journey</p>
-    <nav class="rts-11-15__stages" aria-label="Formation journey">${page.journey.map(stage => `<a data-stage="${esc(stage.name)}" class="${stage.name === 'See Clearly' ? 'is-active' : ''}" href="${esc(stage.route)}">${icon(stage.icon)}<span><strong>${esc(stage.name)}</strong><small>${esc(stage.description)}</small></span>${stage.name === 'Awaken' ? '<b aria-label="Completed">✓</b>' : ''}</a>`).join('')}</nav>
+    <nav class="rts-11-15__stages" aria-label="Formation journey">${page.journey.map(stage => `<a data-stage="${esc(stage.name)}" class="${stage.name === 'See Clearly' ? 'is-active' : ''}" href="${esc(stage.route)}">${journeyIcon({ sun: 'awaken', eye: 'see', leaf: 'become', people: 'join' }[stage.icon])}<span><strong>${esc(stage.name)}</strong><small>${esc(stage.description)}</small></span>${stage.name === 'Awaken' ? '<b aria-label="Completed">✓</b>' : ''}</a>`).join('')}</nav>
     <section class="rts-11-15__progress" aria-label="Course progress"><h2>Your Progress</h2><p>${esc(page.progress)}</p><progress max="${page.progressMax}" value="${page.progressValue}">${esc(page.progress)}</progress></section>
     <section class="rts-11-15__help"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>
   </aside>`;
