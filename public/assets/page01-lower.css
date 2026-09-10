@@ -10,8 +10,10 @@
 .home-page[data-landing-page="new"] .ways-card b{align-self:start;margin:2px 22px 0}
 .home-page[data-landing-page="new"] .landing-closing{min-height:286px;padding:44px 20px;background:linear-gradient(rgba(250,244,233,.38),rgba(250,244,233,.54)),url('/assets/conversations-hero.jpg') center 52%/cover no-repeat}
 .home-page[data-landing-page="new"] .landing-closing blockquote{max-width:800px;font-size:clamp(2rem,2.9vw,3.25rem)}
+.home-page[data-landing-page="new"] .landing-closing blockquote>span{display:block;white-space:nowrap}
 
 @media(max-width:600px){
   .home-page[data-landing-page="new"] .ways-card{grid-template-rows:156px 66px 44px}
   .home-page[data-landing-page="new"] .landing-closing{min-height:230px;padding:34px 20px}
+  .home-page[data-landing-page="new"] .landing-closing blockquote>span{white-space:normal}
 }
