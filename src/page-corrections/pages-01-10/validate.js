@@ -32,14 +32,16 @@ for (const number of [2, 7]) {
 const page02 = adapter.patches.get(2).render();
 assert.ok(page02.includes('You Have Already Been Formed'));
 assert.ok(page02.includes('class="p02-brand"'), 'Page 02 must use the growth-stage brand lockup');
-assert.ok(page02.includes('/assets/logo.svg'), 'Page 02 must use the approved leaf wordmark');
+assert.ok(page02.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Page 02 must use the approved Tree of Life wordmark');
+assert.ok(page02.includes('class="p02-brand__the"'), 'Page 02 must keep “the” separate from the script word');
+assert.ok(page02.includes('class="p02-brand__soul"'), 'Page 02 must render “Soul” as the script word');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#formation'), 'Page 02 must use a formation SVG outcome icon');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#notice'), 'Page 02 must use a noticing SVG outcome icon');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#leaf'), 'Page 02 must use a leaf SVG outcome icon');
 assert.ok(page02.includes('/assets/page-awaken/icons.svg#account'), 'Page 02 must use an SVG account icon');
 assert.ok(!/[◉◌❧●]/.test(page02), 'Page 02 must not use keyboard characters as icons');
 assert.ok(adapter.css.includes("/assets/page-awaken/awaken-sunrise-path"), 'Page 02 must use its replaceable mountain-path hero asset');
-assert.ok(adapter.css.includes("/assets/logo.svg"), 'Pages 03–06 must use the approved leaf wordmark');
+assert.ok(adapter.css.includes("curriculum-logo-transparent.png"), 'Pages 03–06 must use the approved Tree of Life wordmark');
 assert.strictEqual(require('../../pages-03-10/page-05').image, '/assets/page-awaken/page-03-seated-sunrise.png', 'Page 05 must reuse the approved seated-sunrise asset');
 assert.ok(!page02.includes('p02-progress'), 'Page 02 must not show a separate progress card');
 assert.ok(adapter.patches.get(7).render().includes('See Who You Really Are'));

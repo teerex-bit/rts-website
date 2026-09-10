@@ -25,7 +25,7 @@ function renderPage02() {
     ['leaf', 'Take your first step in the journey of transformation with God.']
   ];
   return `<div class="p02-awaken" data-page-number="02" data-editable-source="pages-01-10-corrections">
-    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
+    <header class="p02-top"><a class="p02-brand" href="/" aria-label="Reforming the Soul home"><span class="p02-brand__mark" aria-hidden="true"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt=""></span><span class="p02-brand__type"><strong>Reforming</strong><span><em class="p02-brand__the">the</em> <em class="p02-brand__soul">Soul</em></span></span></a><nav aria-label="Account navigation"><a href="/review/">Dashboard</a><a href="/review/">My Journey</a><a href="/coming-soon/">Resources</a><a href="/coming-soon/">Notes</a><span class="p02-account" aria-label="Account"><svg aria-hidden="true"><use href="/assets/page-awaken/icons.svg#account"></use></svg></span></nav></header>
     <main class="p02-shell">
       <aside class="p02-rail"><p>The Formation Journey</p><nav aria-label="Formation journey">${renderStageLinks('Awaken')}</nav></aside>
       <section class="p02-main">
@@ -73,7 +73,7 @@ const css = `
 /* Pages 01–10 final-review corrections. All selectors are page-specific. */
 .home-actions .outline,.home-closing .button{display:none}
 .course-top:has(+.formation-course-page[data-page-number="03"]),.course-top:has(+.formation-course-page[data-page-number="04"]),.course-top:has(+.formation-course-page[data-page-number="05"]),.course-top:has(+.formation-course-page[data-page-number="06"]){position:relative;padding-left:240px}
-.course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:"";position:absolute;left:24px;top:9px;z-index:2;width:196px;height:67px;background:url('/assets/logo.svg') left center/contain no-repeat}
+.course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:"";position:absolute;left:24px;top:9px;z-index:2;width:196px;height:67px;background:url('/assets/page-awaken/curriculum-logo-transparent.png') left center/contain no-repeat}
 @media (min-width:1181px){
   .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
   .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/logo.svg') left center/contain no-repeat}
@@ -167,8 +167,14 @@ const css = `
 }
 .p02-awaken,.p07-overview{min-height:100vh;color:#092039;background:#fbf8f2;font-family:var(--sans)}
 .p02-top,.p07-top{height:96px;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:#fffdfa;border-bottom:1px solid #e2ddd4}
-.p02-brand{display:block;width:220px;color:#092039;text-decoration:none}
-.p02-brand img{display:block;width:220px;height:64px}
+.p02-brand{display:flex;align-items:center;gap:10px;color:#092039;text-decoration:none}
+.p02-brand__mark{display:block;width:68px;height:67px;overflow:hidden;flex:0 0 68px}
+.p02-brand__mark img{display:block;width:196px;height:67px;max-width:none}
+.p02-brand__type{display:flex;flex-direction:column;font-family:var(--serif);line-height:.95}
+.p02-brand__type strong{font-size:1.55rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+.p02-brand__type>span{display:flex;align-items:baseline;gap:7px;margin-left:12px}
+.p02-brand__the{font:italic 1.05rem var(--serif)}
+.p02-brand__soul{font:italic 2rem/1 'RTS Script',cursive;text-transform:none}
 .p07-top>a img{display:block;width:220px}
 .p02-top nav,.p07-top nav,.p07-top>div{display:flex;align-items:center;gap:36px}
 .p02-top nav a,.p07-top a{font-size:.76rem;text-decoration:none}
@@ -260,7 +266,7 @@ const css = `
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}
 }
 @media (max-width:620px){
-  .p02-brand{width:165px}.p02-brand img{width:165px;height:auto}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
+  .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
 }`;
 
 module.exports = { patches, css };
