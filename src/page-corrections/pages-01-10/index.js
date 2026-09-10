@@ -53,7 +53,6 @@ function renderPage07() {
       <section class="p07-work">
         <article class="p07-main">
           <section class="p07-hero" aria-labelledby="p07-title"><div><p>${esc(page07.courseLabel)} <span aria-hidden="true">•</span> ${esc(page07.lessonLabel)}</p><h1 id="p07-title">${esc(page07.title)}</h1><i aria-hidden="true"></i>${page07.introduction.map((line, index) => `<p class="${index === 0 || index === 2 ? 'is-emphasis' : ''}">${esc(line)}</p>`).join('')}<a href="/see-clearly/your-formation/">Begin This Phase <span aria-hidden="true">→</span></a></div></section>
-          <section class="p07-outcomes" aria-label="In this phase you will"><h2>In This Phase You Will</h2><div>${page07.outcomes.map((outcome, index) => `<article><span aria-hidden="true">${['●', '◌', '❧'][index]}</span><p>${esc(outcome)}</p></article>`).join('')}</div></section>
           <section class="p07-movements" aria-labelledby="p07-movements-title"><div class="p07-movements__heading"><span aria-hidden="true"><img src="/assets/icon-see.svg" alt=""></span><p id="p07-movements-title">Two movements in learning to see clearly</p></div><div class="p07-movements__steps">${page07.movements.map((movement, index) => `<article><span>${esc(movement.number)}</span><div><h3>${esc(movement.title)}</h3><p>${esc(movement.text)}</p></div></article>${index === 0 ? '<i aria-hidden="true">→</i>' : ''}`).join('')}</div></section>
           <section class="p07-journey"><h2>${esc(page07.journeyTitle)}</h2><div>${page07.cards.map((card, index) => `<article><span aria-hidden="true">${conceptIcons[card[0]] || '•'}</span><h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></article>${index < page07.cards.length - 1 ? '<b aria-hidden="true">→</b>' : ''}`).join('')}</div></section>
           <blockquote class="p07-quote">${esc(page07.note[0])}</blockquote>
@@ -254,23 +253,23 @@ const css = `
 .p07-outcomes article:last-child{border:0}
 .p07-outcomes article>span,.p07-journey article>span{display:grid;place-items:center;width:43px;height:43px;color:#fff;background:#145ca7;border-radius:50%}
 .p07-outcomes article p{margin:0;font-size:.66rem;line-height:1.4}
-.p07-movements{display:grid;gap:10px;margin:0 30px;padding:14px 18px 15px;border-top:1px solid #ded6ca;border-bottom:1px solid #ded6ca}
+.p07-movements{display:grid;gap:16px;margin:0 30px;padding:28px 30px 30px;border-top:1px solid #ded6ca;border-bottom:1px solid #ded6ca}
 .p07-movements__heading{display:flex;align-items:center;justify-content:center;gap:8px;color:#145ca7}
-.p07-movements__heading>span{display:grid;place-items:center;width:25px;height:25px;border:1px solid #a9c3dc;border-radius:50%}
-.p07-movements__heading img{width:15px;height:15px;filter:invert(30%) sepia(30%) saturate(1317%) hue-rotate(168deg) brightness(82%) contrast(96%)}
-.p07-movements__heading p{margin:0;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.p07-movements__steps{display:grid;grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr);gap:14px;align-items:center;max-width:600px;margin:auto}
-.p07-movements__steps article{display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;align-items:start}
-.p07-movements__steps article>span{display:grid;place-items:center;width:24px;height:24px;color:#fff;background:#145ca7;border-radius:50%;font-size:.58rem;font-weight:700}
+.p07-movements__heading>span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #a9c3dc;border-radius:50%}
+.p07-movements__heading img{width:20px;height:20px;filter:invert(30%) sepia(30%) saturate(1317%) hue-rotate(168deg) brightness(82%) contrast(96%)}
+.p07-movements__heading p{margin:0;font-size:.75rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.p07-movements__steps{display:grid;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr);gap:24px;align-items:center;max-width:760px;margin:auto}
+.p07-movements__steps article{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.p07-movements__steps article>span{display:grid;place-items:center;width:32px;height:32px;color:#fff;background:#145ca7;border-radius:50%;font-size:.66rem;font-weight:700}
 .p07-movements__steps article:last-child>span{background:#53713b}
-.p07-movements__steps h3{margin:1px 0 2px;color:#092039;font-size:.69rem;letter-spacing:.06em;text-transform:uppercase}
-.p07-movements__steps p{margin:0;font-size:.61rem;line-height:1.4}
-.p07-movements__steps>i{color:#c68b24;font-size:1.15rem;font-style:normal;text-align:center}
-.p07-journey{padding:4px 30px 18px}
-.p07-journey>h2{display:flex;align-items:center;gap:15px;margin:3px 0 8px}.p07-journey>h2:before,.p07-journey>h2:after{content:"";flex:1;border-top:1px solid #ded6ca}
+.p07-movements__steps h3{margin:2px 0 5px;color:#092039;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.p07-movements__steps p{margin:0;font-size:.72rem;line-height:1.5}
+.p07-movements__steps>i{color:#c68b24;font-size:1.45rem;font-style:normal;text-align:center}
+.p07-journey{padding:24px 30px 26px}
+.p07-journey>h2{display:flex;align-items:center;gap:15px;margin:3px 0 19px}.p07-journey>h2:before,.p07-journey>h2:after{content:"";flex:1;border-top:1px solid #ded6ca}
 .p07-journey>div{display:flex;align-items:flex-start;justify-content:space-between}
-.p07-journey article{width:16%;text-align:center}.p07-journey article>span{margin:auto}.p07-journey article:nth-of-type(2) span,.p07-journey article:nth-of-type(4) span{background:#53713b}.p07-journey article:nth-of-type(3) span{background:#0c3b68}
-.p07-journey article h3{margin:6px 0 2px;font-size:.62rem;text-transform:uppercase}.p07-journey article p{margin:0;font-size:.58rem;line-height:1.35}.p07-journey b{padding-top:12px;color:#c68b24;font-size:1.3rem;font-weight:400}
+.p07-journey article{width:16%;text-align:center}.p07-journey article>span{width:54px;height:54px;margin:auto}.p07-journey article:nth-of-type(2) span,.p07-journey article:nth-of-type(4) span{background:#53713b}.p07-journey article:nth-of-type(3) span{background:#0c3b68}
+.p07-journey article h3{margin:9px 0 4px;font-size:.72rem;text-transform:uppercase}.p07-journey article p{margin:0;font-size:.68rem;line-height:1.45}.p07-journey b{padding-top:16px;color:#c68b24;font-size:1.45rem;font-weight:400}
 .p07-quote{margin:0;padding:14px 40px;color:#fff;background:#092e52;border:0;font:italic 1.05rem/1.5 var(--serif)}
 .p07-aside{display:grid;align-content:start;gap:12px;padding:8px 12px;background:#f4f0e9}
 .p07-side-card{padding:18px 20px;background:#fffdfa;border:1px solid #e2dbd1;border-radius:9px}
