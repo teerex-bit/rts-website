@@ -92,7 +92,7 @@ function renderCoursePage(page, stages) {
       <section class="course-hero"><p>${esc(page.courseLabel)} <span aria-hidden="true">•</span> ${esc(page.lessonLabel)}</p><h1>${esc(page.title)}</h1><span class="course-rule" aria-hidden="true"></span><div class="course-intro">${page.introduction.map((line, index) => `<p class="${index === page.introduction.length - 1 ? 'course-intro__last' : ''}">${esc(line)}</p>`).join('')}</div>${isOverview ? `<a class="course-primary-action" href="${(lessonRoutes.get(page.number) || {}).next || links.next}">Begin This Phase &nbsp; →</a>` : ''}</section>
       <div class="course-body">${renderCallout(page.callout)}${page.sectionTitle ? `<header class="course-section-heading">${symbol(page.family === 'awaken' ? 'leaf' : 'person')}<div><h2>${esc(page.sectionTitle)}</h2>${(page.sectionCopy || []).map(text => `<p>${esc(text)}</p>`).join('')}</div></header>` : ''}${composition(page)}${renderCallout(page.note, 'course-callout--note')}${page.secondaryTitle ? `<h2 class="course-secondary-title">${esc(page.secondaryTitle)}</h2>` : ''}${renderCallout(page.secondaryNote, 'course-callout--secondary')}${isOverview ? '' : lessonNavigation(page)}</div>
     </article>
-    ${page.number === 8 ? '' : renderSideCards(page)}
+    ${renderSideCards(page)}
   </main>`;
 }
 

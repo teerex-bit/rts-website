@@ -33,25 +33,17 @@ module.exports = {
   ],
   sideCards: [
     {
-      title: 'Why This Matters',
+      title: 'Hold This Truth',
       paragraphs: [
-        'If you see yourself primarily as a sinner trying to improve, you will live from effort and fear.',
-        'But if you see yourself as God sees you, it changes how you think, feel, and respond.'
-      ]
-    },
-    {
-      title: 'Foundational Realities',
-      items: [
         'You are a new creation. The old person died with Christ.',
-        'God is good, loving, and committed to your good.'
+        'This is not something you achieve. It is the life you have received in Him.'
       ]
     },
     {
-      title: 'In This Lesson You Will',
+      title: 'As You Continue',
       items: [
-        'Discover the truth about your identity in Christ.',
-        'Learn what it means that you are a new creation.',
-        'Begin to see the difference between old formation and new life.'
+        'Notice where old formation still tries to define you.',
+        'Look again at what God says is true of you in Christ.'
       ]
     }
   ],
