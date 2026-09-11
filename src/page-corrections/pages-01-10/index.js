@@ -372,6 +372,31 @@ const css = `
 }
 @media (max-width:620px){
   .p02-brand{gap:5px}.p02-brand__mark{width:55px;height:55px;flex-basis:55px}.p02-brand__mark img{width:161px;height:55px}.p02-brand__type strong{font-size:1.1rem}.p02-brand__the{font-size:.85rem}.p02-brand__soul{font-size:1.55rem}.p07-top>a img{width:165px}.p07-top nav{display:none}.p02-rail nav,.p07-rail nav{grid-template-columns:1fr 1fr}.p02-hero{min-height:620px;padding:30px 22px;background-position:63% center}.p02-hero>div,.p07-hero>div{width:100%;padding:25px;background:rgba(255,253,248,.94)}.p02-hero h1,.p07-hero h1{font-size:3rem}.p02-outcomes{padding:22px}.p02-outcomes>div{grid-template-columns:1fr}.p02-outcomes article{border-right:0;border-bottom:1px solid #ded7cc}.p02-quote{margin:18px 22px}.p07-hero{padding:25px 20px}.p07-outcomes>div{grid-template-columns:1fr}.p07-movements{margin:0;padding:28px 24px}.p07-movements__steps{grid-template-columns:1fr}.p07-movements__steps>i{transform:rotate(90deg)}.p07-journey>div{display:grid;grid-template-columns:1fr}.p07-journey article{width:100%}.p07-journey b{margin:auto;transform:rotate(90deg)}.p07-aside{grid-template-columns:1fr}
-}`;
+}
+
+/* Pages 08–10 use approved scenic sidebars. The shared cover rule was
+   clipping their supplied artwork, so retain each full image and move the
+   cards down as one balanced sidebar group. */
+.formation-course-page[data-page-number="08"] .course-aside,
+.formation-course-page[data-page-number="09"] .course-aside,
+.formation-course-page[data-page-number="10"] .course-aside{overflow:hidden;background:linear-gradient(180deg,#e9e4d9 0%,#f6f2ea 100%);border-left-color:#d7c9b5}
+.formation-course-page[data-page-number="08"] .course-aside__image,
+.formation-course-page[data-page-number="09"] .course-aside__image,
+.formation-course-page[data-page-number="10"] .course-aside__image{height:280px;margin-top:26px;object-fit:contain;object-position:center;background:#253b2c;filter:saturate(1.06) contrast(1.03)}
+.formation-course-page[data-page-number="08"] .course-aside__leaf,
+.formation-course-page[data-page-number="09"] .course-aside__leaf,
+.formation-course-page[data-page-number="10"] .course-aside__leaf{top:279px;color:#bd841e;background:#fffaf0;border:1px solid #dec18e;box-shadow:0 4px 14px #0a294322}
+.formation-course-page[data-page-number="08"] .course-aside__cards,
+.formation-course-page[data-page-number="09"] .course-aside__cards,
+.formation-course-page[data-page-number="10"] .course-aside__cards{padding-top:34px}
+@media (max-width:930px){
+  .formation-course-page[data-page-number="08"] .course-aside__image,
+  .formation-course-page[data-page-number="09"] .course-aside__image,
+  .formation-course-page[data-page-number="10"] .course-aside__image{height:300px;margin-top:0}
+  .formation-course-page[data-page-number="08"] .course-aside__leaf,
+  .formation-course-page[data-page-number="09"] .course-aside__leaf,
+  .formation-course-page[data-page-number="10"] .course-aside__leaf{top:273px}
+}
+`;
 
 module.exports = { patches, css };

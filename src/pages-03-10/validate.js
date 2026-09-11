@@ -30,6 +30,15 @@ assert.strictEqual(byNumber.get(8).cards.length, 4, 'Page 08 must show four iden
 assert.strictEqual(byNumber.get(9).cards.length, 3, 'Page 09 must show the three-part identity picture');
 assert.strictEqual(byNumber.get(10).cards.length, 5, 'Page 10 must show five formation comparisons');
 
+// The approved scenic artwork on the first three See Clearly lessons must be
+// displayed in full within a complete right rail rather than cropped by the
+// shared sidebar image rule.
+for (const number of [8, 9, 10]) {
+  const pageSelector = `[data-page-number="${String(number).padStart(2, '0')}"]`;
+  assert.ok(correctionCss.includes(`${pageSelector} .course-aside__image`), `Page ${number} needs a full-visible approved sidebar graphic treatment`);
+}
+assert.ok(correctionCss.includes('object-fit:contain'), 'See Clearly scenic graphics must not be clipped by a cover crop');
+
 for (const [number, progress] of [[3, 1], [4, 2], [5, 3], [6, 4]]) {
   const page = byNumber.get(number);
   assert.strictEqual(page.progressLabel, `Awaken ${progress} of 4`);

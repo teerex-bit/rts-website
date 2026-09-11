@@ -20,12 +20,12 @@ module.exports = {
   ],
   wineskins: [
     {
-      title: 'Old Wineskin', tone: 'olive', subtitle: ['Stretched, brittle, and unable to expand.', 'It can’t hold what God wants to do.'], image: '/assets/page-ranges/range-11-15/old-wineskin.svg',
+      title: 'Old Wineskin', tone: 'olive', subtitle: ['Stretched, brittle, and unable to expand.', 'It can’t hold what God wants to do.'], image: '/assets/page-ranges/range-11-15/old-wineskin-approved.png',
       items: ['Rigid patterns', 'Fear of change', 'Control and self-reliance', 'Holding on to the old way of life'],
       quote: '“No one puts new wine into old wineskins. If they do, the new wine will burst the skins; the wine will run out, and the wineskins will be ruined.”', citation: 'Luke 5:37'
     },
     {
-      title: 'New Wineskin', tone: 'gold', subtitle: ['Flexible, receptive, and able to expand.', 'It holds the new wine and allows it to grow.'], image: '/assets/page-ranges/range-11-15/new-wineskin.svg',
+      title: 'New Wineskin', tone: 'gold', subtitle: ['Flexible, receptive, and able to expand.', 'It holds the new wine and allows it to grow.'], image: '/assets/page-ranges/range-11-15/new-wineskin-approved.png',
       items: ['Open to God’s leading', 'Willing to learn and unlearn', 'Trusting God instead of self', 'Room for life to grow'],
       quote: '“No, new wine is put into fresh wineskins.”', citation: 'Luke 5:38'
     }
