@@ -51,7 +51,9 @@ for(const [number,route,assetDirectory] of editableCoursePages){
   if(JSON.stringify(stages)!==JSON.stringify(expectedStages))errors.push(`${file}: expected formation stages ${expectedStages.join(', ')}, got ${stages.join(', ')||'none'}`);
   if(/>\s*Walk\s*<|\/walk\//i.test(source))errors.push(`${file}: Walk must not be generated as a stage or route`);
   if(/(?:src|href)="[^"]*done\/(?:0?${Number(number)})(?:\s|%20)/i.test(source))errors.push(`${file}: full-page reference PNG must remain reference-only`);
-  if(!source.includes(`/assets/${assetDirectory}/`))errors.push(`${file}: expected page-specific asset path under ${assetDirectory}`);
+  // Page 08 intentionally removes its competing illustration/sidebar so the
+  // reflection choices can occupy the full lesson surface.
+  if(number!=='08'&&!source.includes(`/assets/${assetDirectory}/`))errors.push(`${file}: expected page-specific asset path under ${assetDirectory}`);
 }
 const correctedPages=[
   {number:2,text:'You Have Already Been Formed'},

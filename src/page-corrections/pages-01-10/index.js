@@ -167,10 +167,66 @@ const css = `
   .formation-course-page[data-page-number="08"] .course-callout--note{order:4}
   .formation-course-page[data-page-number="08"] .lesson-navigation{order:5}
   .formation-course-page[data-page-number="08"] .course-callout--note .course-symbol:before{content:'◉'}
+  /* Page 08 is a guided reflection, not a dashboard. Give its lesson one calm,
+     wide reading surface and remove the duplicated side information. */
+  .formation-course-page[data-page-number="08"]{grid-template-columns:268px minmax(0,1fr);min-height:calc(100vh - 104px)}
+  .formation-course-page[data-page-number="08"] .formation-rail{padding-bottom:44px}
+  .formation-course-page[data-page-number="08"] .course-content{grid-column:2;max-width:1260px;padding:28px clamp(42px,6vw,112px) 42px;background:#fffcf7}
+  .formation-course-page[data-page-number="08"] .course-hero{max-width:930px;padding:8px 0 8px}
+  .formation-course-page[data-page-number="08"] .course-hero h1{font-size:clamp(3.4rem,5vw,5.1rem);line-height:.98}
+  .formation-course-page[data-page-number="08"] .course-rule{width:58px;margin:19px 0 22px}
+  .formation-course-page[data-page-number="08"] .course-intro p{max-width:820px;font-size:1.04rem;line-height:1.58}
+  .formation-course-page[data-page-number="08"] .course-body{max-width:1040px;padding:0}
+  .formation-course-page[data-page-number="08"] .course-section-heading{grid-template-columns:64px minmax(0,1fr);gap:17px;align-items:start;margin:27px 0 18px}
+  .formation-course-page[data-page-number="08"] .course-section-heading .course-symbol{width:58px;height:58px}
+  .formation-course-page[data-page-number="08"] .course-section-heading h2{margin:3px 0 7px;font-size:1rem}
+  .formation-course-page[data-page-number="08"] .course-section-heading p{font-size:1rem;line-height:1.48}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices{gap:18px 20px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card{grid-template-columns:76px minmax(0,1fr) 24px;gap:22px;align-items:center;min-height:158px;padding:24px 26px;border-radius:10px;box-shadow:0 5px 15px #1530420b}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card>div{display:contents}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card .course-symbol{width:64px;height:64px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card p{margin:0;font-size:1.08rem;line-height:1.48}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-radio{grid-column:3;width:22px;height:22px;border-width:2px}
+  .formation-course-page[data-page-number="08"] .course-secondary-title{margin:30px 0 11px;font-size:.92rem}
+  .formation-course-page[data-page-number="08"] .course-callout--note{grid-template-columns:64px 1fr;gap:20px;margin:0;padding:21px 25px;border-radius:10px}
+  .formation-course-page[data-page-number="08"] .course-callout--note .course-symbol{width:56px;height:56px}
+  .formation-course-page[data-page-number="08"] .course-callout--note p{font-size:1rem}
+  .formation-course-page[data-page-number="08"] .lesson-navigation{max-width:1040px;margin-top:28px;padding-top:22px}
   .formation-rail__progress{margin-top:14px}
   .lesson-navigation{grid-template-columns:150px minmax(0,1fr)}
   .lesson-navigation .lesson-navigation__continue{grid-column:2}
   .lesson-navigation .lesson-navigation__defer{grid-column:2;justify-self:end}
+}
+@media (min-width:931px) and (max-width:1180px){
+  .formation-course-page[data-page-number="08"]{grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 84px)}
+  .formation-course-page[data-page-number="08"] .course-content{grid-column:2;padding:28px clamp(34px,5vw,72px) 38px;background:#fffcf7}
+  .formation-course-page[data-page-number="08"] .course-hero{max-width:900px;padding:8px 0}
+  .formation-course-page[data-page-number="08"] .course-hero h1{font-size:clamp(3.15rem,5vw,4.4rem);line-height:.99}
+  .formation-course-page[data-page-number="08"] .course-body{max-width:980px;padding:0}
+  .formation-course-page[data-page-number="08"] .course-section-heading{grid-template-columns:58px minmax(0,1fr);gap:16px;margin:25px 0 17px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices{gap:16px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card{grid-template-columns:66px minmax(0,1fr) 22px;gap:18px;min-height:148px;padding:22px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card .course-symbol{width:58px;height:58px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card p{margin:0;font-size:1rem;line-height:1.46}
+  .formation-course-page[data-page-number="08"] .course-callout--note{grid-template-columns:58px 1fr;gap:16px;padding:19px 22px}
+}
+@media (max-width:930px){
+  .formation-course-page[data-page-number="08"] .course-content{padding-top:24px}
+  .formation-course-page[data-page-number="08"] .course-hero{padding:0}
+  .formation-course-page[data-page-number="08"] .course-body{padding:0}
+  .formation-course-page[data-page-number="08"] .course-section-heading{grid-template-columns:56px minmax(0,1fr);gap:14px;margin:24px 0 16px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card{min-height:138px;padding:20px}
+}
+@media (max-width:650px){
+  .formation-course-page[data-page-number="08"] .course-hero h1{font-size:clamp(2.65rem,12vw,3.45rem)}
+  .formation-course-page[data-page-number="08"] .course-intro p{font-size:1rem}
+  .formation-course-page[data-page-number="08"] .course-section-heading{grid-template-columns:46px minmax(0,1fr)}
+  .formation-course-page[data-page-number="08"] .course-section-heading .course-symbol{width:44px;height:44px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card{grid-template-columns:52px minmax(0,1fr) 20px;gap:15px;min-height:126px;padding:18px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card .course-symbol{width:48px;height:48px}
+  .formation-course-page[data-page-number="08"] .course-card-grid--choices .course-card p{font-size:.98rem}
+  .formation-course-page[data-page-number="08"] .course-callout--note{grid-template-columns:48px 1fr;gap:13px;padding:17px}
+  .formation-course-page[data-page-number="08"] .course-callout--note .course-symbol{width:44px;height:44px}
 }
 .p02-awaken,.p07-overview{min-height:100vh;color:#092039;background:#fbf8f2;font-family:var(--sans)}
 .p02-top,.p07-top{height:96px;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:#fffdfa;border-bottom:1px solid #e2ddd4}
