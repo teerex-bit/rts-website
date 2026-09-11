@@ -10,6 +10,7 @@ const required = [
   ['approved transparent circle flame logo is used', 'src="/assets/brand-main-transparent.png"'],
   ['hero message is present', 'class="home-message"'],
   ['three editable ways cards are present', 'class="ways-grid"'],
+  ['Start the Journey button follows the three ways cards', 'class="home-journey-cta-row"><a class="home-journey-cta" href="/awaken/">Start the Journey'],
 ];
 const cssRequired = [
   ['single-line desktop title', 'white-space:nowrap'],
@@ -21,7 +22,7 @@ const cssRequired = [
   ['music photo', "ways-music.jpg"],
   ['books photo', "ways-books.jpg"],
   ['Start the Journey button styling', '.home-journey-cta{display:inline-flex'],
-  ['Start the Journey button stays compact in the hero flex column', 'align-self:flex-start;width:fit-content;max-width:100%'],
+  ['Start the Journey button is centered below the three ways cards', '.home-journey-cta-row{display:flex;justify-content:center;margin-top:30px}'],
 ];
 const forbidden = ['experience-notice', 'experience-look-again', 'experience-respond'];
 const failures = [];
