@@ -21,6 +21,7 @@ const cssRequired = [
   ['music photo', "ways-music.jpg"],
   ['books photo', "ways-books.jpg"],
   ['Start the Journey button styling', '.home-journey-cta{display:inline-flex'],
+  ['Start the Journey button stays compact in the hero flex column', 'align-self:flex-start;width:fit-content;max-width:100%'],
 ];
 const forbidden = ['experience-notice', 'experience-look-again', 'experience-respond'];
 const failures = [];
