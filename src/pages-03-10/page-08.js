@@ -47,5 +47,5 @@ module.exports = {
       ]
     }
   ],
-  image: '/assets/page-see-clearly/path-figure.svg'
+  image: '/assets/page-see-clearly/page-08-forest-path.png'
 };
