@@ -52,5 +52,5 @@ module.exports = {
       paragraphs: ['You are not what your instincts say. You are who God says you are.']
     }
   ],
-  image: '/assets/page-see-clearly/path-figure.svg'
+  image: '/assets/page-see-clearly/page-10-forest-path.png'
 };

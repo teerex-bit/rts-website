@@ -2,7 +2,7 @@ module.exports = {
   number: 8,
   family: 'see-clearly',
   activeStage: 'See Clearly',
-  courseLabel: 'See Clearly 1',
+  courseLabel: 'See Clearly',
   lessonLabel: 'Lesson 1 of 7',
   progressLabel: 'See Clearly 1 of 7',
   progress: 1,

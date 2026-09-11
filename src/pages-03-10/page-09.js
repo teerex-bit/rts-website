@@ -70,5 +70,5 @@ module.exports = {
       paragraphs: ['Truth seen clearly becomes a foundation for life change.']
     }
   ],
-  image: '/assets/page-see-clearly/path-figure.svg'
+  image: '/assets/page-see-clearly/page-09-forest-path.png'
 };

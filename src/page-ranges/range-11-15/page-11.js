@@ -41,7 +41,7 @@ module.exports = {
   },
   quote: ['You don’t need to earn your identity.', 'You need to learn how to live from it.', 'Awareness brings freedom. Truth brings change.'],
   side: {
-    image: '/assets/page-ranges/range-11-15/identity-forest.jpg',
+    image: '/assets/page-ranges/range-11-15/page-11-approved-sidebar.png',
     why: ['Condemnation says, “You’re still the same.”', 'The truth says, “You are new, and you are becoming.”', 'Freedom lives in the space between what God has done and what He is still doing.'],
     outcomes: ['Understand the difference between identity and formation.', 'See why old patterns don’t define who you are.', 'Begin to live from the truth of who you already are in Christ.'],
     remember: ['Your identity is secure.', 'Your formation is growing.', 'God is faithful to complete the work He has begun in you.']
