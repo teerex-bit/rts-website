@@ -42,28 +42,28 @@ module.exports = String.raw`
 .rts-11-15--page-13 main{height:610px}
 .rts-11-15--page-13 .rts-11-15__landing-scene{width:68%}
 .rts-11-15--page-13 .rts-11-15__landing-copy{background:linear-gradient(90deg,#fbfaf7 66%,rgba(251,250,247,.94) 79%,transparent);padding-right:8%;width:52%}
-.rts-11-15__landing-reflection{background:linear-gradient(180deg,#fffdf9,#f5f2eb);padding:54px max(4%,48px) 58px}
+.rts-11-15__landing-reflection{background:linear-gradient(180deg,#fffdf9,#f5f2eb);padding:48px max(4%,48px) 52px}
 .rts-11-15__landing-reflection>header{text-align:center}
 .rts-11-15__landing-reflection>header p{color:#bd7c1c;font-size:13px;font-weight:700;letter-spacing:.14em;margin:0 0 7px;text-transform:uppercase}
 .rts-11-15__landing-reflection>header h2{color:var(--ink);font-size:38px;margin:0}
 .rts-11-15__landing-reflection>header>span{background:#c88926;display:block;height:2px;margin:17px auto 34px;width:74px}
-.rts-11-15__landing-reflection-grid{align-items:start;display:grid;gap:46px;grid-template-columns:minmax(0,1.36fr) minmax(300px,.82fr);margin:0 auto;max-width:1100px}
-.rts-11-15__landing-parts{align-items:stretch;display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr)}
+.rts-11-15__landing-reflection-grid{align-items:start;display:grid;gap:30px;grid-template-columns:1fr;margin:0 auto;max-width:1060px}
+.rts-11-15__landing-parts{align-items:stretch;display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);margin:0 auto;max-width:760px;width:100%}
 .rts-11-15__landing-parts>span{align-self:center;color:#bd7c1c;font-size:44px;text-align:center}
-.rts-11-15__landing-parts article{align-content:center;background:#f7f4ee;border:1px solid #ddd6c9;border-radius:22px;display:grid;min-height:290px;padding:28px;text-align:center}
+.rts-11-15__landing-parts article{align-content:center;background:#f7f4ee;border:1px solid #ddd6c9;border-radius:18px;display:grid;min-height:235px;padding:24px;text-align:center}
 .rts-11-15__landing-parts article.is-active{background:linear-gradient(145deg,#104330,#173f27);border-color:#173f27;color:white}
 .rts-11-15__landing-parts .rts-11-15__icon{border:1px solid #bdc3b4;color:var(--olive);height:68px;margin:0 auto 14px;width:68px}
 .rts-11-15__landing-parts article.is-active .rts-11-15__icon{color:#e0a43c}
 .rts-11-15__landing-parts p{color:#be7d1d;font-size:12px;font-weight:700;letter-spacing:.12em;margin:0;text-transform:uppercase}
 .rts-11-15__landing-parts h2{font-size:24px;margin:9px 0 14px}
 .rts-11-15__landing-parts span{font-size:15px;line-height:1.45}
-.rts-11-15__landing-discover{background:#fffdf9;border:1px solid #e2ddd1;border-radius:18px;box-shadow:0 10px 24px #0a29430c;overflow:hidden}
-.rts-11-15__landing-discover>h2{color:var(--olive);font-size:15px;letter-spacing:.13em;margin:0;padding:25px 27px 8px;text-align:center;text-transform:uppercase}
-.rts-11-15__landing-discover ul{list-style:none;margin:0;padding:0 27px 14px}
-.rts-11-15__landing-discover li{align-items:center;border-bottom:1px solid #e4ded3;display:flex;gap:13px;padding:12px 0}
+.rts-11-15__landing-discover{align-items:stretch;background:#fffdf9;border:1px solid #e2ddd1;border-radius:16px;box-shadow:0 10px 24px #0a29430c;display:grid;grid-template-columns:190px minmax(0,1fr) minmax(270px,320px);overflow:hidden}
+.rts-11-15__landing-discover>h2{align-self:center;color:var(--olive);font-size:15px;letter-spacing:.13em;margin:0;padding:25px 20px;text-align:center;text-transform:uppercase}
+.rts-11-15__landing-discover ul{display:grid;grid-template-columns:1fr 1fr;list-style:none;margin:0;padding:12px 18px}
+.rts-11-15__landing-discover li{align-items:center;border-bottom:1px solid #e4ded3;display:flex;gap:13px;padding:12px 10px}
 .rts-11-15__landing-discover li:last-child{border-bottom:0}
 .rts-11-15__landing-discover .rts-11-15__icon{background:#f1ede4;color:var(--olive)}
-.rts-11-15__landing-discover blockquote{background:#f3f0e9;border-top:1px solid #e2ddd1;margin:0;padding:21px 27px 18px 59px;position:relative}
+.rts-11-15__landing-discover blockquote{align-self:stretch;background:#f3f0e9;border-left:1px solid #e2ddd1;margin:0;padding:24px 27px 18px 59px;position:relative}
 .rts-11-15__landing-discover blockquote>.rts-11-15__icon{left:20px;position:absolute;top:14px}
 .rts-11-15__landing-discover blockquote p{font-family:Georgia,serif;font-size:17px;font-style:italic;line-height:1.25;margin:0}
 .rts-11-15__landing-discover cite{color:var(--olive);display:block;font-size:11px;font-style:normal;font-weight:700;letter-spacing:.11em;margin-top:11px;text-transform:uppercase}

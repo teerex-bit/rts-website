@@ -23,12 +23,12 @@ module.exports = {
   movements: [
     {
       number: '01',
-      title: 'See Yourself',
+      title: 'See Yourself Clearly',
       text: 'Notice the stories, assumptions, and patterns that have shaped the way you see.'
     },
     {
       number: '02',
-      title: 'See God',
+      title: 'See God Clearly',
       text: 'Look again through Jesus and receive the truer reality of God’s love and goodness.'
     }
   ],

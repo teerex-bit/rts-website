@@ -33,6 +33,7 @@ assert(render(14).includes('href="/become/"'), 'Page 14 must continue to Become'
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
 const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
+assert(styles.includes('grid-template-columns:190px minmax(0,1fr) minmax(270px,320px)'), 'Page 13 discovery content must use a compact balanced panel');
 assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
 assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');
 assert(renderer.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Pages 11–12 must use the approved Tree of Life logo');

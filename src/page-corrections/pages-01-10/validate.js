@@ -53,6 +53,8 @@ assert.ok(!page07.includes('/assets/brand-main-source.png'), 'Page 07 must not u
 assert.ok(!page07.includes('Begin This Phase'), 'Page 07 must not show the removed phase CTA');
 assert.ok(!page07.includes('class="p07-journey"'), 'Page 07 must not show the removed five-step journey row');
 assert.ok(!page07.includes('Your Progress') && !page07.includes('Need help?'), 'Page 07 rail must not show progress or help blocks');
+assert.ok(page07.includes('Two Movements. One Journey.'), 'Page 07 must name the two-movement structure');
+assert.ok(page07.includes('<article class="is-active"><span>01</span>'), 'Page 07 must highlight Part 1 as the current movement');
 assert.deepStrictEqual(adapter.patches.get(6).data, {
   continueLabel: 'I’ve Noticed Something I’m Ready to Look At'
 });
