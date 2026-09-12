@@ -7,7 +7,7 @@ const journeyIcon = name => `<img class="rts-11-15__stage-icon" src="/assets/ico
 
 function rail(page) {
   const brand = page.number === 11 || page.number === 12
-    ? '/assets/page-ranges/range-11-15/curriculum-wordmark.svg'
+    ? '/assets/page-awaken/curriculum-logo-transparent.png'
     : '/assets/logo.svg';
   const lessonMarker = page.number === 11 || page.number === 12
     ? `<section class="rts-11-15__rail-marker" aria-label="Lesson location"><strong>See Clearly <span>·</span> Lesson ${page.step} of ${page.progressMax}</strong><p>Look again. Let truth make room for life.</p></section>`

@@ -35,9 +35,10 @@ const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
 const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
 assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
 assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');
-assert(renderer.includes('/assets/page-ranges/range-11-15/curriculum-wordmark.svg'), 'Pages 11–12 must use the approved Tree of Life wordmark');
-assert(styles.includes('padding-top:79px'), 'Pages 11–12 side imagery must begin below the global lesson header');
-for (const pageNumber of [11, 12]) assert(render(pageNumber).includes('curriculum-wordmark.svg'), `Page ${pageNumber} must render the approved Tree of Life wordmark`);
+assert(renderer.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Pages 11–12 must use the approved Tree of Life logo');
+assert(styles.includes('padding-top:0'), 'Pages 11–12 side imagery must start at the top of the sidebar');
+assert(styles.includes('clamp(270px,20vw,300px)'), 'Pages 11–12 must use the full-width formation rail');
+for (const pageNumber of [11, 12]) assert(render(pageNumber).includes('curriculum-logo-transparent.png'), `Page ${pageNumber} must render the approved Tree of Life logo`);
 
 for (const page of pages.values()) {
   for (const source of [page.heroImage, page.side?.image, ...(page.wineskins || []).map(card => card.image)].filter(Boolean)) {
