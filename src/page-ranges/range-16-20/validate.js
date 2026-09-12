@@ -13,7 +13,9 @@ for (const page of range.pages.values()) {
   assert.doesNotMatch(html, /data-stage="Walk"/, `page ${page.number}: Walk is not a stage`);
   if (page.family === 'see-clearly-reflection') {
     assert.match(html, /class="r1620-rail__journey"/, `page ${page.number}: formation rail is visible`);
-    assert.match(html, new RegExp(page.progress), `page ${page.number}: rail progress matches the page`);
+    assert.doesNotMatch(html, />Reflection/, `page ${page.number}: reflection wording is removed`);
+    assert.doesNotMatch(html, /r1620-pager/, `page ${page.number}: Back and Continue controls are removed`);
+    assert.match(html, /See Clearly · Part 2 of 2/, `page ${page.number}: Part 2 lesson marker is visible`);
   }
 }
 

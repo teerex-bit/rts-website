@@ -4,9 +4,9 @@ module.exports = {
   title: 'What About God’s Anger?',
   family: 'see-clearly-reflection',
   stage: 'See Clearly',
-  course: 'See Clearly',
+  course: 'See Clearly · Part 2 of 2',
   lesson: 'Lesson 5 of 5',
-  progress: 'Reflection 5 of 6',
+  progress: 'Lesson 5 of 5',
   intro: [
     'God’s anger is not the opposite of His love.',
     'It is love that opposes what destroys the people He loves.'

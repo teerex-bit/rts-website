@@ -8,7 +8,7 @@ const expected = new Map([
   [11, ["That’s Formation, Not Identity", 'Identity Is Who You Are', 'Formation Is How You Learn']],
   [12, ['Make Room for Life', 'Old Wineskin', 'New Wineskin']],
   [13, ['Seeing God Clearly', 'What You’ll Discover', 'Why This']],
-  [14, ['Is This God Trustworthy?', 'Take a moment to reflect:', 'Continue']],
+  [14, ['Is This God Trustworthy?', 'Take a moment to consider:', 'worthy of your trust']],
   [15, ['The Same God.', 'In Jesus (New Testament)', 'In God (Old Testament)']]
 ]);
 
@@ -28,8 +28,12 @@ assert(page13.includes('rts-11-15__landing-reflection'), 'Page 13 must place its
 assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include phase cards');
 assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a start button');
 assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
-assert(render(15).includes('href="/see-god-clearly/images/"'), 'Page 15 must continue to the trust reflection');
-assert(render(14).includes('href="/become/"'), 'Page 14 must continue to Become');
+for (const pageNumber of [14, 15]) {
+  const html = render(pageNumber);
+  assert(!html.includes('Reflection'), `Page ${pageNumber} must not use reflection wording`);
+  assert(!html.includes('rts-11-15__lesson-nav'), `Page ${pageNumber} must not show Back or Continue controls`);
+  assert(html.includes('See Clearly · Part 2 of 2'), `Page ${pageNumber} must use the Part 2 lesson marker`);
+}
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
 const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');

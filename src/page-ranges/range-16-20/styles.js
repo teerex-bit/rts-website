@@ -66,6 +66,16 @@ module.exports = String.raw`
 .r1620-dots{display:flex;gap:13px;margin:auto}
 .r1620-dots i{width:10px;height:10px;background:#ddd4c5;border-radius:50%}
 .r1620-dots i.is-active{background:#31451e}
+.r1620[data-page-number="16"] .r1620-reflection__content,.r1620[data-page-number="17"] .r1620-reflection__content{max-width:none;padding:34px 54px 48px}
+.r1620[data-page-number="16"] .r1620-reflection__content>h1,.r1620[data-page-number="17"] .r1620-reflection__content>h1{font-size:52px;margin-bottom:15px}
+.r1620[data-page-number="16"] .r1620-intro{font-size:16px;line-height:1.5;margin-bottom:24px}
+.r1620[data-page-number="16"] .r1620-anger-column>img{height:250px}
+.r1620[data-page-number="16"] .r1620-anger-column li{font-size:13px;padding:11px 2px}
+.r1620[data-page-number="16"] .r1620-wide-note,.r1620[data-page-number="17"] .r1620-wide-note{margin-top:20px;min-height:74px;padding:16px 22px;font-size:14px}
+.r1620[data-page-number="17"] .r1620-look-subtitle{font-size:17px;line-height:1.3;margin:4px 0 19px}
+.r1620[data-page-number="17"] .r1620-look-rows{gap:12px}
+.r1620[data-page-number="17"] .r1620-look-rows article{min-height:142px}
+.r1620[data-page-number="17"] .r1620-look-rows article>div{padding:21px 24px}
 .r1620-look-subtitle{font-weight:700;line-height:1.08;margin:-4px 0 14px;font-size:15px}
 .r1620-look-rows{display:grid;gap:5px}
 .r1620-look-rows article{display:grid;grid-template-columns:1fr 58px 1.35fr 65px;min-height:120px;border:1px solid #ddd7cd;border-radius:12px;background:#fbf9f5;align-items:stretch;overflow:hidden}

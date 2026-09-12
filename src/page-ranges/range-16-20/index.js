@@ -96,11 +96,9 @@ function renderSeeClearly(page) {
     <div class="r1620-reflection__main">
       ${coursebar(page)}
       <div class="r1620-reflection__content">
-        <p class="r1620-eyebrow">${escapeHtml(page.progress)}</p>
         <h1>${escapeHtml(page.title)}</h1>
         ${page.intro ? `<p class="r1620-intro">${page.intro.map(escapeHtml).join('<br>')}</p>` : ''}
         ${body}
-        ${pager(page)}
       </div>
     </div>
   </main>`;

@@ -15,7 +15,7 @@ const lessons = [
   [14,"Images of God","/see-god-clearly/images/","See Clearly","lesson","What picture do you carry?","Explore the images and assumptions that influence your relationship with God."],
   [15,"Distorted Images","/see-god-clearly/distortions/","See Clearly","lesson","When fear shapes faith","Gently identify images of God that diminish trust, freedom, or love."],
   [16,"God With Us","/see-god-clearly/with-us/","See Clearly","reflection","Nearer than we know","Consider a God who is present, loving, and active in the reality of your life."],
-  [17,"Reflection and Practice","/see-god-clearly/practice/","See Clearly","practice","Rest in belovedness","A guided pause for receiving a more spacious and loving vision of God."],
+  [17,"Look Again","/see-god-clearly/practice/","See Clearly","practice","Rest in belovedness","A guided pause for receiving a more spacious and loving vision of God."],
   [18,"Become","/become/","Become","stage","Live from your true self","Transformation becomes embodied through practice, relationship, and courageous choice."],
   [19,"The True Self","/become/true-self/","Become","lesson","Become who you already are","The true self is received rather than achieved—a life rooted in love."],
   [20,"Living from Love","/become/living-from-love/","Become","reflection","A different center","Explore the freedom of responding from love rather than fear."],

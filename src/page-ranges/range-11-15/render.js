@@ -9,7 +9,7 @@ function rail(page) {
   const brand = page.number === 11 || page.number === 12
     ? '/assets/page-awaken/curriculum-logo-transparent.png'
     : '/assets/logo.svg';
-  const lessonMarker = page.number === 11 || page.number === 12
+  const lessonMarker = page.number >= 11 && page.number <= 15
     ? `<section class="rts-11-15__rail-marker" aria-label="Lesson location"><strong>See Clearly <span>·</span> Lesson ${page.step} of ${page.progressMax}</strong><p>Look again. Let truth make room for life.</p></section>`
     : `<section class="rts-11-15__progress" aria-label="Course progress"><h2>Your Progress</h2><p>${esc(page.progress)}</p><progress max="${page.progressMax}" value="${page.progressValue}">${esc(page.progress)}</progress></section>
     <section class="rts-11-15__help"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>`;
@@ -58,11 +58,11 @@ function renderLanding(page) {
 }
 
 function renderTrust(page) {
-  return `<div class="rts-11-15__compact">${rail(page)}<section class="rts-11-15__compact-main">${top(page)}<article><header><p>${esc(page.eyebrow)}</p><h1>${esc(page.title)}</h1>${page.introduction.map(text => `<span>${esc(text)}</span>`).join('')}<strong>${esc(page.prompt)}</strong></header><div class="rts-11-15__trust-grid"><img src="${esc(page.heroImage)}" alt="A person seated above a quiet mountain lake at sunrise"><section><h2>Take a moment to reflect:</h2><ul>${page.questions.map((text, index) => `<li>${icon(['heart', 'people', 'shield', 'crown'][index])}<span>${esc(text)}</span></li>`).join('')}</ul></section></div><blockquote class="rts-11-15__declaration">${icon('cross')}<p>${esc(page.declaration[0])}<strong>${esc(page.declaration[1])}</strong></p></blockquote>${lessonNav(page)}</article></section></div>`;
+  return `<div class="rts-11-15__compact">${rail(page)}<section class="rts-11-15__compact-main">${top(page)}<article><header>${page.eyebrow ? `<p>${esc(page.eyebrow)}</p>` : ''}<h1>${esc(page.title)}</h1>${page.introduction.map(text => `<span>${esc(text)}</span>`).join('')}<strong>${esc(page.prompt)}</strong></header><div class="rts-11-15__trust-grid"><img src="${esc(page.heroImage)}" alt="A person seated above a quiet mountain lake at sunrise"><section><h2>Take a moment to consider:</h2><ul>${page.questions.map((text, index) => `<li>${icon(['heart', 'people', 'shield', 'crown'][index])}<span>${esc(text)}</span></li>`).join('')}</ul></section></div><blockquote class="rts-11-15__declaration">${icon('cross')}<p>${esc(page.declaration[0])}<strong>${esc(page.declaration[1])}</strong></p></blockquote></article></section></div>`;
 }
 
 function renderReflectionTable(page) {
-  return `<div class="rts-11-15__compact">${rail(page)}<section class="rts-11-15__compact-main">${top(page)}<article class="rts-11-15__table-page"><header><div><p>${esc(page.eyebrow)}</p><h1>${esc(page.title)}</h1>${page.introduction.map(text => `<span>${esc(text)}</span>`).join('')}</div><img src="${esc(page.heroImage)}" alt="Jesus sharing a warm conversation with a child in a sunlit landscape"></header><section class="rts-11-15__god-table" aria-label="The same character of God in both Testaments"><div class="rts-11-15__god-head"><span></span><h2>${icon('cross')} ${esc(page.columns[0])}</h2><h2>${icon('crown')} ${esc(page.columns[1])}</h2></div>${page.rows.map(row => `<article><h3>${icon(row.icon)}<span>${esc(row.trait)}</span></h3><p>${esc(row.new)}</p><p>${esc(row.old)}</p></article>`).join('')}</section>${lessonNav(page)}</article></section></div>`;
+  return `<div class="rts-11-15__compact">${rail(page)}<section class="rts-11-15__compact-main">${top(page)}<article class="rts-11-15__table-page"><header><div>${page.eyebrow ? `<p>${esc(page.eyebrow)}</p>` : ''}<h1>${esc(page.title)}</h1>${page.introduction.map(text => `<span>${esc(text)}</span>`).join('')}</div><img src="${esc(page.heroImage)}" alt="Jesus sharing a warm conversation with a child in a sunlit landscape"></header><section class="rts-11-15__god-table" aria-label="The same character of God in both Testaments"><div class="rts-11-15__god-head"><span></span><h2>${icon('cross')} ${esc(page.columns[0])}</h2><h2>${icon('crown')} ${esc(page.columns[1])}</h2></div>${page.rows.map(row => `<article><h3>${icon(row.icon)}<span>${esc(row.trait)}</span></h3><p>${esc(row.new)}</p><p>${esc(row.old)}</p></article>`).join('')}</section></article></section></div>`;
 }
 
 module.exports = function render(pageOrNumber, pages) {
