@@ -459,6 +459,7 @@
    available card width for its words rather than squeezing them beside a
    decorative oversized icon column. */
 .rts-11-15--page-12 .rts-11-15__wineskins{align-items:stretch}
+.rts-11-15--page-12 .rts-11-15__transform-arrow{align-self:center}
 .rts-11-15--page-12 .rts-11-15__wineskin-card{display:flex;flex-direction:column}
 .rts-11-15--page-12 .rts-11-15__wineskin-card blockquote{margin-top:auto}
 .rts-11-15--page-12 .rts-11-15__wineskin-card.is-gold .rts-11-15__wineskin-body{grid-template-columns:41% 59%;padding-left:10px;padding-right:8px}

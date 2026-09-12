@@ -38,6 +38,7 @@ assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the s
 assert(renderer.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Pages 11–12 must use the approved Tree of Life logo');
 assert(styles.includes('padding-top:0'), 'Pages 11–12 side imagery must start at the top of the sidebar');
 assert(styles.includes('clamp(270px,20vw,300px)'), 'Pages 11–12 must use the full-width formation rail');
+assert(styles.includes('.rts-11-15--page-12 .rts-11-15__transform-arrow{align-self:center}'), 'Page 12 transformation arrow must be vertically centered');
 for (const pageNumber of [11, 12]) assert(render(pageNumber).includes('curriculum-logo-transparent.png'), `Page ${pageNumber} must render the approved Tree of Life logo`);
 
 for (const page of pages.values()) {
