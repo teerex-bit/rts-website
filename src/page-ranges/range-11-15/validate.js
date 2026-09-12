@@ -23,6 +23,11 @@ for (const [number, phrases] of expected) {
 }
 assert(render(11).includes('href="/see-clearly/review-one/"'), 'Page 11 must continue to Page 12');
 assert(render(12).includes('href="/see-god-clearly/"'), 'Page 12 must continue to the Part 2 landing');
+const page13 = render(13);
+assert(page13.includes('rts-11-15__landing-reflection'), 'Page 13 must place its retained reflection content below the hero');
+assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include phase cards');
+assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a start button');
+assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
 assert(render(15).includes('href="/see-god-clearly/images/"'), 'Page 15 must continue to the trust reflection');
 assert(render(14).includes('href="/become/"'), 'Page 14 must continue to Become');
 
@@ -30,6 +35,9 @@ const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
 const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
 assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
 assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');
+assert(renderer.includes('/assets/page-ranges/range-11-15/curriculum-wordmark.svg'), 'Pages 11–12 must use the approved Tree of Life wordmark');
+assert(styles.includes('padding-top:79px'), 'Pages 11–12 side imagery must begin below the global lesson header');
+for (const pageNumber of [11, 12]) assert(render(pageNumber).includes('curriculum-wordmark.svg'), `Page ${pageNumber} must render the approved Tree of Life wordmark`);
 
 for (const page of pages.values()) {
   for (const source of [page.heroImage, page.side?.image, ...(page.wineskins || []).map(card => card.image)].filter(Boolean)) {
