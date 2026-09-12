@@ -4,6 +4,7 @@ const path = require('node:path');
 const { pages, render } = require('./index');
 
 const root = path.resolve(__dirname, '../../..');
+const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
 const expected = new Map([
   [11, ["That’s Formation, Not Identity", 'Identity Is Who You Are', 'Formation Is How You Learn']],
   [12, ['Make Room for Life', 'Old Wineskin', 'New Wineskin']],
@@ -28,16 +29,20 @@ assert(page13.includes('rts-11-15__landing-reflection'), 'Page 13 must place its
 assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include phase cards');
 assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a start button');
 assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
+assert(styles.includes('curriculum-logo-transparent.png'), 'Page 13 must use the Tree of Life logo');
+assert(!page13.includes('Part 2 of 2'), 'Page 13 must not show a Part number in its header');
 for (const pageNumber of [14, 15]) {
   const html = render(pageNumber);
   assert(!html.includes('Reflection'), `Page ${pageNumber} must not use reflection wording`);
   assert(!html.includes('rts-11-15__lesson-nav'), `Page ${pageNumber} must not show Back or Continue controls`);
-  assert(html.includes('See Clearly · Part 2 of 2'), `Page ${pageNumber} must use the Part 2 lesson marker`);
+  assert(!html.includes('Part 2 of 2'), `Page ${pageNumber} must not use a Part marker`);
+  assert(html.includes(`See Clearly</strong><span aria-hidden="true">•</span>Lesson ${pageNumber === 14 ? 5 : 4} of 5`), `Page ${pageNumber} must show its lesson counter directly after See Clearly`);
+  assert(!html.includes('rts-11-15__rail-marker'), `Page ${pageNumber} must not duplicate the lesson counter in the rail`);
 }
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
-const styles = fs.readFileSync(path.join(__dirname, 'styles.js'), 'utf8');
-assert(styles.includes('grid-template-columns:190px minmax(0,1fr) minmax(270px,320px)'), 'Page 13 discovery content must use a compact balanced panel');
+assert(!page13.includes('rts-11-15__landing-parts'), 'Page 13 must not retain phase cards below the hero');
+assert(styles.includes('grid-template-columns:minmax(0,1fr) minmax(270px,320px)'), 'Page 13 discovery content must use a compact balanced panel');
 assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
 assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');
 assert(renderer.includes('/assets/page-awaken/curriculum-logo-transparent.png'), 'Pages 11–12 must use the approved Tree of Life logo');
@@ -45,6 +50,11 @@ assert(styles.includes('padding-top:0'), 'Pages 11–12 side imagery must start 
 assert(styles.includes('clamp(270px,20vw,300px)'), 'Pages 11–12 must use the full-width formation rail');
 assert(styles.includes('.rts-11-15--page-12 .rts-11-15__transform-arrow{align-self:center}'), 'Page 12 transformation arrow must be vertically centered');
 for (const pageNumber of [11, 12]) assert(render(pageNumber).includes('curriculum-logo-transparent.png'), `Page ${pageNumber} must render the approved Tree of Life logo`);
+for (const pageNumber of [11, 12]) {
+  const html = render(pageNumber);
+  assert(!html.includes('rts-11-15__rail-marker'), `Page ${pageNumber} must not duplicate the lesson counter in the rail`);
+  assert(html.includes(`See Clearly</strong><span aria-hidden="true">•</span>Lesson ${pageNumber - 7} of 5`), `Page ${pageNumber} must show its lesson counter only in the header`);
+}
 
 for (const page of pages.values()) {
   for (const source of [page.heroImage, page.side?.image, ...(page.wineskins || []).map(card => card.image)].filter(Boolean)) {

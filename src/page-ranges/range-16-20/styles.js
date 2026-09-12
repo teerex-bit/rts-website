@@ -69,10 +69,11 @@ module.exports = String.raw`
 .r1620[data-page-number="16"] .r1620-reflection__content,.r1620[data-page-number="17"] .r1620-reflection__content{max-width:none;padding:34px 54px 48px}
 .r1620[data-page-number="16"] .r1620-reflection__content>h1,.r1620[data-page-number="17"] .r1620-reflection__content>h1{font-size:52px;margin-bottom:15px}
 .r1620[data-page-number="16"] .r1620-intro{font-size:16px;line-height:1.5;margin-bottom:24px}
-.r1620[data-page-number="16"] .r1620-anger-column>img{height:250px}
-.r1620[data-page-number="16"] .r1620-anger-column li{font-size:13px;padding:11px 2px}
+.r1620[data-page-number="16"] .r1620-anger-column>img{display:block;height:250px;object-fit:cover}
+.r1620[data-page-number="16"] .r1620-anger-column ul{padding:10px 16px 12px}
+.r1620[data-page-number="16"] .r1620-anger-column li{font-size:13px;min-height:54px;padding:11px 2px}
 .r1620[data-page-number="16"] .r1620-wide-note,.r1620[data-page-number="17"] .r1620-wide-note{margin-top:20px;min-height:74px;padding:16px 22px;font-size:14px}
-.r1620[data-page-number="17"] .r1620-look-subtitle{font-size:17px;line-height:1.3;margin:4px 0 19px}
+.r1620[data-page-number="17"] .r1620-look-subtitle{font-size:17px;line-height:1.3;margin:4px 0 19px;white-space:nowrap}
 .r1620[data-page-number="17"] .r1620-look-rows{gap:12px}
 .r1620[data-page-number="17"] .r1620-look-rows article{min-height:142px}
 .r1620[data-page-number="17"] .r1620-look-rows article>div{padding:21px 24px}

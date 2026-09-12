@@ -6,11 +6,9 @@ const icon = name => `<span class="rts-11-15__icon rts-11-15__icon--${esc(name)}
 const journeyIcon = name => `<img class="rts-11-15__stage-icon" src="/assets/icon-${esc(name)}.svg" alt="">`;
 
 function rail(page) {
-  const brand = page.number === 11 || page.number === 12
-    ? '/assets/page-awaken/curriculum-logo-transparent.png'
-    : '/assets/logo.svg';
-  const lessonMarker = page.number >= 11 && page.number <= 15
-    ? `<section class="rts-11-15__rail-marker" aria-label="Lesson location"><strong>See Clearly <span>·</span> Lesson ${page.step} of ${page.progressMax}</strong><p>Look again. Let truth make room for life.</p></section>`
+  const brand = '/assets/page-awaken/curriculum-logo-transparent.png';
+  const lessonMarker = page.number === 11 || page.number === 12
+    ? ''
     : `<section class="rts-11-15__progress" aria-label="Course progress"><h2>Your Progress</h2><p>${esc(page.progress)}</p><progress max="${page.progressMax}" value="${page.progressValue}">${esc(page.progress)}</progress></section>
     <section class="rts-11-15__help"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>`;
   return `<aside class="rts-11-15__rail">
@@ -22,7 +20,7 @@ function rail(page) {
 }
 
 function top(page) {
-  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
+  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong>${page.lesson ? `<span aria-hidden="true">•</span>${esc(page.lesson)}` : ''}</p><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
 }
 
 function lessonNav(page) {
@@ -54,7 +52,7 @@ function renderWineskins(page) {
 }
 
 function renderLanding(page) {
-  return `<div class="rts-11-15__landing">${top(page)}<main><img class="rts-11-15__landing-scene" src="${esc(page.heroImage)}" alt="A contemplative person on a forest path overlooking a mountain valley"><section class="rts-11-15__landing-copy"><p class="rts-11-15__pill">${esc(page.eyebrow)}</p><h1>${esc(page.title)}</h1><span class="rts-11-15__rule"></span><h2>${esc(page.subheading)}</h2>${page.introduction.map(text => `<p>${esc(text)}</p>`).join('')}<h3>${esc(page.invitation)}</h3></section></main><section class="rts-11-15__landing-reflection"><header><p>Two movements. One journey.</p><h2>Learning to See God Clearly</h2><span></span></header><div class="rts-11-15__landing-reflection-grid"><section class="rts-11-15__landing-parts" aria-label="The two movements of See Clearly">${page.parts.map(part => `<article class="${part.active ? 'is-active' : ''}">${icon(part.icon)}<p>${esc(part.label)}</p><h2>${esc(part.title)}</h2>${part.text.map(text => `<span>${esc(text)}</span>`).join('')}</article>`).join('<span aria-hidden="true">→</span>')}</section><section class="rts-11-15__landing-discover"><h2>What You’ll Discover</h2><ul>${page.discoveries.map((text, index) => `<li>${icon(['heart', 'cross', 'leaf', 'people'][index])}<span>${esc(text)}</span></li>`).join('')}</ul><blockquote>${icon('quote')}${page.scripture.map(text => `<p>${esc(text)}</p>`).join('')}<cite>${esc(page.citation)}</cite></blockquote></section></div></section><section class="rts-11-15__matters"><h2>Why This<br>Matters</h2>${page.matters.map((item, index) => `<article>${icon(['shield', 'key', 'sun', 'path'][index])}<div><h3>${esc(item[0])}</h3><p>${esc(item[1])}</p></div></article>`).join('')}<p class="rts-11-15__matters-note">▤<span>The clearest view of God leads to the clearest life.</span></p></section></div>`;
+  return `<div class="rts-11-15__landing">${top(page)}<main><img class="rts-11-15__landing-scene" src="${esc(page.heroImage)}" alt="A contemplative person on a forest path overlooking a mountain valley"><section class="rts-11-15__landing-copy"><p class="rts-11-15__pill">${esc(page.eyebrow)}</p><h1>${esc(page.title)}</h1><span class="rts-11-15__rule"></span><h2>${esc(page.subheading)}</h2>${page.introduction.map(text => `<p>${esc(text)}</p>`).join('')}<h3>${esc(page.invitation)}</h3></section></main><section class="rts-11-15__landing-reflection"><header><p>Looking again through Jesus</p><h2>What You’ll Discover</h2><span></span></header><section class="rts-11-15__landing-discover"><ul>${page.discoveries.map((text, index) => `<li>${icon(['heart', 'cross', 'leaf', 'people'][index])}<span>${esc(text)}</span></li>`).join('')}</ul><blockquote>${icon('quote')}${page.scripture.map(text => `<p>${esc(text)}</p>`).join('')}<cite>${esc(page.citation)}</cite></blockquote></section></section><section class="rts-11-15__matters"><h2>Why This<br>Matters</h2>${page.matters.map((item, index) => `<article>${icon(['shield', 'key', 'sun', 'path'][index])}<div><h3>${esc(item[0])}</h3><p>${esc(item[1])}</p></div></article>`).join('')}<p class="rts-11-15__matters-note">▤<span>The clearest view of God leads to the clearest life.</span></p></section></div>`;
 }
 
 function renderTrust(page) {

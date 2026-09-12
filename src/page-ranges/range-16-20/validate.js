@@ -15,7 +15,9 @@ for (const page of range.pages.values()) {
     assert.match(html, /class="r1620-rail__journey"/, `page ${page.number}: formation rail is visible`);
     assert.doesNotMatch(html, />Reflection/, `page ${page.number}: reflection wording is removed`);
     assert.doesNotMatch(html, /r1620-pager/, `page ${page.number}: Back and Continue controls are removed`);
-    assert.match(html, /See Clearly · Part 2 of 2/, `page ${page.number}: Part 2 lesson marker is visible`);
+    assert.doesNotMatch(html, /Part 2 of 2/, `page ${page.number}: Part marker is removed`);
+    assert.match(html, /<b>See Clearly<\/b><small>Lesson 5 of 5<\/small>/, `page ${page.number}: actual lesson counter follows See Clearly`);
+    assert.doesNotMatch(html, /r1620-coursebar__tools/, `page ${page.number}: standalone header tools are removed`);
   }
 }
 

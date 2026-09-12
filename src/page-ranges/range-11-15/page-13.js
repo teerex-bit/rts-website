@@ -6,13 +6,13 @@ module.exports = {
   title: 'Seeing God Clearly',
   family: 'landing',
   course: 'See Clearly',
-  lesson: 'Part 2 of 2',
-  progress: 'See Clearly · Part 2',
+  lesson: '',
+  progress: 'See Clearly',
   progressValue: 2,
   progressMax: 2,
   step: 2,
   journey,
-  eyebrow: 'See Clearly · Part 2',
+  eyebrow: 'See Clearly',
   subheading: 'The Next Essential Step',
   introduction: [
     'You’ve learned to see yourself more clearly.',
@@ -21,10 +21,6 @@ module.exports = {
   ],
   invitation: 'It’s time to discover who He truly is.',
   heroImage: '/assets/page-ranges/range-11-15/seeing-god-forest.jpg',
-  parts: [
-    { label: 'Part 1', title: 'See Yourself Clearly', text: ['Identity is settled.', 'Formation is the journey.'], icon: 'profile' },
-    { label: 'Part 2', title: 'See God Clearly', text: ['Relationship is the foundation.', 'Everything flows from Him.'], icon: 'crown', active: true }
-  ],
   discoveries: ['Who God is beyond the misconceptions and distortions we’ve picked up.', 'How His character reveals His heart toward you.', 'Why knowing God rightly changes everything.', 'How to relate to God as He truly is—Father, not taskmaster.'],
   scripture: ['This is eternal life:', 'that they know You,', 'the only true God,', 'and Jesus Christ', 'whom You have sent.'],
   citation: 'John 17:3',
