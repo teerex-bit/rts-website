@@ -4,7 +4,7 @@ module.exports = {
   title: 'Recognize His Presence',
   family: 'becoming-lesson',
   stage: 'Become',
-  course: 'Becoming · Part One · Lesson 1 of 6',
+  course: 'Become',
   headline: 'God is already here.',
   intro: 'The first step in living with God is learning to recognize what is already true—He is with you right now, in this moment, in your ordinary life.',
   screen: 'Screen 1 of 2',

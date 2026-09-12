@@ -5,7 +5,7 @@ module.exports = {
   route: '/see-clearly/review-one/',
   title: 'Make Room for Life',
   family: 'wineskins',
-  course: 'See Clearly 1',
+  course: 'See Clearly',
   lesson: 'Lesson 5 of 5',
   progress: 'See Clearly 5 of 5',
   progressValue: 5,

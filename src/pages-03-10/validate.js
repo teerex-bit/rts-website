@@ -38,6 +38,9 @@ for (const number of [8, 9, 10]) {
   assert.ok(correctionCss.includes(`${pageSelector} .course-aside__image`), `Page ${number} needs a full-visible approved sidebar graphic treatment`);
 }
 assert.ok(correctionCss.includes('object-fit:contain'), 'See Clearly scenic graphics must not be clipped by a cover crop');
+for (const number of [8, 9, 10]) {
+  assert.ok(byNumber.get(number).image.includes(`page-${String(number).padStart(2, '0')}-approved-scene.png`), `Page ${number} must use its page-specific approved scenic crop`);
+}
 
 for (const [number, progress] of [[3, 1], [4, 2], [5, 3], [6, 4]]) {
   const page = byNumber.get(number);

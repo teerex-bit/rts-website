@@ -16,7 +16,7 @@ function rail(page) {
 }
 
 function top(page) {
-  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><a href="/see-clearly/">← &nbsp; Course Overview</a><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
+  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong><span aria-hidden="true">•</span>${esc(page.lesson)}</p><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
 }
 
 function lessonNav(page) {

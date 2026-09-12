@@ -5,7 +5,7 @@ module.exports = {
   route: '/see-clearly/false-self/',
   title: 'That’s Formation, Not Identity',
   family: 'lesson',
-  course: 'See Clearly 1',
+  course: 'See Clearly',
   lesson: 'Lesson 4 of 5',
   progress: 'See Clearly 4 of 5',
   progressValue: 4,

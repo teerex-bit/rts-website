@@ -27,7 +27,7 @@ function journeyRail(page, stages) {
 }
 
 function courseTop(page) {
-  return `<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p>${page.family === 'awaken' || page.number === 8 ? '' : `<a href="${links.seeClearly}">← &nbsp; Course Overview</a>`}<div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
+  return `<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p><div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
 }
 
 function renderCallout(lines, tone = '') {

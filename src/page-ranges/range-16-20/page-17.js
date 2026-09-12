@@ -4,7 +4,7 @@ module.exports = {
   title: 'Look Again.',
   family: 'see-clearly-reflection',
   stage: 'See Clearly',
-  course: 'See Clearly · Part 2 of 2',
+  course: 'See Clearly',
   lesson: 'Lesson 5 of 5',
   progress: 'Reflection 5 of 6',
   subtitle: ['Some things we’ve heard', 'just aren’t what Scripture says.'],

@@ -382,20 +382,20 @@ const css = `
 .formation-course-page[data-page-number="10"] .course-aside{overflow:hidden;background:linear-gradient(180deg,#e9e4d9 0%,#f6f2ea 100%);border-left-color:#d7c9b5}
 .formation-course-page[data-page-number="08"] .course-aside__image,
 .formation-course-page[data-page-number="09"] .course-aside__image,
-.formation-course-page[data-page-number="10"] .course-aside__image{height:280px;margin-top:26px;object-fit:contain;object-position:center;background:#253b2c;filter:saturate(1.06) contrast(1.03)}
+.formation-course-page[data-page-number="10"] .course-aside__image{height:auto;min-height:0;margin-top:26px;object-fit:contain;object-position:center;background:transparent;filter:saturate(1.06) contrast(1.03)}
 .formation-course-page[data-page-number="08"] .course-aside__leaf,
 .formation-course-page[data-page-number="09"] .course-aside__leaf,
-.formation-course-page[data-page-number="10"] .course-aside__leaf{top:279px;color:#bd841e;background:#fffaf0;border:1px solid #dec18e;box-shadow:0 4px 14px #0a294322}
+.formation-course-page[data-page-number="10"] .course-aside__leaf{top:365px;color:#bd841e;background:#fffaf0;border:1px solid #dec18e;box-shadow:0 4px 14px #0a294322}
 .formation-course-page[data-page-number="08"] .course-aside__cards,
 .formation-course-page[data-page-number="09"] .course-aside__cards,
 .formation-course-page[data-page-number="10"] .course-aside__cards{padding-top:34px}
 @media (max-width:930px){
   .formation-course-page[data-page-number="08"] .course-aside__image,
   .formation-course-page[data-page-number="09"] .course-aside__image,
-  .formation-course-page[data-page-number="10"] .course-aside__image{height:300px;margin-top:0}
+  .formation-course-page[data-page-number="10"] .course-aside__image{height:auto;margin-top:0}
   .formation-course-page[data-page-number="08"] .course-aside__leaf,
   .formation-course-page[data-page-number="09"] .course-aside__leaf,
-  .formation-course-page[data-page-number="10"] .course-aside__leaf{top:273px}
+  .formation-course-page[data-page-number="10"] .course-aside__leaf{top:auto}
 }
 `;
 

@@ -5,7 +5,7 @@ module.exports = {
   route: '/see-god-clearly/distortions/',
   title: 'The Same God.',
   family: 'reflection-table',
-  course: 'See Clearly · Part 2 of 2',
+  course: 'See Clearly',
   lesson: 'Lesson 5 of 5',
   progress: 'Reflection 5 of 6',
   progressValue: 5,

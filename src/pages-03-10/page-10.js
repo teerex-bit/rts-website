@@ -2,7 +2,7 @@ module.exports = {
   number: 10,
   family: 'see-clearly',
   activeStage: 'See Clearly',
-  courseLabel: 'See Clearly 1',
+  courseLabel: 'See Clearly',
   lessonLabel: 'Lesson 3 of 5',
   progressLabel: 'See Clearly 3 of 5',
   progress: 3,
@@ -52,5 +52,5 @@ module.exports = {
       paragraphs: ['You are not what your instincts say. You are who God says you are.']
     }
   ],
-  image: '/assets/page-see-clearly/page-10-forest-path.png'
+  image: '/assets/page-see-clearly/page-10-approved-scene.png'
 };

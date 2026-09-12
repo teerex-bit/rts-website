@@ -2,7 +2,7 @@ module.exports = {
   number: 9,
   family: 'see-clearly',
   activeStage: 'See Clearly',
-  courseLabel: 'See Clearly 1',
+  courseLabel: 'See Clearly',
   lessonLabel: 'Lesson 2 of 5',
   progressLabel: 'See Clearly 2 of 5',
   progress: 2,
@@ -70,5 +70,5 @@ module.exports = {
       paragraphs: ['Truth seen clearly becomes a foundation for life change.']
     }
   ],
-  image: '/assets/page-see-clearly/page-09-forest-path.png'
+  image: '/assets/page-see-clearly/page-09-approved-scene.png'
 };

@@ -8,7 +8,8 @@
     "check:server": "node scripts/serve.test.js",
     "serve": "node scripts/serve.js",
     "check:browser": "node scripts/browser-check.js",
-    "verify:page-01": "node scripts/verify-page-01.js"
+    "verify:page-01": "node scripts/verify-page-01.js",
+    "verify:conversations": "node scripts/verify-conversations-hero.js"
   },
   "devDependencies": {
     "playwright": "^1.55.0",

@@ -74,7 +74,7 @@ function rail(active, detailed = false) {
 }
 
 function coursebar(page) {
-  return `<header class="r1620-coursebar"><span><b>${escapeHtml(page.course)}</b><small>${escapeHtml(page.lesson)}</small></span><a href="/">← &nbsp; Course Overview</a><span class="r1620-coursebar__tools">${icon('question')}${icon('person')}</span></header>`;
+  return `<header class="r1620-coursebar"><span><b>${escapeHtml(page.course)}</b><small>${escapeHtml(page.lesson)}</small></span><span class="r1620-coursebar__tools">${icon('question')}${icon('person')}</span></header>`;
 }
 
 function pager(page, labels = ['Back', 'Continue →']) {

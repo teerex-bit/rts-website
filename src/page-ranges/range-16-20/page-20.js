@@ -4,7 +4,7 @@ module.exports = {
   title: 'Learn to Live From His Presence',
   family: 'becoming-lesson',
   stage: 'Become',
-  course: 'Becoming · Part One · Lesson 1 of 6',
+  course: 'Become',
   screen: 'Screen 2 of 2',
   headline: 'Recognizing God’s presence should change what happens next.',
   intro: 'Most of us live from whatever captures our attention. But when we recognize that God is already here, we can choose a different first response.',
