@@ -54,10 +54,10 @@ function topbar(active = '') {
 
 function rail(active, detailed = false, showStageStatus = true) {
   const stages = [
-    ['Awaken', 'Notice what has formed you.', 'awaken', '/awaken/'],
-    ['See Clearly', 'Learn what is actually true.', 'see', '/see-clearly/'],
-    ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', 'become', '/become/'],
-    ['Join', 'Live from that growing wholeness in participation with God.', 'join', '/join/']
+    ['Awaken', 'Discover What is Possible', 'awaken', '/awaken/'],
+    ['See Clearly', 'Discover What is True', 'see', '/see-clearly/'],
+    ['Become', 'The Inner Person is Reordered', 'become', '/become/'],
+    ['Join', 'Participate in What God is Doing', 'join', '/join/']
   ];
   const lessonList = detailed ? `<div class="r1620-rail__part"><b>Part One</b><strong>Live With God</strong></div>
     <ol class="r1620-rail__lessons">

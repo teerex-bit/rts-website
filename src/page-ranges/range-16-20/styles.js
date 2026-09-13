@@ -85,9 +85,10 @@ module.exports = String.raw`
 /* Pages 16–17 belong to the See Clearly course.  Their rail deliberately
    uses the same navy, blue active state, row geometry, and quiet support
    panel as the approved See Clearly lesson pages—not the green landing rail. */
-.r1620--reflection .r1620-rail{background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31);width:280px;flex-basis:280px;padding:26px 16px 20px}
+.r1620--reflection .r1620-rail{background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31);width:280px;flex-basis:280px;padding:0 16px 20px}
 .r1620--reflection .r1620-rail__brand{align-items:center;background:#fffefa;display:flex;height:102px;margin:0 -16px 26px;padding:10px 20px}
 .r1620--reflection .r1620-rail__brand img{display:block;max-height:82px;max-width:205px;width:auto}
+.r1620--reflection .r1620-coursebar{height:102px}
 .r1620--reflection .r1620-rail__label{margin:0 8px 20px;color:#d6a740;font-size:12px;letter-spacing:.14em}
 .r1620--reflection .r1620-rail__journey{display:grid;gap:10px}
 .r1620--reflection .r1620-rail__journey>a{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:center;min-height:0;margin:0;padding:13px 10px;border-radius:8px}

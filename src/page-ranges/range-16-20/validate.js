@@ -51,6 +51,12 @@ assert.match(css, /@media\(max-width:760px\)\{[^}]*\.r1620\[data-page-number="17
 
 assert.match(css, /\.r1620--reflection \.r1620-rail\{background:linear-gradient\(160deg,#06223a,#082e4d 65%,#061d31\)/, 'Pages 16–17 rail must use the approved navy formation gradient');
 assert.match(css, /\.r1620--reflection \.r1620-rail__brand\{align-items:center;background:#fffefa;display:flex;height:102px/, 'Pages 16–17 must place the approved transparent logo in the standard clean header strip');
+assert.match(css, /\.r1620--reflection \.r1620-rail\{background:linear-gradient\(160deg,#06223a,#082e4d 65%,#061d31\);width:280px;flex-basis:280px;padding:0 16px 20px\}/, 'Pages 16–17 rail must not leave a navy strip above the white logo header');
+assert.match(css, /\.r1620--reflection \.r1620-coursebar\{height:102px/, 'Pages 16–17 main course header must align with the logo header strip');
+assert.match(css, /\.r1620--reflection \.r1620-rail__journey small\{max-width:none;font-size:11px;line-height:1\.42\}/, 'Pages 16–17 must share the approved rail subtitle rhythm');
+assert.match(css, /\.r1620--reflection \.r1620-rail__journey>a>\.r1620-journey-icon\{width:42px;height:42px\}/, 'Pages 16–17 must use the approved rail icon geometry');
+assert.match(page17Html, /Discover What is Possible/, 'Pages 16–17 must use the approved Awaken subtitle');
+assert.match(page17Html, /Discover What is True/, 'Pages 16–17 must use the approved See Clearly subtitle');
 assert.match(css, /\.r1620--reflection \.r1620-rail__journey>a\.is-active\{background:linear-gradient\(135deg,#145ca7,#2878c5\)/, 'Pages 16–17 active See Clearly stage must use the approved blue treatment');
 const page16Html = range.render(range.pages.get(16));
 assert.match(page16Html, /class="r1620-anger-image-row"/, 'Page 16 must render the two photographs in their own independent image row');

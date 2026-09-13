@@ -37,6 +37,16 @@ assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include
 assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a start button');
 assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
 assert(styles.includes('curriculum-logo-transparent.png'), 'Page 13 must use the Tree of Life logo');
+
+for (const pageNumber of [14, 15]) {
+  const html = render(pageNumber);
+  assert.match(html, /curriculum-logo-transparent\.png/, `Page ${pageNumber} must use the approved Tree of Life rail logo`);
+  assert.match(html, /Discover What is Possible/, `Page ${pageNumber} must use the approved Awaken subtitle`);
+  assert.match(html, /Discover What is True/, `Page ${pageNumber} must use the approved See Clearly subtitle`);
+}
+assert(styles.includes('.rts-11-15--page-14 .rts-11-15__compact,.rts-11-15--page-15 .rts-11-15__compact{grid-template-columns:280px minmax(0,1fr)}'), 'Pages 14–15 rail width must match Pages 16–17');
+assert(styles.includes('.rts-11-15--page-14 .rts-11-15__rail,.rts-11-15--page-15 .rts-11-15__rail{background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31);padding:0 16px 20px}'), 'Pages 14–15 must not leave a navy strip above the Tree of Life logo');
+assert(styles.includes('@media (min-width:821px) and (max-width:1200px){.rts-11-15--page-14 .rts-11-15__compact,.rts-11-15--page-15 .rts-11-15__compact{grid-template-columns:280px minmax(0,1fr)}'), 'Pages 14–15 must retain the same rail width at the tablet desktop breakpoint');
 assert(!page13.includes('Part 2 of 2'), 'Page 13 must not show a Part number in its header');
 for (const [pageNumber, lesson] of [[14, 1], [15, 2]]) {
   const html = render(pageNumber);
