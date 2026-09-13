@@ -82,8 +82,13 @@ function pager(page, labels = ['Back', 'Continue →']) {
 }
 
 function renderSeeClearly(page) {
-  const body = page.number === 16 ? `<div class="r1620-anger-grid">
-    ${page.comparisons.map(column => `<section class="r1620-anger-column"><h2>${escapeHtml(column.heading)}</h2><img src="${assetRoot}/${column.image}" alt="${escapeHtml(column.imageAlt)}"><ul>${column.items.map(([symbol, text, citation]) => `<li>${icon(symbol)}<span>${escapeHtml(text)} <small>${escapeHtml(citation)}</small></span></li>`).join('')}</ul></section>`).join('')}
+  const body = page.number === 16 ? `<div class="r1620-anger-comparison">
+    <div class="r1620-anger-image-row">
+      ${page.comparisons.map(column => `<figure class="r1620-anger-image"><figcaption><h2>${escapeHtml(column.heading)}</h2></figcaption><img src="${assetRoot}/${column.image}" alt="${escapeHtml(column.imageAlt)}"></figure>`).join('')}
+    </div>
+    <div class="r1620-anger-content-row">
+      ${page.comparisons.map(column => `<section class="r1620-anger-content" aria-label="${escapeHtml(column.heading)}"><ul>${column.items.map(([symbol, text, citation]) => `<li>${icon(symbol)}<span>${escapeHtml(text)} <small>${escapeHtml(citation)}</small></span></li>`).join('')}</ul></section>`).join('')}
+    </div>
   </div>
   <aside class="r1620-wide-note">${icon('heart')}<p><b>${escapeHtml(page.note[0])}</b><br>${escapeHtml(page.note[1])}</p></aside>` : `<p class="r1620-look-subtitle">${page.subtitle.map(escapeHtml).join(' ')}</p>
   <div class="r1620-look-rows">

@@ -29,6 +29,8 @@ assert(page13.includes('rts-11-15__landing-reflection'), 'Page 13 must place its
 assert(page13.includes('rts-11-15__landing-parts'), 'Page 13 must retain its editable two-movement section below the hero');
 assert(page13.includes('Part 1') && page13.includes('See Yourself Clearly'), 'Page 13 must retain the Part 1 movement');
 assert(page13.includes('Part 2') && page13.includes('See God Clearly'), 'Page 13 must retain the Part 2 movement');
+assert(page13.includes('<article class="is-active"><span>02</span>'), 'Page 13 must highlight Part 2 as the current movement');
+assert(!page13.includes('<article class="is-active"><span>01</span>'), 'Page 13 must not highlight Part 1');
 assert(page13.indexOf('rts-11-15__landing-parts') > page13.indexOf('</main>'), 'Page 13 movements must begin below the hero');
 assert(page13.indexOf('rts-11-15__landing-parts') < page13.indexOf('rts-11-15__landing-reflection'), 'Page 13 movements must appear before discovery content');
 assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include phase cards');

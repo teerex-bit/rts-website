@@ -32,6 +32,7 @@ module.exports = {
       text: 'Look again through Jesus and receive the truer reality of God’s love and goodness.'
     }
   ],
+  selectedMovement: 0,
   journeyTitle: 'A Journey of Seeing Differently',
   cards: [
     ['person', 'Who Am I?', 'Discover the truth of your identity as a new creation.'],

@@ -52,9 +52,13 @@ assert.match(css, /@media\(max-width:760px\)\{[^}]*\.r1620\[data-page-number="17
 assert.match(css, /\.r1620--reflection \.r1620-rail\{background:linear-gradient\(160deg,#06223a,#082e4d 65%,#061d31\)/, 'Pages 16–17 rail must use the approved navy formation gradient');
 assert.match(css, /\.r1620--reflection \.r1620-rail__brand\{align-items:center;background:#fffefa;display:flex;height:102px/, 'Pages 16–17 must place the approved transparent logo in the standard clean header strip');
 assert.match(css, /\.r1620--reflection \.r1620-rail__journey>a\.is-active\{background:linear-gradient\(135deg,#145ca7,#2878c5\)/, 'Pages 16–17 active See Clearly stage must use the approved blue treatment');
-assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-grid\{align-items:stretch;gap:24px\}/, 'Page 16 comparison cards must use the rebuilt, balanced grid');
-assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-column\{display:grid;grid-template-rows:38px 180px minmax\(0,1fr\);min-height:494px/, 'Page 16 cards must have a deliberate heading, image band, and list body');
-assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-column>img\{display:block;height:180px;object-fit:cover\}/, 'Page 16 images must keep a deliberate non-clipped crop');
+const page16Html = range.render(range.pages.get(16));
+assert.match(page16Html, /class="r1620-anger-image-row"/, 'Page 16 must render the two photographs in their own independent image row');
+assert.match(page16Html, /class="r1620-anger-content-row"/, 'Page 16 must render the two live comparison lists in a separate content row');
+assert.doesNotMatch(page16Html, /class="r1620-anger-column"/, 'Page 16 must not bind each image and list together inside one rigid card');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-image-row\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\);gap:24px/, 'Page 16 photo panels must form an evenly balanced two-column row');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-content-row\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\);gap:24px/, 'Page 16 list panels must form an evenly balanced two-column row');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-image>img\{display:block;height:220px;object-fit:cover/, 'Page 16 images must keep a deliberate, independently adjustable crop');
 
 for (const asset of ['anger-jesus.webp', 'anger-storm.webp', 'becoming-hero.webp', 'presence-path.webp', 'movement-live.webp', 'movement-become.webp']) {
   assert.ok(fs.existsSync(path.join(assets, asset)), `${asset} is a separate replaceable photographic asset`);

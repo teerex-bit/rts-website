@@ -35,6 +35,7 @@ module.exports = {
       text: 'Look again through Jesus and receive the truer reality of God’s love and goodness.'
     }
   ],
+  selectedMovement: 1,
   discoveries: ['Who God is beyond the misconceptions and distortions we’ve picked up.', 'How His character reveals His heart toward you.', 'Why knowing God rightly changes everything.', 'How to relate to God as He truly is—Father, not taskmaster.'],
   scripture: ['This is eternal life:', 'that they know You,', 'the only true God,', 'and Jesus Christ', 'whom You have sent.'],
   citation: 'John 17:3',

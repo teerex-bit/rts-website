@@ -55,6 +55,7 @@ assert.ok(!page07.includes('class="p07-journey"'), 'Page 07 must not show the re
 assert.ok(!page07.includes('Your Progress') && !page07.includes('Need help?'), 'Page 07 rail must not show progress or help blocks');
 assert.ok(page07.includes('Two Movements. One Journey.'), 'Page 07 must name the two-movement structure');
 assert.ok(page07.includes('<article class="is-active"><span>01</span>'), 'Page 07 must highlight Part 1 as the current movement');
+assert.ok(!page07.includes('<article class="is-active"><span>02</span>'), 'Page 07 must not highlight Part 2');
 assert.ok(adapter.css.includes('.p07-movements__steps article{display:grid;grid-template-columns:1fr;'), 'Page 07 movement cards must use the centered Page 13-style layout');
 assert.deepStrictEqual(adapter.patches.get(6).data, {
   continueLabel: 'I’ve Noticed Something I’m Ready to Look At'
