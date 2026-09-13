@@ -79,6 +79,32 @@ module.exports = String.raw`
 .r1620[data-page-number="17"] .r1620-look-rows{gap:12px}
 .r1620[data-page-number="17"] .r1620-look-rows article{min-height:142px}
 .r1620[data-page-number="17"] .r1620-look-rows article>div{padding:21px 24px}
+/* Pages 16–17 belong to the See Clearly course.  Their rail deliberately
+   uses the same navy, blue active state, row geometry, and quiet support
+   panel as the approved See Clearly lesson pages—not the green landing rail. */
+.r1620--reflection .r1620-rail{background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31);width:280px;flex-basis:280px;padding:26px 16px 20px}
+.r1620--reflection .r1620-rail__brand{align-items:center;background:#fffefa;display:flex;height:102px;margin:0 -16px 26px;padding:10px 20px}
+.r1620--reflection .r1620-rail__brand img{display:block;max-height:82px;max-width:205px;width:auto}
+.r1620--reflection .r1620-rail__label{margin:0 8px 20px;color:#d6a740;font-size:12px;letter-spacing:.14em}
+.r1620--reflection .r1620-rail__journey{display:grid;gap:10px}
+.r1620--reflection .r1620-rail__journey>a{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:center;min-height:0;margin:0;padding:13px 10px;border-radius:8px}
+.r1620--reflection .r1620-rail__journey>a>.r1620-journey-icon{width:42px;height:42px}
+.r1620--reflection .r1620-rail__journey b{font-size:12px;letter-spacing:.06em}
+.r1620--reflection .r1620-rail__journey small{max-width:none;font-size:11px;line-height:1.42}
+.r1620--reflection .r1620-rail__journey>a.is-active{background:linear-gradient(135deg,#145ca7,#2878c5);box-shadow:none}
+.r1620--reflection .r1620-help{margin:28px 4px 0;padding:18px;border-color:#ffffff25;border-radius:9px;font-size:11px}
+.r1620--reflection .r1620-help b{font-size:12px}
+.r1620--reflection .r1620-help a{color:#8eb043}
+/* The anger page is a single paired comparison: equal cards, a concise image
+   band, then a generous readable list body. */
+.r1620[data-page-number="16"] .r1620-anger-grid{align-items:stretch;gap:24px}
+.r1620[data-page-number="16"] .r1620-anger-column{display:grid;grid-template-rows:38px 180px minmax(0,1fr);min-height:494px;background:#f6f3ed}
+.r1620[data-page-number="16"] .r1620-anger-column h2{display:grid;place-items:center;padding:0;background:#fbf9f5;font-size:12px;letter-spacing:.055em}
+.r1620[data-page-number="16"] .r1620-anger-column>img{display:block;height:180px;object-fit:cover}
+.r1620[data-page-number="16"] .r1620-anger-column ul{padding:12px 18px 14px;gap:0}
+.r1620[data-page-number="16"] .r1620-anger-column li{min-height:61px;padding:11px 0;font-size:13px;line-height:1.28}
+.r1620[data-page-number="16"] .r1620-anger-column li .r1620-icon{width:31px;height:31px;padding:6px}
+.r1620[data-page-number="17"] .r1620-reflection__content{max-width:1080px}
 .r1620-look-subtitle{font-weight:700;line-height:1.08;margin:-4px 0 14px;font-size:15px}
 .r1620-look-rows{display:grid;gap:5px}
 .r1620-look-rows article{display:grid;grid-template-columns:1fr 58px 1.35fr 65px;min-height:120px;border:1px solid #ddd7cd;border-radius:12px;background:#fbf9f5;align-items:stretch;overflow:hidden}

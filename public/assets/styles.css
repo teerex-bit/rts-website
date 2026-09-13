@@ -488,6 +488,21 @@
 .rts-11-15--page-13 main{height:610px}
 .rts-11-15--page-13 .rts-11-15__landing-scene{width:68%}
 .rts-11-15--page-13 .rts-11-15__landing-copy{background:linear-gradient(90deg,#fbfaf7 66%,rgba(251,250,247,.94) 79%,transparent);padding-right:8%;width:52%}
+.rts-11-15__landing-parts{display:grid;gap:23px;padding:42px max(4%,48px) 44px;background:linear-gradient(180deg,#fffdf9,#f5f2eb);border-bottom:1px solid #ded6ca}
+.rts-11-15__landing-parts-heading{align-items:center;color:#145ca7;display:flex;gap:11px;justify-content:center}
+.rts-11-15__landing-parts-heading>span{align-items:center;border:1px solid #a9c3dc;border-radius:50%;display:flex;height:56px;justify-content:center;width:56px}
+.rts-11-15__landing-parts-heading .rts-11-15__icon{background:transparent;color:#145ca7;height:26px;width:26px}
+.rts-11-15__landing-parts-heading p{font-size:.84rem;font-weight:700;letter-spacing:.12em;margin:0;text-transform:uppercase}
+.rts-11-15__landing-parts-steps{align-items:center;display:grid;gap:22px;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);margin:auto;max-width:760px;width:100%}
+.rts-11-15__landing-parts-steps article{align-content:center;background:#f7f4ee;border:1px solid #ded6ca;border-radius:18px;display:grid;gap:0;justify-items:center;min-height:235px;padding:24px;text-align:center}
+.rts-11-15__landing-parts-steps article.is-active{background:linear-gradient(145deg,#15568b,#093554);border-color:#093554;box-shadow:0 9px 20px #0a29431c;color:#fff}
+.rts-11-15__landing-parts-steps article>span{align-items:center;background:#fffdfa;border:1px solid #9fbbd1;border-radius:50%;color:#145ca7;display:flex;font-size:.73rem;font-weight:700;height:68px;justify-content:center;margin-bottom:14px;width:68px}
+.rts-11-15__landing-parts-steps article.is-active>span{background:transparent;border-color:#d9ab50;color:#d79a25}
+.rts-11-15__landing-parts-steps small{color:#b87617;font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.rts-11-15__landing-parts-steps h3{color:#092039;font-size:1.08rem;letter-spacing:.04em;margin:7px 0 12px;text-transform:uppercase}
+.rts-11-15__landing-parts-steps article.is-active h3{color:#fff}
+.rts-11-15__landing-parts-steps p{font-size:.84rem;line-height:1.48;margin:0}
+.rts-11-15__landing-parts-steps>i{color:#c68b24;font-size:1.7rem;font-style:normal;text-align:center}
 .rts-11-15__landing-reflection{background:linear-gradient(180deg,#fffdf9,#f5f2eb);padding:48px max(4%,48px) 52px}
 .rts-11-15__landing-reflection>header{text-align:center}
 .rts-11-15__landing-reflection>header p{color:#bd7c1c;font-size:13px;font-weight:700;letter-spacing:.14em;margin:0 0 7px;text-transform:uppercase}
@@ -503,7 +518,7 @@
 .rts-11-15__landing-discover blockquote p{font-family:Georgia,serif;font-size:17px;font-style:italic;line-height:1.25;margin:0}
 .rts-11-15__landing-discover cite{color:var(--olive);display:block;font-size:11px;font-style:normal;font-weight:700;letter-spacing:.11em;margin-top:11px;text-transform:uppercase}
 .rts-11-15--page-13 .rts-11-15__matters{bottom:auto;left:auto;margin:0;min-height:168px;position:relative;width:100%}
-@media (max-width:820px){.rts-11-15--page-13 main{height:auto}.rts-11-15--page-13 .rts-11-15__landing-copy{padding:35px 24px;width:100%}.rts-11-15__landing-reflection{padding:38px 20px}.rts-11-15__landing-reflection>header h2{font-size:32px}.rts-11-15__landing-discover{grid-template-columns:1fr}.rts-11-15__landing-discover ul{grid-template-columns:1fr;padding:14px 18px}.rts-11-15__landing-discover blockquote{border-left:0;border-top:1px solid #e2ddd1}.rts-11-15--page-13 .rts-11-15__matters{display:grid;grid-template-columns:1fr}.rts-11-15--page-13 .rts-11-15__matters>h2{padding-left:0;text-align:center}.rts-11-15--page-13 .rts-11-15__matters article{border-bottom:1px solid #e0ddd5;border-right:0;padding:14px 0}.rts-11-15--page-13 .rts-11-15__matters-note{display:flex;min-height:108px}}
+@media (max-width:820px){.rts-11-15--page-13 main{height:auto}.rts-11-15--page-13 .rts-11-15__landing-copy{padding:35px 24px;width:100%}.rts-11-15__landing-parts{padding:34px 20px}.rts-11-15__landing-parts-steps{grid-template-columns:1fr}.rts-11-15__landing-parts-steps>i{transform:rotate(90deg)}.rts-11-15__landing-reflection{padding:38px 20px}.rts-11-15__landing-reflection>header h2{font-size:32px}.rts-11-15__landing-discover{grid-template-columns:1fr}.rts-11-15__landing-discover ul{grid-template-columns:1fr;padding:14px 18px}.rts-11-15__landing-discover blockquote{border-left:0;border-top:1px solid #e2ddd1}.rts-11-15--page-13 .rts-11-15__matters{display:grid;grid-template-columns:1fr}.rts-11-15--page-13 .rts-11-15__matters>h2{padding-left:0;text-align:center}.rts-11-15--page-13 .rts-11-15__matters article{border-bottom:1px solid #e0ddd5;border-right:0;padding:14px 0}.rts-11-15--page-13 .rts-11-15__matters-note{display:flex;min-height:108px}}
 
 /* Pages 16-20 range styles */
 .r1620{--ink:#0d2030;--cream:#f7f3ed;--paper:#fbf9f5;--purple:#3f216f;--purple-2:#624294;--gold:#c98b22;--olive:#5f653a;--rail:#101d1c;box-sizing:border-box;color:var(--ink);background:var(--paper);font-family:Arial,Helvetica,sans-serif;line-height:1.42;min-height:100vh}
@@ -586,6 +601,32 @@
 .r1620[data-page-number="17"] .r1620-look-rows{gap:12px}
 .r1620[data-page-number="17"] .r1620-look-rows article{min-height:142px}
 .r1620[data-page-number="17"] .r1620-look-rows article>div{padding:21px 24px}
+/* Pages 16–17 belong to the See Clearly course.  Their rail deliberately
+   uses the same navy, blue active state, row geometry, and quiet support
+   panel as the approved See Clearly lesson pages—not the green landing rail. */
+.r1620--reflection .r1620-rail{background:linear-gradient(160deg,#06223a,#082e4d 65%,#061d31);width:280px;flex-basis:280px;padding:26px 16px 20px}
+.r1620--reflection .r1620-rail__brand{align-items:center;background:#fffefa;display:flex;height:102px;margin:0 -16px 26px;padding:10px 20px}
+.r1620--reflection .r1620-rail__brand img{display:block;max-height:82px;max-width:205px;width:auto}
+.r1620--reflection .r1620-rail__label{margin:0 8px 20px;color:#d6a740;font-size:12px;letter-spacing:.14em}
+.r1620--reflection .r1620-rail__journey{display:grid;gap:10px}
+.r1620--reflection .r1620-rail__journey>a{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:center;min-height:0;margin:0;padding:13px 10px;border-radius:8px}
+.r1620--reflection .r1620-rail__journey>a>.r1620-journey-icon{width:42px;height:42px}
+.r1620--reflection .r1620-rail__journey b{font-size:12px;letter-spacing:.06em}
+.r1620--reflection .r1620-rail__journey small{max-width:none;font-size:11px;line-height:1.42}
+.r1620--reflection .r1620-rail__journey>a.is-active{background:linear-gradient(135deg,#145ca7,#2878c5);box-shadow:none}
+.r1620--reflection .r1620-help{margin:28px 4px 0;padding:18px;border-color:#ffffff25;border-radius:9px;font-size:11px}
+.r1620--reflection .r1620-help b{font-size:12px}
+.r1620--reflection .r1620-help a{color:#8eb043}
+/* The anger page is a single paired comparison: equal cards, a concise image
+   band, then a generous readable list body. */
+.r1620[data-page-number="16"] .r1620-anger-grid{align-items:stretch;gap:24px}
+.r1620[data-page-number="16"] .r1620-anger-column{display:grid;grid-template-rows:38px 180px minmax(0,1fr);min-height:494px;background:#f6f3ed}
+.r1620[data-page-number="16"] .r1620-anger-column h2{display:grid;place-items:center;padding:0;background:#fbf9f5;font-size:12px;letter-spacing:.055em}
+.r1620[data-page-number="16"] .r1620-anger-column>img{display:block;height:180px;object-fit:cover}
+.r1620[data-page-number="16"] .r1620-anger-column ul{padding:12px 18px 14px;gap:0}
+.r1620[data-page-number="16"] .r1620-anger-column li{min-height:61px;padding:11px 0;font-size:13px;line-height:1.28}
+.r1620[data-page-number="16"] .r1620-anger-column li .r1620-icon{width:31px;height:31px;padding:6px}
+.r1620[data-page-number="17"] .r1620-reflection__content{max-width:1080px}
 .r1620-look-subtitle{font-weight:700;line-height:1.08;margin:-4px 0 14px;font-size:15px}
 .r1620-look-rows{display:grid;gap:5px}
 .r1620-look-rows article{display:grid;grid-template-columns:1fr 58px 1.35fr 65px;min-height:120px;border:1px solid #ddd7cd;border-radius:12px;background:#fbf9f5;align-items:stretch;overflow:hidden}

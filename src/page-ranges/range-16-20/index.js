@@ -52,7 +52,7 @@ function topbar(active = '') {
   </header>`;
 }
 
-function rail(active, detailed = false) {
+function rail(active, detailed = false, showStageStatus = true) {
   const stages = [
     ['Awaken', 'Notice what has formed you.', 'awaken', '/awaken/'],
     ['See Clearly', 'Learn what is actually true.', 'see', '/see-clearly/'],
@@ -64,10 +64,10 @@ function rail(active, detailed = false) {
       ${['Recognize His Presence','Listen Deeply','Release Control','Receive the Moment','Take the Next Right Step','Repeat Daily'].map((label, index) => `<li class="${index === 0 ? 'is-current' : ''}"><span>${index + 1}</span>${label}${index === 0 ? icon('check') : ''}</li>`).join('')}
     </ol>` : '';
   return `<aside class="r1620-rail">
-    ${detailed ? '' : logo(true)}
+    ${detailed ? '' : '<a class="r1620-rail__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>'}
     <p class="r1620-rail__label">The Formation Journey</p>
     <nav class="r1620-rail__journey" aria-label="Formation journey">
-      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${label === 'Awaken' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
+      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${showStageStatus && label === 'Awaken' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
     </nav>
     <div class="r1620-help">${icon('question')}<span><b>Need help?</b><small>We’re here if you have questions along the way.</small><a href="/conversations/">Contact Support →</a></span></div>
   </aside>`;
@@ -92,7 +92,7 @@ function renderSeeClearly(page) {
   <aside class="r1620-wide-note">${icon('branch')}<p><b>${escapeHtml(page.note[0])}</b><br>${escapeHtml(page.note[1])}</p></aside>`;
 
   return `<main class="r1620 r1620--reflection" data-page-number="${page.number}" data-editable-source="range-16-20">
-    ${rail(page.stage)}
+    ${rail(page.stage, false, false)}
     <div class="r1620-reflection__main">
       ${coursebar(page)}
       <div class="r1620-reflection__content">

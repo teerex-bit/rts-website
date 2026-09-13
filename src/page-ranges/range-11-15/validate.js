@@ -26,6 +26,11 @@ assert(render(11).includes('href="/see-clearly/review-one/"'), 'Page 11 must con
 assert(render(12).includes('href="/see-god-clearly/"'), 'Page 12 must continue to the Part 2 landing');
 const page13 = render(13);
 assert(page13.includes('rts-11-15__landing-reflection'), 'Page 13 must place its retained reflection content below the hero');
+assert(page13.includes('rts-11-15__landing-parts'), 'Page 13 must retain its editable two-movement section below the hero');
+assert(page13.includes('Part 1') && page13.includes('See Yourself Clearly'), 'Page 13 must retain the Part 1 movement');
+assert(page13.includes('Part 2') && page13.includes('See God Clearly'), 'Page 13 must retain the Part 2 movement');
+assert(page13.indexOf('rts-11-15__landing-parts') > page13.indexOf('</main>'), 'Page 13 movements must begin below the hero');
+assert(page13.indexOf('rts-11-15__landing-parts') < page13.indexOf('rts-11-15__landing-reflection'), 'Page 13 movements must appear before discovery content');
 assert(!page13.includes('rts-11-15__part-cards'), 'Page 13 hero must not include phase cards');
 assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a start button');
 assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
@@ -42,7 +47,6 @@ for (const [pageNumber, lesson] of [[14, 1], [15, 2]]) {
 }
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');
-assert(!page13.includes('rts-11-15__landing-parts'), 'Page 13 must not retain phase cards below the hero');
 assert(styles.includes('grid-template-columns:minmax(0,1fr) minmax(270px,320px)'), 'Page 13 discovery content must use a compact balanced panel');
 assert(renderer.includes('rts-11-15__stage-icon'), 'Shared renderer must use the editable stage-icon component');
 assert(renderer.includes('/assets/icon-'), 'Shared renderer must reference the shared editable stage SVGs');

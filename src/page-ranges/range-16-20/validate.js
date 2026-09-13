@@ -42,13 +42,19 @@ for (const [pageNumber, expectedLesson] of seeClearlyGodCounters) {
 }
 
 const page17Html = range.render(range.pages.get(17));
-assert.match(page17Html, /data-stage="Awaken"[^>]*>[\s\S]*?journey-icons\.svg#check/, 'Page 17: only Awaken remains marked complete');
+assert.match(page17Html, /<a class="r1620-rail__brand" href="\/"[^>]*><img src="\/assets\/page-awaken\/curriculum-logo-transparent\.png" alt="Reforming the Soul"><\/a>/, 'Pages 16–17 must render the approved transparent Tree of Life logo asset');
+assert.doesNotMatch(page17Html, /class="r1620-logo r1620-logo--light"/, 'Pages 16–17 must not render a hand-built icon and wordmark in the rail');
+assert.doesNotMatch(page17Html, /journey-icons\.svg#check/, 'Page 17: sidebar matches the standard See Clearly rail without detached status marks');
 assert.doesNotMatch(page17Html, /#chevron/, 'Page 17: the detached chevron/check rail is removed');
 assert.doesNotMatch(page17Html, /r1620-look-subtitle">[^<]+<br>/, 'Page 17: introductory sentence stays on one desktop line');
 assert.match(css, /@media\(max-width:760px\)\{[^}]*\.r1620\[data-page-number="17"\] \.r1620-look-subtitle\{[^}]*white-space:normal/, 'Page 17: narrow-screen subtitle restores normal wrapping');
 
-assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-grid\{align-items:stretch\}/, 'Page 16 comparison cards must begin and end as a balanced pair');
-assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-column>img\{display:block;height:clamp\(190px,19vw,250px\);object-fit:cover\}/, 'Page 16 images must keep an intentional crop within the card');
+assert.match(css, /\.r1620--reflection \.r1620-rail\{background:linear-gradient\(160deg,#06223a,#082e4d 65%,#061d31\)/, 'Pages 16–17 rail must use the approved navy formation gradient');
+assert.match(css, /\.r1620--reflection \.r1620-rail__brand\{align-items:center;background:#fffefa;display:flex;height:102px/, 'Pages 16–17 must place the approved transparent logo in the standard clean header strip');
+assert.match(css, /\.r1620--reflection \.r1620-rail__journey>a\.is-active\{background:linear-gradient\(135deg,#145ca7,#2878c5\)/, 'Pages 16–17 active See Clearly stage must use the approved blue treatment');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-grid\{align-items:stretch;gap:24px\}/, 'Page 16 comparison cards must use the rebuilt, balanced grid');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-column\{display:grid;grid-template-rows:38px 180px minmax\(0,1fr\);min-height:494px/, 'Page 16 cards must have a deliberate heading, image band, and list body');
+assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-column>img\{display:block;height:180px;object-fit:cover\}/, 'Page 16 images must keep a deliberate non-clipped crop');
 
 for (const asset of ['anger-jesus.webp', 'anger-storm.webp', 'becoming-hero.webp', 'presence-path.webp', 'movement-live.webp', 'movement-become.webp']) {
   assert.ok(fs.existsSync(path.join(assets, asset)), `${asset} is a separate replaceable photographic asset`);

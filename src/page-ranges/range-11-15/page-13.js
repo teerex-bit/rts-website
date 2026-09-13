@@ -21,6 +21,20 @@ module.exports = {
   ],
   invitation: 'It’s time to discover who He truly is.',
   heroImage: '/assets/page-ranges/range-11-15/seeing-god-forest.jpg',
+  movements: [
+    {
+      number: '01',
+      part: 'Part 1',
+      title: 'See Yourself Clearly',
+      text: 'Notice the stories, assumptions, and patterns that have shaped the way you see.'
+    },
+    {
+      number: '02',
+      part: 'Part 2',
+      title: 'See God Clearly',
+      text: 'Look again through Jesus and receive the truer reality of God’s love and goodness.'
+    }
+  ],
   discoveries: ['Who God is beyond the misconceptions and distortions we’ve picked up.', 'How His character reveals His heart toward you.', 'Why knowing God rightly changes everything.', 'How to relate to God as He truly is—Father, not taskmaster.'],
   scripture: ['This is eternal life:', 'that they know You,', 'the only true God,', 'and Jesus Christ', 'whom You have sent.'],
   citation: 'John 17:3',
