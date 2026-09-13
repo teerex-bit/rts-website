@@ -7,7 +7,7 @@ const journeyIcon = name => `<img class="rts-11-15__stage-icon" src="/assets/ico
 
 function rail(page) {
   const brand = '/assets/page-awaken/curriculum-logo-transparent.png';
-  const lessonMarker = page.number === 11 || page.number === 12
+  const lessonMarker = page.course === 'See Clearly'
     ? ''
     : `<section class="rts-11-15__progress" aria-label="Course progress"><h2>Your Progress</h2><p>${esc(page.progress)}</p><progress max="${page.progressMax}" value="${page.progressValue}">${esc(page.progress)}</progress></section>
     <section class="rts-11-15__help"><h2><span aria-hidden="true">?</span> Need help?</h2><p>We’re here if you have questions along the way.</p><a href="/join/">Contact Support <span aria-hidden="true">→</span></a></section>`;

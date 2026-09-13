@@ -5,8 +5,8 @@ module.exports = {
   family: 'see-clearly-reflection',
   stage: 'See Clearly',
   course: 'See Clearly',
-  lesson: 'Lesson 5 of 5',
-  progress: 'Lesson 5 of 5',
+  lesson: 'Lesson 3 of 4',
+  progress: 'Lesson 3 of 4',
   intro: [
     'God’s anger is not the opposite of His love.',
     'It is love that opposes what destroys the people He loves.'

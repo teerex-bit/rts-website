@@ -31,13 +31,14 @@ assert(!page13.includes('rts-11-15__start'), 'Page 13 hero must not include a st
 assert(!page13.includes('rts-11-15__discover'), 'Page 13 hero must not include a right-side discovery panel');
 assert(styles.includes('curriculum-logo-transparent.png'), 'Page 13 must use the Tree of Life logo');
 assert(!page13.includes('Part 2 of 2'), 'Page 13 must not show a Part number in its header');
-for (const pageNumber of [14, 15]) {
+for (const [pageNumber, lesson] of [[14, 1], [15, 2]]) {
   const html = render(pageNumber);
   assert(!html.includes('Reflection'), `Page ${pageNumber} must not use reflection wording`);
   assert(!html.includes('rts-11-15__lesson-nav'), `Page ${pageNumber} must not show Back or Continue controls`);
   assert(!html.includes('Part 2 of 2'), `Page ${pageNumber} must not use a Part marker`);
-  assert(html.includes(`See Clearly</strong><span aria-hidden="true">•</span>Lesson ${pageNumber === 14 ? 5 : 4} of 5`), `Page ${pageNumber} must show its lesson counter directly after See Clearly`);
+  assert(html.includes(`See Clearly</strong><span aria-hidden="true">•</span>Lesson ${lesson} of 4`), `Page ${pageNumber} must show its actual lesson counter directly after See Clearly`);
   assert(!html.includes('rts-11-15__rail-marker'), `Page ${pageNumber} must not duplicate the lesson counter in the rail`);
+  assert(!html.includes('rts-11-15__progress'), `Page ${pageNumber} must not duplicate the lesson counter in the rail`);
 }
 
 const renderer = fs.readFileSync(path.join(__dirname, 'render.js'), 'utf8');

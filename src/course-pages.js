@@ -15,14 +15,13 @@ const lessonRoutes = new Map([
 ]);
 
 function journeyRail(page, stages) {
-  const simplifiedLesson = page.number === 8;
+  const seeClearly = page.activeStage === 'See Clearly';
   return `<aside class="formation-rail">
     <a class="formation-rail__brand" href="${links.home}"><img src="/assets/logo-light.svg" alt="Reforming the Soul"></a>
     <p class="formation-rail__title">The Formation Journey</p>
     <nav class="formation-rail__journey" aria-label="Formation journey">${stages.map(stage => `<a data-stage="${esc(stage.name)}" class="${stage.name === page.activeStage ? 'is-active' : ''}" href="${stage.href}"><img src="/assets/icon-${stage.icon}.svg" alt=""><span><strong>${esc(stage.name)}</strong><small>${esc(stage.description)}</small></span></a>`).join('')}</nav>
-    ${simplifiedLesson ? '' : `<section class="formation-rail__progress" aria-label="Course progress"><p>Your Progress</p><span>${esc(page.progressLabel)}</span><progress max="${page.progressMax}" value="${page.progress}">${page.progressLabel}</progress></section>`}
-    ${simplifiedLesson ? `<section class="formation-rail__lesson-marker" aria-label="Current lesson"><strong>See Clearly <span aria-hidden="true">•</span> Lesson 1 of 7</strong><p>Take your time. Notice what is true.</p></section>` : ''}
-    ${simplifiedLesson ? '' : (page.family === 'awaken' && page.number < 6 ? `<blockquote>${esc("Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.")}<cite>— Dallas Willard</cite></blockquote>` : `<section class="formation-rail__help"><strong><span aria-hidden="true">?</span> Need help?</strong><p>We’re here if you have questions along the way.</p><a href="${links.learnMore}">Contact Support →</a></section>`) }
+    ${seeClearly ? '' : `<section class="formation-rail__progress" aria-label="Course progress"><p>Your Progress</p><span>${esc(page.progressLabel)}</span><progress max="${page.progressMax}" value="${page.progress}">${page.progressLabel}</progress></section>`}
+    ${page.family === 'awaken' && page.number < 6 ? `<blockquote>${esc("Everyone’s spirit has already been formed. Its present character has come to be through the experiences and choices of a lifetime.")}<cite>— Dallas Willard</cite></blockquote>` : `<section class="formation-rail__help"><strong><span aria-hidden="true">?</span> Need help?</strong><p>We’re here if you have questions along the way.</p><a href="${links.learnMore}">Contact Support →</a></section>`}
   </aside>`;
 }
 

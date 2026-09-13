@@ -4,9 +4,9 @@ module.exports = {
   activeStage: 'See Clearly',
   courseLabel: 'See Clearly',
   lessonLabel: 'Phase Overview',
-  progressLabel: 'See Clearly 0 of 7',
+  progressLabel: 'See Clearly',
   progress: 0,
-  progressMax: 7,
+  progressMax: 5,
   step: 0,
   title: 'See Who You Really Are',
   introduction: [

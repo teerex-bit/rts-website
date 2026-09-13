@@ -2,6 +2,7 @@ const assert = require('assert');
 const { pages, stages } = require('./index');
 const correctionCss = require('../page-corrections/pages-01-10').css;
 const correctionAdapter = require('../page-corrections/pages-01-10');
+const renderCoursePage = require('../course-pages');
 
 const byNumber = new Map(pages.map(page => [page.number, page]));
 
@@ -49,8 +50,9 @@ for (const [number, progress] of [[3, 1], [4, 2], [5, 3], [6, 4]]) {
   assert.strictEqual(page.progressMax, 4);
 }
 
-assert.strictEqual(byNumber.get(7).progressLabel, 'See Clearly 0 of 7');
-assert.strictEqual(byNumber.get(8).progressLabel, 'See Clearly 1 of 7');
+assert.strictEqual(byNumber.get(7).progressLabel, 'See Clearly');
+assert.strictEqual(byNumber.get(8).lessonLabel, 'Lesson 1 of 5');
+assert.strictEqual(byNumber.get(8).progressLabel, 'See Clearly 1 of 5');
 assert.strictEqual(byNumber.get(9).progressLabel, 'See Clearly 2 of 5');
 assert.strictEqual(byNumber.get(10).progressLabel, 'See Clearly 3 of 5');
 
@@ -67,5 +69,10 @@ assert.ok(correctionCss.includes('[data-page-number="04"] .origin-map__center'),
 const page07Html = correctionAdapter.patches.get(7).render();
 assert.ok(page07Html.includes('src="/assets/icon-see.svg"'), 'Page 07 must use the editable See Clearly SVG icon');
 assert.ok(page07Html.includes('class="p07-movements"'), 'Page 07 must retain its editable two-movement section');
+for (const number of [7, 8, 9, 10]) {
+  const html = renderCoursePage(byNumber.get(number), stages);
+  assert.ok(!html.includes('formation-rail__progress'), `Page ${number} must not duplicate its lesson counter in the rail`);
+  assert.ok(!html.includes('Lesson 1 of 7'), `Page ${number} must not retain the stale seven-lesson counter`);
+}
 
 console.log('Pages 03–10 reference compliance validation passed.');

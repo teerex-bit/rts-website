@@ -3,10 +3,10 @@ module.exports = {
   family: 'see-clearly',
   activeStage: 'See Clearly',
   courseLabel: 'See Clearly',
-  lessonLabel: 'Lesson 1 of 7',
-  progressLabel: 'See Clearly 1 of 7',
+  lessonLabel: 'Lesson 1 of 5',
+  progressLabel: 'See Clearly 1 of 5',
   progress: 1,
-  progressMax: 7,
+  progressMax: 5,
   step: 1,
   title: 'Who Are You Now?',
   introduction: [

@@ -67,7 +67,7 @@ function rail(active, detailed = false) {
     ${detailed ? '' : logo(true)}
     <p class="r1620-rail__label">The Formation Journey</p>
     <nav class="r1620-rail__journey" aria-label="Formation journey">
-      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${active === label ? icon('chevron') : label !== 'Join' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
+      ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${label === 'Awaken' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
     </nav>
     <div class="r1620-help">${icon('question')}<span><b>Need help?</b><small>We’re here if you have questions along the way.</small><a href="/conversations/">Contact Support →</a></span></div>
   </aside>`;
@@ -85,7 +85,7 @@ function renderSeeClearly(page) {
   const body = page.number === 16 ? `<div class="r1620-anger-grid">
     ${page.comparisons.map(column => `<section class="r1620-anger-column"><h2>${escapeHtml(column.heading)}</h2><img src="${assetRoot}/${column.image}" alt="${escapeHtml(column.imageAlt)}"><ul>${column.items.map(([symbol, text, citation]) => `<li>${icon(symbol)}<span>${escapeHtml(text)} <small>${escapeHtml(citation)}</small></span></li>`).join('')}</ul></section>`).join('')}
   </div>
-  <aside class="r1620-wide-note">${icon('heart')}<p><b>${escapeHtml(page.note[0])}</b><br>${escapeHtml(page.note[1])}</p></aside>` : `<p class="r1620-look-subtitle">${page.subtitle.map(escapeHtml).join('<br>')}</p>
+  <aside class="r1620-wide-note">${icon('heart')}<p><b>${escapeHtml(page.note[0])}</b><br>${escapeHtml(page.note[1])}</p></aside>` : `<p class="r1620-look-subtitle">${page.subtitle.map(escapeHtml).join(' ')}</p>
   <div class="r1620-look-rows">
     ${page.rows.map(row => `<article><div><b>You’ve heard it said:</b><p>${escapeHtml(row.heard)}</p></div><span class="r1620-row-arrow">→</span><div><b>But Scripture shows:</b><p>${escapeHtml(row.scripture)}</p><small>${escapeHtml(row.citations)}</small></div><span class="r1620-book">${icon('book')}</span></article>`).join('')}
   </div>

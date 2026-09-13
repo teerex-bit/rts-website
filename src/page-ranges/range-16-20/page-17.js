@@ -5,8 +5,8 @@ module.exports = {
   family: 'see-clearly-reflection',
   stage: 'See Clearly',
   course: 'See Clearly',
-  lesson: 'Lesson 5 of 5',
-  progress: 'Lesson 5 of 5',
+  lesson: 'Lesson 4 of 4',
+  progress: 'Lesson 4 of 4',
   subtitle: ['Some things we’ve heard', 'just aren’t what Scripture says.'],
   rows: [
     {
