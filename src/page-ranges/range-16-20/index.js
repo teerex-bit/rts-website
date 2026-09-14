@@ -49,7 +49,7 @@ function topbar(active = '', showUtilities = true, showConversation = showUtilit
   </header>`;
 }
 
-function rail(active, detailed = false, showStageStatus = true) {
+function rail(active, detailed = false, showStageStatus = true, showBrand = !detailed) {
   const stages = [
     ['Awaken', 'Discover What is Possible', 'awaken', '/awaken/'],
     ['See Clearly', 'Discover What is True', 'see', '/see-clearly/'],
@@ -61,7 +61,7 @@ function rail(active, detailed = false, showStageStatus = true) {
       ${['Recognize His Presence','Release Control','Receive the Moment','Take the Next Right Step','Repeat Daily'].map((label, index) => `<li class="${index === 0 ? 'is-current' : ''}"><span>${index + 1}</span>${label}${index === 0 ? icon('check') : ''}</li>`).join('')}
     </ol>` : '';
   return `<aside class="r1620-rail">
-    ${detailed ? '' : '<a class="r1620-rail__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>'}
+    ${showBrand ? '<a class="r1620-rail__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>' : ''}
     <p class="r1620-rail__label">The Formation Journey</p>
     <nav class="r1620-rail__journey" aria-label="Formation journey">
       ${stages.map(([label, description, symbol, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${journeyIcon(symbol)}<span><b>${label}</b><small>${description}</small></span>${showStageStatus && label === 'Awaken' ? icon('check') : ''}</a>${active === label && label === 'Become' ? lessonList : ''}`).join('')}
@@ -137,7 +137,7 @@ function renderLanding(page) {
 function lessonFrame(page, content) {
   return `<main class="r1620 r1620--lesson" data-page-number="${page.number}" data-editable-source="range-16-20">
     ${topbar(page.stage, page.number !== 19, false)}
-    <div class="r1620-lesson-shell">${rail(page.stage, page.number !== 19)}<section class="r1620-lesson-main">${content}</section></div>
+    <div class="r1620-lesson-shell">${rail(page.stage, page.number !== 19, true, false)}<section class="r1620-lesson-main">${content}</section></div>
   </main>`;
 }
 

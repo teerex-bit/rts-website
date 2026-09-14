@@ -118,6 +118,7 @@ assert.doesNotMatch(page19Html, /Watch Overview/, 'Page 19 removes the overview 
 assert.doesNotMatch(page19Html, /Begin Lesson/, 'Page 19 removes the Begin Lesson button');
 assert.doesNotMatch(page19Html, /r1620-rail__part/, 'Page 19 removes the Part One sidebar heading');
 assert.doesNotMatch(page19Html, /r1620-rail__lessons/, 'Page 19 removes the numbered lesson list from the sidebar');
+assert.doesNotMatch(page19Html, /r1620-rail__brand/, 'Page 19 removes the duplicate Tree of Life logo from the sidebar');
 assert.doesNotMatch(page19Html, /Screen 1 of 2/, 'Page 19 removes the separate screen counter');
 assert.doesNotMatch(page19Html, /r1620-screen-card[^]*<header><span>1<\/span>/, 'Page 19 removes the circular screen-number icon');
 assert.doesNotMatch(page19Html, /<blockquote><b>“<\/b>/, 'Page 19 removes the decorative quotation mark from the verse card');
