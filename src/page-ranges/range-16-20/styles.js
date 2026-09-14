@@ -247,7 +247,7 @@ module.exports = String.raw`
 .r1620-reassurance{display:flex;gap:15px;align-items:center}
 .r1620-reassurance .r1620-icon{width:38px;height:38px;color:#b8731c}
 .r1620-practice>strong{display:block;color:#432279;font-size:16px;line-height:1.6}
-.r1620-patterns{display:grid;grid-template-columns:1fr 1.1fr;gap:62px;max-width:660px;margin-top:30px}
+.r1620-patterns{display:grid;grid-template-columns:1fr 1fr;gap:54px;max-width:none;width:100%;margin-top:30px}
 .r1620-patterns section{border-right:1px solid #d8d0c7;padding-right:35px}
 .r1620-patterns section:last-child{border:0;padding:0 0 0 12px}
 .r1620-chip{display:inline-block;background:#ded8d2;border-radius:16px;padding:5px 14px;text-transform:uppercase;font-size:11px;font-weight:700;margin-bottom:10px}
@@ -255,11 +255,11 @@ module.exports = String.raw`
 .r1620-patterns h3{font-size:13px}
 .r1620-patterns ol{list-style:none;padding:0;margin:0}
 .r1620-patterns li{display:flex;align-items:center;gap:12px;min-height:47px;font-size:12px}
-.r1620-patterns li .r1620-icon,.r1620-patterns li>b{width:35px;height:35px;border-radius:50%;background:#8a847d;color:#fff;padding:8px;display:grid;place-items:center;flex:0 0 auto}
-.r1620-patterns section:last-child li>b{background:#fff;color:#3e216c;border:1px solid #5b3584;padding:0;font-size:15px}
+.r1620-patterns li .r1620-icon{width:35px;height:35px;border-radius:50%;background:#8a847d;color:#fff;padding:8px;display:grid;place-items:center;flex:0 0 auto}
+.r1620-patterns section:last-child li .r1620-icon{background:#fff;color:#3e216c;border:1px solid #5b3584}
 .r1620-patterns li span{border-bottom:1px solid #ddd5cc;padding-bottom:10px;flex:1}
 .r1620-pattern-arrow{width:48px;height:48px;border:1px solid #b4721d;color:#b4721d;border-radius:50%;display:grid;place-items:center;align-self:center;justify-self:center;font-size:28px;background:#fff}
-.r1620-goal{display:flex;align-items:center;gap:26px;max-width:660px;margin:52px 0 12px;padding:17px 26px;background:rgba(251,246,239,.9);border:1px solid #dfc9ad;border-radius:10px}
+.r1620-goal{display:flex;align-items:center;gap:26px;max-width:none;width:100%;margin:52px 0 12px;padding:17px 26px;background:rgba(251,246,239,.9);border:1px solid #dfc9ad;border-radius:10px}
 .r1620-goal>b{font-size:55px;color:#3b1c72;line-height:.5}
 .r1620-goal p{margin:0;font-size:13px}
 .r1620-goal strong{color:#381b71;font-size:14px}

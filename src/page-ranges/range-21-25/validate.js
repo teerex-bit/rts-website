@@ -46,6 +46,9 @@ for (const number of [21, 22]) {
   const html = range.render(page);
   assert(!html.includes('rts2521-part'), `page ${number} must use the simplified sidebar without the lesson list`);
   assert(!html.includes('rts2521-footer-nav'), `page ${number} must remove the bottom navigation and progress row`);
+  assert(!html.includes('rts2521-eyebrow'), `page ${number} must remove the lesson and screen counter above the title`);
+  assert(!html.includes('ENTER A CONVERSATION'), `page ${number} must remove the top conversation control`);
+  assert(!html.includes('rts2521-user'), `page ${number} must remove the top account control`);
   for (const section of page.content) {
     assert(html.includes(`class="rts2521-zone ${section.className}"`), `page ${number} must retain ${section.className}`);
   }

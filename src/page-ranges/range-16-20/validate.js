@@ -131,13 +131,17 @@ assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote cite\{
 const page20Html = range.render(range.pages.get(20));
 assert.doesNotMatch(page20Html, /Enter a Conversation/, 'Page 20 removes the top-right conversation control to match the other lesson pages');
 assert.match(page20Html, /aria-label="Account"/, 'Page 20 retains its top-right profile control');
+assert.doesNotMatch(page20Html, /r1620-rail__part/, 'Page 20 removes the Part One sidebar heading');
+assert.doesNotMatch(page20Html, /r1620-rail__lessons/, 'Page 20 removes the numbered lesson list from the sidebar');
 assert.doesNotMatch(page20Html, /r1620-pattern-arrow/, 'Page 20 removes the large arrow between the pattern columns');
-assert.match(css, /\.r1620-patterns\{display:grid;grid-template-columns:1fr 1\.1fr;gap:62px/, 'Page 20 keeps two balanced pattern columns after removing the middle arrow');
-assert.match(css, /\.r1620-goal\{[^}]*max-width:660px;[^}]*margin:52px 0 12px/, 'Page 20 shortens the quote box and moves it lower into the opaque field');
+assert.doesNotMatch(page20Html, /<li><b>[1-5]<\/b>/, 'Page 20 uses meaningful icons rather than numbers in the new-response pattern');
+assert.match(page20Html, /journey-icons\.svg#hand[\s\S]*journey-icons\.svg#awaken[\s\S]*journey-icons\.svg#eye[\s\S]*journey-icons\.svg#branch[\s\S]*journey-icons\.svg#question[\s\S]*journey-icons\.svg#walk/, 'Page 20 renders a complete icon sequence for the new-response pattern');
+assert.match(css, /\.r1620-patterns\{display:grid;grid-template-columns:1fr 1fr;gap:54px;max-width:none;width:100%/, 'Page 20 expands both patterns across the complete opaque content space');
+assert.match(css, /\.r1620-goal\{[^}]*max-width:none;width:100%;[^}]*margin:52px 0 12px/, 'Page 20 expands the quote across the complete opaque content space');
 assert.doesNotMatch(page20Html, /Screen 2 of 2/, 'Page 20 does not display a separate screen counter');
 assert.doesNotMatch(page20Html, /Listen Deeply/, 'Page 20 keeps screen two within Recognize His Presence instead of adding a second sidebar lesson');
 assert.doesNotMatch(page20Html, /class="r1620-lesson-pager"/, 'Page 20 removes the bottom previous and next screen controls');
-assert.match(page20Html, /Recognize His Presence/, 'Page 20 keeps Recognize His Presence selected in the sidebar');
+assert.doesNotMatch(page20Html, /Recognize His Presence/, 'Page 20 keeps the sidebar free of lesson-level entries');
 assert.equal(range.pages.get(20).newResponse.length, 6);
 
 console.log('range 16–20 validation passed');

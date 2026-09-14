@@ -44,14 +44,14 @@ const lessons = [
   ['Repeat Daily', '/become/daily-examen/'],
 ];
 
-function renderHeader() {
+function renderHeader(page) {
+  const simplified = page.number === 21 || page.number === 22;
   return `<header class="rts2521-header">
     <a class="rts2521-brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
     <nav aria-label="Main navigation">
       <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOME</a><a href="/join/">JOIN</a>
     </nav>
-    <a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a>
-    <span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>
+    ${simplified ? '' : '<a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a><span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>'}
   </header>`;
 }
 
@@ -82,9 +82,9 @@ function render(page) {
   if (!page || !Number.isInteger(page.number)) throw new TypeError('render(page) requires a page module');
   const sections = page.content.map(section => `<section class="rts2521-zone ${escapeHtml(section.className)}">${section.blocks.map(renderBlock).join('')}</section>`).join('');
   return `<div class="rts-range-21-25 page-${page.number}" data-page-number="${page.number}" data-editable-source="range-21-25">
-    ${renderHeader()}
+    ${renderHeader(page)}
     <div class="rts2521-shell">${renderRail(page)}<main class="rts2521-main">
-      <article class="rts2521-lesson"><p class="rts2521-eyebrow">${escapeHtml(page.eyebrow)}</p><h1>${escapeHtml(page.title)}</h1><span class="rts2521-title-rule" aria-hidden="true"></span><div class="rts2521-layout">${sections}</div></article>
+      <article class="rts2521-lesson">${page.number === 21 || page.number === 22 ? '' : `<p class="rts2521-eyebrow">${escapeHtml(page.eyebrow)}</p>`}<h1>${escapeHtml(page.title)}</h1><span class="rts2521-title-rule" aria-hidden="true"></span><div class="rts2521-layout">${sections}</div></article>
       ${page.number === 21 || page.number === 22 ? '' : `<nav class="rts2521-footer-nav" aria-label="Lesson navigation"><a class="rts2521-previous" href="${escapeHtml(page.previous.href)}">←&nbsp;&nbsp; ${escapeHtml(page.previous.label)}</a>${renderProgress(page)}<a class="rts2521-next" href="${escapeHtml(page.next.href)}">${escapeHtml(page.next.label)} &nbsp;→</a></nav>`}
     </main></div>
   </div>`;
