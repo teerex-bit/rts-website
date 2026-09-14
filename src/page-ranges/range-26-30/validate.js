@@ -6,7 +6,10 @@ const {pages, render} = require('./index');
 const rendered = [...pages.values()].map(render).join('\n');
 
 assert.match(rendered, /\/assets\/page-awaken\/curriculum-logo-transparent\.png/, 'pages use the approved transparent Tree of Life wordmark');
-assert.match(rendered, /rts-r2630--legacy-tall/, 'Pages 28–29 retain their approved expanded reading layout');
+for (const pageNumber of [28, 29]) {
+  const html = render(pages.get(pageNumber));
+  assert.doesNotMatch(html, /rts-r2630--legacy-tall/, `Page ${pageNumber} uses the standard page width`);
+}
 assert.doesNotMatch(rendered, /placeholder|data-missing-raster/, 'review pages contain no placeholder assets');
 assert.match(rendered, /range-26-30\/seedling-growth\.webp/, 'Page 30 uses its approved replaceable local hero asset');
 assert.doesNotMatch(rendered, />\s*Walk\s*</, 'Walk is not exposed as a journey stage');

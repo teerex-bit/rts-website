@@ -101,9 +101,8 @@ function page30(page) {
 
 function render(page) {
   if (!page || ![26, 27, 28, 29, 30].includes(page.number)) throw new RangeError('Page is outside range 26–30');
-  const tall = page.number === 28 || page.number === 29 ? ' rts-r2630--legacy-tall' : '';
   const body = ({26: page26, 27: page27, 28: page28, 29: page29, 30: page30})[page.number](page);
-  return `<div class="rts-r2630 rts-r2630--p${page.number}${tall}">${header()}<main class="rts-r2630__shell">${rail(page)}${body}</main></div>`;
+  return `<div class="rts-r2630 rts-r2630--p${page.number}">${header()}<main class="rts-r2630__shell">${rail(page)}${body}</main></div>`;
 }
 
 module.exports = render;
