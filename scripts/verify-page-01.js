@@ -29,6 +29,7 @@ const failures = [];
 for (const [label, token] of required) if (!html.includes(token)) failures.push(`missing ${label}`);
 for (const [label, token] of cssRequired) if (!css.includes(token)) failures.push(`missing ${label}`);
 for (const token of forbidden) if (html.includes(token)) failures.push(`obsolete Page 01 card class or asset is still present: ${token}`);
+if (html.includes('>Teachings</a>')) failures.push('Teachings navigation item is still present');
 for (const asset of ['ways-conversations.jpg', 'ways-music.jpg', 'ways-books.jpg']) {
   if (!fs.existsSync(path.join(root, 'public', 'assets', 'page-01', asset))) failures.push(`missing built asset: ${asset}`);
 }
