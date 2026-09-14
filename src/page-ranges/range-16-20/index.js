@@ -127,7 +127,7 @@ function renderLanding(page) {
     </header>
     <section class="r1620-landing-hero">
       <img src="${assetRoot}/becoming-overlook.jpg" alt="A woman overlooking a mountain valley at sunrise">
-      <div class="r1620-landing-copy"><p class="r1620-eyebrow">${icon('leaf')} ${page.kicker}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline.join('<br>')}</h2><p>${page.intro.join('<br>')}</p><strong>${page.emphasis}</strong><div class="r1620-actions"><a href="/become/true-self/">Begin This Journey →</a><a href="/become/">▷ &nbsp; Watch the Overview</a></div></div>
+      <div class="r1620-landing-copy"><p class="r1620-eyebrow">${icon('leaf')} ${page.kicker}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline.join('<br>')}</h2><p>${page.intro.join('<br>')}</p><strong>${page.emphasis}</strong><div class="r1620-actions"><a href="/become/true-self/">Begin This Journey →</a></div></div>
       <aside class="r1620-landing-steps">${[['awaken','Live with God in every moment.'],['heart','Let His life change you.'],['leaf','Become more like Him.'],['people','Then join Him in what He is doing in the world.']].map(([symbol, text]) => `<span>${icon(symbol)}<b>${text}</b></span>`).join('')}</aside>
     </section>
     <section class="r1620-way"><span class="r1620-way__art">${icon('leaf')}</span><h2>This is not a checklist.<br>It is a <em>way of life.</em></h2><p>As your relationship with God grows,<br>His Spirit brings healing, alignment,<br>and wholeness to every part of you.</p></section>

@@ -71,6 +71,7 @@ const page18Html = range.render(range.pages.get(18));
 assert.match(page18Html, /class="r1620-become-topbar"/, 'Page 18 renders its dedicated navy Becoming header');
 assert.match(page18Html, /curriculum-logo-transparent\.png/, 'Page 18 uses the approved Tree of Life header asset');
 assert.match(page18Html, /class="r1620-landing-steps"/, 'Page 18 keeps the editable four-step hero panel');
+assert.doesNotMatch(page18Html, /Watch the Overview/i, 'Page 18 must not render the removed overview button');
 assert.match(page18Html, /This is not a checklist/, 'Page 18 keeps its way-of-life band');
 assert.match(page18Html, /class="r1620-movement r1620-movement--1"/, 'Page 18 keeps its first editable movement panel');
 assert.match(page18Html, /class="r1620-movement r1620-movement--2"/, 'Page 18 keeps its second editable movement panel');
