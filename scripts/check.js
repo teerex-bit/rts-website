@@ -1,7 +1,25 @@
 const fs=require('fs'),path=require('path'); const root=path.join(__dirname,'..','public');
 const pages=require('../src/pages');
+const doneRoot=path.join(__dirname,'..','done');
 const html=[];(function walk(d){for(const f of fs.readdirSync(d)){const p=path.join(d,f),s=fs.statSync(p);s.isDirectory()?walk(p):f.endsWith('.html')&&html.push(p)}})(root);
 let errors=[]; for(const f of html){const s=fs.readFileSync(f,'utf8');if((s.match(/<h1[ >]/g)||[]).length!==1)errors.push(`${f}: expected one h1`);for(const m of s.matchAll(/(?:href|src)="(\/[^"?#]+)"/g)){let u=m[1],p=path.join(root,u);if(u.endsWith('/'))p=path.join(p,'index.html');if(!fs.existsSync(p))errors.push(`${f}: missing ${u}`)}for(const m of s.matchAll(/href="#([^"]*)"/g)){const id=m[1];if(!id||(!s.includes(`id="${id}"`)&&!s.includes(`id='${id}'`)))errors.push(`${f}: unresolved local fragment #${id}`)}}
+if(!fs.existsSync(doneRoot))errors.push(`${doneRoot}: missing approved reference folder`);
+else{
+  const numberedReferences=new Map();
+  for(const name of fs.readdirSync(doneRoot)){
+    const match=name.match(/^(\d{2})\b/);
+    if(!match)continue;
+    const number=Number(match[1]);
+    const names=numberedReferences.get(number)||[];
+    names.push(name);
+    numberedReferences.set(number,names);
+  }
+  for(let number=0;number<=40;number+=1){
+    const names=numberedReferences.get(number)||[];
+    if(names.length===0)errors.push(`${doneRoot}: missing approved Page ${String(number).padStart(2,'0')} reference`);
+    if(names.length>1)errors.push(`${doneRoot}: duplicate Page ${String(number).padStart(2,'0')} references: ${names.join(', ')}`);
+  }
+}
 const conversationsPath=path.join(root,'conversations','index.html');
 if(fs.existsSync(conversationsPath)){
   const conversations=fs.readFileSync(conversationsPath,'utf8');
