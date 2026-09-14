@@ -7,6 +7,7 @@ const css = fs.readFileSync(path.join(root, 'public', 'assets', 'page-01-approve
 const required = [
   ['Page 01 uses its dedicated stylesheet', '/assets/page-01-approved.css'],
   ['editable landing marker is present', 'data-landing-page="new"'],
+  ['Page 01 heading is Soul Formation', '<h1 id="home-title">Soul Formation</h1>'],
   ['approved transparent Tree of Life logo is used', 'src="/assets/page-awaken/curriculum-logo-transparent.png"'],
   ['hero message is present', 'class="home-message"'],
   ['three editable ways cards are present', 'class="ways-grid"'],
