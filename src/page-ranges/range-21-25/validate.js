@@ -55,6 +55,15 @@ for (const number of [21, 22]) {
   }
 }
 
+const page23Html = range.render(range.pages.get(23));
+assert(!page23Html.includes('rts2521-part'), 'page 23 must use the simplified four-stage sidebar');
+assert(!page23Html.includes('rts2521-footer-nav'), 'page 23 must remove the bottom buttons and breadcrumbs');
+assert(!page23Html.includes('rts2521-eyebrow'), 'page 23 must remove the lesson and screen counter above the title');
+assert(!page23Html.includes('ENTER A CONVERSATION'), 'page 23 must remove the top conversation control');
+assert(!page23Html.includes('rts2521-user'), 'page 23 must remove the top account control');
+assert(page23Html.includes('olive-tree-reference.webp'), 'page 23 must retain the olive-tree graphic as a live replaceable asset');
+assert(/\.page-23 \.rts2521-layout\{grid-template-columns:1\.08fr \.92fr;grid-template-areas:'intro tree' 'jesus distinction' 'surrendering distinction'/.test(range.css), 'page 23 must use the approved balanced teaching layout');
+
 const page22Html = range.render(range.pages.get(22));
 assert(!/<li><span>[1-5]<\/span><p>/.test(page22Html), 'page 22 must replace discernment step numbers with icons');
 assert(/journey-icons\.svg#question[\s\S]*journey-icons\.svg#ear[\s\S]*journey-icons\.svg#eye[\s\S]*journey-icons\.svg#shield[\s\S]*journey-icons\.svg#walk/.test(page22Html), 'page 22 must render a meaningful icon for every discernment step');
