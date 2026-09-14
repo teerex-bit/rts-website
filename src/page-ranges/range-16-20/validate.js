@@ -122,6 +122,9 @@ assert.doesNotMatch(page19Html, /Screen 1 of 2/, 'Page 19 removes the separate s
 assert.doesNotMatch(page19Html, /r1620-screen-card[^]*<header><span>1<\/span>/, 'Page 19 removes the circular screen-number icon');
 assert.doesNotMatch(page19Html, /<blockquote><b>“<\/b>/, 'Page 19 removes the decorative quotation mark from the verse card');
 assert.match(page19Html, /<header><h2>You Are Already in His Presence<\/h2><\/header>/, 'Page 19 keeps the lesson title as a clean standalone heading');
+assert.doesNotMatch(page19Html, /class="r1620-lesson-pager"/, 'Page 19 removes both bottom navigation buttons');
+assert.match(css, /data-page-number="19"\] \.r1620-screen-columns>article:first-child\{display:flex;flex-direction:column;justify-content:space-between/, 'Page 19 spaces the left column vertically to balance the right column');
+assert.match(css, /\.r1620-screen-columns>article\+article\{border-left:1px solid #ded7ce/, 'Page 19 retains the standard vertical column divider');
 assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote\{top:90px\}/, 'Page 19 raises the Matthew 28:20 quote card in the hero');
 assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote cite\{[^}]*white-space:nowrap/, 'Page 19 keeps Matthew 28:20 on one balanced line');
 const page20Html = range.render(range.pages.get(20));

@@ -154,7 +154,7 @@ function renderLessonOne(page) {
     <section id="lesson-content" class="r1620-screen-card"><header><h2>${page.screenTitle}</h2></header><div class="r1620-screen-columns">
       <article><h3>${page.left.heading}</h3>${page.left.paragraphs.map(p => `<p>${p}</p>`).join('')}<ul>${page.left.items.map(item => `<li>${icon('branch')}${item}</li>`).join('')}</ul><p>${page.left.closing}</p><aside>${icon('person')}<b>${page.left.callout}</b></aside></article>
       <article><h3>${page.right.heading}</h3>${page.right.paragraphs.map(p => `<p>${p}</p>`).join('')}<ul class="r1620-life-list">${page.right.items.map((item, i) => `<li>${icon(['awaken','book','people','heart','hand','question','branch'][i])}${item}</li>`).join('')}</ul><aside>${icon('branch')}<b>${page.right.callout}</b></aside></article>
-    </div>${lessonPager(page, 'Screen 2')}</section>`;
+    </div></section>`;
   return lessonFrame(page, content);
 }
 
