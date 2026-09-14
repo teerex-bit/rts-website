@@ -35,7 +35,7 @@ function logo(light = false) {
   </a>`;
 }
 
-function topbar(active = '') {
+function topbar(active = '', showUtilities = true) {
   const nav = [
     ['Awaken', '/awaken/'],
     ['See Clearly', '/see-clearly/'],
@@ -47,8 +47,8 @@ function topbar(active = '') {
     <nav class="r1620-topbar__nav" aria-label="Primary">
       ${nav.map(([label, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${label}</a>`).join('')}
     </nav>
-    <a class="r1620-conversation" href="/conversations/">Enter a Conversation</a>
-    <span class="r1620-account" aria-label="Account">${icon('person')}</span>
+    ${showUtilities ? `<a class="r1620-conversation" href="/conversations/">Enter a Conversation</a>
+    <span class="r1620-account" aria-label="Account">${icon('person')}</span>` : ''}
   </header>`;
 }
 
@@ -139,7 +139,7 @@ function renderLanding(page) {
 
 function lessonFrame(page, content) {
   return `<main class="r1620 r1620--lesson" data-page-number="${page.number}" data-editable-source="range-16-20">
-    ${topbar(page.stage)}
+    ${topbar(page.stage, page.number !== 19)}
     <div class="r1620-lesson-shell">${rail(page.stage, true)}<section class="r1620-lesson-main">${content}</section></div>
   </main>`;
 }
@@ -151,7 +151,7 @@ function lessonPager(page, nextLabel) {
 function renderLessonOne(page) {
   const content = `<section class="r1620-lesson-hero">
       <img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise">
-      <div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p><div class="r1620-actions"><a href="${page.route}">Begin Lesson →</a><a href="/become/">▷ &nbsp; Watch Overview</a></div></div>
+      <div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p><div class="r1620-actions"><a href="${page.route}">Begin Lesson →</a></div></div>
       <blockquote><b>“</b><p>${page.quote[0]}</p><cite>${page.quote[1]}</cite></blockquote>
     </section>
     <section id="lesson-content" class="r1620-screen-card"><header><span>1</span><div><small>${page.screen}</small><h2>${page.screenTitle}</h2></div></header><div class="r1620-screen-columns">

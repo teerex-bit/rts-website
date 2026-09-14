@@ -88,6 +88,8 @@ assert.match(page18Html, /<h2>Become Like Him<\/h2>/, 'Page 18 Part Two uses the
 assert.doesNotMatch(page18Html, />Soul<|>Fruit</, 'Page 18 removes Soul and Fruit from the Part Two movement list');
 assert.match(page18Html, /Thoughts[\s\S]*Feelings[\s\S]*Desires[\s\S]*Will[\s\S]*Body[\s\S]*Relationships/, 'Page 18 retains the six approved Part Two movement items');
 assert.match(css, /data-page-number="18"\] \.r1620-movement__steps\{grid-template-columns:repeat\(3,1fr\)/, 'Page 18 uses matching three-column grids for both six-item lists');
+assert.match(css, /data-page-number="18"\] \.r1620-movement__heading\{min-height:105px\}/, 'Page 18 reserves matching title-and-description height above both icon grids');
+assert.match(css, /data-page-number="18"\] \.r1620-movement>a\{[^}]*margin-top:auto[^}]*text-align:center/, 'Page 18 anchors both Explore links to the same centered bottom baseline');
 assert.match(page18Html, /Dallas Willard/, 'Page 18 keeps the editable Dallas Willard quote band');
 assert.match(page18Html, /class="r1620-principles-wrap"><div class="r1620-principles">/, 'Page 18 keeps the white principles tray within the navy closing field');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{background-image:[^}]*movement-live-clean\.webp/, 'Page 18 Part One uses its clean replaceable scenic asset');
@@ -109,6 +111,15 @@ assert.deepEqual([...range.pages.get(17).rows].map(row => row.heard), [
   '“If God is good, why is there so much hardship and pain?”'
 ]);
 assert.equal(range.pages.get(19).quote[1], 'Matthew 28:20');
+const page19Html = range.render(range.pages.get(19));
+assert.doesNotMatch(page19Html, /Enter a Conversation/, 'Page 19 removes the top-right conversation control');
+assert.doesNotMatch(page19Html, /aria-label="Account"/, 'Page 19 removes the top-right profile control');
+assert.doesNotMatch(page19Html, /Watch Overview/, 'Page 19 removes the overview button');
+assert.match(page19Html, /Begin Lesson/, 'Page 19 retains the Begin Lesson button');
+assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote\{top:90px\}/, 'Page 19 raises the Matthew 28:20 quote card in the hero');
+const page20Html = range.render(range.pages.get(20));
+assert.match(page20Html, /Enter a Conversation/, 'Page 20 retains its top-right conversation control');
+assert.match(page20Html, /aria-label="Account"/, 'Page 20 retains its top-right profile control');
 assert.equal(range.pages.get(20).newResponse.length, 6);
 
 console.log('range 16–20 validation passed');
