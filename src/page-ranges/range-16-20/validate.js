@@ -74,13 +74,17 @@ assert.match(page18Html, /class="r1620-landing-steps"/, 'Page 18 keeps the edita
 assert.match(page18Html, /This is not a checklist/, 'Page 18 keeps its way-of-life band');
 assert.match(page18Html, /class="r1620-movement r1620-movement--1"/, 'Page 18 keeps its first editable movement panel');
 assert.match(page18Html, /class="r1620-movement r1620-movement--2"/, 'Page 18 keeps its second editable movement panel');
+assert.doesNotMatch(page18Html, /class="r1620-between"/, 'Page 18 keeps the two movement boxes balanced without a large center arrow');
 assert.match(page18Html, /Dallas Willard/, 'Page 18 keeps the editable Dallas Willard quote band');
 assert.match(page18Html, /class="r1620-principles-wrap"><div class="r1620-principles">/, 'Page 18 keeps the white principles tray within the navy closing field');
-assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{background-image:[^}]*movement-live\.webp/, 'Page 18 Part One uses its approved replaceable scenic asset');
-assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--2\{background-image:[^}]*movement-become\.webp/, 'Page 18 Part Two uses its approved replaceable scenic asset');
+assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{background-image:[^}]*movement-live-clean\.webp/, 'Page 18 Part One uses its clean replaceable scenic asset');
+assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--2\{background-image:[^}]*movement-become-clean\.webp/, 'Page 18 Part Two uses its clean replaceable scenic asset');
+assert.doesNotMatch(css, /data-page-number="18"[^}]*movement-live\.webp/, 'Page 18 must not reference the old Part One image with baked letter fragments');
+assert.doesNotMatch(css, /data-page-number="18"[^}]*movement-become\.webp/, 'Page 18 must not reference the old Part Two image with the baked gold-circle fragment');
+assert.match(css, /@media\(max-width:760px\)[\s\S]*data-page-number="18"\] \.r1620-movements__grid\{grid-template-columns:1fr/, 'Page 18 movement panels must stack at the mobile breakpoint');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-principles-wrap\{background:linear-gradient\([^}]*#17152f/, 'Page 18 principles tray remains visually attached to the deep-navy quote band');
 
-for (const asset of ['anger-jesus.webp', 'anger-storm.webp', 'becoming-hero.webp', 'presence-path.webp', 'movement-live.webp', 'movement-become.webp']) {
+for (const asset of ['anger-jesus.webp', 'anger-storm.webp', 'becoming-hero.webp', 'presence-path.webp', 'movement-live.webp', 'movement-become.webp', 'movement-live-clean.webp', 'movement-become-clean.webp']) {
   assert.ok(fs.existsSync(path.join(assets, asset)), `${asset} is a separate replaceable photographic asset`);
 }
 

@@ -13,6 +13,7 @@
 /* Page 00 requested simplification: preserve the established page while removing
    the hero outcome strip, step badges, icon rings, and Writings card. */
 .page00-hero{padding-bottom:23px}
+.page00-hero__image{filter:saturate(1.1) contrast(1.06) brightness(.99) sepia(.025)}
 .page00-outcomes,.page00-number{display:none}
 .page00-stage-icon{border:0;border-radius:0}
 .page00-resource-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:1180px}

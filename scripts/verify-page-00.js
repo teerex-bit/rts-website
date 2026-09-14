@@ -50,6 +50,7 @@ if (fs.existsSync(page00Path)) {
 if (fs.existsSync(page00CssPath)) {
   const css = fs.readFileSync(page00CssPath, 'utf8');
   if (!css.includes('.page00-hero__image')) failures.push('Page 00 hero image presentation is missing');
+  if (!css.includes('filter:saturate(1.1) contrast(1.06) brightness(.99) sepia(.025)')) failures.push('Page 00 restrained hero color grade is missing');
   if (!css.includes('@media(max-width:900px)')) failures.push('Page 00 responsive hero presentation is missing');
   if (!css.includes('@media(min-width:1500px)')) failures.push('Page 00 wide-screen breakpoint is missing');
   for (const token of ['max-width:1500px', 'min-height:440px', 'font-size:1rem', 'min-height:220px']) {
