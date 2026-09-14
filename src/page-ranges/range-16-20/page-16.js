@@ -14,7 +14,7 @@ module.exports = {
   comparisons: [
     {
       heading: 'Jesus’ Righteous Anger',
-      image: 'jesus-righteous-anger.jpg',
+      image: 'jesus-righteous-anger-crop.jpg',
       imageAlt: 'Jesus confronting people who were harming others',
       items: [
         ['cross', 'Angry when people were being harmed', '(Mark 3:5)'],

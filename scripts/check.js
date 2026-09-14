@@ -28,6 +28,19 @@ else{
   for(const marker of ['class="home-page"','class="home-hero"','class="journey-section"','class="experience"'])if(!home.includes(marker))errors.push(`${homePath}: missing specialized Page 01 marker ${marker}`);
   if(home.includes('class="content-grid"'))errors.push(`${homePath}: generic placeholder renderer must not be used`);
 }
+const page00Path=path.join(root,'index.html');
+if(!fs.existsSync(page00Path))errors.push(`${page00Path}: missing Soul Formation route`);
+else{
+  const page00=fs.readFileSync(page00Path,'utf8');
+  const journey=page00.match(/<div class="page00-steps">([\s\S]*?)<\/div>/)?.[1]||'';
+  const resources=page00.match(/<div class="page00-resource-grid">([\s\S]*?)<\/div>/)?.[1]||'';
+  if((journey.match(/<article>/g)||[]).length!==4)errors.push(`${page00Path}: expected four journey stages`);
+  if(/page00-number|>0[1-4]</.test(journey))errors.push(`${page00Path}: journey stage numbering must be removed`);
+  if(/page00-outcomes/.test(page00))errors.push(`${page00Path}: hero outcomes strip must be removed`);
+  if((resources.match(/class="page00-resource\s/g)||[]).length!==4)errors.push(`${page00Path}: expected four resource cards`);
+  for(const label of ['Soul Formation','Conversations','Music','Books'])if(!resources.includes(`<h3>${label}</h3>`))errors.push(`${page00Path}: missing ${label} resource card`);
+  if(/Writings|Blogs/i.test(resources))errors.push(`${page00Path}: Writings & Blogs resource card must be removed`);
+}
 const editableCoursePages=[
   ['03','awaken/pay-attention','page-awaken'],
   ['04','awaken/name-your-desire','page-awaken'],

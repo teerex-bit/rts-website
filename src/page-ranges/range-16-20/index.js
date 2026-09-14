@@ -120,7 +120,11 @@ function movementCard(movement, index) {
 
 function renderLanding(page) {
   return `<main class="r1620 r1620--landing" data-page-number="${page.number}" data-editable-source="range-16-20">
-    ${topbar(page.stage)}
+    <header class="r1620-become-topbar">
+      <a class="r1620-become-topbar__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
+      <nav aria-label="Primary"><a data-stage="Awaken" href="/awaken/">Awaken</a><a data-stage="See Clearly" href="/see-clearly/">See Clearly</a><a data-stage="Become" class="is-active" href="/become/">Becoming</a><a data-stage="Join" href="/join/">Join</a></nav>
+      <a class="r1620-become-topbar__conversation" href="/conversations/">Enter a Conversation</a>
+    </header>
     <section class="r1620-landing-hero">
       <img src="${assetRoot}/becoming-overlook.jpg" alt="A woman overlooking a mountain valley at sunrise">
       <div class="r1620-landing-copy"><p class="r1620-eyebrow">${icon('leaf')} ${page.kicker}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline.join('<br>')}</h2><p>${page.intro.join('<br>')}</p><strong>${page.emphasis}</strong><div class="r1620-actions"><a href="/become/true-self/">Begin This Journey →</a><a href="/become/">▷ &nbsp; Watch the Overview</a></div></div>
@@ -129,7 +133,7 @@ function renderLanding(page) {
     <section class="r1620-way"><span class="r1620-way__art">${icon('leaf')}</span><h2>This is not a checklist.<br>It is a <em>way of life.</em></h2><p>As your relationship with God grows,<br>His Spirit brings healing, alignment,<br>and wholeness to every part of you.</p></section>
     <section class="r1620-movements"><h2><span></span>Two Movements. One Journey.<span></span></h2><div class="r1620-movements__grid">${page.movements.map(movementCard).join('<span class="r1620-between">→</span>')}</div></section>
     <section class="r1620-landing-quote"><div>${icon('target')}<p>As you learn to live with God,<br>His life becomes increasingly<br><em>natural</em> in you.</p></div><blockquote><b>“</b><p>The goal of spiritual formation<br>is not to become something we are not,<br>but to become more fully who we already are in Christ.<cite>— Dallas Willard</cite></p></blockquote></section>
-    <section class="r1620-principles">${page.principles.map(([symbol, first, second]) => `<span>${icon(symbol)}<p>${first}<br>${second}</p></span>`).join('')}</section>
+    <section class="r1620-principles-wrap"><div class="r1620-principles">${page.principles.map(([symbol, first, second]) => `<span>${icon(symbol)}<p>${first}<br>${second}</p></span>`).join('')}</div></section>
   </main>`;
 }
 

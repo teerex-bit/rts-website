@@ -65,6 +65,20 @@ assert.doesNotMatch(page16Html, /class="r1620-anger-column"/, 'Page 16 must not 
 assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-image-row\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\);gap:24px/, 'Page 16 photo panels must form an evenly balanced two-column row');
 assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-content-row\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\);gap:24px/, 'Page 16 list panels must form an evenly balanced two-column row');
 assert.match(css, /\.r1620\[data-page-number="16"\] \.r1620-anger-image>img\{display:block;height:220px;object-fit:cover/, 'Page 16 images must keep a deliberate, independently adjustable crop');
+assert.match(page16Html, /jesus-righteous-anger-crop\.jpg/, 'Page 16 must use the clean Jesus crop without the baked-in right-edge strip');
+
+const page18Html = range.render(range.pages.get(18));
+assert.match(page18Html, /class="r1620-become-topbar"/, 'Page 18 renders its dedicated navy Becoming header');
+assert.match(page18Html, /curriculum-logo-transparent\.png/, 'Page 18 uses the approved Tree of Life header asset');
+assert.match(page18Html, /class="r1620-landing-steps"/, 'Page 18 keeps the editable four-step hero panel');
+assert.match(page18Html, /This is not a checklist/, 'Page 18 keeps its way-of-life band');
+assert.match(page18Html, /class="r1620-movement r1620-movement--1"/, 'Page 18 keeps its first editable movement panel');
+assert.match(page18Html, /class="r1620-movement r1620-movement--2"/, 'Page 18 keeps its second editable movement panel');
+assert.match(page18Html, /Dallas Willard/, 'Page 18 keeps the editable Dallas Willard quote band');
+assert.match(page18Html, /class="r1620-principles-wrap"><div class="r1620-principles">/, 'Page 18 keeps the white principles tray within the navy closing field');
+assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{background-image:[^}]*movement-live\.webp/, 'Page 18 Part One uses its approved replaceable scenic asset');
+assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--2\{background-image:[^}]*movement-become\.webp/, 'Page 18 Part Two uses its approved replaceable scenic asset');
+assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-principles-wrap\{background:linear-gradient\([^}]*#17152f/, 'Page 18 principles tray remains visually attached to the deep-navy quote band');
 
 for (const asset of ['anger-jesus.webp', 'anger-storm.webp', 'becoming-hero.webp', 'presence-path.webp', 'movement-live.webp', 'movement-become.webp']) {
   assert.ok(fs.existsSync(path.join(assets, asset)), `${asset} is a separate replaceable photographic asset`);
