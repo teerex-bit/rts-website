@@ -22,9 +22,9 @@ module.exports = {
     },
     {
       part: 'Part Two',
-      title: 'Become Through Life With God',
+      title: 'Become Like Him',
       description: 'Notice what that life with Him is forming in you.',
-      labels: ['Thoughts', 'Feelings', 'Desires', 'Will', 'Body', 'Relationships', 'Soul', 'Fruit'],
+      labels: ['Thoughts', 'Feelings', 'Desires', 'Will', 'Body', 'Relationships'],
       link: '/become/practice-change/'
     }
   ],

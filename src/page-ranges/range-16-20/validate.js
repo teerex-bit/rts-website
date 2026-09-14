@@ -82,8 +82,12 @@ assert.match(page18Html, /class="r1620-movement r1620-movement--1"/, 'Page 18 ke
 assert.match(page18Html, /class="r1620-movement r1620-movement--2"/, 'Page 18 keeps its second editable movement panel');
 assert.doesNotMatch(page18Html, /class="r1620-between"/, 'Page 18 keeps the two movement boxes balanced without a large center arrow');
 assert.doesNotMatch(page18Html, /r1620-movement__heading"><svg/, 'Page 18 movement titles must not render the two removed large icons');
-assert.match(page18Html, /r1620-movements__phrase">Two Movements\.<\/span><span class="r1620-movements__phrase">One Journey\./, 'Page 18 movement heading keeps each phrase independently spaced');
-assert.match(css, /r1620-movements__phrase\+\.r1620-movements__phrase\{margin-left:40px\}/, 'Page 18 movement heading uses three times the normal 20px gap between its two phrases');
+assert.match(page18Html, /r1620-movements__phrase">Two Movements\. One Journey\.<\/span>/, 'Page 18 movement heading reads as one naturally spaced centered line');
+assert.doesNotMatch(css, /r1620-movements__phrase\+\.r1620-movements__phrase/, 'Page 18 movement heading does not split the phrase with an artificial gap');
+assert.match(page18Html, /<h2>Become Like Him<\/h2>/, 'Page 18 Part Two uses the balanced Become Like Him title');
+assert.doesNotMatch(page18Html, />Soul<|>Fruit</, 'Page 18 removes Soul and Fruit from the Part Two movement list');
+assert.match(page18Html, /Thoughts[\s\S]*Feelings[\s\S]*Desires[\s\S]*Will[\s\S]*Body[\s\S]*Relationships/, 'Page 18 retains the six approved Part Two movement items');
+assert.match(css, /data-page-number="18"\] \.r1620-movement__steps\{grid-template-columns:repeat\(3,1fr\)/, 'Page 18 uses matching three-column grids for both six-item lists');
 assert.match(page18Html, /Dallas Willard/, 'Page 18 keeps the editable Dallas Willard quote band');
 assert.match(page18Html, /class="r1620-principles-wrap"><div class="r1620-principles">/, 'Page 18 keeps the white principles tray within the navy closing field');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{background-image:[^}]*movement-live-clean\.webp/, 'Page 18 Part One uses its clean replaceable scenic asset');

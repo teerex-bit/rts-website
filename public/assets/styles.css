@@ -851,9 +851,8 @@
 .r1620[data-page-number="18"] .r1620-movements{padding:27px max(32px,calc((100% - 1440px)/2 + 30px)) 28px;background:#fbf9f5}
 .r1620[data-page-number="18"] .r1620-movements>h2{font-size:18px;color:#4a2778;margin:0 0 17px}
 .r1620[data-page-number="18"] .r1620-movements>h2 .r1620-movements__phrase{width:auto;height:auto;background:none}
-.r1620[data-page-number="18"] .r1620-movements>h2 .r1620-movements__phrase+.r1620-movements__phrase{margin-left:40px}
 .r1620[data-page-number="18"] .r1620-movements__grid{max-width:1240px;min-height:445px;background:transparent;box-shadow:none;border-radius:18px;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));overflow:hidden}
-.r1620[data-page-number="18"] .r1620-movement{border:1px solid #e1d8cd;border-radius:18px;overflow:hidden;padding:30px 32px;background-repeat:no-repeat;box-shadow:0 9px 24px rgba(45,34,23,.12)}
+.r1620[data-page-number="18"] .r1620-movement{border:1px solid #e1d8cd;border-radius:18px;overflow:hidden;padding:30px 32px;background-repeat:no-repeat;box-shadow:0 9px 24px rgba(45,34,23,.12);display:flex;flex-direction:column}
 .r1620[data-page-number="18"] .r1620-movement::before{content:'';position:absolute;inset:0;pointer-events:none}
 .r1620[data-page-number="18"] .r1620-movement--1{background-image:linear-gradient(90deg,rgba(242,236,248,0) 0 24%,rgba(247,242,249,.72) 29%,#f8f3fa 34%),url('/assets/page-ranges/range-16-20/movement-live-clean.webp');padding-left:225px;background-size:100% 100%,46% 100%;background-position:center,left center}
 .r1620[data-page-number="18"] .r1620-movement--2{background-image:linear-gradient(90deg,#fdf8ed 0 62%,rgba(253,248,237,.7) 66%,rgba(253,248,237,0) 72%),url('/assets/page-ranges/range-16-20/movement-become-clean.webp');padding-right:205px;background-size:100% 100%,45% 100%;background-position:center,right center}
@@ -861,7 +860,7 @@
 .r1620[data-page-number="18"] .r1620-movement__heading>span{min-width:0}
 .r1620[data-page-number="18"] .r1620-movement__heading h2{font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:500;line-height:1.05;color:#211632;margin:5px 0 12px}
 .r1620[data-page-number="18"] .r1620-movement__heading p{font-size:14px;line-height:1.5;margin-bottom:18px}
-.r1620[data-page-number="18"] .r1620-movement__steps{gap:16px 12px;margin-top:8px}
+.r1620[data-page-number="18"] .r1620-movement__steps{grid-template-columns:repeat(3,1fr);gap:16px 12px;margin-top:8px}
 .r1620[data-page-number="18"] .r1620-movement__steps .r1620-icon{width:46px;height:46px;background:#7650a3}
 .r1620[data-page-number="18"] .r1620-movement--2 .r1620-movement__steps .r1620-icon{background:#c78b3b}
 .r1620[data-page-number="18"] .r1620-movement__steps small{font-size:10px;color:#17203a;font-weight:700}
