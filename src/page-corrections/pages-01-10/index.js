@@ -71,11 +71,8 @@ const patches = new Map([
 const css = `
 /* Pages 01–10 final-review corrections. All selectors are page-specific. */
 .home-actions .outline,.home-closing .button{display:none}
-.course-top:has(+.formation-course-page[data-page-number="03"]),.course-top:has(+.formation-course-page[data-page-number="04"]),.course-top:has(+.formation-course-page[data-page-number="05"]),.course-top:has(+.formation-course-page[data-page-number="06"]){position:relative;padding-left:240px}
-.course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{content:"";position:absolute;left:24px;top:9px;z-index:2;width:196px;height:67px;background:url('/assets/page-awaken/curriculum-logo-transparent.png') left center/contain no-repeat}
 @media (min-width:1181px){
-  .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:300px}
-  .course-top:has(+.formation-course-page[data-page-number]):before{content:"";position:absolute;left:24px;top:15px;width:218px;height:74px;background:url('/assets/page-awaken/curriculum-logo-transparent.png') left center/contain no-repeat}
+  .course-top:has(+.formation-course-page[data-page-number]){position:relative;height:104px;grid-template-columns:268px minmax(0,1fr) 342px;padding-left:0}
   .formation-course-page[data-page-number]{grid-template-columns:268px minmax(0,1fr) 342px;min-height:calc(100vh - 104px)}
   /* With Course Overview removed, let the remaining lesson label and tools use
      the full header. This prevents the former center-control slot from leaving
@@ -83,7 +80,7 @@ const css = `
   .course-top:has(+.formation-course-page[data-page-number="03"]),
   .course-top:has(+.formation-course-page[data-page-number="04"]),
   .course-top:has(+.formation-course-page[data-page-number="05"]),
-  .course-top:has(+.formation-course-page[data-page-number="06"]){grid-template-columns:minmax(0,1fr) auto;column-gap:24px}
+  .course-top:has(+.formation-course-page[data-page-number="06"]){grid-template-columns:268px minmax(0,1fr) auto;column-gap:24px}
   .course-top:has(+.formation-course-page[data-page-number="03"])>p,
   .course-top:has(+.formation-course-page[data-page-number="04"])>p,
   .course-top:has(+.formation-course-page[data-page-number="05"])>p,
@@ -370,7 +367,6 @@ const css = `
   .p02-shell,.p07-shell{grid-template-columns:220px 1fr}.p02-rail nav>a,.p07-rail nav>a{grid-template-columns:38px 1fr;padding:10px 5px}.p02-rail nav img,.p07-rail nav img{width:36px}.p07-top>div a:nth-child(-n+2){display:none}.p07-work{grid-template-columns:minmax(0,1fr) 270px}.p07-hero>div{width:64%}.p07-hero h1{font-size:clamp(2.7rem,4.5vw,3.45rem)}.p07-hero>div>p:not(:first-child){font-size:.92rem}
 }
 @media (max-width:900px){
-  .course-top:has(+.formation-course-page[data-page-number="03"]),.course-top:has(+.formation-course-page[data-page-number="04"]),.course-top:has(+.formation-course-page[data-page-number="05"]),.course-top:has(+.formation-course-page[data-page-number="06"]){padding-left:190px}.course-top:has(+.formation-course-page[data-page-number="03"]):before,.course-top:has(+.formation-course-page[data-page-number="04"]):before,.course-top:has(+.formation-course-page[data-page-number="05"]):before,.course-top:has(+.formation-course-page[data-page-number="06"]):before{left:18px;top:8px;width:161px;height:55px}
   .p02-top,.p07-top{height:auto;min-height:72px;padding:10px 20px}.p02-top nav a,.p07-top>div a{display:none}.p07-top nav{gap:16px}.p02-shell,.p07-shell{grid-template-columns:1fr}.p02-rail,.p07-rail{padding:18px}.p02-rail nav,.p07-rail nav{grid-template-columns:repeat(4,1fr)}.p02-main{display:flex;flex-direction:column}.p07-work{grid-template-columns:1fr}.p07-aside{grid-template-columns:1fr 1fr}.p07-hero>div{width:70%}.p07-movements{margin:0}
 }
 @media (max-width:620px){

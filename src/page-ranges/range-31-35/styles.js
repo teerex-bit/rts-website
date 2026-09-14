@@ -241,4 +241,5 @@ module.exports = String.raw`
 .rts-r31-35__rail-icon{width:33px;height:33px;margin-top:2px;object-fit:contain;filter:brightness(0) invert(1)}
 @media (max-width:760px){.rts-r31-35__rail-icon{width:20px;height:20px;margin-top:0}}
 .rts-r31-35__brand img{width:196px;height:auto}
+@media (max-width:820px){.rts-r31-35__brand img{width:170px;height:auto}}
 `;
