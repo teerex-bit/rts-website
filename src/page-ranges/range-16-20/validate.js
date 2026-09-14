@@ -72,7 +72,8 @@ assert.match(page18Html, /class="r1620-become-topbar"/, 'Page 18 renders its ded
 assert.match(page18Html, /curriculum-logo-transparent\.png/, 'Page 18 uses the approved Tree of Life header asset');
 assert.match(page18Html, /class="r1620-landing-steps"/, 'Page 18 keeps the editable four-step hero panel');
 assert.doesNotMatch(page18Html, /Watch the Overview/i, 'Page 18 must not render the removed overview button');
-assert.match(page18Html, /becoming-hero-wide\.webp/, 'Page 18 hero uses the approved full seated-woman valley composition in a wide derivative');
+assert.match(page18Html, /becoming-hero-natural-wide\.webp/, 'Page 18 hero uses the approved full seated-woman valley composition with natural wide scenery');
+assert.doesNotMatch(page18Html, /becoming-hero-wide\.webp/, 'Page 18 must not use the former hero asset with blurred dark side panels');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-landing-steps\{right:max\(32px,calc\(\(100% - 1440px\)\/2 \+ 30px\)\);top:112px;width:236px/, 'Page 18 four-step panel stays in the reserved right-side hero space beside the woman');
 assert.match(css, /landing-hero::after\{background:linear-gradient\(90deg,#fcfaf7 0%,#fcfaf7 30%,rgba\(252,250,247,\.96\) 38%,rgba\(252,250,247,\.68\) 46%,rgba\(252,250,247,\.28\) 55%,rgba\(252,250,247,0\) 68%,transparent 100%\)/, 'Page 18 hero keeps a modest cream text field followed by a gradual fade to a fully clear right side');
 assert.doesNotMatch(css, /landing-hero::after\{[^}]*rgba\((?:20,11,38|25,15,42)/, 'Page 18 hero overlay must not tint the woman, card, or right side with a dark brown-purple stop');

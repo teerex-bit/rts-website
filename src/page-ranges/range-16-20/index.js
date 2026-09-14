@@ -126,7 +126,7 @@ function renderLanding(page) {
       <a class="r1620-become-topbar__conversation" href="/conversations/">Enter a Conversation</a>
     </header>
     <section class="r1620-landing-hero">
-      <img src="${assetRoot}/becoming-hero-wide.webp" alt="A woman overlooking a mountain valley at sunrise">
+      <img src="${assetRoot}/becoming-hero-natural-wide.webp" alt="A woman overlooking a mountain valley at sunrise">
       <div class="r1620-landing-copy"><p class="r1620-eyebrow">${icon('leaf')} ${page.kicker}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline.join('<br>')}</h2><p>${page.intro.join('<br>')}</p><strong>${page.emphasis}</strong><div class="r1620-actions"><a href="/become/true-self/">Begin This Journey →</a></div></div>
       <aside class="r1620-landing-steps">${[['awaken','Live with God in every moment.'],['heart','Let His life change you.'],['leaf','Become more like Him.'],['people','Then join Him in what He is doing in the world.']].map(([symbol, text]) => `<span>${icon(symbol)}<b>${text}</b></span>`).join('')}</aside>
     </section>
