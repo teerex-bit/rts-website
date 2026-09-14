@@ -21,7 +21,7 @@ if (fs.existsSync(page00Path)) {
     'data-page-number="00"',
     '<h1 id="page00-title">You’re being shaped<br>by something.</h1>',
     '/assets/brand-main-transparent.png',
-    '/assets/page-awaken/page-03-seated-sunrise.png',
+    '/assets/page-00-hero-reference.png',
     '>Teachings</a>',
     'aria-controls="main-nav"',
     'A journey of formation',
@@ -42,6 +42,7 @@ if (fs.existsSync(page00Path)) {
 
 const page00CssPath = path.join(root, 'public', 'assets', 'page-00-approved.css');
 if (!fs.existsSync(page00CssPath) || !fs.readFileSync(page00CssPath, 'utf8').includes('@media(max-width:900px)')) failures.push('Page 00 mobile navigation breakpoint is missing');
+if (!fs.existsSync(path.join(root, 'public', 'assets', 'page-00-hero-reference.png'))) failures.push('Page 00 approved hero image is missing');
 
 if (fs.existsSync(reviewPath)) {
   const review = fs.readFileSync(reviewPath, 'utf8');
