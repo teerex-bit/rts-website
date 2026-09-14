@@ -74,6 +74,8 @@ assert.match(page18Html, /class="r1620-landing-steps"/, 'Page 18 keeps the edita
 assert.doesNotMatch(page18Html, /Watch the Overview/i, 'Page 18 must not render the removed overview button');
 assert.match(page18Html, /becoming-hero-wide\.webp/, 'Page 18 hero uses the approved full seated-woman valley composition in a wide derivative');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-landing-steps\{right:max\(32px,calc\(\(100% - 1440px\)\/2 \+ 30px\)\);top:112px;width:236px/, 'Page 18 four-step panel stays in the reserved right-side hero space beside the woman');
+assert.match(css, /landing-hero::after\{background:linear-gradient\(90deg,#fcfaf7 0%,#fcfaf7 30%,rgba\(252,250,247,\.96\) 38%,rgba\(252,250,247,\.68\) 46%,rgba\(252,250,247,\.28\) 55%,rgba\(252,250,247,0\) 68%,transparent 100%\)/, 'Page 18 hero keeps a modest cream text field followed by a gradual fade to a fully clear right side');
+assert.doesNotMatch(css, /landing-hero::after\{[^}]*rgba\((?:20,11,38|25,15,42)/, 'Page 18 hero overlay must not tint the woman, card, or right side with a dark brown-purple stop');
 assert.match(page18Html, /This is not a checklist/, 'Page 18 keeps its way-of-life band');
 assert.match(page18Html, /class="r1620-movement r1620-movement--1"/, 'Page 18 keeps its first editable movement panel');
 assert.match(page18Html, /class="r1620-movement r1620-movement--2"/, 'Page 18 keeps its second editable movement panel');
@@ -87,6 +89,8 @@ assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--1\{backgro
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-movement--2\{background-image:[^}]*movement-become-clean\.webp/, 'Page 18 Part Two uses its clean replaceable scenic asset');
 assert.doesNotMatch(css, /data-page-number="18"[^}]*movement-live\.webp/, 'Page 18 must not reference the old Part One image with baked letter fragments');
 assert.doesNotMatch(css, /data-page-number="18"[^}]*movement-become\.webp/, 'Page 18 must not reference the old Part Two image with the baked gold-circle fragment');
+assert.match(css, /movement--1\{background-image:linear-gradient\(90deg,rgba\(242,236,248,0\) 0 24%,rgba\(247,242,249,\.72\) 29%,#f8f3fa 34%\)/, 'Page 18 Part One solid text field reaches farther toward its outer photo with a short transition');
+assert.match(css, /movement--2\{background-image:linear-gradient\(90deg,#fdf8ed 0 62%,rgba\(253,248,237,\.7\) 66%,rgba\(253,248,237,0\) 72%\)/, 'Page 18 Part Two solid text field reaches farther toward its outer photo with a short transition');
 assert.match(css, /@media\(max-width:760px\)[\s\S]*data-page-number="18"\] \.r1620-movements__grid\{grid-template-columns:1fr/, 'Page 18 movement panels must stack at the mobile breakpoint');
 assert.match(css, /\.r1620\[data-page-number="18"\] \.r1620-principles-wrap\{background:linear-gradient\([^}]*#17152f/, 'Page 18 principles tray remains visually attached to the deep-navy quote band');
 
