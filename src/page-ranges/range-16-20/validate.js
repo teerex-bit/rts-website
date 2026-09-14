@@ -117,6 +117,7 @@ assert.doesNotMatch(page19Html, /aria-label="Account"/, 'Page 19 removes the top
 assert.doesNotMatch(page19Html, /Watch Overview/, 'Page 19 removes the overview button');
 assert.match(page19Html, /Begin Lesson/, 'Page 19 retains the Begin Lesson button');
 assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote\{top:90px\}/, 'Page 19 raises the Matthew 28:20 quote card in the hero');
+assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote cite\{[^}]*white-space:nowrap/, 'Page 19 keeps Matthew 28:20 on one balanced line');
 const page20Html = range.render(range.pages.get(20));
 assert.match(page20Html, /Enter a Conversation/, 'Page 20 retains its top-right conversation control');
 assert.match(page20Html, /aria-label="Account"/, 'Page 20 retains its top-right profile control');
