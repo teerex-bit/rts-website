@@ -20,7 +20,7 @@ function rail(page) {
 }
 
 function top(page) {
-  return `<header class="rts-11-15__top"><p><strong>${esc(page.course)}</strong>${page.lesson ? `<span aria-hidden="true">•</span>${esc(page.lesson)}` : ''}</p><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
+  return `<header class="rts-11-15__top">${page.family === 'landing' ? '<a class="rts-11-15__top-brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>' : ''}<p><strong>${esc(page.course)}</strong>${page.lesson ? `<span aria-hidden="true">•</span>${esc(page.lesson)}` : ''}</p><div aria-label="Account tools"><span title="Help">?</span><span title="Account">●</span></div></header>`;
 }
 
 function lessonNav(page) {

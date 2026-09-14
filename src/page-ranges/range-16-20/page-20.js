@@ -5,7 +5,6 @@ module.exports = {
   family: 'becoming-lesson',
   stage: 'Become',
   course: 'Become',
-  screen: 'Screen 2 of 2',
   headline: 'Recognizing God’s presence should change what happens next.',
   intro: 'Most of us live from whatever captures our attention. But when we recognize that God is already here, we can choose a different first response.',
   oldPattern: ['A problem appears.', 'We think.', 'We worry.', 'We protect or control.', 'We imagine outcomes.', 'We react.', 'And maybe eventually we remember God.'],

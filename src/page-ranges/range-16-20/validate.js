@@ -119,8 +119,12 @@ assert.match(page19Html, /Begin Lesson/, 'Page 19 retains the Begin Lesson butto
 assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote\{top:90px\}/, 'Page 19 raises the Matthew 28:20 quote card in the hero');
 assert.match(css, /data-page-number="19"\] \.r1620-lesson-hero blockquote cite\{[^}]*white-space:nowrap/, 'Page 19 keeps Matthew 28:20 on one balanced line');
 const page20Html = range.render(range.pages.get(20));
-assert.match(page20Html, /Enter a Conversation/, 'Page 20 retains its top-right conversation control');
+assert.doesNotMatch(page20Html, /Enter a Conversation/, 'Page 20 removes the top-right conversation control to match the other lesson pages');
 assert.match(page20Html, /aria-label="Account"/, 'Page 20 retains its top-right profile control');
+assert.doesNotMatch(page20Html, /Screen 2 of 2/, 'Page 20 does not display a separate screen counter');
+assert.doesNotMatch(page20Html, /Listen Deeply/, 'Page 20 keeps screen two within Recognize His Presence instead of adding a second sidebar lesson');
+assert.doesNotMatch(page20Html, /class="r1620-lesson-pager"/, 'Page 20 removes the bottom previous and next screen controls');
+assert.match(page20Html, /Recognize His Presence/, 'Page 20 keeps Recognize His Presence selected in the sidebar');
 assert.equal(range.pages.get(20).newResponse.length, 6);
 
 console.log('range 16–20 validation passed');

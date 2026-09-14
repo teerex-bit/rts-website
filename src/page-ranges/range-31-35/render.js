@@ -66,7 +66,7 @@ function renderHeader() {
     ['Join', '/join/']
   ];
   return `<header class="rts-r31-35__site-header">
-    <a class="rts-r31-35__brand" href="/" aria-label="Reforming the Soul home"><img src="${ASSET_ROOT}/brand-tree.svg" alt=""><span><b>REFORMING</b><i>the</i> SOUL</span></a>
+    <a class="rts-r31-35__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
     <nav aria-label="Main journey">${stages.map(([label, href]) => `<a data-stage="${label}" class="${label === 'Become' ? 'is-active' : ''}" href="${href}">${label}</a>`).join('')}</nav>
     <a class="rts-r31-35__conversation" href="/conversations/">Enter a conversation</a>
     <a class="rts-r31-35__account" href="/join/" aria-label="Account"><span aria-hidden="true">●</span></a>

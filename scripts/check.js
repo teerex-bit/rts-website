@@ -139,6 +139,12 @@ else{
   if(reviewTargets.some(target=>/^https?:\/\//.test(target)))errors.push(`${finalReviewPath}: review routes must stay within this website`);
   if(!review.includes('id="pages-01-40-review-frame"')||!review.includes('data-final-review-previous')||!review.includes('data-final-review-next'))errors.push(`${finalReviewPath}: missing viewer or Previous/Next controls`);
 }
+for(const page of pages.filter(candidate=>candidate.number>=2&&candidate.number<=37)){
+  const file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8');
+  const heading=(source.match(/<h1(?: [^>]*)?>([\s\S]*?)<\/h1>/)||[])[1]?.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  if(page.title!==heading)errors.push(`Page ${String(page.number).padStart(2,'0')}: review title "${page.title}" must match visible headline "${heading||'missing'}"`);
+  if(!source.includes('/assets/page-awaken/curriculum-logo-transparent.png'))errors.push(`Page ${String(page.number).padStart(2,'0')}: approved transparent Tree of Life logo is missing`);
+}
 const builtStylesPath=path.join(root,'assets','styles.css');
 const builtStyles=fs.existsSync(builtStylesPath)?fs.readFileSync(builtStylesPath,'utf8'):'';
 for(const label of ['11-15','16-20','21-25','26-30','31-35','36-40']){

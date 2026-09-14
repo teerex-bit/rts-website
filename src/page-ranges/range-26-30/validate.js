@@ -5,7 +5,7 @@ const {pages, render} = require('./index');
 
 const rendered = [...pages.values()].map(render).join('\n');
 
-assert.match(rendered, /\/assets\/logo\.svg/, 'pages use the approved shared formation wordmark');
+assert.match(rendered, /\/assets\/page-awaken\/curriculum-logo-transparent\.png/, 'pages use the approved transparent Tree of Life wordmark');
 assert.match(rendered, /rts-r2630--legacy-tall/, 'Pages 28–29 retain their approved expanded reading layout');
 assert.doesNotMatch(rendered, /placeholder|data-missing-raster/, 'review pages contain no placeholder assets');
 assert.match(rendered, /range-26-30\/seedling-growth\.webp/, 'Page 30 uses its approved replaceable local hero asset');

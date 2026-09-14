@@ -10,7 +10,7 @@ const bullets = (values, className = '') => `<ul class="${className}">${values.m
 
 function header() {
   return `<header class="rts-r2630__top">
-    <a class="rts-r2630__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/logo.svg" alt="Reforming the Soul"></a>
+    <a class="rts-r2630__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
     <nav class="rts-r2630__stages" aria-label="Formation journey stages">
       <a href="/awaken/">Awaken</a><a href="/see-clearly/">See Clearly</a><a class="is-active" href="/become/" aria-current="step">Become</a><a href="/join/">Join</a>
     </nav>

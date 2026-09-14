@@ -29,13 +29,10 @@ function journeyIcon(name) {
 }
 
 function logo(light = false) {
-  return `<a class="r1620-logo ${light ? 'r1620-logo--light' : ''}" href="/" aria-label="Reforming the Soul home">
-    ${icon('tree')}
-    <span>REFORMING<em>the</em>SOUL</span>
-  </a>`;
+  return `<a class="r1620-logo ${light ? 'r1620-logo--light' : ''}" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>`;
 }
 
-function topbar(active = '', showUtilities = true) {
+function topbar(active = '', showUtilities = true, showConversation = showUtilities) {
   const nav = [
     ['Awaken', '/awaken/'],
     ['See Clearly', '/see-clearly/'],
@@ -47,8 +44,8 @@ function topbar(active = '', showUtilities = true) {
     <nav class="r1620-topbar__nav" aria-label="Primary">
       ${nav.map(([label, href]) => `<a data-stage="${label}" class="${active === label ? 'is-active' : ''}" href="${href}">${label}</a>`).join('')}
     </nav>
-    ${showUtilities ? `<a class="r1620-conversation" href="/conversations/">Enter a Conversation</a>
-    <span class="r1620-account" aria-label="Account">${icon('person')}</span>` : ''}
+    ${showConversation ? `<a class="r1620-conversation" href="/conversations/">Enter a Conversation</a>` : ''}
+    ${showUtilities ? `<span class="r1620-account" aria-label="Account">${icon('person')}</span>` : ''}
   </header>`;
 }
 
@@ -61,7 +58,7 @@ function rail(active, detailed = false, showStageStatus = true) {
   ];
   const lessonList = detailed ? `<div class="r1620-rail__part"><b>Part One</b><strong>Live With God</strong></div>
     <ol class="r1620-rail__lessons">
-      ${['Recognize His Presence','Listen Deeply','Release Control','Receive the Moment','Take the Next Right Step','Repeat Daily'].map((label, index) => `<li class="${index === 0 ? 'is-current' : ''}"><span>${index + 1}</span>${label}${index === 0 ? icon('check') : ''}</li>`).join('')}
+      ${['Recognize His Presence','Release Control','Receive the Moment','Take the Next Right Step','Repeat Daily'].map((label, index) => `<li class="${index === 0 ? 'is-current' : ''}"><span>${index + 1}</span>${label}${index === 0 ? icon('check') : ''}</li>`).join('')}
     </ol>` : '';
   return `<aside class="r1620-rail">
     ${detailed ? '' : '<a class="r1620-rail__brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>'}
@@ -139,7 +136,7 @@ function renderLanding(page) {
 
 function lessonFrame(page, content) {
   return `<main class="r1620 r1620--lesson" data-page-number="${page.number}" data-editable-source="range-16-20">
-    ${topbar(page.stage, page.number !== 19)}
+    ${topbar(page.stage, page.number !== 19, false)}
     <div class="r1620-lesson-shell">${rail(page.stage, true)}<section class="r1620-lesson-main">${content}</section></div>
   </main>`;
 }
@@ -162,11 +159,10 @@ function renderLessonOne(page) {
 }
 
 function renderLessonTwo(page) {
-  const content = `<section class="r1620-pattern-hero"><img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise"><div><p class="r1620-eyebrow">${page.course}</p><p class="r1620-screen-label">${page.screen}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p></div>
+  const content = `<section class="r1620-pattern-hero"><img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise"><div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p></div>
     <aside class="r1620-practice"><h2>${icon('branch')}${page.practice.title}</h2>${page.practice.paragraphs.map(p => `<p>${p}</p>`).join('')}<hr><h3>${page.practice.heading}</h3><p>${page.practice.body}</p><hr><div class="r1620-reassurance">${icon('person')}<p>${page.practice.reassurance.join('<br>')}</p></div><strong>${page.practice.prayer.join('<br>')}</strong></aside>
     <div class="r1620-patterns"><section><p class="r1620-chip">Old Pattern</p><h3>We react from what we see.</h3><ol>${page.oldPattern.map((item, i) => `<li>${icon(['warning','ear','target','shield','repeat','person','clock'][i])}<span>${item}</span></li>`).join('')}</ol></section><span class="r1620-pattern-arrow">→</span><section><p class="r1620-chip r1620-chip--new">A New First Response</p><h3>We respond from who is already here.</h3><ol>${page.newResponse.map((item, i) => `<li><b>${i < 5 ? i + 1 : '♥'}</b><span>${item}</span></li>`).join('')}</ol></section></div>
-    <blockquote class="r1620-goal"><b>“</b><p>${page.quote[0]}<br><strong>${page.quote[1]}</strong></p></blockquote>
-    ${lessonPager(page, 'Lesson 2')}</section>`;
+    <blockquote class="r1620-goal"><b>“</b><p>${page.quote[0]}<br><strong>${page.quote[1]}</strong></p></blockquote></section>`;
   return lessonFrame(page, content);
 }
 

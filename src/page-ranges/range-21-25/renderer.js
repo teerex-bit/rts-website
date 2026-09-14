@@ -46,7 +46,7 @@ const lessons = [
 
 function renderHeader() {
   return `<header class="rts2521-header">
-    <a class="rts2521-brand" href="/" aria-label="Reforming the Soul home">${icon('logo.svg', 'Reforming the Soul')}</a>
+    <a class="rts2521-brand" href="/" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
     <nav aria-label="Main navigation">
       <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOME</a><a href="/join/">JOIN</a>
     </nav>

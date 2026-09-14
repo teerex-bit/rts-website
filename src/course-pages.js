@@ -17,7 +17,7 @@ const lessonRoutes = new Map([
 function journeyRail(page, stages) {
   const seeClearly = page.activeStage === 'See Clearly';
   return `<aside class="formation-rail">
-    <a class="formation-rail__brand" href="${links.home}"><img src="/assets/logo-light.svg" alt="Reforming the Soul"></a>
+    <a class="formation-rail__brand" href="${links.home}"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a>
     <p class="formation-rail__title">The Formation Journey</p>
     <nav class="formation-rail__journey" aria-label="Formation journey">${stages.map(stage => `<a data-stage="${esc(stage.name)}" class="${stage.name === page.activeStage ? 'is-active' : ''}" href="${stage.href}"><img src="/assets/icon-${stage.icon}.svg" alt=""><span><strong>${esc(stage.name)}</strong><small>${esc(stage.description)}</small></span></a>`).join('')}</nav>
     ${seeClearly ? '' : `<section class="formation-rail__progress" aria-label="Course progress"><p>Your Progress</p><span>${esc(page.progressLabel)}</span><progress max="${page.progressMax}" value="${page.progress}">${page.progressLabel}</progress></section>`}
@@ -26,7 +26,7 @@ function journeyRail(page, stages) {
 }
 
 function courseTop(page) {
-  return `<header class="course-top"><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p><div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
+  return `<header class="course-top"><a class="course-top__brand" href="${links.home}" aria-label="Reforming the Soul home"><img src="/assets/page-awaken/curriculum-logo-transparent.png" alt="Reforming the Soul"></a><p><strong>${esc(page.courseLabel)}</strong><span aria-hidden="true">•</span>${esc(page.lessonLabel)}</p><div class="course-tools" aria-label="Account tools"><span title="Help">?</span><span aria-hidden="true">●</span></div></header>`;
 }
 
 function renderCallout(lines, tone = '') {

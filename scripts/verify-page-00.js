@@ -11,7 +11,7 @@ const failures = [];
 if (pages.length !== 41) failures.push('page registry does not contain Pages 00–40');
 if (pages[0]?.number !== 0 || pages[0]?.route !== '/') failures.push('Page 00 is not the root route');
 if (pages[1]?.number !== 1 || pages[1]?.route !== '/soul-formation/') failures.push('Page 01 is not preserved at /soul-formation/');
-if (pages[2]?.number !== 2 || pages[2]?.title !== 'Intro') failures.push('Page 02 review title is not Intro');
+if (pages[2]?.number !== 2 || pages[2]?.title !== 'You Have Already Been Formed') failures.push('Page 02 review title does not match its visible headline');
 if (!fs.existsSync(page00Path)) failures.push('Page 00 output is missing');
 if (!fs.existsSync(page01Path)) failures.push('Page 01 output is missing at /soul-formation/');
 
