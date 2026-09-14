@@ -137,7 +137,7 @@ function renderLanding(page) {
 function lessonFrame(page, content) {
   return `<main class="r1620 r1620--lesson" data-page-number="${page.number}" data-editable-source="range-16-20">
     ${topbar(page.stage, page.number !== 19, false)}
-    <div class="r1620-lesson-shell">${rail(page.stage, true)}<section class="r1620-lesson-main">${content}</section></div>
+    <div class="r1620-lesson-shell">${rail(page.stage, page.number !== 19)}<section class="r1620-lesson-main">${content}</section></div>
   </main>`;
 }
 
@@ -148,10 +148,10 @@ function lessonPager(page, nextLabel) {
 function renderLessonOne(page) {
   const content = `<section class="r1620-lesson-hero">
       <img src="${assetRoot}/presence-mountain-path.jpg" alt="A mountain path at sunrise">
-      <div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p><div class="r1620-actions"><a href="${page.route}">Begin Lesson →</a></div></div>
-      <blockquote><b>“</b><p>${page.quote[0]}</p><cite>${page.quote[1]}</cite></blockquote>
+      <div><p class="r1620-eyebrow">${page.course}</p><h1>${page.title}</h1><div class="r1620-gold-rule"></div><h2>${page.headline}</h2><p>${page.intro}</p></div>
+      <blockquote><p>${page.quote[0]}</p><cite>${page.quote[1]}</cite></blockquote>
     </section>
-    <section id="lesson-content" class="r1620-screen-card"><header><span>1</span><div><small>${page.screen}</small><h2>${page.screenTitle}</h2></div></header><div class="r1620-screen-columns">
+    <section id="lesson-content" class="r1620-screen-card"><header><h2>${page.screenTitle}</h2></header><div class="r1620-screen-columns">
       <article><h3>${page.left.heading}</h3>${page.left.paragraphs.map(p => `<p>${p}</p>`).join('')}<ul>${page.left.items.map(item => `<li>${icon('branch')}${item}</li>`).join('')}</ul><p>${page.left.closing}</p><aside>${icon('person')}<b>${page.left.callout}</b></aside></article>
       <article><h3>${page.right.heading}</h3>${page.right.paragraphs.map(p => `<p>${p}</p>`).join('')}<ul class="r1620-life-list">${page.right.items.map((item, i) => `<li>${icon(['awaken','book','people','heart','hand','question','branch'][i])}${item}</li>`).join('')}</ul><aside>${icon('branch')}<b>${page.right.callout}</b></aside></article>
     </div>${lessonPager(page, 'Screen 2')}</section>`;
