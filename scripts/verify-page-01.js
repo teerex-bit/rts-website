@@ -7,7 +7,7 @@ const css = fs.readFileSync(path.join(root, 'public', 'assets', 'page-01-approve
 const required = [
   ['Page 01 uses its dedicated stylesheet', '/assets/page-01-approved.css'],
   ['editable landing marker is present', 'data-landing-page="new"'],
-  ['approved transparent circle flame logo is used', 'src="/assets/brand-main-transparent.png"'],
+  ['approved transparent Tree of Life logo is used', 'src="/assets/page-awaken/curriculum-logo-transparent.png"'],
   ['hero message is present', 'class="home-message"'],
   ['three editable ways cards are present', 'class="ways-grid"'],
   ['Start the Journey button follows the three ways cards', 'class="home-journey-cta-row"><a class="home-journey-cta" href="/awaken/">Start the Journey'],
@@ -36,4 +36,4 @@ if (failures.length) {
   console.error('Page 01 visual release verification failed:\n' + failures.map(x => `- ${x}`).join('\n'));
   process.exit(1);
 }
-console.log('Page 01 visual release verification passed: dedicated stylesheet, editable structure, transparent circle logo, hero gradient/message rules, and three current card photos are present.');
+console.log('Page 01 visual release verification passed: dedicated stylesheet, editable structure, transparent Tree of Life logo, hero gradient/message rules, and three current card photos are present.');
