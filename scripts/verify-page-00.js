@@ -21,6 +21,8 @@ if (fs.existsSync(page00Path)) {
     'data-page-number="00"',
     '<h1 id="page00-title">You’re being shaped<br>by something.</h1>',
     '/assets/brand-main-transparent.png',
+    '/assets/page-awaken/page-03-seated-sunrise.png',
+    '>Teachings</a>',
     'aria-controls="main-nav"',
     'A journey of formation',
     '>Awaken<',
