@@ -21,7 +21,7 @@ if(fs.existsSync(conversationsPath)){
   if(/>Walk<|\/walk\//i.test(header))errors.push(`${conversationsPath}: Walk must not appear in the Conversations header`);
   if(!fs.existsSync(path.join(root,'assets','conversations-hero.jpg')))errors.push(`${conversationsPath}: missing conversations hero asset`);
 }
-const homePath=path.join(root,'index.html');
+const homePath=path.join(root,'soul-formation','index.html');
 if(!fs.existsSync(homePath))errors.push(`${homePath}: missing specialized Page 01 route`);
 else{
   const home=fs.readFileSync(homePath,'utf8');
@@ -104,7 +104,7 @@ else{
   if(!review.includes('class="pages-final-review"'))errors.push(`${finalReviewPath}: missing Pages 01-40 review UI`);
   const reviewTargets=[...review.matchAll(/data-final-review-route="([^"]+)"/g)].map(match=>match[1]);
   const expectedTargets=pages.map(page=>page.route);
-  if(JSON.stringify(reviewTargets)!==JSON.stringify(expectedTargets))errors.push(`${finalReviewPath}: expected 40 ordered review targets`);
+  if(JSON.stringify(reviewTargets)!==JSON.stringify(expectedTargets))errors.push(`${finalReviewPath}: expected 41 ordered review targets`);
   if(reviewTargets.some(target=>/^https?:\/\//.test(target)))errors.push(`${finalReviewPath}: review routes must stay within this website`);
   if(!review.includes('id="pages-01-40-review-frame"')||!review.includes('data-final-review-previous')||!review.includes('data-final-review-next'))errors.push(`${finalReviewPath}: missing viewer or Previous/Next controls`);
 }
@@ -118,4 +118,4 @@ for(const label of ['11-15','16-20','21-25','26-30','31-35','36-40']){
 const correctionStyleMarker='/* Pages 01-10 correction styles */';
 const correctionStyleRegistrations=builtStyles.split(correctionStyleMarker).length-1;
 if(correctionStyleRegistrations!==1)errors.push(`${builtStylesPath}: expected one Pages 01-10 correction style registration, got ${correctionStyleRegistrations}`);
-if(html.length!==44)errors.push(`expected 44 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets and local fragments resolve; one h1 each.`);
+if(html.length!==45)errors.push(`expected 45 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets and local fragments resolve; one h1 each.`);

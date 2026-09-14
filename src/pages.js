@@ -1,6 +1,7 @@
 const lessons = [
-  [1,"Soul Formation","/","Awaken","hero","A journey toward wholeness","Your soul is always being formed. Choose a path of attentive, honest transformation."],
-  [2,"Awaken","/awaken/","Awaken","stage","Notice what is stirring","Awakening begins when we become present to God, ourselves, and the stories shaping our lives."],
+  [0,"RTS Home Page","/","Reforming the Soul","home","You’re being shaped by something","The main Reforming the Soul landing page."],
+  [1,"Soul Formation","/soul-formation/","Awaken","hero","A journey toward wholeness","Your soul is always being formed. Choose a path of attentive, honest transformation."],
+  [2,"Intro","/awaken/","Awaken","stage","Notice what is stirring","Awakening begins when we become present to God, ourselves, and the stories shaping our lives."],
   [3,"Pay Attention","/awaken/pay-attention/","Awaken","lesson","The invitation to notice","Slow down long enough to recognize what is happening within and around you."],
   [4,"Name Your Desire","/awaken/name-your-desire/","Awaken","lesson","What do you truly want?","Desire can become a doorway to honest prayer and deeper freedom."],
   [5,"Listen Within","/awaken/listen-within/","Awaken","reflection","Make room for your soul","Practice listening without judgment, hurry, or the need to manufacture an answer."],

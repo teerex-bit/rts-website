@@ -9,6 +9,7 @@
     "serve": "node scripts/serve.js",
     "check:browser": "node scripts/browser-check.js",
     "verify:page-01": "node scripts/verify-page-01.js",
+    "verify:page-00": "node scripts/verify-page-00.js",
     "verify:conversations": "node scripts/verify-conversations-hero.js"
   },
   "devDependencies": {

@@ -9,10 +9,10 @@ function renderPagesFinalReview(pages) {
   }));
   return `<main class="pages-final-review">
     <header class="pages-final-review__header">
-      <div><p>Editable webpage review</p><h1>Pages 01–40</h1></div>
-      <p>Switch among all forty live routes. Previous and Next wrap around the complete set.</p>
+      <div><p>Editable webpage review</p><h1>Pages 00–40</h1></div>
+      <p>Switch among all forty-one live routes. Previous and Next wrap around the complete set.</p>
     </header>
-    <nav class="pages-final-review__pages" aria-label="Pages 01 through 40">${targets.map((target, index) => `<button type="button" data-final-review-route="${target.route}" class="${index === 0 ? 'is-current' : ''}" aria-pressed="${index === 0 ? 'true' : 'false'}"><span>${target.number}</span><strong>${esc(target.label)}</strong><small>${esc(target.stage)}</small></button>`).join('')}</nav>
+    <nav class="pages-final-review__pages" aria-label="Pages 00 through 40">${targets.map((target, index) => `<button type="button" data-final-review-route="${target.route}" class="${index === 0 ? 'is-current' : ''}" aria-pressed="${index === 0 ? 'true' : 'false'}"><span>${target.number}</span><strong>${esc(target.label)}</strong><small>${esc(target.stage)}</small></button>`).join('')}</nav>
     <section class="pages-final-review__controls" aria-label="Review controls">
       <button type="button" data-final-review-previous>← Previous</button>
       <p><span>Viewing</span> <strong data-final-review-status>Page ${targets[0].number} — ${esc(targets[0].label)}</strong></p>

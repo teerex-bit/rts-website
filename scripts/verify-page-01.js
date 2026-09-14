@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(root, 'public', 'index.html'), 'utf8');
+const html = fs.readFileSync(path.join(root, 'public', 'soul-formation', 'index.html'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'public', 'assets', 'page-01-approved.css'), 'utf8');
 const required = [
   ['Page 01 uses its dedicated stylesheet', '/assets/page-01-approved.css'],
