@@ -322,6 +322,14 @@ const css = `
 .p07-hero>div{width:56%;min-height:446px;padding:34px 44px 28px 0;background:linear-gradient(90deg,#fffdfa 0%,#fffdfa 62%,rgba(255,253,250,.95) 78%,rgba(255,253,250,.52) 91%,transparent 100%)}
 .p07-hero h1{margin:0 0 10px;color:#092039;font:400 clamp(3.25rem,4.1vw,4.65rem)/.98 var(--serif)}
 @media (min-width:901px){.p07-hero h1{white-space:nowrap}}
+
+/* Page 06 intermediate-width layout: preserve the rail and release the cramped aside. */
+@media (min-width:931px) and (max-width:1279px){
+  .course-top:has(+.formation-course-page[data-page-number="06"]){grid-template-columns:220px minmax(0,1fr) auto;padding-left:0}
+  .formation-course-page[data-page-number="06"]{grid-template-columns:220px minmax(0,1fr)}
+  .formation-course-page[data-page-number="06"] .course-content{grid-column:2}
+  .formation-course-page[data-page-number="06"] .course-aside{display:none}
+}
 .p07-hero i{display:block;width:58px;margin:19px 0;border-top:2px solid #c48a25}
 .p07-hero>div>p:not(:first-child){margin:10px 0;font-size:1rem;line-height:1.56}
 .p07-hero>div>p.is-emphasis{font-weight:700}

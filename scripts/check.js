@@ -151,6 +151,9 @@ if(/course-top:has\([^}]+\):before\s*\{[^}]*curriculum-logo-transparent\.png/.te
 if(/\.r1620-pattern-hero\{[^}]*min-height:1500px/.test(builtStyles))errors.push(`${builtStylesPath}: Page 20 mobile layout must not force a 1500px hero height`);
 if(!builtStyles.includes("/* Preserve the approved wordmark's intrinsic proportions at every width. */\n.rts2521-brand img{height:auto}"))errors.push(`${builtStylesPath}: Pages 21-25 curriculum logo must preserve its natural aspect ratio`);
 if(!builtStyles.includes('@media (max-width:820px){.rts-r31-35__brand img{width:170px;height:auto}}'))errors.push(`${builtStylesPath}: Pages 31-35 mobile logo sizing must survive later desktop rules`);
+if(!builtStyles.includes('/* Page 06 intermediate-width layout: preserve the rail and release the cramped aside. */'))errors.push(`${builtStylesPath}: Page 06 needs its intermediate-width two-column correction`);
+if(!builtStyles.includes('/* Pages 11-13 responsive overrides must follow the page-specific desktop rules. */'))errors.push(`${builtStylesPath}: Pages 11-13 need final responsive overrides`);
+if(!builtStyles.includes('/* Keep the Join lesson journey rail available as a compact mobile stage strip. */'))errors.push(`${builtStylesPath}: Pages 36-37 need compact mobile journey navigation`);
 for(const label of ['11-15','16-20','21-25','26-30','31-35','36-40']){
   const marker=`/* Pages ${label} range styles */`;
   const registrations=builtStyles.split(marker).length-1;

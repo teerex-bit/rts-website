@@ -105,4 +105,14 @@ module.exports = String.raw`
 .rts-11-15__landing>.rts-11-15__top:before{display:none}
 .rts-11-15__landing>.rts-11-15__top>.rts-11-15__top-brand{position:absolute;left:0;top:0;display:flex;align-items:center;width:300px;height:98px;padding:10px 36px;border:0;border-right:1px solid #e2dfd8}
 .rts-11-15__top-brand img{display:block;width:205px;height:auto}
+/* Pages 11-13 responsive overrides must follow the page-specific desktop rules. */
+@media (max-width:1200px){
+  .rts-11-15--page-11 .rts-11-15__side,.rts-11-15--page-12 .rts-11-15__side{display:none}
+}
+@media (max-width:820px){
+  .rts-11-15--page-12 .rts-11-15__wineskin-card.is-gold .rts-11-15__wineskin-body li{white-space:normal}
+  .rts-11-15__landing>.rts-11-15__top>.rts-11-15__top-brand{position:relative;left:auto;top:auto;width:100%;height:auto;min-height:64px;padding:6px 0;border-right:0;border-bottom:1px solid #e2dfd8}
+  .rts-11-15__landing>.rts-11-15__top{display:flex;flex-direction:column;align-items:stretch}
+  .rts-11-15__landing>.rts-11-15__top>p,.rts-11-15__landing>.rts-11-15__top>a{align-self:flex-start}
+}
 `;

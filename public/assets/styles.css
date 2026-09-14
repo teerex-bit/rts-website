@@ -357,6 +357,14 @@
 .p07-hero>div{width:56%;min-height:446px;padding:34px 44px 28px 0;background:linear-gradient(90deg,#fffdfa 0%,#fffdfa 62%,rgba(255,253,250,.95) 78%,rgba(255,253,250,.52) 91%,transparent 100%)}
 .p07-hero h1{margin:0 0 10px;color:#092039;font:400 clamp(3.25rem,4.1vw,4.65rem)/.98 var(--serif)}
 @media (min-width:901px){.p07-hero h1{white-space:nowrap}}
+
+/* Page 06 intermediate-width layout: preserve the rail and release the cramped aside. */
+@media (min-width:931px) and (max-width:1279px){
+  .course-top:has(+.formation-course-page[data-page-number="06"]){grid-template-columns:220px minmax(0,1fr) auto;padding-left:0}
+  .formation-course-page[data-page-number="06"]{grid-template-columns:220px minmax(0,1fr)}
+  .formation-course-page[data-page-number="06"] .course-content{grid-column:2}
+  .formation-course-page[data-page-number="06"] .course-aside{display:none}
+}
 .p07-hero i{display:block;width:58px;margin:19px 0;border-top:2px solid #c48a25}
 .p07-hero>div>p:not(:first-child){margin:10px 0;font-size:1rem;line-height:1.56}
 .p07-hero>div>p.is-emphasis{font-weight:700}
@@ -539,6 +547,16 @@
 .rts-11-15__landing>.rts-11-15__top:before{display:none}
 .rts-11-15__landing>.rts-11-15__top>.rts-11-15__top-brand{position:absolute;left:0;top:0;display:flex;align-items:center;width:300px;height:98px;padding:10px 36px;border:0;border-right:1px solid #e2dfd8}
 .rts-11-15__top-brand img{display:block;width:205px;height:auto}
+/* Pages 11-13 responsive overrides must follow the page-specific desktop rules. */
+@media (max-width:1200px){
+  .rts-11-15--page-11 .rts-11-15__side,.rts-11-15--page-12 .rts-11-15__side{display:none}
+}
+@media (max-width:820px){
+  .rts-11-15--page-12 .rts-11-15__wineskin-card.is-gold .rts-11-15__wineskin-body li{white-space:normal}
+  .rts-11-15__landing>.rts-11-15__top>.rts-11-15__top-brand{position:relative;left:auto;top:auto;width:100%;height:auto;min-height:64px;padding:6px 0;border-right:0;border-bottom:1px solid #e2dfd8}
+  .rts-11-15__landing>.rts-11-15__top{display:flex;flex-direction:column;align-items:stretch}
+  .rts-11-15__landing>.rts-11-15__top>p,.rts-11-15__landing>.rts-11-15__top>a{align-self:flex-start}
+}
 
 /* Pages 16-20 range styles */
 .r1620{--ink:#0d2030;--cream:#f7f3ed;--paper:#fbf9f5;--purple:#3f216f;--purple-2:#624294;--gold:#c98b22;--olive:#5f653a;--rail:#101d1c;box-sizing:border-box;color:var(--ink);background:var(--paper);font-family:Arial,Helvetica,sans-serif;line-height:1.42;min-height:100vh}
@@ -1200,6 +1218,15 @@
 .rts-36-40__stage-bar .rts-36-40__stage-icon{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}
 .rts-36-40__brand--approved-circle{width:224px;height:60px}.rts-36-40__brand--approved-circle img{display:block;width:224px;height:auto;max-width:none;object-fit:contain}
 .rts-36-40__header>.rts-36-40__brand:not(.rts-36-40__brand--approved-circle) img{width:196px;height:auto}
+/* Keep the Join lesson journey rail available as a compact mobile stage strip. */
+@media(max-width:900px){
+  .rts-36-40__course-shell{display:block}
+  .rts-36-40__course-shell>.rts-36-40__rail{display:block;width:100%;min-height:0;padding:10px 14px}
+  .rts-36-40__course-shell>.rts-36-40__rail>h2,.rts-36-40__course-shell .rts-36-40__support,.rts-36-40__course-shell .rts-36-40__progress{display:none}
+  .rts-36-40__course-shell>.rts-36-40__rail ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+  .rts-36-40__course-shell>.rts-36-40__rail li a{display:flex;align-items:center;gap:7px;min-height:48px;padding:7px}
+  .rts-36-40__course-shell>.rts-36-40__rail li small{display:none}
+}
 
 /* Pages 01-40 review styles */
 .pages-final-review{min-height:100vh;padding:18px;color:#10283d;background:#e9e4da;font-family:var(--sans)}

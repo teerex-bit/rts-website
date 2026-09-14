@@ -30,4 +30,13 @@ module.exports = String.raw`
 .rts-36-40__stage-bar .rts-36-40__stage-icon{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}
 .rts-36-40__brand--approved-circle{width:224px;height:60px}.rts-36-40__brand--approved-circle img{display:block;width:224px;height:auto;max-width:none;object-fit:contain}
 .rts-36-40__header>.rts-36-40__brand:not(.rts-36-40__brand--approved-circle) img{width:196px;height:auto}
+/* Keep the Join lesson journey rail available as a compact mobile stage strip. */
+@media(max-width:900px){
+  .rts-36-40__course-shell{display:block}
+  .rts-36-40__course-shell>.rts-36-40__rail{display:block;width:100%;min-height:0;padding:10px 14px}
+  .rts-36-40__course-shell>.rts-36-40__rail>h2,.rts-36-40__course-shell .rts-36-40__support,.rts-36-40__course-shell .rts-36-40__progress{display:none}
+  .rts-36-40__course-shell>.rts-36-40__rail ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+  .rts-36-40__course-shell>.rts-36-40__rail li a{display:flex;align-items:center;gap:7px;min-height:48px;padding:7px}
+  .rts-36-40__course-shell>.rts-36-40__rail li small{display:none}
+}
 `;
