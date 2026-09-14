@@ -49,10 +49,15 @@ for (const number of [21, 22]) {
   assert(!html.includes('rts2521-eyebrow'), `page ${number} must remove the lesson and screen counter above the title`);
   assert(!html.includes('ENTER A CONVERSATION'), `page ${number} must remove the top conversation control`);
   assert(!html.includes('rts2521-user'), `page ${number} must remove the top account control`);
+  assert(!html.includes('aria-label="Complete"'), `page ${number} must remove detached completion marks from the sidebar`);
   for (const section of page.content) {
     assert(html.includes(`class="rts2521-zone ${section.className}"`), `page ${number} must retain ${section.className}`);
   }
 }
+
+const page22Html = range.render(range.pages.get(22));
+assert(!/<li><span>[1-5]<\/span><p>/.test(page22Html), 'page 22 must replace discernment step numbers with icons');
+assert(/journey-icons\.svg#question[\s\S]*journey-icons\.svg#ear[\s\S]*journey-icons\.svg#eye[\s\S]*journey-icons\.svg#shield[\s\S]*journey-icons\.svg#walk/.test(page22Html), 'page 22 must render a meaningful icon for every discernment step');
 
 assert(/\.page-21 \.rts2521-layout\{grid-template-columns:1fr 1fr;grid-template-areas:'intro scripture' 'prayer listening' 'shift shift'/.test(range.css), 'page 21 must use a balanced two-column teaching layout');
 assert(/\.page-22 \.rts2521-layout\{grid-template-columns:1fr 1fr;grid-template-areas:'intro perspective' 'ways recognize' 'reminders reminders'/.test(range.css), 'page 22 must use a balanced two-column teaching layout');

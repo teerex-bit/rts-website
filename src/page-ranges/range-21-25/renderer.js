@@ -6,6 +6,7 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
 
 const icon = (name, alt = '') => `<img src="${ASSET_ROOT}${escapeHtml(name)}" alt="${escapeHtml(alt)}">`;
 const stageIcon = name => `<img class="rts2521-stage-icon" src="/assets/icon-${escapeHtml(name)}.svg" alt="">`;
+const stepIcon = name => `<svg class="rts2521-step-icon" aria-hidden="true"><use href="/assets/page-ranges/range-16-20/journey-icons.svg#${escapeHtml(name)}"></use></svg>`;
 
 function renderBlock(block) {
   switch (block.type) {
@@ -24,6 +25,7 @@ function renderBlock(block) {
     case 'list': return `<ul class="rts2521-list${block.columns ? ` is-${block.columns}-column` : ''}">${block.items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
     case 'richList': return `<ul class="rts2521-list rts2521-rich-list">${block.items.map(([title, text]) => `<li><strong>${escapeHtml(title)} — </strong>${escapeHtml(text)}</li>`).join('')}</ul>`;
     case 'steps': return `<ol class="rts2521-steps">${block.items.map(([title, text], index) => `<li><span>${index + 1}</span><p><strong>${escapeHtml(title)}</strong> — ${escapeHtml(text)}</p></li>`).join('')}</ol>`;
+    case 'iconSteps': return `<ol class="rts2521-steps rts2521-icon-steps">${block.items.map(([title, text], index) => `<li>${stepIcon(block.icons[index])}<p><strong>${escapeHtml(title)}</strong> — ${escapeHtml(text)}</p></li>`).join('')}</ol>`;
     case 'reminders': return `<div class="rts2521-reminders">${block.items.map(([title, text]) => `<article><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div>`;
     case 'iconCallout': return `<aside class="rts2521-icon-callout">${icon(block.icon)}<div><strong>${escapeHtml(block.text)}</strong>${block.detail ? `<p>${escapeHtml(block.detail)}</p>` : ''}</div></aside>`;
     case 'imageText': return `<aside class="rts2521-image-text">${icon(block.icon, block.alt)}<div><p>${escapeHtml(block.text)}</p><strong>${escapeHtml(block.accent)}</strong></div></aside>`;
@@ -51,7 +53,7 @@ function renderHeader(page) {
     <nav aria-label="Main navigation">
       <a href="/awaken/">AWAKEN</a><a href="/see-clearly/">SEE CLEARLY</a><a class="is-active" href="/become/">BECOME</a><a href="/join/">JOIN</a>
     </nav>
-    ${simplified ? '' : '<a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a><span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>'}
+    ${simplified ? '' : '<a class="rts2521-conversation" href="/conversations/">ENTER A CONVERSATION</a>\n    <span class="rts2521-user" aria-label="Account"><span aria-hidden="true"></span></span>'}
   </header>`;
 }
 
@@ -65,7 +67,7 @@ function renderRail(page) {
   ];
   return `<aside class="rts2521-rail${simplified ? ' is-simple' : ''}" aria-label="The formation journey">
     <p class="rts2521-rail-title">THE FORMATION JOURNEY</p>
-    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${stageIcon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' ? '<b aria-label="Complete">✓</b>' : state === 'is-current' && !simplified ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' && !simplified ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
+    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${stageIcon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' && !simplified ? '<b aria-label="Complete">✓</b>' : state === 'is-current' && !simplified ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' && !simplified ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
     <aside class="rts2521-support"><span aria-hidden="true">?</span><div><strong>Need help?</strong><p>We’re here if you have questions along the way.</p><a href="/conversations/">Contact Support&nbsp; →</a></div></aside>
   </aside>`;
 }

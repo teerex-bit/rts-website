@@ -917,6 +917,7 @@
 /* Preserve the approved wordmark's intrinsic proportions at every width. */
 .rts2521-brand img{height:auto}
 @media(max-width:760px){.rts2521-brand img{width:170px;height:auto}}
+.rts2521-step-icon{display:grid;place-items:center;width:25px;height:25px;padding:5px;border:1px solid var(--purple);border-radius:50%;color:var(--purple);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .rts2521-rail.is-simple .rts2521-stage-list>a.is-current{border-radius:9px;padding:15px 10px}
 .rts2521-rail.is-simple+.rts2521-main{grid-template-rows:1fr}
 @media(min-width:1101px){

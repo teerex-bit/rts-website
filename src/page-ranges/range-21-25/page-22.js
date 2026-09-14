@@ -40,7 +40,7 @@ module.exports = {
     { className: 'p22-recognize', blocks: [
       { type: 'heading', text: 'HOW TO RECOGNIZE HIS VOICE' },
       { type: 'p', text: 'Familiarity with God is built over time through a cycle of listening and discernment.' },
-      { type: 'steps', items: [
+      { type: 'iconSteps', icons: ['question', 'ear', 'eye', 'shield', 'walk'], items: [
         ['Ask', 'Begin with a sincere question. “Father, what do You want me to see right now?”'],
         ['Listen', 'Pay attention without strain. Be still. Be alert. Live in awareness.'],
         ['Notice', 'What thoughts, Scriptures, people, circumstances, or impressions stand out?'],
