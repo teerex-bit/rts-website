@@ -41,6 +41,19 @@ for (const [number, route, title] of expected) {
   );
 }
 
+for (const number of [21, 22]) {
+  const page = range.pages.get(number);
+  const html = range.render(page);
+  assert(!html.includes('rts2521-part'), `page ${number} must use the simplified sidebar without the lesson list`);
+  assert(!html.includes('rts2521-footer-nav'), `page ${number} must remove the bottom navigation and progress row`);
+  for (const section of page.content) {
+    assert(html.includes(`class="rts2521-zone ${section.className}"`), `page ${number} must retain ${section.className}`);
+  }
+}
+
+assert(/\.page-21 \.rts2521-layout\{grid-template-columns:1fr 1fr;grid-template-areas:'intro scripture' 'prayer listening' 'shift shift'/.test(range.css), 'page 21 must use a balanced two-column teaching layout');
+assert(/\.page-22 \.rts2521-layout\{grid-template-columns:1fr 1fr;grid-template-areas:'intro perspective' 'ways recognize' 'reminders reminders'/.test(range.css), 'page 22 must use a balanced two-column teaching layout');
+
 const sourceFiles = fs.readdirSync(__dirname).filter(file => /^page-(?:21|22|23|24|25)\.js$/.test(file));
 assert.strictEqual(sourceFiles.length, 5, 'one source module is required per page');
 

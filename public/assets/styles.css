@@ -917,6 +917,26 @@
 /* Preserve the approved wordmark's intrinsic proportions at every width. */
 .rts2521-brand img{height:auto}
 @media(max-width:760px){.rts2521-brand img{width:170px;height:auto}}
+.rts2521-rail.is-simple .rts2521-stage-list>a.is-current{border-radius:9px;padding:15px 10px}
+.rts2521-rail.is-simple+.rts2521-main{grid-template-rows:1fr}
+@media(min-width:1101px){
+.page-21 .rts2521-layout{grid-template-columns:1fr 1fr;grid-template-areas:'intro scripture' 'prayer listening' 'shift shift';gap:22px 28px}
+.page-21 .p21-intro{grid-area:intro;padding:22px 24px;border-radius:10px;background:#f0ecef}
+.page-21 .p21-scripture{grid-area:scripture;padding:22px 24px;border-left:2px solid var(--gold);border-radius:10px;background:#f7f1e9}
+.page-21 .p21-prayer{grid-area:prayer;padding:20px 24px;border-top:1px solid var(--line)}
+.page-21 .p21-listening{grid-area:listening;padding:20px 24px;border-top:1px solid var(--line)}
+.page-21 .p21-shift{grid-area:shift;padding:20px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
+.page-21 .p21-shift .rts2521-icon-callout{display:inline-grid;width:calc(50% - 8px);vertical-align:top}
+.page-21 .p21-shift .rts2521-icon-callout:nth-of-type(2){margin-left:12px}
+.page-22 .rts2521-layout{grid-template-columns:1fr 1fr;grid-template-areas:'intro perspective' 'ways recognize' 'reminders reminders';gap:24px 28px}
+.page-22 .p22-intro{grid-area:intro;padding:22px 24px;border-radius:10px;background:#f0ecef}
+.page-22 .p22-perspective{grid-area:perspective;padding:22px 24px;border-left:2px solid var(--gold);border-radius:10px;background:#f7f1e9}
+.page-22 .p22-ways{grid-area:ways;padding:20px 24px;border-top:1px solid var(--line)}
+.page-22 .p22-recognize{grid-area:recognize;padding:20px 24px;border-top:1px solid var(--line)}
+.page-22 .p22-reminders{grid-area:reminders;padding:22px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
+.page-22 .p22-reminders .rts2521-reminders{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.page-22 .p22-reminders .rts2521-reminders article{padding:12px 16px;border:0;border-left:2px solid var(--purple);background:#f0ecef}
+}
 
 /* Pages 26-30 range styles */
 .rts-r2630{--r26-ink:#061b38;--r26-purple:#32108c;--r26-purple-dark:#26066f;--r26-gold:#ad741d;--r26-cream:#fffdf9;--r26-line:#e5ddd4;--r26-navy:#071a35;--r26-serif:Georgia,'Times New Roman',serif;--r26-sans:Arial,Helvetica,sans-serif;max-width:1536px;min-height:100vh;margin:0 auto;color:var(--r26-ink);background:var(--r26-cream);font:14px/1.48 var(--r26-sans)}

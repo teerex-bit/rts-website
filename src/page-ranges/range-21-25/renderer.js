@@ -56,15 +56,16 @@ function renderHeader() {
 }
 
 function renderRail(page) {
+  const simplified = page.number === 21 || page.number === 22;
   const stages = [
     ['Awaken', 'Notice what has formed you.', '/awaken/', 'awaken', 'is-complete'],
     ['See Clearly', 'Learn what is actually true.', '/see-clearly/', 'see', 'is-complete'],
     ['Become', 'Learn to live with God until His life becomes increasingly natural in you.', '/become/', 'become', 'is-current'],
     ['Join', 'Participate in what God is doing.', '/join/', 'join', ''],
   ];
-  return `<aside class="rts2521-rail" aria-label="The formation journey">
+  return `<aside class="rts2521-rail${simplified ? ' is-simple' : ''}" aria-label="The formation journey">
     <p class="rts2521-rail-title">THE FORMATION JOURNEY</p>
-    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${stageIcon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' ? '<b aria-label="Complete">✓</b>' : state === 'is-current' ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
+    <nav class="rts2521-stage-list" aria-label="Journey stages">${stages.map(([name, description, href, asset, state]) => `<a class="${state}" data-stage="${name}" href="${href}">${stageIcon(asset)}<span><strong>${name.toUpperCase()}</strong><small>${description}</small></span>${state === 'is-complete' ? '<b aria-label="Complete">✓</b>' : state === 'is-current' && !simplified ? '<b aria-hidden="true">›</b>' : ''}</a>${name === 'Become' && !simplified ? `<div class="rts2521-part"><p>PART ONE: Live With God</p><ol>${lessons.map(([label, route], index) => `<li class="${index + 1 === page.lesson ? 'is-current' : ''} ${index + 1 < page.lesson ? 'is-complete' : ''}"><a href="${route}"><span>${index + 1}</span>${label}${index + 1 < page.lesson ? '<b aria-label="Complete">✓</b>' : ''}</a></li>`).join('')}</ol></div>` : ''}`).join('')}</nav>
     <aside class="rts2521-support"><span aria-hidden="true">?</span><div><strong>Need help?</strong><p>We’re here if you have questions along the way.</p><a href="/conversations/">Contact Support&nbsp; →</a></div></aside>
   </aside>`;
 }
@@ -84,7 +85,7 @@ function render(page) {
     ${renderHeader()}
     <div class="rts2521-shell">${renderRail(page)}<main class="rts2521-main">
       <article class="rts2521-lesson"><p class="rts2521-eyebrow">${escapeHtml(page.eyebrow)}</p><h1>${escapeHtml(page.title)}</h1><span class="rts2521-title-rule" aria-hidden="true"></span><div class="rts2521-layout">${sections}</div></article>
-      <nav class="rts2521-footer-nav" aria-label="Lesson navigation"><a class="rts2521-previous" href="${escapeHtml(page.previous.href)}">←&nbsp;&nbsp; ${escapeHtml(page.previous.label)}</a>${renderProgress(page)}<a class="rts2521-next" href="${escapeHtml(page.next.href)}">${escapeHtml(page.next.label)} &nbsp;→</a></nav>
+      ${page.number === 21 || page.number === 22 ? '' : `<nav class="rts2521-footer-nav" aria-label="Lesson navigation"><a class="rts2521-previous" href="${escapeHtml(page.previous.href)}">←&nbsp;&nbsp; ${escapeHtml(page.previous.label)}</a>${renderProgress(page)}<a class="rts2521-next" href="${escapeHtml(page.next.href)}">${escapeHtml(page.next.label)} &nbsp;→</a></nav>`}
     </main></div>
   </div>`;
 }
