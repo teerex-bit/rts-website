@@ -21,7 +21,7 @@ if (fs.existsSync(page00Path)) {
     'data-page-number="00"',
     '<h1 id="page00-title">You’re being shaped<br>by something.</h1>',
     '/assets/brand-main-transparent.png',
-    '/assets/page-00-hero-reference.png',
+    '/assets/page-00-hero-clean.png',
     '>Teachings</a>',
     'aria-controls="main-nav"',
     'A journey of formation',
@@ -31,18 +31,31 @@ if (fs.existsSync(page00Path)) {
     '>Join<',
     'Soul Formation',
     'Conversations',
-    'Writings &amp; Blogs',
     'Music',
     'Books',
     '/assets/page-00-approved.css'
   ];
   for (const token of required) if (!html.includes(token)) failures.push(`Page 00 is missing ${token}`);
-  for (const obsolete of ['>Walk<', '>Becoming<']) if (html.includes(obsolete)) failures.push(`Page 00 contains obsolete label ${obsolete}`);
+  for (const obsolete of ['>Walk<', '>Becoming<', 'Writings &amp; Blogs', 'page00-outcomes', 'page00-number']) if (html.includes(obsolete)) failures.push(`Page 00 contains removed content ${obsolete}`);
 }
 
 const page00CssPath = path.join(root, 'public', 'assets', 'page-00-approved.css');
 if (!fs.existsSync(page00CssPath) || !fs.readFileSync(page00CssPath, 'utf8').includes('@media(max-width:900px)')) failures.push('Page 00 mobile navigation breakpoint is missing');
-if (!fs.existsSync(path.join(root, 'public', 'assets', 'page-00-hero-reference.png'))) failures.push('Page 00 approved hero image is missing');
+const heroPath = path.join(root, 'public', 'assets', 'page-00-hero-clean.png');
+if (!fs.existsSync(heroPath)) failures.push('Page 00 clean hero image is missing');
+if (fs.existsSync(page00Path)) {
+  const html = fs.readFileSync(page00Path, 'utf8');
+  if (html.includes('/assets/page-00-hero-reference.png')) failures.push('Page 00 still uses the hero asset with baked labels');
+}
+if (fs.existsSync(page00CssPath)) {
+  const css = fs.readFileSync(page00CssPath, 'utf8');
+  if (!css.includes('.page00-hero__image')) failures.push('Page 00 hero image presentation is missing');
+  if (!css.includes('@media(max-width:900px)')) failures.push('Page 00 responsive hero presentation is missing');
+  if (!css.includes('@media(min-width:1500px)')) failures.push('Page 00 wide-screen breakpoint is missing');
+  for (const token of ['max-width:1500px', 'min-height:440px', 'font-size:1rem', 'min-height:220px']) {
+    if (!css.includes(token)) failures.push(`Page 00 wide-screen treatment is missing ${token}`);
+  }
+}
 
 if (fs.existsSync(reviewPath)) {
   const review = fs.readFileSync(reviewPath, 'utf8');
