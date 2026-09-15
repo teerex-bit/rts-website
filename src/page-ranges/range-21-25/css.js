@@ -16,19 +16,23 @@ module.exports = String.raw`
 .page-21 .p21-scripture{grid-area:scripture;padding:22px 24px;border-left:2px solid var(--gold);border-radius:10px;background:#f7f1e9}
 .page-21 .p21-prayer{grid-area:prayer;padding:20px 24px;border-top:1px solid var(--line)}
 .page-21 .p21-listening{grid-area:listening;padding:20px 24px;border-top:1px solid var(--line)}
-.page-21 .p21-shift{grid-area:shift;padding:20px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
-.page-21 .p21-shift .rts2521-icon-callout{display:inline-grid;width:calc(50% - 8px);vertical-align:top}
-.page-21 .p21-shift .rts2521-icon-callout:nth-of-type(2){margin-left:12px}
+.page-21 .p21-shift{grid-area:shift;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;align-items:start;padding:20px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
+.page-21 .p21-shift>h2,.page-21 .p21-shift>.rts2521-rule,.page-21 .p21-shift>p:nth-of-type(n+3){grid-column:1/-1}
+.page-21 .p21-shift>p:nth-of-type(1){grid-column:1;grid-row:2}.page-21 .p21-shift>p:nth-of-type(2){grid-column:2;grid-row:2}
+.page-21 .p21-shift .rts2521-icon-callout{width:100%;margin:0;align-self:stretch}
+.page-21 .p21-shift .rts2521-icon-callout:nth-of-type(1){grid-column:1;grid-row:3}.page-21 .p21-shift .rts2521-icon-callout:nth-of-type(2){grid-column:2;grid-row:3}
 .page-22 .rts2521-layout{grid-template-columns:1fr 1fr;grid-template-areas:'intro perspective' 'ways recognize' 'reminders reminders';gap:24px 28px}
 .page-22 .p22-intro{grid-area:intro;padding:22px 24px;border-radius:10px;background:#f0ecef}
 .page-22 .p22-perspective{grid-area:perspective;padding:22px 24px;border-left:2px solid var(--gold);border-radius:10px;background:#f7f1e9}
 .page-22 .p22-ways{grid-area:ways;padding:20px 24px;border-top:1px solid var(--line)}
-.page-22 .p22-recognize{grid-area:recognize;padding:20px 24px;border-top:1px solid var(--line)}
+.page-22 .p22-recognize{grid-area:recognize;display:flex;flex-direction:column;padding:20px 24px;border-top:1px solid var(--line)}
+.page-22 .p22-recognize .rts2521-steps{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;margin:10px 0 14px}
 .page-22 .p22-reminders{grid-area:reminders;padding:22px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
 .page-22 .p22-reminders .rts2521-reminders{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .page-22 .p22-reminders .rts2521-reminders article{padding:12px 16px;border:0;border-left:2px solid var(--purple);background:#f0ecef}
 .page-23 .rts2521-layout{grid-template-columns:1.08fr .92fr;grid-template-areas:'intro tree' 'jesus distinction' 'surrendering distinction';gap:24px 30px}
 .page-23 .p23-intro{grid-area:intro;max-width:none;padding:24px 26px;border-radius:10px;background:#f0ecef}
+.page-23 .rts2521-quote p{font-size:clamp(20px,2vw,30px);line-height:1.12;font-family:Georgia,'Times New Roman',serif;font-style:italic}
 .page-23 .p23-tree{grid-area:tree;align-self:stretch}
 .page-23 .p23-tree .rts2521-image-text{height:100%;grid-template-columns:46% 1fr;padding:22px 24px;background:linear-gradient(120deg,#f4eadf,#fbf7f1)}
 .page-23 .p23-tree .rts2521-image-text img{width:100%;height:190px;object-fit:contain}
@@ -37,5 +41,14 @@ module.exports = String.raw`
 .page-23 .p23-surrendering .rts2521-list{columns:2;column-gap:34px}
 .page-23 .p23-surrendering .rts2521-list li{break-inside:avoid;margin-bottom:9px}
 .page-23 .p23-distinction{grid-area:distinction;padding:24px 26px;border:1px solid #dfc9b1;border-radius:10px;background:#fffdf9}
+.page-24 .rts2521-layout{grid-template-columns:1.08fr .92fr;grid-template-areas:'intro intro' 'control practice' 'formation reasonable';gap:24px 30px}
+.page-24 .p24-intro{grid-area:intro;padding:22px 26px;border-radius:10px;background:#f0ecef}
+.page-24 .p24-control{grid-area:control;padding:22px 24px;border-top:2px solid var(--gold);border-radius:10px;background:#fffdf9}
+.page-24 .p24-practice{grid-area:practice;padding:22px 24px;border:1px solid #dfc9b1;border-radius:10px;background:#f7f1e9}
+.page-24 .p24-practice .rts2521-steps{width:100%;margin:12px 0}
+.page-24 .p24-practice .rts2521-image-checklist{float:none;width:100%;margin:18px 0 0;padding:16px 20px;background:#fffdf9}
+.page-24 .p24-practice .rts2521-image-checklist img{height:86px}
+.page-24 .p24-formation{grid-area:formation;padding:22px 24px;border-top:1px solid var(--line)}
+.page-24 .p24-reasonable{grid-area:reasonable;padding:22px 24px;border:1px solid #e3d2c0;border-radius:10px;background:#fffdf9}
 }
 `;
