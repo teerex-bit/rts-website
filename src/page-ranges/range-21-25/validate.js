@@ -65,6 +65,10 @@ assert(page23Html.includes('/olive-tree.svg'), 'page 23 must use the clean olive
 assert(/\.page-23 \.rts2521-layout\{grid-template-columns:1\.08fr \.92fr;grid-template-areas:'intro tree' 'jesus distinction' 'surrendering distinction'/.test(range.css), 'page 23 must use the approved balanced teaching layout');
 assert(/\.page-23 \.rts2521-quote p\{font-size:clamp\(20px,2vw,30px\);line-height:1\.12/.test(range.css), 'page 23 quote must fit completely inside its panel');
 
+const page24Html = range.render(range.pages.get(24));
+assert(!page24Html.includes('rts2521-footer-nav'), 'page 24 must remove the crossed-out bottom navigation and progress row');
+assert(page24Html.includes('class="rts2521-main no-footer"'), 'page 24 must reclaim the space left by the removed footer');
+
 const page22Html = range.render(range.pages.get(22));
 assert(!/<li><span>[1-5]<\/span><p>/.test(page22Html), 'page 22 must replace discernment step numbers with icons');
 assert(/journey-icons\.svg#question[\s\S]*journey-icons\.svg#ear[\s\S]*journey-icons\.svg#eye[\s\S]*journey-icons\.svg#shield[\s\S]*journey-icons\.svg#walk/.test(page22Html), 'page 22 must render a meaningful icon for every discernment step');
@@ -76,7 +80,9 @@ assert(/\.page-22 \.rts2521-layout\{grid-template-columns:1fr 1fr;grid-template-
 assert(/\.page-22 \.p22-recognize\{grid-area:recognize;display:flex;flex-direction:column/.test(range.css), 'page 22 recognition pattern must fill the right column evenly');
 assert(/\.page-22 \.p22-recognize \.rts2521-steps\{flex:1;display:flex;flex-direction:column;justify-content:space-evenly/.test(range.css), 'page 22 recognition steps must be distributed through the available height');
 assert(/\.page-24 \.rts2521-layout\{grid-template-columns:1\.08fr \.92fr;grid-template-areas:'intro intro' 'control practice' 'formation reasonable'/.test(range.css), 'page 24 must use a calm, ordered two-column layout');
+assert(/\.page-24 \.rts2521-layout\{[^}]*align-items:start/.test(range.css), 'page 24 panels must end naturally instead of stretching into empty space');
 assert(/\.page-24 \.p24-practice \.rts2521-image-checklist\{float:none;width:100%;margin:18px 0 0/.test(range.css), 'page 24 open-hands practice must remain in the reading flow');
+assert(/\.page-24 \.p24-practice \.rts2521-steps li>span\{display:none\}/.test(range.css), 'page 24 must remove the numbered circles above the hands graphic');
 
 const sourceFiles = fs.readdirSync(__dirname).filter(file => /^page-(?:21|22|23|24|25)\.js$/.test(file));
 assert.strictEqual(sourceFiles.length, 5, 'one source module is required per page');

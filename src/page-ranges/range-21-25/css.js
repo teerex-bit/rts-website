@@ -10,6 +10,7 @@ module.exports = String.raw`
 .rts2521-step-icon{display:grid;place-items:center;width:25px;height:25px;padding:5px;border:1px solid var(--purple);border-radius:50%;color:var(--purple);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .rts2521-rail.is-simple .rts2521-stage-list>a.is-current{border-radius:9px;padding:15px 10px}
 .rts2521-rail.is-simple+.rts2521-main{grid-template-rows:1fr}
+.rts2521-main.no-footer{grid-template-rows:1fr}
 @media(min-width:1101px){
 .page-21 .rts2521-layout{grid-template-columns:1fr 1fr;grid-template-areas:'intro scripture' 'prayer listening' 'shift shift';gap:22px 28px}
 .page-21 .p21-intro{grid-area:intro;padding:22px 24px;border-radius:10px;background:#f0ecef}
@@ -41,11 +42,13 @@ module.exports = String.raw`
 .page-23 .p23-surrendering .rts2521-list{columns:2;column-gap:34px}
 .page-23 .p23-surrendering .rts2521-list li{break-inside:avoid;margin-bottom:9px}
 .page-23 .p23-distinction{grid-area:distinction;padding:24px 26px;border:1px solid #dfc9b1;border-radius:10px;background:#fffdf9}
-.page-24 .rts2521-layout{grid-template-columns:1.08fr .92fr;grid-template-areas:'intro intro' 'control practice' 'formation reasonable';gap:24px 30px}
+.page-24 .rts2521-layout{grid-template-columns:1.08fr .92fr;grid-template-areas:'intro intro' 'control practice' 'formation reasonable';gap:24px 30px;align-items:start}
 .page-24 .p24-intro{grid-area:intro;padding:22px 26px;border-radius:10px;background:#f0ecef}
 .page-24 .p24-control{grid-area:control;padding:22px 24px;border-top:2px solid var(--gold);border-radius:10px;background:#fffdf9}
 .page-24 .p24-practice{grid-area:practice;padding:22px 24px;border:1px solid #dfc9b1;border-radius:10px;background:#f7f1e9}
 .page-24 .p24-practice .rts2521-steps{width:100%;margin:12px 0}
+.page-24 .p24-practice .rts2521-steps li{grid-template-columns:1fr;padding:9px 12px;border-left:2px solid var(--purple);background:#fffdf9}
+.page-24 .p24-practice .rts2521-steps li>span{display:none}
 .page-24 .p24-practice .rts2521-image-checklist{float:none;width:100%;margin:18px 0 0;padding:16px 20px;background:#fffdf9}
 .page-24 .p24-practice .rts2521-image-checklist img{height:86px}
 .page-24 .p24-formation{grid-area:formation;padding:22px 24px;border-top:1px solid var(--line)}

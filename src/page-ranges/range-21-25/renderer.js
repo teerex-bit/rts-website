@@ -47,6 +47,7 @@ const lessons = [
 ];
 
 const isSimplifiedPage = page => page.number >= 21 && page.number <= 23;
+const hidesFooter = page => page.number >= 21 && page.number <= 24;
 
 function renderHeader(page) {
   const simplified = isSimplifiedPage(page);
@@ -87,9 +88,9 @@ function render(page) {
   const sections = page.content.map(section => `<section class="rts2521-zone ${escapeHtml(section.className)}">${section.blocks.map(renderBlock).join('')}</section>`).join('');
   return `<div class="rts-range-21-25 page-${page.number}" data-page-number="${page.number}" data-editable-source="range-21-25">
     ${renderHeader(page)}
-    <div class="rts2521-shell">${renderRail(page)}<main class="rts2521-main">
+    <div class="rts2521-shell">${renderRail(page)}<main class="rts2521-main${hidesFooter(page) ? ' no-footer' : ''}">
       <article class="rts2521-lesson">${isSimplifiedPage(page) ? '' : `<p class="rts2521-eyebrow">${escapeHtml(page.eyebrow)}</p>`}<h1>${escapeHtml(page.title)}</h1><span class="rts2521-title-rule" aria-hidden="true"></span><div class="rts2521-layout">${sections}</div></article>
-      ${isSimplifiedPage(page) ? '' : `<nav class="rts2521-footer-nav" aria-label="Lesson navigation"><a class="rts2521-previous" href="${escapeHtml(page.previous.href)}">←&nbsp;&nbsp; ${escapeHtml(page.previous.label)}</a>${renderProgress(page)}<a class="rts2521-next" href="${escapeHtml(page.next.href)}">${escapeHtml(page.next.label)} &nbsp;→</a></nav>`}
+      ${hidesFooter(page) ? '' : `<nav class="rts2521-footer-nav" aria-label="Lesson navigation"><a class="rts2521-previous" href="${escapeHtml(page.previous.href)}">←&nbsp;&nbsp; ${escapeHtml(page.previous.label)}</a>${renderProgress(page)}<a class="rts2521-next" href="${escapeHtml(page.next.href)}">${escapeHtml(page.next.label)} &nbsp;→</a></nav>`}
     </main></div>
   </div>`;
 }
