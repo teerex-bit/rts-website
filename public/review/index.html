@@ -1,1 +1,83 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Implementation Review | RTS</title><link rel="stylesheet" href="/assets/css/global.css"><link rel="stylesheet" href="/assets/css/components.css"><style>main{padding:60px 0}h1{font-size:3rem}.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:32px}.review-grid article{padding:26px}.route{font-family:monospace}.status{color:#56733c;font-weight:700}.missing{color:#865c1e}</style></head><body><main class="container"><p class="eyebrow">Development only</p><h1>Page review hub</h1><p>Approved clean photography and locked brand artwork were not available as repository files. All pages use live HTML and temporary CSS scene treatments.</p><div class="review-grid"><article class="card"><h2>Soul Formation</h2><p class="route">/</p><p class="status">Implemented</p><p class="missing">Missing: hero scene, botanical, approved logos and icons.</p><a class="button" href="/">Open page</a></article><article class="card"><h2>Awaken</h2><p class="route">/awaken/</p><p class="status">Implemented</p><p class="missing">Missing: mountain photograph and approved logos/icons.</p><a class="button" href="/awaken/">Open page</a></article><article class="card"><h2>Where Did That Come From?</h2><p class="route">/awaken/where-did-that-come-from/</p><p class="status">Implemented</p><p class="missing">Missing: sidebar photograph and approved logos/icons.</p><a class="button" href="/awaken/where-did-that-come-from/">Open page</a></article><article class="card"><h2>Conversations</h2><p class="route">/conversations/</p><p class="status">Implemented</p><p class="missing">Missing: terrace photograph, botanicals, approved logos/icons.</p><a class="button" href="/conversations/">Open page</a></article></div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RTS Website Review</title>
+  <link rel="stylesheet" href="../assets/css/review-switcher.css">
+</head>
+<body>
+  <header class="review-bar">
+    <div class="review-heading">
+      <div class="review-title"><span>NEW RTS WEBSITE REVIEW</span><strong>Public Site + Formation Journey</strong></div>
+      <p>Choose any assembled page below to review the new website before it goes live.</p>
+    </div>
+    <nav class="page-grid" aria-label="Overview Website pages">
+      <button class="page-card is-current" data-url="/"><b>00</b><span>Home<small>Public Site</small></span></button>
+      <button class="page-card" data-url="/formation/"><b>01</b><span>Formation<small>Public Site</small></span></button>
+      <button class="page-card" data-url="/conversations/"><b>02</b><span>Conversations<small>Public Site</small></span></button>
+      <button class="page-card" data-url="/books/"><b>03</b><span>Books<small>Public Site</small></span></button>
+      <button class="page-card" data-url="/music/"><b>04</b><span>Music<small>Public Site</small></span></button>
+      <button class="page-card" data-url="/doorway/"><b>05</b><span>Doorway<small>Formation Journey</small></span></button>
+      <button class="page-card" data-url="/awaken/lesson-1/"><b>06</b><span>Awaken 1<small>Awaken</small></span></button>
+      <button class="page-card" data-url="/awaken/lesson-2/"><b>07</b><span>Awaken 2<small>Awaken</small></span></button>
+      <button class="page-card" data-url="/see-clearly/"><b>08</b><span>See Clearly Intro<small>See Clearly</small></span></button>
+      <button class="page-card" data-url="/see-clearly/part-1/"><b>09</b><span>See Myself Clearly<small>See Clearly</small></span></button>
+      <button class="page-card" data-url="/see-clearly/lesson-2/"><b>10</b><span>See God Clearly<small>See Clearly</small></span></button>
+      <button class="page-card" data-url="/see-clearly/integration/"><b>11</b><span>Integration<small>See Clearly</small></span></button>
+      <button class="page-card" data-url="/become/"><b>12</b><span>Become Intro<small>Become</small></span></button>
+      <button class="page-card" data-url="/become/live-with-god/"><b>13</b><span>Live With God<small>Become</small></span></button>
+      <button class="page-card" data-url="/become/practice-forms-the-person/"><b>14</b><span>Practice<small>Become</small></span></button>
+      <button class="page-card" data-url="/become/whole-person/"><b>15</b><span>Whole Person<small>Become</small></span></button>
+      <button class="page-card" data-url="/become/fruit/"><b>16</b><span>Fruit<small>Become</small></span></button>
+      <button class="page-card" data-url="/join/"><b>17</b><span>Join<small>Join</small></span></button>
+      <button class="page-card" data-url="/join/useful/"><b>18</b><span>Useful<small>Join</small></span></button>
+    </nav>
+    <div class="review-controls">
+      <button id="previous-page" type="button" aria-label="Previous completed page">← Previous</button>
+      <span class="viewing">Viewing <strong id="current-page">Home</strong></span>
+      <button id="next-page" type="button" aria-label="Next completed page">Next →</button>
+      <a id="open-page" href="/" target="_blank" rel="noopener">Open page</a>
+    </div>
+  </header>
+  <main class="review-stage">
+    <iframe id="page-frame" title="Selected RTS Overview page" src="/"></iframe>
+  </main>
+  <script>
+    const cards = [...document.querySelectorAll('.page-card[data-url]')];
+    const frame = document.querySelector('#page-frame');
+    const title = document.querySelector('#current-page');
+    const open = document.querySelector('#open-page');
+    const previous = document.querySelector('#previous-page');
+    const next = document.querySelector('#next-page');
+    const completed = cards.map(card => ({ url: card.dataset.url, label: card.querySelector('span').childNodes[0].textContent.trim() }));
+
+    function showPage(url, updateHistory = true) {
+      const index = completed.findIndex(page => page.url === url);
+      if (index < 0) return;
+      const freshUrl = `${url}${url.includes('?') ? '&' : '?'}review_refresh=${Date.now()}`;
+      frame.src = freshUrl;
+      frame.dataset.route = url;
+      title.textContent = completed[index].label;
+      open.href = freshUrl;
+      previous.disabled = index === 0;
+      next.disabled = index === completed.length - 1;
+      cards.forEach(card => card.classList.toggle('is-current', card.dataset.url === url));
+      if (updateHistory) history.replaceState(null, '', `?page=${encodeURIComponent(url)}`);
+    }
+
+    cards.forEach(card => card.addEventListener('click', () => showPage(card.dataset.url)));
+    previous.addEventListener('click', () => {
+      const index = completed.findIndex(page => page.url === frame.dataset.route);
+      if (index > 0) showPage(completed[index - 1].url);
+    });
+    next.addEventListener('click', () => {
+      const index = completed.findIndex(page => page.url === frame.dataset.route);
+      if (index < completed.length - 1) showPage(completed[index + 1].url);
+    });
+
+    const requested = new URLSearchParams(location.search).get('page');
+    showPage(completed.some(page => page.url === requested) ? requested : '/', false);
+  </script>
+</body>
+</html>
