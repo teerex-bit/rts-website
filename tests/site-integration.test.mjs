@@ -24,6 +24,35 @@ test('Formation hands the visitor to the Doorway', async () => {
   assert.match(await html('/formation/'), /href=["']\/doorway\/["']/);
 });
 
+
+test('public discovery pages send visitors through the Formation introduction', async () => {
+  const publicRoutes = ['/', '/conversations/', '/books/', '/music/'];
+  const journeyBypasses = /href=["']\/(?:doorway|awaken|see-clearly|become|join)(?:\/|["'])/g;
+
+  for (const route of publicRoutes) {
+    const page = await html(route);
+    assert.deepEqual(
+      [...page.matchAll(journeyBypasses)].map(match => match[0]),
+      [],
+      `${route} must not bypass the Formation introduction`,
+    );
+    assert.match(page, /href=["']\/formation\/["']/);
+  }
+});
+
+test('Books and Music use the primary navigation without a duplicate Formation button', async () => {
+  for (const route of ['/books/', '/music/']) {
+    assert.doesNotMatch(await html(route), /class=["']rts-36-40__start["']/);
+  }
+});
+
+test('Music quote and library have explicit readable spacing', async () => {
+  const css = await readFile(new URL('public/assets/styles.css', root), 'utf8');
+  assert.match(css, /\.rts-36-40__music-hero blockquote\{[^}]*line-height:1\.65[^}]*padding:30px 34px[^}]*\}/);
+  assert.match(css, /\.rts-36-40__song-library\{[^}]*padding:22px 4% 28px[^}]*\}/);
+  assert.match(css, /\.rts-36-40__song-columns\{[^}]*row-gap:14px[^}]*\}/);
+});
+
 test('Doorway contains all four approved movements', async () => {
   const page = await html('/doorway/');
   for (const movement of ['Awaken', 'See Clearly', 'Become', 'Join']) {
