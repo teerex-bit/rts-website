@@ -1346,3 +1346,11 @@
 .pages-final-review__viewer iframe{display:block;width:100%;height:100%;border:0;background:#fff}
 @media(max-width:1180px){.pages-final-review__pages{display:flex;overflow-x:auto;padding-bottom:5px}.pages-final-review__pages button{flex:0 0 135px}.pages-final-review__viewer{height:calc(100vh - 225px)}}
 @media(max-width:650px){.pages-final-review{padding:12px}.pages-final-review__header{display:block}.pages-final-review__header>p{margin-top:8px;font-size:.75rem}.pages-final-review__header h1{font-size:2rem}.pages-final-review__controls{grid-template-columns:1fr 1fr;gap:8px}.pages-final-review__controls p{grid-column:1/-1;grid-row:1}.pages-final-review__viewer{height:calc(100vh - 260px);min-height:400px}}
+
+/* Public Books and Music polish: two-column header and readable Music spacing. */
+.rts-36-40--p39 .rts-36-40__editorial-header,.rts-36-40--p40 .rts-36-40__editorial-header{grid-template-columns:235px 1fr}
+.rts-36-40--p39 .rts-36-40__editorial-header nav,.rts-36-40--p40 .rts-36-40__editorial-header nav{justify-self:center}
+.rts-36-40__music-hero blockquote{width:300px;font-size:17px;line-height:1.65;padding:30px 34px;margin:0;background:#f8f2e7;color:#10283d;border-left:3px solid #b97917}
+.rts-36-40__song-library{height:auto;padding:22px 4% 28px}
+.rts-36-40__song-columns{row-gap:14px}
+@media(max-width:900px){.rts-36-40--p39 .rts-36-40__editorial-header,.rts-36-40--p40 .rts-36-40__editorial-header{grid-template-columns:1fr}.rts-36-40--p39 .rts-36-40__editorial-header nav,.rts-36-40--p40 .rts-36-40__editorial-header nav{justify-self:stretch}}
