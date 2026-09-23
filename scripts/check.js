@@ -162,4 +162,4 @@ for(const label of ['11-15','16-20','21-25','26-30','31-35','36-40']){
 const correctionStyleMarker='/* Pages 01-10 correction styles */';
 const correctionStyleRegistrations=builtStyles.split(correctionStyleMarker).length-1;
 if(correctionStyleRegistrations!==1)errors.push(`${builtStylesPath}: expected one Pages 01-10 correction style registration, got ${correctionStyleRegistrations}`);
-if(html.length!==45)errors.push(`expected 45 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets and local fragments resolve; one h1 each.`);
+if(html.length!==47)errors.push(`expected 47 routes, got ${html.length}`);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log(`Checked ${html.length} HTML routes: links/assets and local fragments resolve; one h1 each.`);
