@@ -60,3 +60,34 @@
   .page00-closing h2{font-size:1.7rem}
   .page00-closing>p{font-size:.85rem}
 }
+
+
+/* Approved landing-page simplification: the formation journey is the primary path;
+   Conversations, Music, and Books sit below it as supporting resources. */
+.page00-header{grid-template-columns:270px 1fr}
+.page00-journey{padding-top:10px;padding-bottom:14px}
+.page00-steps{grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr;max-width:1040px}
+.page00-stage-icon{width:68px;height:68px}
+.page00-stage-icon img{width:44px;height:44px}
+.page00-steps article>strong{min-height:26px}
+.page00-steps article p{font-size:.68rem}
+.page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:980px}
+.page00-closing{grid-template-columns:1.3fr 1fr .8fr}
+@media(max-width:1100px){
+  .page00-header{grid-template-columns:230px 1fr}
+  .page00-steps{grid-template-columns:repeat(4,1fr)}
+  .page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .page00-header{grid-template-columns:1fr auto}
+  .page00-steps{grid-template-columns:1fr 1fr}
+  .page00-resource-grid{grid-template-columns:1fr}
+}
+@media(min-width:1500px){
+  .page00-header{grid-template-columns:300px 1fr}
+  .page00-journey{padding-top:16px;padding-bottom:20px}
+  .page00-steps{grid-template-columns:minmax(190px,1fr) 40px minmax(190px,1fr) 40px minmax(190px,1fr) 40px minmax(190px,1fr);max-width:1200px}
+  .page00-stage-icon{width:82px;height:82px}
+  .page00-stage-icon img{width:55px;height:55px}
+  .page00-resource-grid{max-width:1120px}
+}
