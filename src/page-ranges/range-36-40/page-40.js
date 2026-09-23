@@ -8,7 +8,7 @@ module.exports = {
   template: 'library',
   stages,
   brand: 'Reforming the Soul',
-  nav: ['Teachings', 'Writings', 'Books', 'Music', 'Spiritual Direction', 'About Us'],
+  nav: ['Teachings', 'Writings', 'Books', 'Music', 'Spiritual Direction', 'About Us', 'Contact'],
   heading: 'Books for the Journey.',
   headingLines: ['Books for', 'the Journey.'],
   introduction: ['Ideas that challenge. Truth that anchors. Stories that awaken. Wisdom that endures.', 'Every book is an invitation to see more clearly, think more deeply, and walk more faithfully with the God who is always near.'],
