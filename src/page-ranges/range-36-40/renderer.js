@@ -40,7 +40,7 @@ function render38(page) {
 }
 
 function editorialHeader(page, mark) {
-  const hrefs = { Teachings: '/coming-soon/', Writings: '/coming-soon/', Books: '/books/', Music: '/music/', 'Spiritual Direction': '/conversations/', 'About Us': '/about/' };
+  const hrefs = { Teachings: '/coming-soon/', Writings: '/coming-soon/', Books: '/books/', Music: '/music/', 'Spiritual Direction': '/conversations/', 'About Us': '/about/', Contact: '/contact/' };
   return `<header class="rts-36-40__editorial-header">${brand(mark)}<nav aria-label="Main navigation">${page.nav.map(item => `<a class="${item === page.title ? 'is-active' : ''}" href="${hrefs[item]}">${escapeHtml(item)}</a>`).join('')}</nav><a class="rts-36-40__start" href="/awaken/">Start here</a></header>`;
 }
 
