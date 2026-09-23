@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: rts-production-deploy
@@ -34,18 +34,6 @@ jobs:
 
       - name: Run project checks
         run: npm run check
-
-      - name: Commit website generated output
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add --             public/index.html             public/about             public/contact             public/conversations             public/books             public/music             public/assets/page-00-approved.css             public/assets/info-pages.css             public/assets/about-page.css             public/assets/trey-malea.jpg             public/assets/conversations-approved.css             public/assets/styles.css             public/assets/site.js             public/assets/brand-main-transparent.png             public/assets/logo-circle.svg             public/assets/logo-light.svg             public/assets/page-01             public/assets/page-ranges/range-36-40
-          if git diff --cached --quiet; then
-            echo "No generated website changes to commit."
-          else
-            git commit -m "build: sync website generated public output"
-            git push origin HEAD:main
-          fi
 
       - name: Deploy to Cloudflare
         run: npx wrangler deploy
