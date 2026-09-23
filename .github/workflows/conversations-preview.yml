@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: rts-production-deploy
@@ -17,25 +17,90 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out website repository
         uses: actions/checkout@v4
+        with:
+          path: website
+
+      - name: Check out approved overview source
+        uses: actions/checkout@v4
+        with:
+          repository: teerex-bit/reforming-the-soul
+          ref: fix/vercel-deploy-compat
+          path: overview-source
+
+      - name: Restore approved overview snapshot
+        working-directory: website
+        run: |
+          rm -rf src/overview-public
+          mkdir -p src/overview-public/assets/css/pages
+          mkdir -p src/overview-public/assets/icons
+          mkdir -p src/overview-public/assets/images
+          mkdir -p src/overview-public/assets/logos
+          mkdir -p src/overview-public/assets/page-see-clearly
+          mkdir -p src/overview-public/assets/page-become
+          mkdir -p src/overview-public/assets/page-join
+          mkdir -p src/overview-public/assets/page-ranges/range-11-15
+
+          cp -R ../overview-source/public/formation src/overview-public/
+          mkdir -p src/overview-public/awaken
+          cp -R ../overview-source/public/awaken/lesson-1 src/overview-public/awaken/
+          cp -R ../overview-source/public/awaken/lesson-2 src/overview-public/awaken/
+          cp -R ../overview-source/public/see-clearly src/overview-public/
+          cp -R ../overview-source/public/become src/overview-public/
+          cp -R ../overview-source/public/join src/overview-public/
+
+          cp ../overview-source/public/assets/css/curriculum.css src/overview-public/assets/css/
+          cp ../overview-source/public/assets/css/overview-context-nav.css src/overview-public/assets/css/
+          cp ../overview-source/public/assets/css/review-switcher.css src/overview-public/assets/css/
+          cp ../overview-source/public/assets/css/pages/awaken-lesson-1.css src/overview-public/assets/css/pages/
+          cp ../overview-source/public/assets/css/pages/awaken-lesson-2-overview.css src/overview-public/assets/css/pages/
+          cp ../overview-source/public/assets/css/pages/formation-introduction.css src/overview-public/assets/css/pages/
+          cp ../overview-source/public/assets/css/pages/overview-statement.css src/overview-public/assets/css/pages/
+
+          cp ../overview-source/public/assets/icons/rts-stage-awaken.svg src/overview-public/assets/icons/
+          cp ../overview-source/public/assets/icons/rts-stage-see-clearly.svg src/overview-public/assets/icons/
+          cp ../overview-source/public/assets/icons/rts-stage-become.svg src/overview-public/assets/icons/
+          cp ../overview-source/public/assets/icons/rts-stage-join.svg src/overview-public/assets/icons/
+
+          cp ../overview-source/public/assets/images/awaken-01-forest-clearing.png src/overview-public/assets/images/
+          cp ../overview-source/public/assets/images/awaken-02-still-lake.png src/overview-public/assets/images/
+          cp ../overview-source/public/assets/images/formation-intro-hero.png src/overview-public/assets/images/
+          cp ../overview-source/public/assets/logos/rts-tree-wordmark.png src/overview-public/assets/logos/
+          cp ../overview-source/public/assets/page-see-clearly/see-clearly-hero-clear.jpg src/overview-public/assets/page-see-clearly/
+          cp ../overview-source/public/assets/page-become/become-ordinary-life-hero-v2.jpg src/overview-public/assets/page-become/
+          cp ../overview-source/public/assets/page-join/join-community-hero.jpg src/overview-public/assets/page-join/
+          cp ../overview-source/public/assets/page-ranges/range-11-15/seeing-god-forest.jpg src/overview-public/assets/page-ranges/range-11-15/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/overview-public
+          if ! git diff --cached --quiet; then
+            git commit -m "restore: approved overview website snapshot"
+            git push origin HEAD:main
+          fi
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
+          cache-dependency-path: website/package-lock.json
 
       - name: Install dependencies
+        working-directory: website
         run: npm ci
 
       - name: Build website
+        working-directory: website
         run: npm run build
 
       - name: Run project checks
+        working-directory: website
         run: npm run check
 
       - name: Deploy to Cloudflare
+        working-directory: website
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
