@@ -55,7 +55,7 @@ else{
   if((journey.match(/<article>/g)||[]).length!==4)errors.push(`${page00Path}: expected four journey stages`);
   if(/page00-number|>0[1-4]</.test(journey))errors.push(`${page00Path}: journey stage numbering must be removed`);
   if(/page00-outcomes/.test(page00))errors.push(`${page00Path}: hero outcomes strip must be removed`);
-  if((resources.match(/class="page00-resource\s/g)||[]).length!==4)errors.push(`${page00Path}: expected four resource cards`);
+  if((resources.match(/class="page00-resource\s/g)||[]).length!==3)errors.push(`${page00Path}: expected three supporting resource cards`);
   for(const label of ['Conversations','Music','Books'])if(!resources.includes(`<h3>${label}</h3>`))errors.push(`${page00Path}: missing ${label} resource card`);
   if(/Writings|Blogs|<h3>Soul Formation<\/h3>/i.test(resources))errors.push(`${page00Path}: supporting resources must be Conversations, Music, and Books only`);
 }
