@@ -29,14 +29,13 @@ if (fs.existsSync(page00Path)) {
     '>See Clearly<',
     '>Become<',
     '>Join<',
-    'Soul Formation',
     'Conversations',
     'Music',
     'Books',
     '/assets/page-00-approved.css'
   ];
   for (const token of required) if (!html.includes(token)) failures.push(`Page 00 is missing ${token}`);
-  for (const obsolete of ['>Walk<', '>Becoming<', 'Writings &amp; Blogs', 'page00-outcomes', 'page00-number']) if (html.includes(obsolete)) failures.push(`Page 00 contains removed content ${obsolete}`);
+  for (const obsolete of ['>Walk<', '>Becoming<', 'Writings &amp; Blogs', 'page00-outcomes', 'page00-number', 'Start Here', 'Start with Awaken', 'Start the Journey', '<h3>Soul Formation</h3>']) if (html.includes(obsolete)) failures.push(`Page 00 contains removed content ${obsolete}`);
 }
 
 const page00CssPath = path.join(root, 'public', 'assets', 'page-00-approved.css');
