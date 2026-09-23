@@ -8,7 +8,7 @@ module.exports = {
   template: 'library',
   stages,
   brand: 'Reforming the Soul',
-  nav: ['Teachings', 'Writings', 'Books', 'Music', 'Spiritual Direction', 'About Us'],
+  nav: ['Teachings', 'Writings', 'Books', 'Music', 'Spiritual Direction', 'About Us', 'Contact'],
   heading: 'Alluminate',
   tagline: ['Songs that illuminate truth.', 'Melodies that lead you home.'],
   introduction: [
