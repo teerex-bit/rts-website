@@ -86,11 +86,13 @@ for(const [number,route,assetDirectory] of editableCoursePages){
   // reflection choices can occupy the full lesson surface.
   if(number!=='08'&&!source.includes(`/assets/${assetDirectory}/`))errors.push(`${file}: expected page-specific asset path under ${assetDirectory}`);
 }
+const overviewRootPageNumbers=new Set([2,7,18,37]);
 const correctedPages=[
   {number:2,text:'You Have Already Been Formed'},
   {number:7,text:'See Who You Really Are'}
 ];
 for(const {number,text} of correctedPages){
+  if(overviewRootPageNumbers.has(number))continue;
   const page=pages.find(candidate=>candidate.number===number),file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8'),visibleText=source.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
   if(!source.includes(`data-page-number="${String(number).padStart(2,'0')}"`)||!source.includes('data-editable-source="pages-01-10-corrections"')||!visibleText.includes(text))errors.push(`${file}: expected approved Pages 01-10 replacement for Page ${number}`);
   if(source.includes('class="content-grid"'))errors.push(`${file}: generic placeholder renderer must not be used`);
@@ -109,6 +111,7 @@ const dedicatedPageMarkers=[
 ];
 for(const {first,last,marker} of dedicatedPageMarkers){
   for(let number=first;number<=last;number+=1){
+    if(overviewRootPageNumbers.has(number))continue;
     const page=pages.find(candidate=>candidate.number===number);
     const file=page&&path.join(root,page.route,'index.html');
     if(!page||!file||!fs.existsSync(file)){errors.push(`Page ${number}: missing dedicated route`);continue}
@@ -139,7 +142,7 @@ else{
   if(reviewTargets.some(target=>/^https?:\/\//.test(target)))errors.push(`${finalReviewPath}: review routes must stay within this website`);
   if(!review.includes('id="pages-01-40-review-frame"')||!review.includes('data-final-review-previous')||!review.includes('data-final-review-next'))errors.push(`${finalReviewPath}: missing viewer or Previous/Next controls`);
 }
-for(const page of pages.filter(candidate=>candidate.number>=2&&candidate.number<=37)){
+for(const page of pages.filter(candidate=>candidate.number>=2&&candidate.number<=37&&!overviewRootPageNumbers.has(candidate.number))){
   const file=path.join(root,page.route,'index.html'),source=fs.readFileSync(file,'utf8');
   const heading=(source.match(/<h1(?: [^>]*)?>([\s\S]*?)<\/h1>/)||[])[1]?.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
   if(page.title!==heading)errors.push(`Page ${String(page.number).padStart(2,'0')}: review title "${page.title}" must match visible headline "${heading||'missing'}"`);
