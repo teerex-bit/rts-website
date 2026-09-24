@@ -8,14 +8,14 @@
 @media(max-width:900px){.rts-36-40__music-closing{grid-template-columns:1fr}.rts-36-40__music-closing nav{gap:20px}}
 @media(max-width:600px){.rts-36-40__music-closing{padding:18px 22px 22px}.rts-36-40__music-closing nav{width:max-content;max-width:100%;margin:0 auto;flex-direction:column;align-items:flex-start;gap:12px}.rts-36-40__music-closing nav>.music-theme{min-height:42px;gap:14px}.rts-36-40__music-closing h2{max-width:360px;margin:0 auto 18px}}
 
-/* Restored Alluminate hero artwork from the Sep 2 approved page source. */
+/* Restored AIluminate hero artwork from the Sep 2 approved page source. */
 .rts-36-40--p39 .rts-36-40__music-hero{height:529px;background:#06131e}
 .rts-36-40--p39 .rts-36-40__music-hero>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .rts-36-40--p39 .rts-36-40__music-hero:after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(2,14,22,.62) 0%,rgba(2,14,22,.45) 34%,rgba(2,14,22,0) 76%),linear-gradient(0deg,rgba(4,17,29,.32),transparent 34%);clip-path:none;opacity:1}
 .rts-36-40--p39 .rts-36-40__music-copy{z-index:2}
-.music-spotify{padding:30px clamp(20px,5vw,76px) 38px;background:#f1e9dd}
-.music-spotify h2{max-width:980px;margin:0 auto 18px;font:32px Georgia,serif;color:#10283d}
-.music-spotify .rts-spotify-embed{max-width:980px;margin:0 auto;overflow:hidden;border-radius:12px;box-shadow:0 10px 28px #0a1d2b20}
-.music-spotify iframe{display:block;width:100%;height:352px;border:0;border-radius:12px}
-@media(max-width:900px){.rts-36-40--p39 .rts-36-40__music-hero{height:600px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:52% center}.music-spotify{padding-top:26px;padding-bottom:32px}.music-spotify h2{font-size:29px}}
-@media(max-width:600px){.rts-36-40--p39 .rts-36-40__music-hero{height:620px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:20% center}.rts-36-40--p39 .rts-36-40__music-copy{width:auto;padding:35px 24px}.rts-36-40--p39 .rts-36-40__music-copy h1{font-size:62px}.rts-36-40--p39 .rts-36-40__music-copy>p:not(.rts-36-40__music-tagline){max-width:400px}.music-spotify{padding:22px 16px 28px}.music-spotify h2{font-size:26px;margin-bottom:14px}.music-spotify iframe{height:352px}}
+.music-spotify{display:flex;flex-direction:column;align-items:center;padding:48px 0 56px;background:#f1e9dd}
+.music-spotify h2{width:min(88vw,1280px);max-width:1280px;margin:0 auto 24px;font:32px Georgia,serif;color:#10283d;text-align:center}
+.music-spotify .rts-spotify-embed{width:min(88vw,1280px);max-width:1280px;margin:0 auto;overflow:hidden;border-radius:12px;box-shadow:0 10px 28px #0a1d2b20}
+.music-spotify iframe{display:block;width:100%;height:680px;border:0;border-radius:12px}
+@media(max-width:900px){.rts-36-40--p39 .rts-36-40__music-hero{height:600px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:52% center}.music-spotify{padding-top:42px;padding-bottom:48px}.music-spotify h2{font-size:29px}.music-spotify iframe{height:600px}}
+@media(max-width:600px){.rts-36-40--p39 .rts-36-40__music-hero{height:620px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:20% center}.rts-36-40--p39 .rts-36-40__music-copy{width:auto;padding:35px 24px}.rts-36-40--p39 .rts-36-40__music-copy h1{font-size:62px}.rts-36-40--p39 .rts-36-40__music-copy>p:not(.rts-36-40__music-tagline){max-width:400px}.music-spotify{padding:34px 0 40px}.music-spotify h2{font-size:26px;margin-bottom:16px}.music-spotify iframe{height:560px}}

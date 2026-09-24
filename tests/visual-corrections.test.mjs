@@ -79,7 +79,7 @@ test('About portrait keeps faces in the tablet crop and natural proportions on p
   assert.match(styles, /@media\s*\(max-width:\s*500px\)[\s\S]*?\.portrait img\s*\{[^}]*height:\s*auto/);
 });
 
-test('Music keeps the archived Alluminate hero and uses Spotify as its only music listing', () => {
+test('Music keeps the approved AIluminate hero and uses Spotify as its only music listing', () => {
   const html = read('public/music/index.html');
   const styles = css('public/assets/css/music-branding.css');
   const hero = html.match(/<section class="rts-36-40__music-hero"[\s\S]*?<\/section>/)?.[0] ?? '';
@@ -91,18 +91,36 @@ test('Music keeps the archived Alluminate hero and uses Spotify as its only musi
   assert.match(hero, /href="https:\/\/open\.spotify\.com\/playlist\/6yFOgURdofxKjPEB3ev6az"/);
   assert.match(hero, /Listen on Spotify/);
   assert.doesNotMatch(hero, /<blockquote|He is better than we imagined/);
-  assert.ok(playlist > html.indexOf('Listen to Alluminate'));
+  assert.ok(playlist > html.indexOf('Listen to AIluminate'));
   assert.ok(closing > playlist && footer > closing, 'playlist precedes the approved closing and public footer');
   assert.doesNotMatch(html, /Select a song to listen|song-columns|Play All In|Fear in My Rearview/);
   assert.doesNotMatch(html, /Music for every moment|Lyrics for every season|EXPLORE OUR MUSIC ON SPOTIFY/i);
   assert.match(styles, /\.music-spotify\{/);
-  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.music-spotify iframe\{[^}]*height:352px/);
+  assert.match(styles, /\.music-spotify \.rts-spotify-embed\{[^}]*width:min\(88vw,1280px\)/);
   const musicRules = rules(styles);
   for (const [width, heroHeight, focal] of [[1536, '529px', 'center'], [768, '600px', '52% center'], [375, '620px', '20% center']]) {
     assert.equal(styleAt(musicRules, '.rts-36-40--p39 .rts-36-40__music-hero', width).height, heroHeight);
     assert.equal(styleAt(musicRules, '.rts-36-40--p39 .rts-36-40__music-hero>img', width)['object-position'], focal);
-    assert.equal(styleAt(musicRules, '.music-spotify iframe', width).height, '352px');
   }
+  for (const [width, expectedHeight] of [[1536, '680px'], [768, '600px'], [375, '560px']]) {
+    assert.equal(styleAt(musicRules, '.music-spotify iframe', width).height, expectedHeight);
+    assert.equal(styleAt(musicRules, '.music-spotify .rts-spotify-embed', width).width, 'min(88vw,1280px)');
+  }
+});
+
+test('site-controlled Music content spells the name exactly AIluminate', () => {
+  const html = read('public/music/index.html');
+  const visibleText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? '';
+  const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? '';
+  const playerTitle = html.match(/<iframe[^>]*title="([^"]+)"/)?.[1] ?? '';
+  const siteCopy = `${visibleText} ${title} ${description} ${playerTitle}`;
+  assert.match(siteCopy, /AIluminate/);
+  assert.doesNotMatch(siteCopy, /\b(?:Alluminated|Alluminate|Illuminate|AIuminate)\b/);
+  assert.match(html, /<h1>AIluminate<\/h1>/);
+  assert.match(html, /<h2 id="music-spotify-title">Listen to AIluminate<\/h2>/);
+  assert.match(html, /<title>AIluminate Music \| Reforming the Soul<\/title>/);
+  assert.match(description, /AIluminate/);
 });
 
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
