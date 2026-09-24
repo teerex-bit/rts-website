@@ -1,5 +1,5 @@
 name: Temporary Cloudflare read-only audit
-# rerun after audit token installation
+# rerun after corrected audit token installation
 
 on:
   push:
