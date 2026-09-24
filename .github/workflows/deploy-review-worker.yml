@@ -35,7 +35,7 @@ jobs:
           import re
           from pathlib import Path
           text = Path("/tmp/wrangler-deploy.log").read_text()
-          matches = re.findall(r"https://[a-zA-Z0-9-]+\\.workers\\.dev", text)
+          matches = re.findall(r"https://[a-zA-Z0-9-]+\.workers\.dev", text)
           if not matches:
               raise SystemExit("Wrangler output did not include a workers.dev URL")
           print("url=" + matches[-1])
