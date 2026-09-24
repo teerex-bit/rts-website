@@ -22,14 +22,14 @@ jobs:
         with:
           path: website
 
-      - name: Check out approved overview source
+      - name: Check out known-good website source
         uses: actions/checkout@v4
         with:
           repository: teerex-bit/reforming-the-soul
-          ref: fix/vercel-deploy-compat
+          ref: 9520ceb957affd822c4cd34a21c9a369e9b62ca2
           path: overview-source
 
-      - name: Restore approved overview snapshot
+      - name: Restore known-good overview snapshot
         working-directory: website
         run: |
           rm -rf src/overview-public
