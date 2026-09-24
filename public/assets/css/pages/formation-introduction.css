@@ -61,3 +61,16 @@
 .hero-title-spread{display:inline-block;letter-spacing:.04em;white-space:nowrap}
 
 .closing>p.curriculum-note{max-width:740px;margin:22px auto 30px;color:rgba(255,255,255,.8);font-family:Georgia,"Times New Roman",serif;font-size:clamp(14px,.95vw,16px);font-style:italic;font-weight:400;letter-spacing:.015em;line-height:1.65;text-align:center}
+
+/* Keep the movement connectors independent of the stage copy height. */
+.journey-stage:not(:last-child):after{content:none}
+.journey-arrow{display:grid;place-items:center;align-self:center;width:32px;height:32px;margin:auto;border:1px solid #d5c5ad;border-radius:50%;background:#fbf8f3;color:var(--gold);font:400 16px/1 Arial,sans-serif}
+@media(min-width:901px){
+  .journey-grid{grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);gap:0;align-items:stretch}
+  .journey-stage,.journey-stage+article{min-height:290px}
+}
+@media(max-width:900px){
+  .journey-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .journey-stage,.journey-stage+article{min-height:0}
+  .journey-arrow{width:34px;height:34px;margin:6px auto;transform:rotate(90deg)}
+}
