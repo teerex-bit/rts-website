@@ -38,6 +38,7 @@ test('public pages use circle flame branding and Formation pages use Tree of Lif
     const source = await page(route);
     assert.match(source, /brand-main-transparent\.png/);
     assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
+    assert.match(source, /public-footer-branding\.css/);
   }
   for (const route of ['/formation/', '/awaken/lesson-1/', '/see-clearly/', '/become/', '/join/']) {
     assert.match(await page(route), /rts-tree-wordmark\.png/);
@@ -55,6 +56,17 @@ test('Music themes use one gold circle icon system and keep the approved wording
   assert.match(group, /#see/);
   assert.match(group, /#heart/);
   assert.match(group, /#music/);
+  const styles = await readFile(new URL('public/assets/css/music-branding.css', root), 'utf8');
+  assert.match(styles, /\.rts-36-40__music-closing\{[^}]*grid-template-columns:minmax\(300px,1fr\) minmax\(0,2fr\)/);
+  assert.match(styles, /\.music-theme\{[^}]*white-space:nowrap/);
+  assert.match(styles, /@media\(max-width:900px\)\{\.rts-36-40__music-closing\{grid-template-columns:1fr\}/);
+  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?flex-direction:column/);
+});
+
+test('approved footer mark keeps its gold flame on the navy background', async () => {
+  const styles = await readFile(new URL('public/assets/css/public-footer-branding.css', root), 'utf8');
+  assert.match(styles, /\.public-footer__brand img\{filter:none\}/);
+  await access(new URL('public/assets/brand-main-footer.png', root));
 });
 
 test('Conversations value cards use matching gold circles and a shared mobile layout', async () => {
