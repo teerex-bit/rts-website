@@ -157,7 +157,7 @@ jobs:
                   domain_rows.append({k: domain.get(k) for k in ("hostname", "service", "environment", "zone_name") if k in domain})
           audit["relevant_worker_custom_domains"] = {"ok": domains["ok"], "result": domain_rows, "errors": domains["errors"]}
 
-          pages = api(f"/accounts/{ACCOUNT}/pages/projects", {"page": 1, "per_page": 100})
+          pages = api(f"/accounts/{ACCOUNT}/pages/projects", {"page": 1, "per_page": 10})
           page_rows = []
           for project in pages.get("result") or []:
               name = project.get("name", "")
