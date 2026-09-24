@@ -30,6 +30,8 @@ test('public discovery headers expose the five approved destinations and the acc
     assert.deepEqual([...nav.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/g)].map(match => [match[1], match[2]]),
       destinations.map((path, index) => [path, labels[index]]));
     for (const path of excluded) assert.doesNotMatch(nav, new RegExp(`href=["']${path.replaceAll('/', '\\/')}["']`));
+    const currentPath = route === '/' ? null : route;
+    if (currentPath) assert.match(nav, new RegExp(`<a(?=[^>]*href=["']${currentPath.replaceAll('/', '\\/')}["'])(?=[^>]*aria-current=["']page["'])[^>]*>`));
     assert.match(source, /<button[^>]*class=["']menu["'][^>]*aria-expanded=["']false["'][^>]*aria-controls=["']main-nav["']/);
     assert.match(source, /<nav id=["']main-nav["']/);
     assert.match(source, /\/assets\/site\.js/);
@@ -55,148 +57,4 @@ test('public header rules show five links on desktop and use the Menu control on
 test('curriculum Tree of Life logo links provide a route back to the public home', async () => {
   for (const route of ['/formation/', '/awaken/lesson-1/', '/awaken/lesson-2/', '/see-clearly/', '/become/', '/join/']) {
     const source = await page(route);
-    assert.match(source, /<a[^>]*href=["']\/["'][^>]*>[\s\S]{0,240}rts-tree-wordmark\.png/,
-      `${route} keeps Tree of Life branding linked to public home`);
-  }
-});
-
-test('public pages use circle flame branding and Formation pages use Tree of Life', async () => {
-  for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
-    const source = await page(route);
-    assert.match(source, /brand-main-transparent\.png/);
-    assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
-    assert.match(source, /public-footer-branding\.css/);
-  }
-  for (const route of ['/formation/', '/awaken/lesson-1/', '/see-clearly/', '/become/', '/join/']) {
-    assert.match(await page(route), /rts-tree-wordmark\.png/);
-  }
-});
-
-test('Music themes use one gold circle icon system and keep the approved wording', async () => {
-  const source = await page('/music/');
-  const group = source.match(/<nav aria-label="Music themes">([\s\S]*?)<\/nav>/)?.[1] ?? '';
-  assert.equal((group.match(/class="music-theme-icon"/g) ?? []).length, 3);
-  assert.equal((group.match(/class="rts-36-40__icon"/g) ?? []).length, 3);
-  for (const label of ['SEE HIM MORE CLEARLY', 'KNOW HIM MORE DEEPLY', 'WALK WITH HIM DAILY']) {
-    assert.match(group, new RegExp(label));
-  }
-  assert.match(group, /#see/);
-  assert.match(group, /#heart/);
-  assert.match(group, /#music/);
-  const styles = await readFile(new URL('public/assets/css/music-branding.css', root), 'utf8');
-  assert.match(styles, /\.rts-36-40__music-closing\{[^}]*grid-template-columns:minmax\(300px,1fr\) minmax\(0,2fr\)/);
-  assert.match(styles, /\.music-theme\{[^}]*white-space:nowrap/);
-  assert.match(styles, /@media\(max-width:900px\)\{\.rts-36-40__music-closing\{grid-template-columns:1fr\}/);
-  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?flex-direction:column/);
-});
-
-test('approved footer mark keeps its gold flame on the navy background', async () => {
-  const styles = await readFile(new URL('public/assets/css/public-footer-branding.css', root), 'utf8');
-  assert.match(styles, /\.public-footer__brand img\{filter:none\}/);
-  await access(new URL('public/assets/brand-main-footer.png', root));
-});
-
-test('Conversations value cards use matching gold circles and a shared mobile layout', async () => {
-  const source = await page('/conversations/');
-  const section = source.match(/<section class="conversation-benefits"[\s\S]*?<\/section>/)?.[0] ?? '';
-  assert.equal((section.match(/class="benefit-icon(?: gold-heart)?"/g) ?? []).length, 4);
-  assert.match(section, /#cross/);
-  assert.match(section, /#heart/);
-  assert.match(section, /#awaken/);
-  assert.match(section, /#will/);
-  assert.equal((section.match(/class="benefit-icon gold-heart"/g) ?? []).length, 1);
-  const styles = await readFile(new URL('public/assets/css/conversations-icons.css', root), 'utf8');
-  assert.match(styles, /\.benefit-icon\{[^}]*width:48px[^}]*height:48px/);
-  assert.match(styles, /\.benefit-icon\{[^}]*border-radius:50%/);
-  assert.match(styles, /\.benefit-icon\s+\.conversation-icon\{[^}]*width:26px[^}]*height:26px/);
-  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.conversation-benefits article\{[^}]*grid-template-columns:48px minmax\(0,1fr\)/);
-});
-
-test('Home exposes exactly three public resource cards', async () => {
-  const source = await page('/');
-  assert.equal((source.match(/class=["'][^"']*page00-resource(?:\s|["'])/g) ?? []).length, 3);
-  assert.doesNotMatch(source, /href=["']\/books\//);
-});
-
-test('Home presents the three resources as quiet, neutral entry points', async () => {
-  const source = await page('/');
-  const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
-
-  assert.match(source, /class=["']page00-resources__intro["']/);
-  assert.match(source, /formation journey, personal conversations, and music/i);
-  assert.match(styles, /\.page00-resources__intro\{/);
-  assert.match(styles, /\.page00-resource\{[^}]*background:\s*var\(--p00-paper\)/s);
-  assert.match(styles, /\.page00-resource\{[^}]*border-top:\s*3px solid var\(--p00-gold\)/s);
-  assert.match(styles, /\.page00-resource__icon\{[^}]*background:\s*#f3e7d2/s);
-});
-
-test('Home hero image spans beneath a gradual overlay without a hard vertical seam', async () => {
-  const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
-  const imageRules = [...styles.matchAll(/\.page00-hero__image\{([^}]*)\}/g)];
-  const overlayRules = [...styles.matchAll(/(?:^|})\.page00-hero:after\{([^}]*)\}/gm)];
-  const finalImageRule = imageRules.at(-1)?.[1] ?? '';
-  const finalOverlayRule = overlayRules.at(-1)?.[1] ?? '';
-
-  assert.match(finalImageRule, /width:\s*100%/);
-  assert.match(finalImageRule, /object-position:\s*center top/);
-  assert.match(finalOverlayRule, /linear-gradient\(90deg/);
-  assert.match(finalOverlayRule, /rgba\(251,248,241,\.94\)/);
-  assert.match(finalOverlayRule, /transparent\s+72%/);
-});
-
-async function publicHtmlFiles(directory = new URL('public/', root)) {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const nested = await Promise.all(entries.map(entry => {
-    const target = new URL(`${entry.name}${entry.isDirectory() ? '/' : ''}`, directory);
-    if (entry.isDirectory()) return publicHtmlFiles(target);
-    return target.pathname.endsWith('.html') ? [target] : [];
-  }));
-  return nested.flat();
-}
-
-test('public visitor-facing pages do not link to the legacy Doorway page', async () => {
-  const pages = (await publicHtmlFiles()).filter(file => !file.pathname.endsWith('/doorway/index.html'));
-  const links = [];
-  for (const file of pages) {
-    const source = await readFile(file, 'utf8');
-    for (const match of source.matchAll(/\bhref=["']([^"']+)["']/gi)) {
-      const target = match[1].split(/[?#]/, 1)[0];
-      if (target === '/doorway' || target.startsWith('/doorway/')) {
-        links.push(`${file.pathname.replace(root.pathname, '')}: ${match[1]}`);
-      }
-    }
-  }
-  assert.deepEqual(links, []);
-});
-
-test('Conversations links to the approved Calendly appointment and has approved trust language', async () => {
-  const source = await page('/conversations/');
-  assert.match(source, /https:\/\/calendly\.com\/reformingthesoul-info\/30min/);
-  assert.match(source, /Book an appointment/);
-  assert.match(source, /Safe &amp; Trusting/);
-  assert.doesNotMatch(source, /conversations-rail/);
-});
-
-test('Formation journey retains the approved sequence and closing emphasis', async () => {
-  const formation = await page('/formation/');
-  for (const phrase of ['What got attention.', 'Who could be trusted.', 'What failure meant.', 'What God was like.', 'Luke 6:45', 'Romans 8:29']) {
-    assert.match(formation, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
-  }
-  assert.match(await page('/join/useful/'), /God restored your soul to be useful\./);
-});
-
-test('Formation introduction hero uses a curved veil instead of a vertical washed-out band', async () => {
-  const styles = await readFile(new URL('public/assets/css/pages/formation-introduction.css', root), 'utf8');
-
-  assert.match(styles, /\.hero-overlay\{background:radial-gradient\(ellipse/);
-  assert.match(styles, /rgba\(250,246,239,\.16\) 82%/);
-  assert.match(styles, /transparent 100%/);
-});
-
-test('About and Contact are secondary links in the public footer', async () => {
-  for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
-    const source = await page(route);
-    assert.match(source, /href=["']\/about\//);
-    assert.match(source, /href=["']\/contact\//);
-  }
-});
+    assert.match(source, /<a[^>]*href=["']\/["'][^>]*>[\s\S]{0,240}vÞÚ$z{-®éÜj×±¥¹­•Ñ¼ÁÕ‰±¥Œ¡½µ•€¤ì(€ô)ô¤ì()Ñ•ÍÐ ÁÕ‰±¥ŒÁ…•ÌÕÍ”¥É±”™±…µ”‰É…¹‘¥¹œ…¹½Éµ…Ñ¥½¸Á…•ÌÕÍ”QÉ•”½˜1¥™”œ°…Íå¹Œ€ ¤€ôøì(€™½È€¡½¹ÍÐÉ½ÕÑ”½˜lœ¼œ°€œ½½¹Ù•ÉÍ…Ñ¥½¹Ì¼œ°€œ½µÕÍ¥Œ¼œ°€œ½…‰½ÕÐ¼œ°€œ½½¹Ñ…Ð¼t¤ì(€€€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…”¡É½ÕÑ”¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½‰É…¹µµ…¥¸µÑÉ…¹ÍÁ…É•¹Ñp¹Á¹œ¼¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€¼ñ™½½Ñ•ÉmqÍqMt¨ý±…ÍÌõlˆuÁÕ‰±¥Œµ™½½Ñ•É}}‰É…¹‘lˆumxùt¨ùmqÍqMt¨ý‰É…¹µµ…¥¸µ™½½Ñ•Ép¹Á¹œ¼¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½ÁÕ‰±¥Œµ™½½Ñ•Èµ‰É…¹‘¥¹p¹ÍÌ¼¤ì(€ô(€™½È€¡½¹ÍÐÉ½ÕÑ”½˜lœ½™½Éµ…Ñ¥½¸¼œ°€œ½…Ý…­•¸½±•ÍÍ½¸´Ä¼œ°€œ½Í•”µ±•…É±ä¼œ°€œ½‰•½µ”¼œ°€œ½©½¥¸¼t¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡…Ý…¥ÐÁ…”¡É½ÕÑ”¤°€½ÉÑÌµÑÉ•”µÝ½É‘µ…É­p¹Á¹œ¼¤ì(€ô)ô¤ì()Ñ•ÍÐ 5ÕÍ¥ŒÑ¡•µ•ÌÕÍ”½¹”½±¥É±”¥½¸ÍåÍÑ•´…¹­••ÀÑ¡”…ÁÁÉ½Ù•Ý½É‘¥¹œœ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…” œ½µÕÍ¥Œ¼œ¤ì(€½¹ÍÐÉ½ÕÀ€ôÍ½ÕÉ”¹µ…Ñ  ¼ñ¹…Ø…É¥„µ±…‰•°ô‰5ÕÍ¥ŒÑ¡•µ•Ìˆø¡mqÍqMt¨ü¤ñp½¹…Øø¼¤ü¹lÅt€üü€œœì(€…ÍÍ•ÉÐ¹•ÅÕ…° ¡É½ÕÀ¹µ…Ñ  ½±…ÍÌô‰µÕÍ¥ŒµÑ¡•µ”µ¥½¸ˆ½œ¤€üümt¤¹±•¹Ñ °€Ì¤ì(€…ÍÍ•ÉÐ¹•ÅÕ…° ¡É½ÕÀ¹µ…Ñ  ½±…ÍÌô‰ÉÑÌ´ÌØ´ÐÁ}}¥½¸ˆ½œ¤€üümt¤¹±•¹Ñ °€Ì¤ì(€™½È€¡½¹ÍÐ±…‰•°½˜lM!%45=I1I1dœ°€-9=\!%45=IA1dœ°€]1,]%Q !%4%1dt¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡É½ÕÀ°¹•ÜI•áÀ¡±…‰•°¤¤ì(€ô(€…ÍÍ•ÉÐ¹µ…Ñ ¡É½ÕÀ°€¼Í•”¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡É½ÕÀ°€¼¡•…ÉÐ¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡É½ÕÀ°€¼µÕÍ¥Œ¼¤ì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½ÍÌ½µÕÍ¥Œµ‰É…¹‘¥¹œ¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹ÉÑÌ´ÌØ´ÐÁ}}µÕÍ¥Œµ±½Í¥¹qímyõt©É¥µÑ•µÁ±…Ñ”µ½±Õµ¹Ìéµ¥¹µ…áp ÌÀÁÁà°Å™Ép¤µ¥¹µ…áp À°É™Ép¤¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹µÕÍ¥ŒµÑ¡•µ•qímyõt©Ý¡¥Ñ”µÍÁ…”é¹½ÝÉ…À¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½µ•‘¥…p¡µ…àµÝ¥‘Ñ èäÀÁÁáp¥qíp¹ÉÑÌ´ÌØ´ÐÁ}}µÕÍ¥Œµ±½Í¥¹qíÉ¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÅ™Éqô¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½µ•‘¥…p¡µ…àµÝ¥‘Ñ èØÀÁÁáp¥mqÍqMt¨ý™±•àµ‘¥É•Ñ¥½¸é½±Õµ¸¼¤ì)ô¤ì()Ñ•ÍÐ …ÁÁÉ½Ù•™½½Ñ•Èµ…É¬­••ÁÌ¥ÑÌ½±™±…µ”½¸Ñ¡”¹…Ùä‰…­É½Õ¹œ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½ÍÌ½ÁÕ‰±¥Œµ™½½Ñ•Èµ‰É…¹‘¥¹œ¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹ÁÕ‰±¥Œµ™½½Ñ•É}}‰É…¹¥µqí™¥±Ñ•Èé¹½¹•qô¼¤ì(€…Ý…¥Ð…•ÍÌ¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½‰É…¹µµ…¥¸µ™½½Ñ•È¹Á¹œœ°É½½Ð¤¤ì)ô¤ì()Ñ•ÍÐ ½¹Ù•ÉÍ…Ñ¥½¹ÌÙ…±Õ”…É‘ÌÕÍ”µ…Ñ¡¥¹œ½±¥É±•Ì…¹„Í¡…É•µ½‰¥±”±…å½ÕÐœ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…” œ½½¹Ù•ÉÍ…Ñ¥½¹Ì¼œ¤ì(€½¹ÍÐÍ•Ñ¥½¸€ôÍ½ÕÉ”¹µ…Ñ  ¼ñÍ•Ñ¥½¸±…ÍÌô‰½¹Ù•ÉÍ…Ñ¥½¸µ‰•¹•™¥ÑÌ‰mqÍqMt¨üñp½Í•Ñ¥½¸ø¼¤ü¹lÁt€üü€œœì(€…ÍÍ•ÉÐ¹•ÅÕ…° ¡Í•Ñ¥½¸¹µ…Ñ  ½±…ÍÌô‰‰•¹•™¥Ðµ¥½¸ üè½±µ¡•…ÉÐ¤üˆ½œ¤€üümt¤¹±•¹Ñ °€Ð¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í•Ñ¥½¸°€¼É½ÍÌ¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í•Ñ¥½¸°€¼¡•…ÉÐ¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í•Ñ¥½¸°€¼…Ý…­•¸¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í•Ñ¥½¸°€¼Ý¥±°¼¤ì(€…ÍÍ•ÉÐ¹•ÅÕ…° ¡Í•Ñ¥½¸¹µ…Ñ  ½±…ÍÌô‰‰•¹•™¥Ðµ¥½¸½±µ¡•…ÉÐˆ½œ¤€üümt¤¹±•¹Ñ °€Ä¤ì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½ÍÌ½½¹Ù•ÉÍ…Ñ¥½¹Ìµ¥½¹Ì¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹‰•¹•™¥Ðµ¥½¹qímyõt©Ý¥‘Ñ èÐáÁámyõt©¡•¥¡ÐèÐáÁà¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹‰•¹•™¥Ðµ¥½¹qímyõt©‰½É‘•ÈµÉ…‘¥ÕÌèÔÀ”¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹‰•¹•™¥Ðµ¥½¹qÌ­p¹½¹Ù•ÉÍ…Ñ¥½¸µ¥½¹qímyõt©Ý¥‘Ñ èÈÙÁámyõt©¡•¥¡ÐèÈÙÁà¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½µ•‘¥…p¡µ…àµÝ¥‘Ñ èØÀÁÁáp¥mqÍqMt¨ýp¹½¹Ù•ÉÍ…Ñ¥½¸µ‰•¹•™¥ÑÌ…ÉÑ¥±•qímyõt©É¥µÑ•µÁ±…Ñ”µ½±Õµ¹ÌèÐáÁàµ¥¹µ…áp À°Å™Ép¤¼¤ì)ô¤ì()Ñ•ÍÐ !½µ”•áÁ½Í•Ì•á…Ñ±äÑ¡É•”ÁÕ‰±¥ŒÉ•Í½ÕÉ”…É‘Ìœ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…” œ¼œ¤ì(€…ÍÍ•ÉÐ¹•ÅÕ…° ¡Í½ÕÉ”¹µ…Ñ  ½±…ÍÌõlˆumxˆt©Á…”ÀÀµÉ•Í½ÕÉ” üéqÍñlˆt¤½œ¤€üümt¤¹±•¹Ñ °€Ì¤ì(€…ÍÍ•ÉÐ¹‘½•Í9½Ñ5…Ñ ¡Í½ÕÉ”°€½¡É•˜õlˆup½‰½½­Íp¼¼¤ì)ô¤ì()Ñ•ÍÐ !½µ”ÁÉ•Í•¹ÑÌÑ¡”Ñ¡É•”É•Í½ÕÉ•Ì…ÌÅÕ¥•Ð°¹•ÕÑÉ…°•¹ÑÉäÁ½¥¹ÑÌœ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…” œ¼œ¤ì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½Á…”´ÀÀµ…ÁÁÉ½Ù•¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì((€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½±…ÍÌõlˆuÁ…”ÀÀµÉ•Í½ÕÉ•Í}}¥¹ÑÉ½lˆt¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½™½Éµ…Ñ¥½¸©½ÕÉ¹•ä°Á•ÉÍ½¹…°½¹Ù•ÉÍ…Ñ¥½¹Ì°…¹µÕÍ¥Œ½¤¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹Á…”ÀÀµÉ•Í½ÕÉ•Í}}¥¹ÑÉ½qì¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹Á…”ÀÀµÉ•Í½ÕÉ•qímyõt©‰…­É½Õ¹éqÌ©Ù…Ép ´µÀÀÀµÁ…Á•Ép¤½Ì¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹Á…”ÀÀµÉ•Í½ÕÉ•qímyõt©‰½É‘•ÈµÑ½ÀéqÌ¨ÍÁàÍ½±¥Ù…Ép ´µÀÀÀµ½±‘p¤½Ì¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹Á…”ÀÀµÉ•Í½ÕÉ•}}¥½¹qímyõt©‰…­É½Õ¹éqÌ¨˜Í”ÝÈ½Ì¤ì)ô¤ì()Ñ•ÍÐ !½µ”¡•É¼¥µ…”ÍÁ…¹Ì‰•¹•…Ñ „É…‘Õ…°½Ù•É±…äÝ¥Ñ¡½ÕÐ„¡…ÉÙ•ÉÑ¥…°Í•…´œ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½Á…”´ÀÀµ…ÁÁÉ½Ù•¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì(€½¹ÍÐ¥µ…•IÕ±•Ì€ôl¸¸¹ÍÑå±•Ì¹µ…Ñ¡±° ½p¹Á…”ÀÀµ¡•É½}}¥µ…•qì¡myõt¨¥qô½œ¥tì(€½¹ÍÐ½Ù•É±…åIÕ±•Ì€ôl¸¸¹ÍÑå±•Ì¹µ…Ñ¡±° ¼ üéyñô¥p¹Á…”ÀÀµ¡•É¼é…™Ñ•Éqì¡myõt¨¥qô½´¥tì(€½¹ÍÐ™¥¹…±%µ…•IÕ±”€ô¥µ…•IÕ±•Ì¹…Ð ´Ä¤ü¹lÅt€üü€œœì(€½¹ÍÐ™¥¹…±=Ù•É±…åIÕ±”€ô½Ù•É±…åIÕ±•Ì¹…Ð ´Ä¤ü¹lÅt€üü€œœì((€…ÍÍ•ÉÐ¹µ…Ñ ¡™¥¹…±%µ…•IÕ±”°€½Ý¥‘Ñ éqÌ¨ÄÀÀ”¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡™¥¹…±%µ…•IÕ±”°€½½‰©•ÐµÁ½Í¥Ñ¥½¸éqÌ©•¹Ñ•ÈÑ½À¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡™¥¹…±=Ù•É±…åIÕ±”°€½±¥¹•…ÈµÉ…‘¥•¹Ñp äÁ‘•œ¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡™¥¹…±=Ù•É±…åIÕ±”°€½É‰…p ÈÔÄ°ÈÐà°ÈÐÄ±p¸äÑp¤¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡™¥¹…±=Ù•É±…åIÕ±”°€½ÑÉ…¹ÍÁ…É•¹ÑqÌ¬ÜÈ”¼¤ì)ô¤ì()…Íå¹Œ™Õ¹Ñ¥½¸ÁÕ‰±¥!Ñµ±¥±•Ì¡‘¥É•Ñ½Éä€ô¹•ÜUI0 ÁÕ‰±¥Œ¼œ°É½½Ð¤¤ì(€½¹ÍÐ•¹ÑÉ¥•Ì€ô…Ý…¥ÐÉ•…‘‘¥È¡‘¥É•Ñ½Éä°ìÝ¥Ñ¡¥±•QåÁ•ÌèÑÉÕ”ô¤ì(€½¹ÍÐ¹•ÍÑ•€ô…Ý…¥ÐAÉ½µ¥Í”¹…±°¡•¹ÑÉ¥•Ì¹µ…À¡•¹ÑÉä€ôøì(€€€½¹ÍÐÑ…É•Ð€ô¹•ÜUI0¡€‘í•¹ÑÉä¹¹…µ•ô‘í•¹ÑÉä¹¥Í¥É•Ñ½Éä ¤€ü€œ¼œ€è€œõ€°‘¥É•Ñ½Éä¤ì(€€€¥˜€¡•¹ÑÉä¹¥Í¥É•Ñ½Éä ¤¤É•ÑÕÉ¸ÁÕ‰±¥!Ñµ±¥±•Ì¡Ñ…É•Ð¤ì(€€€É•ÑÕÉ¸Ñ…É•Ð¹Á…Ñ¡¹…µ”¹•¹‘Í]¥Ñ  œ¹¡Ñµ°œ¤€ümÑ…É•Ñt€èmtì(€ô¤¤ì(€É•ÑÕÉ¸¹•ÍÑ•¹™±…Ð ¤ì)ô()Ñ•ÍÐ ÁÕ‰±¥ŒÙ¥Í¥Ñ½Èµ™…¥¹œÁ…•Ì‘¼¹½Ð±¥¹¬Ñ¼Ñ¡”±•…ä½½ÉÝ…äÁ…”œ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÁ…•Ì€ô€¡…Ý…¥ÐÁÕ‰±¥!Ñµ±¥±•Ì ¤¤¹™¥±Ñ•È¡™¥±”€ôø€…™¥±”¹Á…Ñ¡¹…µ”¹•¹‘Í]¥Ñ  œ½‘½½ÉÝ…ä½¥¹‘•à¹¡Ñµ°œ¤¤ì(€½¹ÍÐ±¥¹­Ì€ômtì(€™½È€¡½¹ÍÐ™¥±”½˜Á…•Ì¤ì(€€€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÉ•…‘¥±”¡™¥±”°€ÕÑ˜àœ¤ì(€€€™½È€¡½¹ÍÐµ…Ñ ½˜Í½ÕÉ”¹µ…Ñ¡±° ½q‰¡É•˜õlˆt¡mxˆt¬¥lˆt½¤¤¤ì(€€€€€½¹ÍÐÑ…É•Ð€ôµ…Ñ¡lÅt¹ÍÁ±¥Ð ½lüt¼°€Ä¥lÁtì(€€€€€¥˜€¡Ñ…É•Ð€ôôô€œ½‘½½ÉÝ…äœñðÑ…É•Ð¹ÍÑ…ÉÑÍ]¥Ñ  œ½‘½½ÉÝ…ä¼œ¤¤ì(€€€€€€€±¥¹­Ì¹ÁÕÍ ¡€‘í™¥±”¹Á…Ñ¡¹…µ”¹É•Á±…”¡É½½Ð¹Á…Ñ¡¹…µ”°€œœ¥ôè€‘íµ…Ñ¡lÅuõ€¤ì(€€€€€ô(€€€ô(€ô(€…ÍÍ•ÉÐ¹‘••ÁÅÕ…°¡±¥¹­Ì°mt¤ì)ô¤ì()Ñ•ÍÐ ½¹Ù•ÉÍ…Ñ¥½¹Ì±¥¹­ÌÑ¼Ñ¡”…ÁÁÉ½Ù•…±•¹‘±ä…ÁÁ½¥¹Ñµ•¹Ð…¹¡…Ì…ÁÁÉ½Ù•ÑÉÕÍÐ±…¹Õ…”œ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…” œ½½¹Ù•ÉÍ…Ñ¥½¹Ì¼œ¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½¡ÑÑÁÌép½p½…±•¹‘±åp¹½µp½É•™½Éµ¥¹Ñ¡•Í½Õ°µ¥¹™½p¼ÌÁµ¥¸¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½	½½¬…¸…ÁÁ½¥¹Ñµ•¹Ð¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½M…™”€™…µÀìQÉÕÍÑ¥¹œ¼¤ì(€…ÍÍ•ÉÐ¹‘½•Í9½Ñ5…Ñ ¡Í½ÕÉ”°€½½¹Ù•ÉÍ…Ñ¥½¹ÌµÉ…¥°¼¤ì)ô¤ì()Ñ•ÍÐ ½Éµ…Ñ¥½¸©½ÕÉ¹•äÉ•Ñ…¥¹ÌÑ¡”…ÁÁÉ½Ù•Í•ÅÕ•¹”…¹±½Í¥¹œ•µÁ¡…Í¥Ìœ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐ™½Éµ…Ñ¥½¸€ô…Ý…¥ÐÁ…” œ½™½Éµ…Ñ¥½¸¼œ¤ì(€™½È€¡½¹ÍÐÁ¡É…Í”½˜l]¡…Ð½Ð…ÑÑ•¹Ñ¥½¸¸œ°€]¡¼½Õ±‰”ÑÉÕÍÑ•¸œ°€]¡…Ð™…¥±ÕÉ”µ•…¹Ð¸œ°€]¡…Ð½Ý…Ì±¥­”¸œ°€1Õ­”€ØèÐÔœ°€I½µ…¹Ì€àèÈät¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡™½Éµ…Ñ¥½¸°¹•ÜI•áÀ¡Á¡É…Í”¹É•Á±…” ½l¸¨¬ýx‘íô ¥ñmquqqt½œ°€qp˜œ¤¤¤ì(€ô(€…ÍÍ•ÉÐ¹µ…Ñ ¡…Ý…¥ÐÁ…” œ½©½¥¸½ÕÍ•™Õ°¼œ¤°€½½É•ÍÑ½É•å½ÕÈÍ½Õ°Ñ¼‰”ÕÍ•™Õ±p¸¼¤ì)ô¤ì()Ñ•ÍÐ ½Éµ…Ñ¥½¸¥¹ÑÉ½‘ÕÑ¥½¸¡•É¼ÕÍ•Ì„ÕÉÙ•Ù•¥°¥¹ÍÑ•…½˜„Ù•ÉÑ¥…°Ý…Í¡•µ½ÕÐ‰…¹œ°…Íå¹Œ€ ¤€ôøì(€½¹ÍÐÍÑå±•Ì€ô…Ý…¥ÐÉ•…‘¥±”¡¹•ÜUI0 ÁÕ‰±¥Œ½…ÍÍ•ÑÌ½ÍÌ½Á…•Ì½™½Éµ…Ñ¥½¸µ¥¹ÑÉ½‘ÕÑ¥½¸¹ÍÌœ°É½½Ð¤°€ÕÑ˜àœ¤ì((€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½p¹¡•É¼µ½Ù•É±…åqí‰…­É½Õ¹éÉ…‘¥…°µÉ…‘¥•¹Ñp¡•±±¥ÁÍ”¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½É‰…p ÈÔÀ°ÈÐØ°ÈÌä±p¸ÄÙp¤€àÈ”¼¤ì(€…ÍÍ•ÉÐ¹µ…Ñ ¡ÍÑå±•Ì°€½ÑÉ…¹ÍÁ…É•¹Ð€ÄÀÀ”¼¤ì)ô¤ì()Ñ•ÍÐ ‰½ÕÐ…¹½¹Ñ…Ð…É”Í•½¹‘…Éä±¥¹­Ì¥¸Ñ¡”ÁÕ‰±¥Œ™½½Ñ•Èœ°…Íå¹Œ€ ¤€ôøì(€™½È€¡½¹ÍÐÉ½ÕÑ”½˜lœ¼œ°€œ½½¹Ù•ÉÍ…Ñ¥½¹Ì¼œ°€œ½µÕÍ¥Œ¼œ°€œ½…‰½ÕÐ¼œ°€œ½½¹Ñ…Ð¼t¤ì(€€€½¹ÍÐÍ½ÕÉ”€ô…Ý…¥ÐÁ…”¡É½ÕÑ”¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½¡É•˜õlˆup½…‰½ÕÑp¼¼¤ì(€€€…ÍÍ•ÉÐ¹µ…Ñ ¡Í½ÕÉ”°€½¡É•˜õlˆup½½¹Ñ…Ñp¼¼¤ì(€ô)ô¤ì(
