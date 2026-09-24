@@ -4,10 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(12px, 2vw, 28px);
-  min-height: 84px;
+  gap: clamp(14px, 2vw, 28px);
+  min-height: 104px;
   height: auto;
-  padding: 10px clamp(18px, 4vw, 56px);
+  padding: 8px clamp(24px, 4vw, 64px);
 }
 
 .public-primary-header > a:first-child {
@@ -17,7 +17,7 @@
 
 .public-primary-header > a:first-child img {
   display: block;
-  width: min(238px, 22vw);
+  width: min(280px, 26vw);
   max-width: 100%;
   height: auto;
 }
@@ -28,7 +28,7 @@
   flex: 1 1 auto;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(9px, 1.35vw, 22px);
+  gap: clamp(14px, 1.5vw, 24px);
   min-width: 0;
   margin: 0 0 0 auto;
   padding: 0;
@@ -41,16 +41,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 8px 1px;
+  min-height: 48px;
+  padding: 8px 0;
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   white-space: nowrap;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: clamp(.64rem, .78vw, .78rem);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   font-weight: 700;
-  letter-spacing: .045em;
+  letter-spacing: .04em;
 }
 
 .public-primary-header .public-primary-nav a.is-active {
@@ -79,19 +79,40 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 650px) {
+@media (min-width: 741px) and (max-width: 900px) {
+  .public-primary-header {
+    gap: 12px;
+    min-height: 88px;
+    padding: 8px 24px;
+  }
+
+  .public-primary-header > a:first-child img {
+    width: min(220px, 29vw);
+  }
+
+  .public-primary-header .public-primary-nav {
+    gap: clamp(8px, 1.1vw, 10px);
+  }
+
+  .public-primary-header .public-primary-nav a {
+    font-size: 15px;
+    letter-spacing: .02em;
+  }
+}
+
+@media (max-width: 740px) {
   .public-primary-header,
   .page00 .public-primary-header,
   .rts-36-40--p39 .public-primary-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
-    min-height: 76px;
+    min-height: 84px;
     padding: 8px 18px;
   }
 
   .public-primary-header > a:first-child img {
-    width: min(210px, 58vw);
+    width: min(224px, 58vw);
   }
 
   .public-primary-header .menu {
@@ -131,7 +152,7 @@
     min-height: 48px;
     padding: 11px 4px;
     border-bottom: 1px solid rgb(8 40 63 / 14%);
-    font-size: .78rem;
+    font-size: 1rem;
   }
 
   .public-primary-header .public-primary-nav a:last-child {

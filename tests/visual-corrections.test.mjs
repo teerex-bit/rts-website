@@ -123,6 +123,40 @@ test('site-controlled Music content spells the name exactly AIluminate', () => {
   assert.match(description, /AIluminate/);
 });
 
+test('shared public header balances the circle-flame logo and readable navigation responsively', () => {
+  const styles = rules(css('public/assets/css/public-header-navigation.css'));
+  const headerSelector = '.public-primary-header';
+  const logoSelector = '.public-primary-header > a:first-child img';
+  const navSelector = '.public-primary-header .public-primary-nav';
+  const linkSelector = '.public-primary-header .public-primary-nav a';
+  const menuSelector = '.public-primary-header .menu';
+
+  for (const [width, logoWidth, navFontSize, navDisplay, menuDisplay] of [
+    [1536, 'min(280px, 26vw)', 'clamp(1rem, 1.1vw, 1.125rem)', 'flex', 'none'],
+    [1363, 'min(280px, 26vw)', 'clamp(1rem, 1.1vw, 1.125rem)', 'flex', 'none'],
+    [768, 'min(220px, 29vw)', '15px', 'flex', 'none'],
+    [375, 'min(224px, 58vw)', '1rem', 'none', 'inline-flex']
+  ]) {
+    const header = styleAt(styles, headerSelector, width);
+    const logo = styleAt(styles, logoSelector, width);
+    const nav = styleAt(styles, navSelector, width);
+    const link = styleAt(styles, linkSelector, width);
+    const menu = styleAt(styles, menuSelector, width);
+
+    assert.equal(header['align-items'], 'center');
+    assert.equal(logo.width, logoWidth);
+    assert.equal(logo['height'], 'auto');
+    assert.equal(nav.display, navDisplay);
+    assert.equal(link['font-size'], navFontSize);
+    assert.equal(link['text-transform'], 'uppercase');
+    assert.equal(link['white-space'], 'nowrap');
+    assert.equal(menu.display, menuDisplay);
+    assert.equal(styleAt(styles, `${linkSelector}.is-active`, width)['border-bottom-color'], 'currentColor');
+  }
+  assert.equal(styleAt(styles, navSelector, 768).gap, 'clamp(8px, 1.1vw, 10px)');
+  assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(14px, 1.5vw, 24px)');
+});
+
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
   const html = read('public/become/live-with-god/index.html');
   const styles = css('public/become/become.css');

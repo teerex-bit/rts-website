@@ -49,9 +49,9 @@ test('public header rules show five links on desktop and use the Menu control on
   const styles = await readFile(stylesheet, 'utf8');
   assert.match(styles, /\.public-primary-header \.public-primary-nav\s*\{[^}]*display:\s*flex/);
   assert.match(styles, /\.public-primary-header \.public-primary-nav\s*\{[^}]*flex-wrap:\s*nowrap/);
-  assert.match(styles, /@media\s*\(max-width:\s*650px\)[\s\S]*?\.public-primary-header \.public-primary-nav\s*\{[^}]*display:\s*none/);
+  assert.match(styles, /@media\s*\(max-width:\s*740px\)[\s\S]*?\.public-primary-header \.public-primary-nav\s*\{[^}]*display:\s*none/);
   assert.match(styles, /\.public-primary-header \.public-primary-nav\.open\s*\{[^}]*display:\s*flex/);
-  assert.match(styles, /@media\s*\(max-width:\s*650px\)[\s\S]*?\.public-primary-header \.menu\s*\{[^}]*display:\s*inline-flex/);
+  assert.match(styles, /@media\s*\(max-width:\s*740px\)[\s\S]*?\.public-primary-header \.menu\s*\{[^}]*display:\s*inline-flex/);
 });
 
 test('curriculum Tree of Life logo links provide a route back to the public home', async () => {
