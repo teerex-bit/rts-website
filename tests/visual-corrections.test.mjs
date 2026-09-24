@@ -71,6 +71,14 @@ test('About page uses the supplied TandM photo asset', () => {
   assert.ok(existsSync(new URL('public/assets/tandm-photo.jpg', root)));
 });
 
+test('About portrait keeps faces in the tablet crop and natural proportions on phones', () => {
+  const html = read('public/about/index.html');
+  const styles = css('public/assets/css/about-photo.css');
+  assert.match(html, /about-photo\.css/);
+  assert.match(styles, /@media\s*\(max-width:\s*850px\)[\s\S]*?\.portrait img\s*\{[^}]*object-position:\s*center top/);
+  assert.match(styles, /@media\s*\(max-width:\s*500px\)[\s\S]*?\.portrait img\s*\{[^}]*height:\s*auto/);
+});
+
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
   const html = read('public/become/live-with-god/index.html');
   const styles = css('public/become/become.css');
