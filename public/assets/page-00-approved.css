@@ -74,3 +74,24 @@
 .page00-resource--formation{--resource-image:url('/assets/images/formation-intro-hero.webp')}
 .page00-resource--conversations{--resource-image:url('/assets/conversations-hero.jpg')}
 .page00-resource--music{--resource-image:url('/assets/page-ranges/range-36-40/alluminate-hero.jpg')}
+
+/* Homepage resource cards: quiet entry points beneath the Formation Journey. */
+.page00-resources{padding:28px clamp(24px,4vw,64px) 32px;background:#f8f3eb}
+.page00-resources>h2{margin:0 0 8px;font-size:1.55rem}
+.page00-resources__intro{max-width:780px;margin:0 auto 22px;color:#435464;font:400 1rem/1.55 var(--p00-serif);text-align:center}
+.page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1180px}
+.page00-resource{grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto 1fr auto;min-height:158px;padding:18px 20px 0;color:var(--p00-navy)!important;background:var(--p00-paper);border:1px solid var(--p00-line);border-top:3px solid var(--p00-gold);border-radius:5px;box-shadow:0 8px 20px rgba(9,38,61,.035)}
+.page00-resource__icon{grid-row:1/3;width:42px;height:42px;color:var(--p00-gold);background:#f3e7d2;border:1px solid #dfc79e;font-size:1.35rem}
+.page00-resource__icon img,.page00-resource__icon svg{width:25px;height:25px;fill:currentColor}
+.page00-resource h3{margin:3px 0 5px;color:var(--p00-navy);font-size:.88rem;letter-spacing:.04em}
+.page00-resource p{margin:0;color:#435464;font-size:.76rem;line-height:1.48}
+.page00-resource>strong{grid-column:1/-1;margin:14px -20px 0;padding:9px 20px;color:var(--p00-navy);background:#faf6ef;border-top:1px solid #e7ddcf;font-size:.68rem;text-align:left}
+@media(min-width:1500px){.page00-resources{padding-top:32px;padding-bottom:36px}.page00-resources>h2{font-size:1.75rem}.page00-resource-grid{max-width:1280px;gap:20px}.page00-resource,.page00-resource--formation,.page00-resource--conversations,.page00-resource--music{grid-template-columns:56px minmax(0,1fr);min-height:172px;padding:20px 22px 0}.page00-resource__icon{width:46px;height:46px}.page00-resource h3{font-size:1rem}.page00-resource p{font-size:.84rem}.page00-resource>strong{margin:15px -22px 0;padding:10px 22px;font-size:.74rem}}
+@media(max-width:900px){.page00-resources{padding:25px 20px 30px}.page00-resources__intro{max-width:650px;margin-bottom:20px;font-size:.95rem}.page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.page00-resource,.page00-resource--formation,.page00-resource--conversations,.page00-resource--music{grid-template-columns:42px minmax(0,1fr);min-height:170px;padding:15px 14px 0}.page00-resource__icon{width:36px;height:36px;font-size:1.15rem}.page00-resource__icon img,.page00-resource__icon svg{width:22px;height:22px}.page00-resource h3{font-size:.78rem}.page00-resource p{font-size:.69rem}.page00-resource>strong{margin:12px -14px 0;padding:8px 14px;font-size:.61rem}}
+@media(max-width:680px){.page00-resources{padding:24px 20px 28px}.page00-resources>h2{font-size:1.45rem}.page00-resources__intro{margin-bottom:20px;font-size:.96rem}.page00-resource-grid{grid-template-columns:1fr;gap:12px}.page00-resource,.page00-resource--formation,.page00-resource--conversations,.page00-resource--music{grid-template-columns:48px minmax(0,1fr);min-height:142px;padding:16px 16px 0}.page00-resource__icon{width:40px;height:40px}.page00-resource h3{font-size:.86rem}.page00-resource p{font-size:.76rem}.page00-resource>strong{margin:12px -16px 0;padding:9px 16px;font-size:.66rem}}
+
+/* Let the scenic image continue beneath one gradual veil instead of beginning
+   at a visible vertical edge beside the hero copy. */
+.page00-hero__image{inset:0;width:100%;max-width:none;object-position:center top}
+.page00-hero:after{background:linear-gradient(90deg,var(--p00-cream) 0%,rgba(251,248,241,.99) 25%,rgba(251,248,241,.94) 38%,rgba(251,248,241,.72) 49%,rgba(251,248,241,.32) 60%,transparent 72%)}
+@media(max-width:900px){.page00 .page00-hero:after{background:linear-gradient(90deg,rgba(251,248,241,.98) 0%,rgba(251,248,241,.92) 46%,rgba(251,248,241,.68) 72%,rgba(251,248,241,.24) 100%)}}

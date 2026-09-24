@@ -48,6 +48,32 @@ test('Home exposes exactly three public resource cards', async () => {
   assert.doesNotMatch(source, /href=["']\/books\//);
 });
 
+test('Home presents the three resources as quiet, neutral entry points', async () => {
+  const source = await page('/');
+  const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
+
+  assert.match(source, /class=["']page00-resources__intro["']/);
+  assert.match(source, /formation journey, personal conversations, and music/i);
+  assert.match(styles, /\.page00-resources__intro\{/);
+  assert.match(styles, /\.page00-resource\{[^}]*background:\s*var\(--p00-paper\)/s);
+  assert.match(styles, /\.page00-resource\{[^}]*border-top:\s*3px solid var\(--p00-gold\)/s);
+  assert.match(styles, /\.page00-resource__icon\{[^}]*background:\s*#f3e7d2/s);
+});
+
+test('Home hero image spans beneath a gradual overlay without a hard vertical seam', async () => {
+  const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
+  const imageRules = [...styles.matchAll(/\.page00-hero__image\{([^}]*)\}/g)];
+  const overlayRules = [...styles.matchAll(/(?:^|})\.page00-hero:after\{([^}]*)\}/gm)];
+  const finalImageRule = imageRules.at(-1)?.[1] ?? '';
+  const finalOverlayRule = overlayRules.at(-1)?.[1] ?? '';
+
+  assert.match(finalImageRule, /width:\s*100%/);
+  assert.match(finalImageRule, /object-position:\s*center top/);
+  assert.match(finalOverlayRule, /linear-gradient\(90deg/);
+  assert.match(finalOverlayRule, /rgba\(251,248,241,\.94\)/);
+  assert.match(finalOverlayRule, /transparent\s+72%/);
+});
+
 test('Conversations links to the approved Calendly appointment and has approved trust language', async () => {
   const source = await page('/conversations/');
   assert.match(source, /https:\/\/calendly\.com\/reformingthesoul-info\/30min/);
