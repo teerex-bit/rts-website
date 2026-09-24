@@ -48,7 +48,8 @@
 .rts-contact-option strong{display:block;font:22px Georgia,serif;color:var(--navy);margin-bottom:7px}
 .rts-contact-option span{display:block;color:#57616b;line-height:1.55}
 .rts-info-footer{background:#061a2e;color:#fff;padding:34px 8vw;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
-.rts-info-footer img{width:190px;filter:brightness(0) invert(1)}
+.rts-info-footer__brand{display:inline-flex;width:max-content;padding:10px 14px;border-radius:6px;background:#fffdf8}
+.rts-info-footer__brand img{display:block;width:190px;height:auto}
 .rts-info-footer nav{display:flex;gap:28px}
 .rts-info-footer a{text-decoration:none;font-size:13px}
 .rts-info-footer small{grid-column:1/-1;color:#b8c1c9}

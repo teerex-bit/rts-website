@@ -90,16 +90,6 @@ const finalReviewDir=path.join(out,'review','pages-01-40');fs.mkdirSync(finalRev
 fs.mkdirSync(path.join(out,'coming-soon'),{recursive:true});fs.writeFileSync(path.join(out,'coming-soon/index.html'),shell('Coming soon',`${header()}<main class="simple"><p class="overline">Reforming the Soul</p><h1>Coming soon</h1><p class="lead">This destination is being prepared. Continue exploring the formation journey in the meantime.</p><a class="button" href="/review/">View all pages</a></main>${footer()}`));
 const aboutDir=path.join(out,'about');fs.mkdirSync(aboutDir,{recursive:true});fs.copyFileSync(path.join(__dirname,'..','src','about.html'),path.join(aboutDir,'index.html'));
 const contactDir=path.join(out,'contact');fs.mkdirSync(contactDir,{recursive:true});fs.copyFileSync(path.join(__dirname,'..','src','contact.html'),path.join(contactDir,'index.html'));
-const overviewSnapshot=path.join(__dirname,'..','src','overview-public');
-if(fs.existsSync(overviewSnapshot)){
-  fs.cpSync(overviewSnapshot,out,{recursive:true});
-  const awakenOverview=path.join(overviewSnapshot,'awaken','lesson-1','index.html');
-  if(fs.existsSync(awakenOverview)){
-    const awakenRoot=path.join(out,'awaken');
-    fs.mkdirSync(awakenRoot,{recursive:true});
-    fs.copyFileSync(awakenOverview,path.join(awakenRoot,'index.html'));
-  }
-}
 const deployOut=path.join(__dirname,'..','dist');
 fs.rmSync(deployOut,{recursive:true,force:true});
 fs.cpSync(out,deployOut,{recursive:true});
