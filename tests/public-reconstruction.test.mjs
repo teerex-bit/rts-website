@@ -64,6 +64,14 @@ test('Formation journey retains the approved sequence and closing emphasis', asy
   assert.match(await page('/join/useful/'), /God restored your soul to be useful\./);
 });
 
+test('Formation introduction hero uses a curved veil instead of a vertical washed-out band', async () => {
+  const styles = await readFile(new URL('public/assets/css/pages/formation-introduction.css', root), 'utf8');
+
+  assert.match(styles, /\.hero-overlay\{background:radial-gradient\(ellipse/);
+  assert.match(styles, /rgba\(250,246,239,\.16\) 82%/);
+  assert.match(styles, /transparent 100%/);
+});
+
 test('About and Contact are secondary links in the public footer', async () => {
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
