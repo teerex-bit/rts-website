@@ -79,6 +79,32 @@ test('About portrait keeps faces in the tablet crop and natural proportions on p
   assert.match(styles, /@media\s*\(max-width:\s*500px\)[\s\S]*?\.portrait img\s*\{[^}]*height:\s*auto/);
 });
 
+test('Music keeps the archived Alluminate hero and uses Spotify as its only music listing', () => {
+  const html = read('public/music/index.html');
+  const styles = css('public/assets/css/music-branding.css');
+  const hero = html.match(/<section class="rts-36-40__music-hero"[\s\S]*?<\/section>/)?.[0] ?? '';
+  const playlist = html.indexOf('open.spotify.com/embed/playlist/6yFOgURdofxKjPEB3ev6az');
+  const closing = html.indexOf('class="rts-36-40__music-closing"');
+  const footer = html.indexOf('class="public-footer"');
+
+  assert.match(hero, /src="\/assets\/page-ranges\/range-36-40\/alluminate-hero\.jpg"/);
+  assert.match(hero, /href="https:\/\/open\.spotify\.com\/playlist\/6yFOgURdofxKjPEB3ev6az"/);
+  assert.match(hero, /Listen on Spotify/);
+  assert.doesNotMatch(hero, /<blockquote|He is better than we imagined/);
+  assert.ok(playlist > html.indexOf('Listen to Alluminate'));
+  assert.ok(closing > playlist && footer > closing, 'playlist precedes the approved closing and public footer');
+  assert.doesNotMatch(html, /Select a song to listen|song-columns|Play All In|Fear in My Rearview/);
+  assert.doesNotMatch(html, /Music for every moment|Lyrics for every season|EXPLORE OUR MUSIC ON SPOTIFY/i);
+  assert.match(styles, /\.music-spotify\{/);
+  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.music-spotify iframe\{[^}]*height:352px/);
+  const musicRules = rules(styles);
+  for (const [width, heroHeight, focal] of [[1536, '529px', 'center'], [768, '600px', '52% center'], [375, '620px', '20% center']]) {
+    assert.equal(styleAt(musicRules, '.rts-36-40--p39 .rts-36-40__music-hero', width).height, heroHeight);
+    assert.equal(styleAt(musicRules, '.rts-36-40--p39 .rts-36-40__music-hero>img', width)['object-position'], focal);
+    assert.equal(styleAt(musicRules, '.music-spotify iframe', width).height, '352px');
+  }
+});
+
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
   const html = read('public/become/live-with-god/index.html');
   const styles = css('public/become/become.css');

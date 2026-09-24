@@ -44,11 +44,11 @@ test('Music uses the primary navigation without a duplicate Formation button', a
   assert.doesNotMatch(await html('/music/'), /class=["']rts-36-40__start["']/);
 });
 
-test('Music quote and library have explicit readable spacing', async () => {
-  const css = await readFile(new URL('public/assets/styles.css', root), 'utf8');
-  assert.match(css, /\.rts-36-40__music-hero blockquote\{[^}]*line-height:1\.65[^}]*padding:30px 34px[^}]*\}/);
-  assert.match(css, /\.rts-36-40__song-library\{[^}]*padding:22px 4% 28px[^}]*\}/);
-  assert.match(css, /\.rts-36-40__song-columns\{[^}]*row-gap:14px[^}]*\}/);
+test('Music uses one Spotify playlist without the retired quote or manual song catalogue', async () => {
+  const page = await html('/music/');
+  assert.match(page, /open\.spotify\.com\/embed\/playlist\/6yFOgURdofxKjPEB3ev6az/);
+  assert.doesNotMatch(page, /Select a song to listen|song-columns|Play All In/);
+  assert.doesNotMatch(page, /He is better than we imagined|Music for every moment/);
 });
 
 test('Doorway contains all four approved movements', async () => {
