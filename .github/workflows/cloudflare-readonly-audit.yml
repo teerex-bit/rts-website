@@ -196,6 +196,49 @@ jobs:
               page_rows.append(row)
           audit["relevant_pages_projects"] = {"ok": pages["ok"], "result": page_rows, "errors": pages["errors"]}
 
+          # Directly inspect the two Pages project names relevant to this audit.
+          targeted_pages = []
+          for project_name in ("rts-website-review", "rts-overview-review"):
+              project = api(f"/accounts/{ACCOUNT}/pages/projects/{urllib.parse.quote(project_name, safe='')}")
+              row = {"requested_name": project_name, "exists": project["ok"]}
+              if project["ok"] and isinstance(project.get("result"), dict):
+                  p = project["result"]
+                  row.update({k: p.get(k) for k in (
+                      "name", "subdomain", "domains", "production_branch", "created_on",
+                  ) if k in p})
+                  source = p.get("source")
+                  if isinstance(source, dict):
+                      config = source.get("config") or {}
+                      row["source"] = {
+                          "type": source.get("type"),
+                          "config": {k: config.get(k) for k in (
+                              "owner", "repo_name", "production_branch", "deployments_enabled",
+                              "production_deployments_enabled", "preview_deployment_setting",
+                          ) if k in config},
+                      }
+                  deployment = p.get("canonical_deployment") or p.get("latest_deployment")
+                  if isinstance(deployment, dict):
+                      row["latest_deployment"] = {k: deployment.get(k) for k in (
+                          "id", "url", "environment", "created_on", "modified_on", "latest_stage",
+                      ) if k in deployment}
+                      dep_source = deployment.get("source")
+                      if isinstance(dep_source, dict):
+                          row["latest_deployment"]["source"] = {
+                              k: dep_source.get(k) for k in ("type", "config") if k in dep_source
+                          }
+                  custom = api(f"/accounts/{ACCOUNT}/pages/projects/{urllib.parse.quote(project_name, safe='')}/domains")
+                  if custom["ok"]:
+                      row["custom_domains"] = [
+                          {k: domain.get(k) for k in ("name", "status", "verification_data", "validation_data") if k in domain}
+                          for domain in (custom.get("result") or [])
+                      ]
+                  else:
+                      row["custom_domains_error"] = err_text(custom)
+              else:
+                  row["errors"] = project.get("errors", [])
+              targeted_pages.append(row)
+          audit["targeted_pages_projects"] = targeted_pages
+
           # Store only website-relevant, filtered metadata. Token, account ID, zone ID,
           # unrelated DNS records, and secret binding values are never written.
           out = pathlib.Path("audit-results")
@@ -217,6 +260,7 @@ jobs:
               ("Relevant Worker custom domains", "relevant_worker_custom_domains"),
               ("Relevant Workers", "relevant_workers"),
               ("Relevant Pages projects", "relevant_pages_projects"),
+              ("Targeted Pages project lookups", "targeted_pages_projects"),
           ):
               value = audit[key]
               lines += [f"## {title}", "", f"API success: **{value.get('ok')}**", "", "```json", json.dumps(value.get("result"), indent=2, sort_keys=True), "```", ""]
