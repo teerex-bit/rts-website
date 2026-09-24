@@ -65,6 +65,7 @@
 /* Keep the movement connectors independent of the stage copy height. */
 .journey-stage:not(:last-child):after{content:none}
 .journey-arrow{display:grid;place-items:center;align-self:center;width:32px;height:32px;margin:auto;border:1px solid #d5c5ad;border-radius:50%;background:#fbf8f3;color:var(--gold);font:400 16px/1 Arial,sans-serif}
+.journey-stage--active{transform:none}
 @media(min-width:901px){
   .journey-grid{grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);gap:0;align-items:stretch}
   .journey-stage,.journey-stage+article{min-height:290px}

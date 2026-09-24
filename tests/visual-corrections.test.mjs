@@ -76,7 +76,8 @@ test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro s
   const styles = css('public/become/become.css');
   assert.match(html, /class="hero hero--growth hero--live"/);
   assert.match(styles, /\.hero--live\s+\.eyebrow\s*\{[^}]*margin-bottom:\s*24px/);
-  assert.match(styles, /\.hero--live\s+\.headline--living\s*\{[^}]*line-height:\s*1\.12\s*!important/);
+  assert.match(styles, /\.hero--live\s*\{[^}]*grid-template-columns:\s*minmax\(0,1\.3fr\) minmax\(320px,\.7fr\)/);
+  assert.match(styles, /\.hero--live\s+\.headline--living\s*\{[^}]*font-size:\s*clamp\(3\.2rem,4\.8vw,5\.2rem\)!important[^}]*line-height:\s*1\.1\s*!important/);
   assert.match(styles, /@media\s*\(max-width:\s*680px\)[\s\S]*?\.hero--live\s+\.headline--living\s*\{[^}]*line-height:\s*1\.06\s*!important/);
 });
 
@@ -98,13 +99,17 @@ test('responsive correction rules are deliberate at 1536, 768, and 375 pixels', 
     assert.equal(styleAt(formation, '.journey-grid', width)['grid-template-columns'], width > 900
       ? 'minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr)'
       : 'minmax(0,1fr)');
+    assert.equal(styleAt(formation, '.journey-stage--active', width).transform, 'none');
     assert.equal(styleAt(become, '.hero--become-intro__image', width)['object-position'], width > 900
       ? '68% center'
       : width > 680 ? '78% center' : '66% center');
   }
   assert.equal(styleAt(formation, '.journey-arrow', 768).transform, 'rotate(90deg)');
   assert.equal(styleAt(formation, '.journey-arrow', 375).transform, 'rotate(90deg)');
-  assert.equal(styleAt(become, '.hero--live .headline--living', 1536)['line-height'], '1.12!important');
-  assert.equal(styleAt(become, '.hero--live .headline--living', 768)['line-height'], '1.12!important');
+  assert.equal(styleAt(become, '.hero--live .headline--living', 1536)['line-height'], '1.1!important');
+  assert.equal(styleAt(become, '.hero--live .headline--living', 1536)['font-size'], 'clamp(3.2rem,4.8vw,5.2rem)!important');
+  assert.equal(styleAt(become, '.hero--live', 1536)['grid-template-columns'], 'minmax(0,1.3fr) minmax(320px,.7fr)');
+  assert.equal(styleAt(become, '.hero--live .headline--living', 768)['line-height'], '1.1!important');
+  assert.equal(styleAt(become, '.hero--live .headline--living', 768)['font-size'], 'clamp(3rem,5vw,4rem)!important');
   assert.equal(styleAt(become, '.hero--live .headline--living', 375)['line-height'], '1.06!important');
 });
