@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
 const root = new URL('../', import.meta.url);
@@ -72,6 +72,31 @@ test('Home hero image spans beneath a gradual overlay without a hard vertical se
   assert.match(finalOverlayRule, /linear-gradient\(90deg/);
   assert.match(finalOverlayRule, /rgba\(251,248,241,\.94\)/);
   assert.match(finalOverlayRule, /transparent\s+72%/);
+});
+
+async function publicHtmlFiles(directory = new URL('public/', root)) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(entry => {
+    const target = new URL(`${entry.name}${entry.isDirectory() ? '/' : ''}`, directory);
+    if (entry.isDirectory()) return publicHtmlFiles(target);
+    return target.pathname.endsWith('.html') ? [target] : [];
+  }));
+  return nested.flat();
+}
+
+test('public visitor-facing pages do not link to the legacy Doorway page', async () => {
+  const pages = (await publicHtmlFiles()).filter(file => !file.pathname.endsWith('/doorway/index.html'));
+  const links = [];
+  for (const file of pages) {
+    const source = await readFile(file, 'utf8');
+    for (const match of source.matchAll(/\bhref=["']([^"']+)["']/gi)) {
+      const target = match[1].split(/[?#]/, 1)[0];
+      if (target === '/doorway' || target.startsWith('/doorway/')) {
+        links.push(`${file.pathname.replace(root.pathname, '')}: ${match[1]}`);
+      }
+    }
+  }
+  assert.deepEqual(links, []);
 });
 
 test('Conversations links to the approved Calendly appointment and has approved trust language', async () => {
