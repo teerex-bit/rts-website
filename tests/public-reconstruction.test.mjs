@@ -35,11 +35,42 @@ test('public discovery pages use only Formation, Conversations, and Music in pri
 
 test('public pages use circle flame branding and Formation pages use Tree of Life', async () => {
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
-    assert.match(await page(route), /brand-main-transparent\.png/);
+    const source = await page(route);
+    assert.match(source, /brand-main-transparent\.png/);
+    assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
   }
   for (const route of ['/formation/', '/awaken/lesson-1/', '/see-clearly/', '/become/', '/join/']) {
     assert.match(await page(route), /rts-tree-wordmark\.png/);
   }
+});
+
+test('Music themes use one gold circle icon system and keep the approved wording', async () => {
+  const source = await page('/music/');
+  const group = source.match(/<nav aria-label="Music themes">([\s\S]*?)<\/nav>/)?.[1] ?? '';
+  assert.equal((group.match(/class="music-theme-icon"/g) ?? []).length, 3);
+  assert.equal((group.match(/class="rts-36-40__icon"/g) ?? []).length, 3);
+  for (const label of ['SEE HIM MORE CLEARLY', 'KNOW HIM MORE DEEPLY', 'WALK WITH HIM DAILY']) {
+    assert.match(group, new RegExp(label));
+  }
+  assert.match(group, /#see/);
+  assert.match(group, /#heart/);
+  assert.match(group, /#music/);
+});
+
+test('Conversations value cards use matching gold circles and a shared mobile layout', async () => {
+  const source = await page('/conversations/');
+  const section = source.match(/<section class="conversation-benefits"[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.equal((section.match(/class="benefit-icon(?: gold-heart)?"/g) ?? []).length, 4);
+  assert.match(section, /#cross/);
+  assert.match(section, /#heart/);
+  assert.match(section, /#awaken/);
+  assert.match(section, /#will/);
+  assert.equal((section.match(/class="benefit-icon gold-heart"/g) ?? []).length, 1);
+  const styles = await readFile(new URL('public/assets/css/conversations-icons.css', root), 'utf8');
+  assert.match(styles, /\.benefit-icon\{[^}]*width:48px[^}]*height:48px/);
+  assert.match(styles, /\.benefit-icon\{[^}]*border-radius:50%/);
+  assert.match(styles, /\.benefit-icon\s+\.conversation-icon\{[^}]*width:26px[^}]*height:26px/);
+  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.conversation-benefits article\{[^}]*grid-template-columns:48px minmax\(0,1fr\)/);
 });
 
 test('Home exposes exactly three public resource cards', async () => {
