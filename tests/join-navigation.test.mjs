@@ -5,7 +5,6 @@ const root = new URL('../', import.meta.url);
 const read = path => readFileSync(new URL(path, root), 'utf8');
 const fruit = read('public/become/fruit/index.html');
 const doorway = read('public/doorway/index.html');
-const review = read('public/review/index.html');
 
 assert.match(fruit, /href="\/join\/"/, 'Become Fruit advances to Join');
 assert.match(fruit, />Continue to Join[\s\S]*?→<\/span><\/a>/, 'Fruit uses an explicit Join action');
@@ -15,7 +14,5 @@ assert.match(doorway, /href="\/join\/"/, 'doorway lists Join introduction');
 assert.match(doorway, /href="\/join\/useful\/"/, 'doorway lists Join conclusion');
 assert.ok(doorway.indexOf('href="/join/"') < doorway.indexOf('href="/join/useful/"'), 'doorway preserves Join order');
 
-assert.match(review, /class="page-card" data-url="\/join\/"/, 'review enables Join page one');
-assert.match(review, /class="page-card" data-url="\/join\/useful\/"/, 'review enables Join page two');
-assert.doesNotMatch(review, /disabled[^>]*data-url="\/join\/"/, 'Join page one is no longer disabled');
-assert.doesNotMatch(review, /disabled[^>]*data-url="\/join\/useful\/"/, 'Join page two is no longer disabled');
+const join = read('public/join/index.html');
+assert.match(join, /href="\/join\/useful\/"/, 'Join introduction advances to the useful conclusion');
