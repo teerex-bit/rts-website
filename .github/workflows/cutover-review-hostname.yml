@@ -1,4 +1,5 @@
-name: RTS review hostname cutover preflight
+
+name: RTS review hostname cutover
 
 on:
   push:
@@ -9,19 +10,14 @@ permissions:
   contents: read
 
 concurrency:
-  group: rts-review-hostname-cutover-preflight
+  group: rts-review-hostname-cutover
   cancel-in-progress: false
 
 jobs:
-  preflight:
+  cutover:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
-      - name: Check out operations branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-
       - name: Verify isolated operations branch
         shell: bash
         run: |
@@ -33,60 +29,171 @@ jobs:
           fi
           echo "Branch guard passed: $GITHUB_REF"
 
-      - name: Read and validate Cloudflare state (GET only)
+      - name: Check out operations workflow revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Check out approved review source
+        uses: actions/checkout@v4
+        with:
+          repository: teerex-bit/rts-website
+          ref: eb70296a30182ec67aa8bbe01172cbc63796c89e
+          path: review-source
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Validate, cut over, verify, and roll back on failure
         env:
           CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_WEBSITE_CUTOVER_TOKEN }}
+          REVIEW_SOURCE: review-source
         shell: bash
         run: |
-          set -euo pipefail
+          set -Eeuo pipefail
           test -n "$CF_ACCOUNT_ID" || { echo "::error::CLOUDFLARE_ACCOUNT_ID is missing"; exit 1; }
           test -n "$CF_API_TOKEN" || { echo "::error::CLOUDFLARE_WEBSITE_CUTOVER_TOKEN is missing"; exit 1; }
+          test -d "$REVIEW_SOURCE/public" || { echo "::error::Approved review assets are missing"; exit 1; }
 
-          api_get() {
-            curl --fail-with-body --silent --show-error \
-              --request GET \
-              --header "Authorization: Bearer $CF_API_TOKEN" \
-              --header "Content-Type: application/json" \
-              "https://api.cloudflare.com/client/v4$1"
+          api() {
+            local method="$1" path="$2" payload="${3-}" response status body
+            if [[ -n "$payload" ]]; then
+              response="$(curl --silent --show-error --max-time 30 --request "$method"                 --header "Authorization: Bearer $CF_API_TOKEN"                 --header "Content-Type: application/json" --data "$payload"                 --write-out $'\n%{http_code}' "https://api.cloudflare.com/client/v4$path")"
+            else
+              response="$(curl --silent --show-error --max-time 30 --request "$method"                 --header "Authorization: Bearer $CF_API_TOKEN"                 --header "Content-Type: application/json"                 --write-out $'\n%{http_code}' "https://api.cloudflare.com/client/v4$path")"
+            fi
+            status="${response##*$'\n'}"
+            body="${response%$'\n'*}"
+            if [[ ! "$status" =~ ^2[0-9][0-9]$ ]] || ! jq -e '.success == true' <<<"$body" >/dev/null; then
+              echo "::error::Cloudflare $method request failed (HTTP $status); response body suppressed." >&2
+              return 1
+            fi
+            printf '%s' "$body"
           }
 
-          zone_json="$(api_get "/zones?name=reformingthesoul.com&status=active")"
-          echo "$zone_json" | jq -e '.success == true and (.result | length == 1)' >/dev/null
-          zone_id="$(echo "$zone_json" | jq -r '.result[0].id')"
+          rollback() {
+            local original_status=$?
+            trap - ERR
+            set +e
+            echo "::error::Cutover or verification failed; restoring the legacy review destination."
+            local domains did dns dns_count pages
+            domains="$(api GET "/accounts/$CF_ACCOUNT_ID/workers/domains" 2>/dev/null)"
+            if [[ $? -eq 0 ]]; then
+              did="$(jq -r '.result[]? | select(.hostname == "review.reformingthesoul.com") | .id' <<<"$domains" | head -n1)"
+              if [[ -n "$did" && "$did" != "null" ]]; then
+                if api DELETE "/accounts/$CF_ACCOUNT_ID/workers/domains/$did" >/dev/null 2>&1; then
+                  echo "Rollback: removed review Worker custom domain."
+                else echo "::error::Rollback could not remove review Worker custom domain."; fi
+              fi
+            else echo "::error::Rollback could not inspect Worker custom domains."; fi
 
-          dns_json="$(api_get "/zones/$zone_id/dns_records?name=review.reformingthesoul.com&per_page=100")"
-          echo "$dns_json" | jq -e '.success == true' >/dev/null
-          dns_matches="$(echo "$dns_json" | jq '[.result[] | select(.name == "review.reformingthesoul.com")]')"
-          echo "$dns_matches" | jq -e 'length == 1 and .[0].type == "CNAME" and .[0].content == "rts-overview-review.pages.dev" and .[0].proxied == true and .[0].ttl == 1' >/dev/null
-          echo "REVIEW_DNS_ROLLBACK"
-          echo "$dns_matches" | jq '.[0] | {id, type, name, content, proxied, ttl}'
+            dns="$(api GET "/zones/$zone_id/dns_records?name=review.reformingthesoul.com&per_page=100" 2>/dev/null)"
+            if [[ $? -eq 0 ]]; then
+              dns_count="$(jq '[.result[]? | select(.name == "review.reformingthesoul.com")] | length' <<<"$dns")"
+              if [[ "$dns_count" == "0" ]]; then
+                if api POST "/zones/$zone_id/dns_records" '{"type":"CNAME","name":"review.reformingthesoul.com","content":"rts-overview-review.pages.dev","ttl":1,"proxied":true}' >/dev/null 2>&1; then
+                  echo "Rollback: recreated proxied legacy CNAME (TTL automatic)."
+                else echo "::error::Rollback could not recreate the legacy CNAME."; fi
+              elif [[ "$dns_count" == "1" ]] && jq -e '.result[0].type == "CNAME" and .result[0].content == "rts-overview-review.pages.dev" and .result[0].proxied == true and .result[0].ttl == 1' <<<"$dns" >/dev/null; then
+                echo "Rollback: legacy CNAME already restored."
+              else echo "::error::Rollback found unexpected review DNS and did not overwrite it."; fi
+            else echo "::error::Rollback could not inspect review DNS."; fi
 
-          pages_json="$(api_get "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review")"
-          echo "$pages_json" | jq -e '.success == true and .result.name == "rts-overview-review"' >/dev/null
-          pages_domains="$(api_get "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains")"
-          echo "$pages_domains" | jq -e '.success == true and any(.result[]; .name == "review.reformingthesoul.com" and .status == "active")' >/dev/null
-          echo "LEGACY_PAGES_BINDING"
-          echo "$pages_domains" | jq '[.result[] | select(.name == "review.reformingthesoul.com") | {name, status}]'
+            pages="$(api GET "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains" 2>/dev/null)"
+            if [[ $? -eq 0 ]]; then
+              if ! jq -e 'any(.result[]?; .name == "review.reformingthesoul.com")' <<<"$pages" >/dev/null; then
+                if api POST "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains" '{"name":"review.reformingthesoul.com"}' >/dev/null 2>&1; then
+                  echo "Rollback: reattached review.reformingthesoul.com to rts-overview-review."
+                else echo "::error::Rollback could not reattach the legacy Pages domain."; fi
+              else echo "Rollback: legacy Pages domain is already attached."; fi
+            else echo "::error::Rollback could not inspect legacy Pages domains."; fi
+            echo "Rollback sequence ended; review preceding errors if any."
+            exit "$original_status"
+          }
 
-          scripts_json="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/scripts")"
-          echo "$scripts_json" | jq -e '.success == true and any(.result[]; (.id // .name) == "rts-website-review")' >/dev/null
-          review_settings="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/scripts/rts-website-review/settings")"
-          echo "$review_settings" | jq -e '.success == true' >/dev/null
-          echo "REVIEW_WORKER"
-          echo "$scripts_json" | jq '[.result[] | select((.id // .name) == "rts-website-review") | {id, name, modified_on, compatibility_date}]'
-          echo "$review_settings" | jq '{bindings: .result.bindings, compatibility_date: .result.compatibility_date, compatibility_flags: .result.compatibility_flags, usage_model: .result.usage_model}'
+          zone_json="$(api GET "/zones?name=reformingthesoul.com&status=active")"
+          jq -e '.result | length == 1 and .[0].name == "reformingthesoul.com"' <<<"$zone_json" >/dev/null
+          zone_id="$(jq -r '.result[0].id' <<<"$zone_json")"
 
-          worker_domains="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/domains")"
-          echo "$worker_domains" | jq -e '.success == true' >/dev/null
-          echo "$worker_domains" | jq -e 'any(.result[]; .hostname == "reformingthesoul.com" and .service == "rts-website") and any(.result[]; .hostname == "www.reformingthesoul.com" and .service == "rts-website") and all(.result[]; .hostname != "review.reformingthesoul.com")' >/dev/null
-          echo "PRODUCTION_WORKER_BINDINGS"
-          echo "$worker_domains" | jq '[.result[] | select(.hostname == "reformingthesoul.com" or .hostname == "www.reformingthesoul.com") | {hostname, service, environment, zone_name}]'
+          dns_json="$(api GET "/zones/$zone_id/dns_records?name=review.reformingthesoul.com&per_page=100")"
+          jq -e --arg id "bfb24155502643ad1e1a8818993a664d" '(.result | length == 1) and .result[0].id == $id and .result[0].type == "CNAME" and .result[0].name == "review.reformingthesoul.com" and .result[0].content == "rts-overview-review.pages.dev" and .result[0].proxied == true and .result[0].ttl == 1' <<<"$dns_json" >/dev/null || { echo "::error::Review DNS pre-write guard failed; no writes performed."; exit 1; }
 
-          routes_json="$(api_get "/zones/$zone_id/workers/routes")"
-          echo "$routes_json" | jq -e '.success == true' >/dev/null
-          echo "$routes_json" | jq -e 'all(.result[]; ((.pattern // "") | contains("review.reformingthesoul.com")) | not)' >/dev/null
-          echo "REVIEW_WORKER_CUSTOM_DOMAIN_BINDING"
-          echo "Absent; no review custom-domain binding was found."
-          echo "PREFLIGHT"
-          echo "All read-only cutover preconditions passed. No Cloudflare write request was issued."
+          pages_json="$(api GET "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review")"
+          jq -e '.result.name == "rts-overview-review"' <<<"$pages_json" >/dev/null
+          pages_domains="$(api GET "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains")"
+          jq -e 'any(.result[]?; .name == "review.reformingthesoul.com" and .status == "active")' <<<"$pages_domains" >/dev/null || { echo "::error::Legacy Pages binding guard failed; no writes performed."; exit 1; }
+
+          scripts_json="$(api GET "/accounts/$CF_ACCOUNT_ID/workers/scripts")"
+          jq -e 'any(.result[]?; (.id // .name) == "rts-website-review")' <<<"$scripts_json" >/dev/null || { echo "::error::Review Worker guard failed; no writes performed."; exit 1; }
+          api GET "/accounts/$CF_ACCOUNT_ID/workers/scripts/rts-website-review/settings" >/dev/null
+          worker_domains="$(api GET "/accounts/$CF_ACCOUNT_ID/workers/domains")"
+          jq -e 'all(.result[]?; .hostname != "review.reformingthesoul.com") and any(.result[]?; .hostname == "reformingthesoul.com" and .service == "rts-website") and any(.result[]?; .hostname == "www.reformingthesoul.com" and .service == "rts-website")' <<<"$worker_domains" >/dev/null || { echo "::error::Worker domain guard failed; no writes performed."; exit 1; }
+          routes_json="$(api GET "/zones/$zone_id/workers/routes")"
+          jq -e 'all(.result[]?; ((.pattern // "") | contains("review.reformingthesoul.com")) | not)' <<<"$routes_json" >/dev/null || { echo "::error::Review route guard failed; no writes performed."; exit 1; }
+
+          echo "PRE-WRITE GUARDS PASSED"
+          echo "Rollback snapshot:"
+          jq -c '.result[0] | {id,type,name,content,proxied,ttl}' <<<"$dns_json"
+          jq -c '[.result[]? | select(.name == "review.reformingthesoul.com") | {name,status}]' <<<"$pages_domains"
+          jq -c '[.result[]? | select(.hostname == "reformingthesoul.com" or .hostname == "www.reformingthesoul.com") | {hostname,service,environment,zone_name}]' <<<"$worker_domains"
+          echo "Review Worker: rts-website-review; source SHA: eb70296a30182ec67aa8bbe01172cbc63796c89e"
+
+          trap rollback ERR
+          api DELETE "/zones/$zone_id/dns_records/bfb24155502643ad1e1a8818993a664d" >/dev/null
+          echo "Deleted only validated DNS record."
+          api DELETE "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains/review.reformingthesoul.com" >/dev/null
+          echo "Detached review domain from rts-overview-review."
+          payload="$(jq -cn --arg hostname "review.reformingthesoul.com" --arg service "rts-website-review" --arg zone_id "$zone_id" '{hostname:$hostname,service:$service,zone_id:$zone_id}')"
+          attached="$(api PUT "/accounts/$CF_ACCOUNT_ID/workers/domains" "$payload")"
+          echo "Attached Worker Custom Domain:"
+          jq -c '.result | {id,hostname,service,environment,zone_id,zone_name,created_on}' <<<"$attached"
+
+          ready=0
+          for attempt in $(seq 1 24); do
+            worker_domains="$(api GET "/accounts/$CF_ACCOUNT_ID/workers/domains")"
+            if jq -e 'any(.result[]?; .hostname == "review.reformingthesoul.com" and .service == "rts-website-review")' <<<"$worker_domains" >/dev/null; then ready=1; break; fi
+            sleep 5
+          done
+          [[ "$ready" == "1" ]] || { echo "::error::Worker custom-domain binding did not appear."; false; }
+
+          verify_page() {
+            local path="$1" source_path="$2" expected_status="$3" body_file status expected_hash actual_hash
+            body_file="$(mktemp)"
+            status="$(curl --silent --show-error --compressed --max-time 30 --output "$body_file" --write-out '%{http_code}' "https://review.reformingthesoul.com$path")"
+            if [[ "$status" != "$expected_status" ]]; then rm -f "$body_file"; echo "::error::Review $path returned HTTP $status; expected $expected_status."; return 1; fi
+            if [[ "$expected_status" == "200" ]]; then
+              expected_hash="$(sha256sum "$REVIEW_SOURCE/$source_path" | awk '{print $1}')"
+              actual_hash="$(sha256sum "$body_file" | awk '{print $1}')"
+              rm -f "$body_file"
+              [[ "$expected_hash" == "$actual_hash" ]] || { echo "::error::Review $path did not match approved source."; return 1; }
+              echo "HTTPS $path: HTTP 200; exact approved-source content."
+            else rm -f "$body_file"; echo "HTTPS $path: HTTP $status as expected."; fi
+          }
+
+          verify_page "/" "public/index.html" "200"
+          verify_page "/formation/" "public/formation/index.html" "200"
+          verify_page "/awaken/lesson-1/" "public/awaken/lesson-1/index.html" "200"
+          verify_page "/awaken/lesson-2/" "public/awaken/lesson-2/index.html" "200"
+          verify_page "/see-clearly/" "public/see-clearly/index.html" "200"
+          verify_page "/become/" "public/become/index.html" "200"
+          verify_page "/join/" "public/join/index.html" "200"
+          verify_page "/conversations/" "public/conversations/index.html" "200"
+          verify_page "/music/" "public/music/index.html" "200"
+          verify_page "/about/" "public/about/index.html" "200"
+          verify_page "/contact/" "public/contact/index.html" "200"
+          verify_page "/books/" "public/books/index.html" "404"
+          music="$(curl --fail --silent --show-error --compressed --max-time 30 "https://review.reformingthesoul.com/music/")"
+          grep -Eqi 'spotify.com/embed' <<<"$music" || { echo "::error::Spotify embed missing from /music/."; false; }
+          echo "Spotify embed present."
+
+          prod_domains="$(api GET "/accounts/$CF_ACCOUNT_ID/workers/domains")"
+          jq -e 'any(.result[]?; .hostname == "reformingthesoul.com" and .service == "rts-website") and any(.result[]?; .hostname == "www.reformingthesoul.com" and .service == "rts-website")' <<<"$prod_domains" >/dev/null || { echo "::error::Production Worker bindings changed unexpectedly."; false; }
+          for host in reformingthesoul.com www.reformingthesoul.com; do
+            status="$(curl --silent --show-error --compressed --max-time 30 --output /dev/null --write-out '%{http_code}' "https://$host/")"
+            [[ "$status" == "200" ]] || { echo "::error::Production https://$host/ returned HTTP $status."; false; }
+            echo "Production HTTPS https://$host/: HTTP 200; bound to rts-website."
+          done
+
+          trap - ERR
+          echo "CUTOVER VERIFIED. rts-overview-review remains intact for rollback/reference."
