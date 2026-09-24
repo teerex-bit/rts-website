@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
 import { access, readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
@@ -19,17 +20,43 @@ test('all approved public routes exist and Books is outside public output', asyn
   await access(new URL('archive/books/index.html', root));
 });
 
-test('public discovery pages use only Formation, Conversations, and Music in primary navigation', async () => {
+test('public discovery headers expose the five approved destinations and the accessible mobile menu', async () => {
+  const destinations = ['/formation/', '/conversations/', '/music/', '/about/', '/contact/'];
+  const excluded = ['/doorway/', '/books/', '/deep-dive/', '/dashboard/', '/auth/'];
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
     const nav = source.match(/<nav[^>]*aria-label=["']Main navigation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1] ?? '';
-    assert.match(nav, />Formation</);
-    assert.match(nav, />Conversations</);
-    assert.match(nav, />Music</);
-    assert.doesNotMatch(nav, />Books</);
-    assert.doesNotMatch(nav, />Teachings</);
-    assert.doesNotMatch(nav, />Writings</);
-    assert.doesNotMatch(nav, />Spiritual Direction</);
+    const labels = ['Formation', 'Conversations', 'Music', 'About Us', 'Contact'];
+    assert.deepEqual([...nav.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/g)].map(match => [match[1], match[2]]),
+      destinations.map((path, index) => [path, labels[index]]));
+    for (const path of excluded) assert.doesNotMatch(nav, new RegExp(`href=["']${path.replaceAll('/', '\\/')}["']`));
+    assert.match(source, /<button[^>]*class=["']menu["'][^>]*aria-expanded=["']false["'][^>]*aria-controls=["']main-nav["']/);
+    assert.match(source, /<nav id=["']main-nav["']/);
+    assert.match(source, /\/assets\/site\.js/);
+  }
+  const menuScript = await readFile(new URL('public/assets/site.js', root), 'utf8');
+  assert.match(menuScript, /button\.setAttribute\('aria-expanded', String\(open\)\)/);
+  assert.match(menuScript, /event\.key === 'Escape'/);
+  assert.match(menuScript, /button\.focus\(\)/);
+  assert.match(menuScript, /event\.target\.closest\('a'\)/);
+});
+
+test('public header rules show five links on desktop and use the Menu control on mobile', async () => {
+  const stylesheet = new URL('public/assets/css/public-header-navigation.css', root);
+  assert.ok(existsSync(stylesheet), 'shared public header stylesheet exists');
+  const styles = await readFile(stylesheet, 'utf8');
+  assert.match(styles, /\.public-primary-header \.public-primary-nav\s*\{[^}]*display:\s*flex/);
+  assert.match(styles, /\.public-primary-header \.public-primary-nav\s*\{[^}]*flex-wrap:\s*nowrap/);
+  assert.match(styles, /@media\s*\(max-width:\s*650px\)[\s\S]*?\.public-primary-header \.public-primary-nav\s*\{[^}]*display:\s*none/);
+  assert.match(styles, /\.public-primary-header \.public-primary-nav\.open\s*\{[^}]*display:\s*flex/);
+  assert.match(styles, /@media\s*\(max-width:\s*650px\)[\s\S]*?\.public-primary-header \.menu\s*\{[^}]*display:\s*inline-flex/);
+});
+
+test('curriculum Tree of Life logo links provide a route back to the public home', async () => {
+  for (const route of ['/formation/', '/awaken/lesson-1/', '/awaken/lesson-2/', '/see-clearly/', '/become/', '/join/']) {
+    const source = await page(route);
+    assert.match(source, /<a[^>]*href=["']\/["'][^>]*>[\s\S]{0,240}rts-tree-wordmark\.png/,
+      `${route} keeps Tree of Life branding linked to public home`);
   }
 });
 
