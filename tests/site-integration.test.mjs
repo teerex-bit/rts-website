@@ -9,13 +9,13 @@ async function html(route) {
 }
 
 test('new RTS public routes are present', async () => {
-  const routes = ['/', '/formation/', '/doorway/', '/conversations/', '/books/', '/music/'];
+  const routes = ['/', '/formation/', '/doorway/', '/conversations/', '/music/', '/about/', '/contact/'];
   await Promise.all(routes.map(route => access(new URL(`public${route}index.html`, root))));
 });
 
 test('public landing page links the primary navigation', async () => {
   const page = await html('/');
-  for (const route of ['/formation/', '/conversations/', '/books/', '/music/']) {
+  for (const route of ['/formation/', '/conversations/', '/music/']) {
     assert.match(page, new RegExp(`href=["']${route.replaceAll('/', '\\/')}["']`));
   }
 });
@@ -26,7 +26,7 @@ test('Formation hands the visitor to the Doorway', async () => {
 
 
 test('public discovery pages send visitors through the Formation introduction', async () => {
-  const publicRoutes = ['/', '/conversations/', '/books/', '/music/'];
+  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/'];
   const journeyBypasses = /href=["']\/(?:doorway|awaken|see-clearly|become|join)(?:\/|["'])/g;
 
   for (const route of publicRoutes) {
@@ -40,10 +40,8 @@ test('public discovery pages send visitors through the Formation introduction', 
   }
 });
 
-test('Books and Music use the primary navigation without a duplicate Formation button', async () => {
-  for (const route of ['/books/', '/music/']) {
-    assert.doesNotMatch(await html(route), /class=["']rts-36-40__start["']/);
-  }
+test('Music uses the primary navigation without a duplicate Formation button', async () => {
+  assert.doesNotMatch(await html('/music/'), /class=["']rts-36-40__start["']/);
 });
 
 test('Music quote and library have explicit readable spacing', async () => {
@@ -62,11 +60,9 @@ test('Doorway contains all four approved movements', async () => {
   assert.match(page, /href=["']\/join\/useful\/["']/);
 });
 
-test('review page exposes every public page and the formation journey', async () => {
-  const page = await html('/review/');
-  for (const route of ['/', '/formation/', '/doorway/', '/conversations/', '/books/', '/music/', '/join/useful/']) {
-    assert.match(page, new RegExp(`data-url=["']${route.replaceAll('/', '\\/')}["']`));
-  }
+test('review hub and Books are excluded from public output', async () => {
+  await assert.rejects(access(new URL('public/review/index.html', root)));
+  await assert.rejects(access(new URL('public/books/index.html', root)));
 });
 
 test('all local href and asset targets resolve', async () => {

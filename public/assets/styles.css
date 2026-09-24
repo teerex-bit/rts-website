@@ -1354,3 +1354,7 @@
 .rts-36-40__song-library{height:auto;padding:22px 4% 28px}
 .rts-36-40__song-columns{row-gap:14px}
 @media(max-width:900px){.rts-36-40--p39 .rts-36-40__editorial-header,.rts-36-40--p40 .rts-36-40__editorial-header{grid-template-columns:1fr}.rts-36-40--p39 .rts-36-40__editorial-header nav,.rts-36-40--p40 .rts-36-40__editorial-header nav{justify-self:stretch}}
+
+/* Shared public footer used by the recovered public discovery pages. */
+.public-footer{display:grid;grid-template-columns:240px 1fr auto;align-items:center;gap:30px;padding:34px clamp(28px,4vw,66px);color:#fff;background:#061a2e;font-family:Arial,Helvetica,sans-serif}.public-footer img{display:block;width:205px;filter:brightness(0) invert(1)}.public-footer p,.public-footer small{margin:0}.public-footer nav{display:flex;gap:22px}.public-footer nav a{color:#fff;text-decoration:underline;text-underline-offset:4px}.public-footer small{grid-column:1/-1;color:#b8c1c9}
+@media(max-width:900px){.public-footer{grid-template-columns:1fr;text-align:center}.public-footer img{margin:auto}.public-footer nav{justify-content:center;flex-wrap:wrap}.public-footer small{grid-column:auto}}

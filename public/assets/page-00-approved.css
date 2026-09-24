@@ -60,3 +60,12 @@
   .page00-closing h2{font-size:1.7rem}
   .page00-closing>p{font-size:.85rem}
 }
+
+/* Final public-site recovery: three primary resources, balanced journey, and shared footer. */
+.page00-header{grid-template-columns:270px 1fr}
+.page00-steps{grid-template-columns:1fr 40px 1fr 40px 1fr 40px 1fr}
+.page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.page00-closing{grid-template-columns:1.35fr 1fr .85fr}
+.public-footer{display:grid;grid-template-columns:240px 1fr auto;align-items:center;gap:30px;padding:34px clamp(28px,4vw,66px);color:#fff;background:#061a2e}.public-footer img{display:block;width:205px;filter:brightness(0) invert(1)}.public-footer p,.public-footer small{margin:0}.public-footer nav{display:flex;gap:22px}.public-footer nav a{text-decoration:underline;text-underline-offset:4px}.public-footer small{grid-column:1/-1;color:#b8c1c9}
+@media(max-width:1100px){.page00-header{grid-template-columns:230px 1fr}.page00-steps{grid-template-columns:repeat(4,1fr)}.page00-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.page00-closing{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.page00-header{grid-template-columns:1fr auto}.page00-steps{grid-template-columns:1fr 1fr}.page00-resource-grid{grid-template-columns:1fr}.public-footer{grid-template-columns:1fr;text-align:center}.public-footer img{margin:auto}.public-footer nav{justify-content:center;flex-wrap:wrap}.public-footer small{grid-column:auto}}
