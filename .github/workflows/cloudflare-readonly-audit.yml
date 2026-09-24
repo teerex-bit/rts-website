@@ -233,4 +233,5 @@ jobs:
           git add audit-results/REPORT.md audit-results/cloudflare-filtered.json
           git diff --cached --quiet && exit 0
           git commit -m "chore: record temporary Cloudflare read-only audit"
+          git pull --rebase origin audit/cloudflare-readonly-2026-09-24
           git push origin HEAD:audit/cloudflare-readonly-2026-09-24
