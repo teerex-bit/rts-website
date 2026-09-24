@@ -1,38 +1,51 @@
 .public-primary-header {
   position: relative;
   z-index: 20;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+}
+
+.public-primary-header__inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(14px, 2vw, 28px);
-  min-height: 104px;
-  height: auto;
-  padding: 8px clamp(24px, 4vw, 64px);
+  gap: clamp(28px, 5vw, 72px);
+  width: min(calc(100% - 48px), 1200px);
+  min-height: 80px;
+  margin-inline: auto;
 }
 
-.public-primary-header > a:first-child {
+.public-primary-header__inner > a.public-primary-header__brand {
+  display: block;
   flex: 0 0 auto;
-  min-width: 0;
   width: auto;
   height: auto;
+  min-width: 0;
+  line-height: 0;
+  text-decoration: none;
 }
 
-.public-primary-header > a:first-child img {
+.public-primary-header .public-primary-header__inner .public-primary-header__brand img {
   display: block;
-  width: min(280px, 26vw);
+  width: 200px;
   max-width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 .public-primary-header .public-primary-nav {
   position: static;
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(14px, 1.5vw, 24px);
+  gap: clamp(18px, 2vw, 26px);
   min-width: 0;
-  margin: 0 0 0 auto;
+  margin: 0;
   padding: 0;
   overflow: visible;
   flex-wrap: nowrap;
@@ -40,30 +53,36 @@
 }
 
 .public-primary-header .public-primary-nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 8px 0;
+  min-height: 42px;
+  padding: 7px 0 6px;
   border: 0;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
   white-space: nowrap;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: .06em;
 }
 
 .public-primary-header .public-primary-nav a.is-active {
   border-bottom-color: currentColor;
 }
 
+.public-primary-header .public-primary-nav a.is-active::before,
+.public-primary-header .public-primary-nav a.is-active::after {
+  content: none;
+}
+
 .public-primary-header .menu {
   display: none;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 42px;
   padding: 9px 14px;
   color: #fff;
   background: #08283f;
@@ -81,62 +100,35 @@
   outline-offset: 3px;
 }
 
-@media (min-width: 741px) and (max-width: 900px) {
-  .public-primary-header {
-    gap: 12px;
-    min-height: 88px;
-    padding: 8px 24px;
-  }
-
-  .public-primary-header > a:first-child img {
-    width: min(220px, 29vw);
-  }
-
-  .public-primary-header .public-primary-nav {
-    gap: clamp(8px, 1.1vw, 10px);
-  }
-
-  .public-primary-header .public-primary-nav a {
-    font-size: 15px;
-    letter-spacing: .02em;
-  }
-}
-
-@media (max-width: 740px) {
-  .public-primary-header,
-  .page00 .public-primary-header,
-  .rts-36-40--p39 .public-primary-header {
+@media (max-width: 840px) {
+  .public-primary-header__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
-    min-height: 84px;
-    padding: 8px 18px;
+    width: calc(100% - 32px);
+    min-height: 76px;
   }
 
-  .public-primary-header > a:first-child img {
-    width: min(224px, 58vw);
+  .public-primary-header .public-primary-header__inner .public-primary-header__brand img {
+    width: min(200px, 56vw);
   }
 
   .public-primary-header .menu {
     display: inline-flex;
   }
 
-  .public-primary-header .public-primary-nav,
-  .page00 .public-primary-header .public-primary-nav,
-  .rts-36-40--p39 .public-primary-header .public-primary-nav {
+  .public-primary-header .public-primary-nav {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 40;
     display: none;
-    grid-column: auto;
-    order: initial;
     align-items: stretch;
     justify-content: flex-start;
     gap: 0;
     margin: 0;
-    padding: 8px 22px 16px;
+    padding: 8px 20px 14px;
     overflow: visible;
     flex-direction: column;
     background: #fffdf8;

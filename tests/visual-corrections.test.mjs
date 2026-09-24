@@ -123,33 +123,38 @@ test('site-controlled Music content spells the name exactly AIluminate', () => {
   assert.match(description, /AIluminate/);
 });
 
-test('shared public header balances the circle-flame logo and readable navigation responsively', () => {
+test('shared public header groups the circle-flame logo and navigation responsively', () => {
   const styles = rules(css('public/assets/css/public-header-navigation.css'));
   const headerSelector = '.public-primary-header';
-  const brandSelector = '.public-primary-header > a:first-child';
-  const logoSelector = '.public-primary-header > a:first-child img';
+  const innerSelector = '.public-primary-header__inner';
+  const brandSelector = '.public-primary-header__inner > a.public-primary-header__brand';
+  const logoSelector = '.public-primary-header .public-primary-header__inner .public-primary-header__brand img';
   const navSelector = '.public-primary-header .public-primary-nav';
   const linkSelector = '.public-primary-header .public-primary-nav a';
   const menuSelector = '.public-primary-header .menu';
 
-  for (const [width, logoWidth, navFontSize, navDisplay, menuDisplay] of [
-    [1536, 'min(280px, 26vw)', 'clamp(1rem, 1.1vw, 1.125rem)', 'flex', 'none'],
-    [1363, 'min(280px, 26vw)', 'clamp(1rem, 1.1vw, 1.125rem)', 'flex', 'none'],
-    [768, 'min(220px, 29vw)', '15px', 'flex', 'none'],
-    [375, 'min(224px, 58vw)', '1rem', 'none', 'inline-flex']
+  for (const [width, logoWidth, navFontSize, navDisplay, menuDisplay, innerHeight] of [
+    [1536, '200px', '14px', 'flex', 'none', '80px'],
+    [1363, '200px', '14px', 'flex', 'none', '80px'],
+    [768, 'min(200px, 56vw)', '1rem', 'none', 'inline-flex', '76px'],
+    [375, 'min(200px, 56vw)', '1rem', 'none', 'inline-flex', '76px']
   ]) {
     const header = styleAt(styles, headerSelector, width);
+    const inner = styleAt(styles, innerSelector, width);
     const brand = styleAt(styles, brandSelector, width);
     const logo = styleAt(styles, logoSelector, width);
     const nav = styleAt(styles, navSelector, width);
     const link = styleAt(styles, linkSelector, width);
     const menu = styleAt(styles, menuSelector, width);
 
-    assert.equal(header['align-items'], 'center');
+    assert.equal(header.display, 'block');
+    assert.equal(inner['align-items'], 'center');
+    assert.equal(inner.width, width > 840 ? 'min(calc(100% - 48px), 1200px)' : 'calc(100% - 32px)');
+    assert.equal(inner['min-height'], innerHeight);
     assert.equal(brand.width, 'auto');
     assert.equal(brand.height, 'auto');
     assert.equal(logo.width, logoWidth);
-    assert.equal(logo['height'], 'auto');
+    assert.equal(logo.height, 'auto');
     assert.equal(nav.display, navDisplay);
     assert.equal(link['font-size'], navFontSize);
     assert.equal(link['text-transform'], 'uppercase');
@@ -157,8 +162,16 @@ test('shared public header balances the circle-flame logo and readable navigatio
     assert.equal(menu.display, menuDisplay);
     assert.equal(styleAt(styles, `${linkSelector}.is-active`, width)['border-bottom-color'], 'currentColor');
   }
-  assert.equal(styleAt(styles, navSelector, 768).gap, 'clamp(8px, 1.1vw, 10px)');
-  assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(14px, 1.5vw, 24px)');
+  assert.equal(styleAt(styles, innerSelector, 1363).gap, 'clamp(28px, 5vw, 72px)');
+  assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(18px, 2vw, 26px)');
+});
+
+test('AIluminate hero uses an existing editorial font and tight word-specific tracking', () => {
+  const styles = rules(css('public/assets/css/music-branding.css'));
+  const title = styleAt(styles, '.rts-36-40--p39 .rts-36-40__music-copy h1', 1536);
+  assert.equal(title['font-family'], '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif');
+  assert.equal(title['letter-spacing'], '-.045em');
+  assert.equal(read('public/music/index.html').match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
 });
 
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
