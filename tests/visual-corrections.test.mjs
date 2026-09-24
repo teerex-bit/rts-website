@@ -126,6 +126,7 @@ test('site-controlled Music content spells the name exactly AIluminate', () => {
 test('shared public header balances the circle-flame logo and readable navigation responsively', () => {
   const styles = rules(css('public/assets/css/public-header-navigation.css'));
   const headerSelector = '.public-primary-header';
+  const brandSelector = '.public-primary-header > a:first-child';
   const logoSelector = '.public-primary-header > a:first-child img';
   const navSelector = '.public-primary-header .public-primary-nav';
   const linkSelector = '.public-primary-header .public-primary-nav a';
@@ -138,12 +139,15 @@ test('shared public header balances the circle-flame logo and readable navigatio
     [375, 'min(224px, 58vw)', '1rem', 'none', 'inline-flex']
   ]) {
     const header = styleAt(styles, headerSelector, width);
+    const brand = styleAt(styles, brandSelector, width);
     const logo = styleAt(styles, logoSelector, width);
     const nav = styleAt(styles, navSelector, width);
     const link = styleAt(styles, linkSelector, width);
     const menu = styleAt(styles, menuSelector, width);
 
     assert.equal(header['align-items'], 'center');
+    assert.equal(brand.width, 'auto');
+    assert.equal(brand.height, 'auto');
     assert.equal(logo.width, logoWidth);
     assert.equal(logo['height'], 'auto');
     assert.equal(nav.display, navDisplay);
