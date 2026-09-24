@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-09-24T15:23:19.313246+00:00",
+  "relevant_dns": {
+    "errors": [
+      {
+        "message": "Zone not found"
+      }
+    ],
+    "ok": false,
+    "result": []
+  },
+  "relevant_pages_projects": {
+    "errors": [
+      {
+        "code": 10000,
+        "message": "Authentication error"
+      }
+    ],
+    "ok": false,
+    "result": []
+  },
+  "relevant_worker_custom_domains": {
+    "errors": [
+      {
+        "code": 10000,
+        "message": "Authentication error"
+      }
+    ],
+    "ok": false,
+    "result": []
+  },
+  "relevant_worker_routes": {
+    "errors": [
+      {
+        "message": "Zone not found"
+      }
+    ],
+    "ok": false,
+    "result": []
+  },
+  "relevant_workers": {
+    "errors": [
+      {
+        "code": 10000,
+        "message": "Authentication error"
+      }
+    ],
+    "ok": false,
+    "result": []
+  },
+  "token_verify": {
+    "errors": [],
+    "ok": true,
+    "result": {
+      "expires_on": "2026-09-25T23:59:59Z",
+      "id": "eb19f69fda97f3e822ad5935f1fc8852",
+      "not_before": "2026-09-25T00:00:00Z",
+      "status": "active"
+    }
+  },
+  "zone_lookup": {
+    "errors": [
+      {
+        "code": 9109,
+        "message": "Invalid access token"
+      }
+    ],
+    "ok": false,
+    "result": null
+  },
+  "zone_name": "reformingthesoul.com"
+}
