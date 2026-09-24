@@ -20,8 +20,8 @@ test('public landing page links the primary navigation', async () => {
   }
 });
 
-test('Formation hands the visitor to the Doorway', async () => {
-  assert.match(await html('/formation/'), /href=["']\/doorway\/["']/);
+test('Formation sends the visitor directly to Pay Attention', async () => {
+  assert.match(await html('/formation/'), /href=["']\/awaken\/lesson-1\/["']/);
 });
 
 
