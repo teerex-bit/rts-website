@@ -1,0 +1,92 @@
+name: RTS review hostname cutover preflight
+
+on:
+  push:
+    branches:
+      - ops/review-hostname-cutover-2026-09-24
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rts-review-hostname-cutover-preflight
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out operations branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Verify isolated operations branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected='refs/heads/ops/review-hostname-cutover-2026-09-24'
+          if [[ "$GITHUB_REF" != "$expected" ]]; then
+            echo "::error::Ref guard failed; no Cloudflare credentials were accessed."
+            exit 1
+          fi
+          echo "Branch guard passed: $GITHUB_REF"
+
+      - name: Read and validate Cloudflare state (GET only)
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_WEBSITE_CUTOVER_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CF_ACCOUNT_ID" || { echo "::error::CLOUDFLARE_ACCOUNT_ID is missing"; exit 1; }
+          test -n "$CF_API_TOKEN" || { echo "::error::CLOUDFLARE_WEBSITE_CUTOVER_TOKEN is missing"; exit 1; }
+
+          api_get() {
+            curl --fail-with-body --silent --show-error \
+              --request GET \
+              --header "Authorization: Bearer $CF_API_TOKEN" \
+              --header "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4$1"
+          }
+
+          zone_json="$(api_get "/zones?name=reformingthesoul.com&status=active")"
+          echo "$zone_json" | jq -e '.success == true and (.result | length == 1)' >/dev/null
+          zone_id="$(echo "$zone_json" | jq -r '.result[0].id')"
+
+          dns_json="$(api_get "/zones/$zone_id/dns_records?name=review.reformingthesoul.com&per_page=100")"
+          echo "$dns_json" | jq -e '.success == true' >/dev/null
+          dns_matches="$(echo "$dns_json" | jq '[.result[] | select(.name == "review.reformingthesoul.com")]')"
+          echo "$dns_matches" | jq -e 'length == 1 and .[0].type == "CNAME" and .[0].content == "rts-overview-review.pages.dev" and .[0].proxied == true and .[0].ttl == 1' >/dev/null
+          echo "REVIEW_DNS_ROLLBACK"
+          echo "$dns_matches" | jq '.[0] | {id, type, name, content, proxied, ttl}'
+
+          pages_json="$(api_get "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review")"
+          echo "$pages_json" | jq -e '.success == true and .result.name == "rts-overview-review"' >/dev/null
+          pages_domains="$(api_get "/accounts/$CF_ACCOUNT_ID/pages/projects/rts-overview-review/domains")"
+          echo "$pages_domains" | jq -e '.success == true and any(.result[]; .name == "review.reformingthesoul.com" and .status == "active")' >/dev/null
+          echo "LEGACY_PAGES_BINDING"
+          echo "$pages_domains" | jq '[.result[] | select(.name == "review.reformingthesoul.com") | {name, status}]'
+
+          scripts_json="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/scripts")"
+          echo "$scripts_json" | jq -e '.success == true and any(.result[]; (.id // .name) == "rts-website-review")' >/dev/null
+          review_settings="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/scripts/rts-website-review/settings")"
+          echo "$review_settings" | jq -e '.success == true' >/dev/null
+          echo "REVIEW_WORKER"
+          echo "$scripts_json" | jq '[.result[] | select((.id // .name) == "rts-website-review") | {id, name, modified_on, compatibility_date}]'
+          echo "$review_settings" | jq '{bindings: .result.bindings, compatibility_date: .result.compatibility_date, compatibility_flags: .result.compatibility_flags, usage_model: .result.usage_model}'
+
+          worker_domains="$(api_get "/accounts/$CF_ACCOUNT_ID/workers/domains")"
+          echo "$worker_domains" | jq -e '.success == true' >/dev/null
+          echo "$worker_domains" | jq -e 'any(.result[]; .hostname == "reformingthesoul.com" and .service == "rts-website") and any(.result[]; .hostname == "www.reformingthesoul.com" and .service == "rts-website") and all(.result[]; .hostname != "review.reformingthesoul.com")' >/dev/null
+          echo "PRODUCTION_WORKER_BINDINGS"
+          echo "$worker_domains" | jq '[.result[] | select(.hostname == "reformingthesoul.com" or .hostname == "www.reformingthesoul.com") | {hostname, service, environment, zone_name}]'
+
+          routes_json="$(api_get "/zones/$zone_id/workers/routes")"
+          echo "$routes_json" | jq -e '.success == true' >/dev/null
+          echo "$routes_json" | jq -e 'all(.result[]; ((.pattern // "") | contains("review.reformingthesoul.com")) | not)' >/dev/null
+          echo "REVIEW_WORKER_CUSTOM_DOMAIN_BINDING"
+          echo "Absent; no review custom-domain binding was found."
+          echo "PREFLIGHT"
+          echo "All read-only cutover preconditions passed. No Cloudflare write request was issued."
