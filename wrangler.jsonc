@@ -3,6 +3,7 @@
   "compatibility_date": "2026-08-30",
   "assets": { "directory": "./public" },
   "routes": [
-    { "pattern": "reformingthesoul.com", "custom_domain": true }
+    { "pattern": "reformingthesoul.com", "custom_domain": true },
+    { "pattern": "www.reformingthesoul.com", "custom_domain": true }
   ]
 }
