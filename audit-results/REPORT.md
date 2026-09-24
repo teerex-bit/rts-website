@@ -1,6 +1,6 @@
 # Cloudflare Read-only Audit (Filtered)
 
-Generated: `2026-09-24T15:36:49.464337+00:00`
+Generated: `2026-09-24T15:38:13.012160+00:00`
 Zone: `reformingthesoul.com`
 
 This report contains only website-relevant metadata. No Cloudflare resource was modified.
@@ -479,10 +479,65 @@ API success: **True**
 
 ## Relevant Pages projects
 
-API success: **False**
+API success: **True**
 
 ```json
-[]
+[
+  {
+    "created_on": "2026-09-19T19:44:16.174325Z",
+    "custom_domains": [
+      {
+        "name": "review.reformingthesoul.com",
+        "status": "active",
+        "validation_data": {
+          "method": "http",
+          "status": "active"
+        },
+        "verification_data": {
+          "status": "active"
+        }
+      }
+    ],
+    "domains": [
+      "rts-overview-review.pages.dev",
+      "review.reformingthesoul.com"
+    ],
+    "latest_deployment": {
+      "created_on": "2026-09-20T23:21:13.301333Z",
+      "environment": "production",
+      "id": "a6677e30-599b-411f-a1a9-413336fe7900",
+      "latest_stage": {
+        "ended_on": "2026-09-20T23:21:26.88105Z",
+        "name": "deploy",
+        "started_on": "2026-09-20T23:21:19.663515Z",
+        "status": "success"
+      },
+      "modified_on": "2026-09-20T23:21:26.88105Z",
+      "source": {
+        "config": {
+          "owner": "teerex-bit",
+          "pr_comments_enabled": false,
+          "production_branch": "overview-review",
+          "repo_name": "reforming-the-soul"
+        },
+        "type": "github"
+      },
+      "url": "https://a6677e30.rts-overview-review.pages.dev"
+    },
+    "name": "rts-overview-review",
+    "production_branch": "overview-review",
+    "source": {
+      "config": {
+        "deployments_enabled": true,
+        "owner": "teerex-bit",
+        "pr_comments_enabled": true,
+        "preview_deployment_setting": "none",
+        "production_branch": "overview-review",
+        "repo_name": "reforming-the-soul"
+      },
+      "type": "github"
+    },
+    "subdomain": "rts-overview-review.pages.dev"
+  }
+]
 ```
-
-Errors: `Invalid list options provided. Review the `page` or `per_page` parameter.`
