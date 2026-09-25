@@ -31,7 +31,7 @@
 
 .public-primary-header .public-primary-header__inner .public-primary-header__brand img {
   display: block;
-  width: 200px;
+  width: 224px;
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -124,7 +124,7 @@
   }
 
   .public-primary-header .public-primary-header__inner .public-primary-header__brand img {
-    width: min(200px, 56vw);
+    width: min(224px, 56vw);
   }
 
   .public-primary-header .menu {

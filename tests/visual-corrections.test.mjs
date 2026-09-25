@@ -108,6 +108,31 @@ test('Music keeps the approved AIluminate hero and uses Spotify as its only musi
   }
 });
 
+test('Music makes the playlist a full-width warm section that transitions into the navy close', () => {
+  const styles = rules(css('public/assets/css/music-branding.css'));
+  const section = styleAt(styles, '.music-spotify', 1536);
+  const heading = styleAt(styles, '.music-spotify h2', 1536);
+  assert.equal(section.width, '100%');
+  assert.match(section.background, /linear-gradient\(180deg,#071b2b 0%,#68391c 18%,#68391c 78%,#071b2b 100%\)/);
+  assert.equal(heading.color, '#fff7e9');
+  assert.equal(styleAt(styles, '.music-spotify', 375).width, '100%');
+});
+
+test('Music uses the approved high-contrast logo at native size and gives the footer a clear hierarchy', () => {
+  const html = read('public/music/index.html');
+  const headerCss = css('public/assets/css/public-header-navigation.css');
+  const footerCss = css('public/assets/css/public-footer-branding.css');
+  const headerLogo = html.match(/<header[\s\S]*?public-primary-header__brand[\s\S]*?<img src="([^"]+)"/)?.[1] ?? '';
+  const footerLogo = html.match(/class="public-footer__brand"[\s\S]*?<img src="([^"]+)"/)?.[1] ?? '';
+
+  assert.equal(headerLogo, '/assets/brand-main-footer.png');
+  assert.equal(footerLogo, headerLogo, 'dark header and footer share the approved white-and-gold mark');
+  assert.match(headerCss, /\.public-primary-header \.public-primary-header__inner \.public-primary-header__brand img\s*\{[^}]*width:\s*224px/);
+  assert.match(footerCss, /\.public-footer img\s*\{[^}]*width:\s*224px[^}]*filter:\s*none/);
+  assert.match(footerCss, /grid-template-areas:\s*"brand nav"\s*"tagline nav"\s*"copyright copyright"/);
+  assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*15px/);
+});
+
 test('site-controlled Music content spells the name exactly AIluminate', () => {
   const html = read('public/music/index.html');
   const visibleText = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
@@ -134,10 +159,10 @@ test('shared public header groups the circle-flame logo and navigation responsiv
   const menuSelector = '.public-primary-header .menu';
 
   for (const [width, logoWidth, navFontSize, navDisplay, menuDisplay, innerHeight] of [
-    [1536, '200px', '14px', 'flex', 'none', '80px'],
-    [1363, '200px', '14px', 'flex', 'none', '80px'],
-    [768, 'min(200px, 56vw)', '1rem', 'none', 'inline-flex', '76px'],
-    [375, 'min(200px, 56vw)', '1rem', 'none', 'inline-flex', '76px']
+    [1536, '224px', '14px', 'flex', 'none', '80px'],
+    [1363, '224px', '14px', 'flex', 'none', '80px'],
+    [768, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '76px'],
+    [375, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '76px']
   ]) {
     const header = styleAt(styles, headerSelector, width);
     const inner = styleAt(styles, innerSelector, width);

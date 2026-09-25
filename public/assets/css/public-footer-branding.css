@@ -1,2 +1,11 @@
-/* Preserve the approved gold flame when adapting the public mark for navy footers. */
+/* Keep the public footer grouped, legible, and balanced around the approved mark. */
+.public-footer{display:grid;grid-template-columns:minmax(224px,280px) minmax(0,1fr);grid-template-areas:"brand nav" "tagline nav" "copyright copyright";align-items:center;column-gap:clamp(32px,7vw,104px);row-gap:9px;padding:38px clamp(32px,6vw,88px) 24px;color:#fff;background:#061a2e}
+.public-footer__brand{grid-area:brand;display:block;width:max-content;line-height:0}
 .public-footer__brand img{filter:none}
+.public-footer img{display:block;width:224px;max-width:100%;height:auto;filter:none}
+.public-footer p{grid-area:tagline;max-width:340px;margin:0;color:#dce3e9;font-size:15px;line-height:1.55}
+.public-footer nav{grid-area:nav;display:flex;justify-content:flex-end;align-content:center;flex-wrap:wrap;gap:16px clamp(18px,2.2vw,32px)}
+.public-footer nav a{color:#fff;font-size:15px;line-height:1.4;text-underline-offset:5px}
+.public-footer small{grid-area:copyright;width:100%;margin:0;padding-top:17px;border-top:1px solid rgb(255 255 255 / 18%);color:#b8c1c9;font-size:12px;letter-spacing:.02em}
+@media(max-width:900px){.public-footer{grid-template-columns:1fr;grid-template-areas:"brand" "tagline" "nav" "copyright";justify-items:center;row-gap:13px;padding:32px 28px 22px;text-align:center}.public-footer__brand{justify-self:center}.public-footer p{max-width:420px}.public-footer nav{justify-content:center;gap:14px 24px}.public-footer small{grid-column:auto}}
+@media(max-width:600px){.public-footer{row-gap:12px;padding:28px 22px 20px}.public-footer img{width:min(224px,70vw)}.public-footer p{font-size:14px}.public-footer nav{gap:12px 20px}.public-footer nav a{font-size:14px}.public-footer small{padding-top:14px}}
