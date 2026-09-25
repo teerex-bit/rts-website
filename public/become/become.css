@@ -97,3 +97,24 @@
 /* Readable wayfinding, scoped to this journey page (not the shared doorway). */
 body .context-nav{font-size:12px}
 body .context-nav a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Keep the approved subject inside the blended hero composition. */
+.hero--become-intro__image{object-position:68% center}
+.hero--become-intro__veil{background:linear-gradient(90deg,rgba(4,26,42,.98) 0%,rgba(4,26,42,.88) 26%,rgba(4,26,42,.68) 44%,rgba(4,26,42,.36) 62%,rgba(4,26,42,.12) 80%,rgba(4,26,42,.02) 94%,transparent 100%)}
+.hero--live .eyebrow{margin-bottom:24px;line-height:1.4}
+.hero--live{grid-template-columns:minmax(0,1.3fr) minmax(320px,.7fr);gap:clamp(32px,5vw,76px)}
+.hero--live .headline--living{margin:0 0 36px;font-size:clamp(3.2rem,4.8vw,5.2rem)!important;line-height:1.1!important}
+@media(max-width:1080px){.hero--live{grid-template-columns:1fr;gap:36px}.hero--live .headline--living{font-size:clamp(3rem,5vw,4rem)!important;line-height:1.1!important}}
+@media(min-width:681px) and (max-width:900px){
+  .hero--become-intro__content{width:78%;padding-left:clamp(24px,5vw,45px);padding-right:clamp(24px,5vw,45px)}
+  .hero--become-intro h1{font-size:clamp(3.5rem,6.2vw,4.5rem)}
+  .hero--become-intro__image{object-position:78% center}
+  .hero--become-intro__veil{background:linear-gradient(90deg,rgba(4,26,42,.98) 0%,rgba(4,26,42,.9) 24%,rgba(4,26,42,.72) 42%,rgba(4,26,42,.42) 60%,rgba(4,26,42,.14) 80%,rgba(4,26,42,.02) 100%)}
+}
+@media(max-width:680px){
+  .hero--live .headline--living{margin-bottom:26px;font-size:clamp(2.8rem,9vw,3.4rem)!important;line-height:1.06!important}
+}
+@media(max-width:680px){
+  .hero--become-intro__image{object-position:66% center}
+  .hero--become-intro__veil{background:linear-gradient(180deg,rgba(4,26,42,.42) 0%,rgba(4,26,42,.62) 42%,rgba(4,26,42,.86) 76%,rgba(4,26,42,.92) 100%)}
+}
