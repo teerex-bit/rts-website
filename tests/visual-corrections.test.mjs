@@ -128,8 +128,8 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.equal(headerLogo, '/assets/brand-main-footer.png');
   assert.equal(footerLogo, headerLogo, 'dark header and footer share the approved white-and-gold mark');
   assert.match(headerCss, /\.public-primary-header \.public-primary-header__inner \.public-primary-header__brand img\s*\{[^}]*width:\s*224px/);
-  assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*224px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
-  assert.match(footerCss, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
+  assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*190px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
+  assert.match(footerCss, /\.public-footer__inner\{[^}]*grid-template-columns:\s*minmax\(0,1fr\) auto/);
   assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*16px/);
   assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing h2 \.music-name\{display:inline;font:inherit;white-space:nowrap\}/,
     'AIluminate stays inline and inherits the closing sentence typography');
@@ -149,8 +149,8 @@ test('Music closing statement and footer are grouped as a deliberate centered co
   assert.doesNotMatch(footerBlock, /Creating safe places for leaders to be honest and whole\.|© 2026 Reforming the Soul|<p\b|<small\b/);
   assert.match(footerBlock, /<nav[\s\S]*?About Us[\s\S]*?Contact[\s\S]*?Conversations[\s\S]*?Music/);
   assert.match(footer, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
-  assert.match(footer, /\.public-footer\s*\{[^}]*grid-template-columns:minmax\(0,1fr\) auto[^}]*align-items:center/);
-  assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*224px/);
+  assert.match(footer, /\.public-footer__inner\s*\{[^}]*grid-template-columns:minmax\(0,1fr\) auto[^}]*align-items:center/);
+  assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*190px/);
 });
 
 test('site-controlled Music content spells the name exactly AIluminate', () => {
