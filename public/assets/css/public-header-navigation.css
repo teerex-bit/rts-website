@@ -52,6 +52,20 @@
   box-shadow: none;
 }
 
+
+/* H2 composition: three primary destinations, then quieter About/Contact links. */
+.public-primary-header .public-primary-nav__core,
+.public-primary-header .public-primary-nav__utility {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 1.8vw, 24px);
+}
+
+.public-primary-header .public-primary-nav__utility {
+  padding-left: clamp(18px, 1.8vw, 24px);
+  border-left: 1px solid rgb(8 40 63 / 24%);
+}
+
 .public-primary-header .public-primary-nav a {
   position: relative;
   display: inline-flex;
@@ -138,6 +152,25 @@
 
   .public-primary-header .public-primary-nav.open {
     display: flex;
+  }
+
+  .public-primary-header .public-primary-nav__core,
+  .public-primary-header .public-primary-nav__utility {
+    align-items: stretch;
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .public-primary-header .public-primary-nav__utility {
+    margin-top: 6px;
+    padding: 8px 0 0;
+    border-top: 1px solid rgb(8 40 63 / 18%);
+    border-left: 0;
+  }
+
+  .public-primary-header .public-primary-nav__core a:last-child,
+  .public-primary-header .public-primary-nav__utility a:last-child {
+    border-bottom: 0;
   }
 
   .public-primary-header .public-primary-nav a {

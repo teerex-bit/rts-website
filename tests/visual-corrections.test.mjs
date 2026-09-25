@@ -166,12 +166,38 @@ test('shared public header groups the circle-flame logo and navigation responsiv
   assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(18px, 2vw, 26px)');
 });
 
-test('AIluminate hero uses an existing editorial font and tight word-specific tracking', () => {
-  const styles = rules(css('public/assets/css/music-branding.css'));
-  const title = styleAt(styles, '.rts-36-40--p39 .rts-36-40__music-copy h1', 1536);
-  assert.equal(title['font-family'], '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif');
-  assert.equal(title['letter-spacing'], '-.045em');
-  assert.equal(read('public/music/index.html').match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
+test('AIluminate uses Public Sans with natural glyph spacing in the hero and section title', () => {
+  const styles = css('public/assets/css/music-branding.css');
+  const title = rules(styles).find(rule => rule.selector === '.rts-36-40--p39 .rts-36-40__music-copy h1');
+  const playlistTitle = rules(styles).find(rule => rule.selector === '.music-spotify h2');
+  const closingTitle = rules(styles).find(rule => rule.selector === '.rts-36-40__music-closing h2');
+  const html = read('public/music/index.html');
+  assert.equal(title.declarations['font-family'], '"Public Sans",Arial,sans-serif');
+  assert.equal(playlistTitle.declarations['font-family'], '"Public Sans",Arial,sans-serif');
+  assert.equal(closingTitle.declarations['font-family'], undefined);
+  assert.match(styles, /\.rts-36-40__music-closing \.music-name\s*\{[^}]*font-family:\s*"Public Sans",Arial,sans-serif/s);
+  assert.match(html, /fonts\.googleapis\.com\/css2\?family=Public\+Sans:wght@500&amp;display=swap/);
+  assert.equal(html.match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
+  assert.match(html, /<span class="music-name">AIluminate<\/span>/);
+  for (const selector of [title, playlistTitle]) {
+    assert.ok(!selector.declarations['letter-spacing'] || selector.declarations['letter-spacing'] === 'normal' || selector.declarations['letter-spacing'] === '0');
+  }
+});
+
+test('public header uses the approved H2 core and utility groups', async () => {
+  const coreRoutes = ['/formation/', '/conversations/', '/music/'];
+  const utilityRoutes = ['/about/', '/contact/'];
+  for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
+    const html = read(`public${route}index.html`);
+    const nav = html.match(/<nav id="main-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+    const core = nav.match(/class="public-primary-nav__core"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
+    const utility = nav.match(/class="public-primary-nav__utility"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
+    assert.deepEqual([...core.matchAll(/href="([^"]+)"/g)].map(m => m[1]), coreRoutes, `${route} core links`);
+    assert.deepEqual([...utility.matchAll(/href="([^"]+)"/g)].map(m => m[1]), utilityRoutes, `${route} utility links`);
+  }
+  const cssText = css('public/assets/css/public-header-navigation.css');
+  assert.match(cssText, /public-primary-nav__utility[^}]*border-left/s);
+  assert.match(cssText, /@media \(max-width: 840px\)[\s\S]*?public-primary-nav__utility[^}]*border-top/s);
 });
 
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {

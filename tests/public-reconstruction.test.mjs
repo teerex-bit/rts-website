@@ -25,7 +25,9 @@ test('public discovery headers expose the five approved destinations and the acc
   const excluded = ['/doorway/', '/books/', '/deep-dive/', '/dashboard/', '/auth/'];
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
-    assert.match(source, /<header[^>]*public-primary-header[^>]*>[\\s\\S]*?<div class=["'][^"']*public-primary-header__inner[^"']*["'][^>]*>[\\s\\S]*?<nav[^>]*aria-label=["']Main navigation["']/i,\n      `${route} keeps the public logo and navigation inside the shared constrained header group`);\n    const nav = source.match(/<nav[^>]*aria-label=["']Main navigation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1] ?? '';
+    assert.match(source, /<header[^>]*public-primary-header[^>]*>[\s\S]*?<div class=["'][^"']*public-primary-header__inner[^"']*["'][^>]*>[\s\S]*?<nav[^>]*aria-label=["']Main navigation["']/i,
+      `${route} keeps the public logo and navigation inside the shared constrained header group`);
+    const nav = source.match(/<nav[^>]*aria-label=["']Main navigation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1] ?? '';
     const labels = ['Formation', 'Conversations', 'Music', 'About Us', 'Contact'];
     assert.deepEqual([...nav.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/g)].map(match => [match[1], match[2]]),
       destinations.map((path, index) => [path, labels[index]]));
