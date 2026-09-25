@@ -144,10 +144,11 @@ test('Music closing statement and footer are grouped as a deliberate centered co
   assert.match(closing, /Let truth find you\. Let the songs speak\.<br>Let His light <span class="music-name">AIluminate<\/span> the way\./);
   assert.match(music, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
   assert.match(music, /\.rts-36-40__music-closing nav>\.music-theme\{display:flex;flex-direction:column/);
-  assert.match(footerBlock, /class="public-footer__brand-block"[\s\S]*?brand-main-footer\.png[\s\S]*?Creating safe places for leaders to be honest and whole\.[\s\S]*?© 2026 Reforming the Soul/);
+  assert.match(footerBlock, /class="public-footer__brand-block"[\s\S]*?brand-main-footer\.png/);
+  assert.doesNotMatch(footerBlock, /Creating safe places for leaders to be honest and whole\.|© 2026 Reforming the Soul|<p\b|<small\b/);
   assert.match(footerBlock, /<nav[\s\S]*?About Us[\s\S]*?Contact[\s\S]*?Conversations[\s\S]*?Music/);
   assert.match(footer, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
-  assert.match(footer, /\.public-footer__brand-block\s*\{[^}]*align-items:flex-start/);
+  assert.match(footer, /\.public-footer\s*\{[^}]*grid-template-columns:minmax\(0,1fr\) auto[^}]*align-items:center/);
   assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*280px/);
 });
 
