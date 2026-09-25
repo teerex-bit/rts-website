@@ -131,8 +131,8 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*280px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
   assert.match(footerCss, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
   assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*16px/);
-  assert.doesNotMatch(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing \.music-name\{/,
-    'the closing statement keeps AIluminate inline through normal text flow');
+  assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing h2 \.music-name\{display:inline;font:inherit;white-space:nowrap\}/,
+    'AIluminate stays inline and inherits the closing sentence typography');
 });
 
 test('Music closing statement and footer are grouped as a deliberate centered composition', () => {
