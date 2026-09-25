@@ -128,7 +128,7 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.equal(headerLogo, '/assets/brand-main-footer.png');
   assert.equal(footerLogo, headerLogo, 'dark header and footer share the approved white-and-gold mark');
   assert.match(headerCss, /\.public-primary-header \.public-primary-header__inner \.public-primary-header__brand img\s*\{[^}]*width:\s*224px/);
-  assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*280px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
+  assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*224px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
   assert.match(footerCss, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
   assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*16px/);
   assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing h2 \.music-name\{display:inline;font:inherit;white-space:nowrap\}/,
@@ -150,7 +150,7 @@ test('Music closing statement and footer are grouped as a deliberate centered co
   assert.match(footerBlock, /<nav[\s\S]*?About Us[\s\S]*?Contact[\s\S]*?Conversations[\s\S]*?Music/);
   assert.match(footer, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
   assert.match(footer, /\.public-footer\s*\{[^}]*grid-template-columns:minmax\(0,1fr\) auto[^}]*align-items:center/);
-  assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*280px/);
+  assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*224px/);
 });
 
 test('site-controlled Music content spells the name exactly AIluminate', () => {
@@ -260,7 +260,7 @@ test('supplied About photo is referenced and repository Whole Person history is 
   assert.ok(existsSync(new URL('public/assets/tandm-photo.jpg', root)));
   const whole = read('public/become/whole-person/index.html');
   assert.match(whole, /class="whole-hero__mark"/);
-  assert.match(whole, /aria-label="Dimensions of the whole person"/);
+  assert.match(whole, /aria-label="Interconnected dimensions"/);
   assert.equal((whole.match(/<li>(?:Will|Body|Relationships|Soul)<\/li>/g) || []).length, 4);
 });
 
@@ -287,4 +287,13 @@ test('responsive correction rules are deliberate at 1536, 768, and 375 pixels', 
   assert.equal(styleAt(become, '.hero--live .headline--living', 768)['line-height'], '1.1!important');
   assert.equal(styleAt(become, '.hero--live .headline--living', 768)['font-size'], 'clamp(3rem,5vw,4rem)!important');
   assert.equal(styleAt(become, '.hero--live .headline--living', 375)['line-height'], '1.06!important');
+});
+
+
+test('Conversations resource icon uses a crisp, outlined gold people mark', () => {
+  const home = read('public/index.html');
+  const icon = css('public/assets/css/public-review-corrections.css');
+  assert.match(home, /page00-resource--conversations[\s\S]*?<svg class="page00-conversations-icon" viewBox="0 0 48 48"/);
+  assert.match(icon, /\.page00-conversations-icon\{[^}]*fill:none;stroke:currentColor;stroke-width:2/);
+  assert.doesNotMatch(home, /icons\.svg#relationships/);
 });

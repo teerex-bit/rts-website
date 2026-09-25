@@ -67,7 +67,7 @@ test('curriculum Tree of Life logo links provide a route back to the public home
 test('public pages use circle flame branding and Formation pages use Tree of Life', async () => {
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
-    assert.match(source, route === '/music/' ? /<header[\s\S]*?brand-main-footer\.png/ : /<header[\s\S]*?brand-main-transparent\.png/);
+    assert.match(source, /<header[\s\S]*?brand-main-footer\.png/);
     assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
     assert.match(source, /public-footer-branding\.css/);
   }
@@ -95,7 +95,7 @@ test('Music themes use one gold circle icon system and keep the approved wording
 
 test('approved footer mark keeps its gold flame on the navy background', async () => {
   const styles = await readFile(new URL('public/assets/css/public-footer-branding.css', root), 'utf8');
-  assert.match(styles, /\.public-footer__brand img\{[^}]*width:280px[^}]*height:auto[^}]*filter:none\}/);
+  assert.match(styles, /\.public-footer__brand img\{[^}]*width:224px[^}]*height:auto[^}]*filter:none\}/);
   assert.match(styles, /\.public-footer\{[^}]*grid-template-columns:minmax\(0,1fr\) auto/);
   await access(new URL('public/assets/brand-main-footer.png', root));
 });
@@ -177,7 +177,7 @@ test('Conversations links to the approved Calendly appointment and has approved 
   const source = await page('/conversations/');
   assert.match(source, /https:\/\/calendly\.com\/reformingthesoul-info\/30min/);
   assert.match(source, /Book an appointment/);
-  assert.match(source, /Safe &amp; Trusting/);
+  assert.match(source, /Honest &amp; Safe/);
   assert.doesNotMatch(source, /conversations-rail/);
 });
 

@@ -75,3 +75,10 @@
   .journey-stage,.journey-stage+article{min-height:0}
   .journey-arrow{width:34px;height:34px;margin:6px auto;transform:rotate(90deg)}
 }
+/* Keep the recognition lines close to one another on the left of the scenic hero. */
+@media(min-width:701px){.hero-recognition{max-width:590px;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px;justify-content:start}.hero-recognition p{min-width:0}}
+/* Give the result phrases enough width and let the teaching statement use the full row. */
+@media(min-width:701px){.formation-progression li{grid-template-columns:minmax(0,.85fr) 38px minmax(0,1.4fr);gap:12px}.formation-progression strong{text-align:left}.formation-progression span{text-align:right}.formation-progression .progression-arrow{width:36px;height:36px}}
+.deeper .sequence-meaning{grid-column:1/-1;display:block;max-width:850px;padding:20px 26px}
+.deeper .sequence-meaning p{max-width:75ch;margin:0;line-height:1.5}
+@media(max-width:700px){.deeper .sequence-meaning{padding:18px 20px}.formation-progression li{grid-template-columns:minmax(0,.9fr) 28px minmax(0,1.3fr);gap:7px}.formation-progression strong{text-align:left}}
