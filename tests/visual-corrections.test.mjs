@@ -131,6 +131,7 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.match(footerCss, /\.public-footer img\s*\{[^}]*width:\s*224px[^}]*filter:\s*none/);
   assert.match(footerCss, /grid-template-areas:\s*"brand nav"\s*"tagline nav"\s*"copyright copyright"/);
   assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*15px/);
+  assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing \.music-name\{[^}]*display:inline/);
 });
 
 test('site-controlled Music content spells the name exactly AIluminate', () => {

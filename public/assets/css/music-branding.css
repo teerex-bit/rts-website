@@ -1,7 +1,7 @@
 /* Music themes share a single gold icon badge and label rhythm. */
 .rts-36-40__music-closing{display:grid;grid-template-columns:1fr;justify-items:center;gap:20px;height:auto;min-height:0;padding:38px clamp(24px,6vw,88px) 34px;background:#071b2b;color:#fff}
 .rts-36-40__music-closing h2{width:min(100%,1000px);margin:0;font:clamp(24px,2.15vw,30px)/1.22 Georgia,serif;text-align:center}
-.rts-36-40__music-closing .music-name{font-family:"Public Sans",Arial,sans-serif;font-weight:500;letter-spacing:normal}
+.rts-36-40__music-closing .music-name{display:inline;font-family:"Public Sans",Arial,sans-serif;font-weight:500;letter-spacing:normal}
 .rts-36-40__music-closing nav{display:grid;width:min(100%,1080px);grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:clamp(18px,3vw,42px)}
 .rts-36-40__music-closing nav>.music-theme{display:flex;align-items:center;gap:14px;color:#fff;font-size:13px;line-height:1.35;letter-spacing:.08em;text-align:left;white-space:normal}
 .rts-36-40__music-closing .music-theme-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border:1px solid #c28a35;border-radius:50%;color:#e0ac57}
