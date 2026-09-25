@@ -166,15 +166,15 @@ test('shared public header groups the circle-flame logo and navigation responsiv
   assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(18px, 2vw, 26px)');
 });
 
-test('AIluminate hero bundles the closest Roman-inscription font and keeps natural word spacing', () => {
+test('AIluminate hero uses the bundled editorial font with natural word spacing', () => {
   const styles = css('public/assets/css/music-branding.css');
   const title = rules(styles).find(rule => rule.selector === '.rts-36-40--p39 .rts-36-40__music-copy h1');
-  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*['\"]RTS Cinzel['\"]/s);
-  assert.match(styles, /Cinzel-Variable\.ttf/);
-  assert.equal(title.declarations['font-family'], '"RTS Cinzel",serif');
+  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*['\"]RTS Cormorant['\"]/s);
+  assert.match(styles, /CormorantGaramond-AIluminate\.ttf/);
+  assert.equal(title.declarations['font-family'], '"RTS Cormorant",serif');
   assert.ok(!title.declarations['letter-spacing'] || title.declarations['letter-spacing'] === 'normal' || title.declarations['letter-spacing'] === '0');
-  assert.ok(existsSync(new URL('public/assets/fonts/Cinzel-Variable.ttf', root)));
-  assert.ok(existsSync(new URL('public/assets/fonts/OFL-Cinzel.txt', root)));
+  assert.ok(existsSync(new URL('public/assets/fonts/CormorantGaramond-AIluminate.ttf', root)));
+  assert.ok(existsSync(new URL('public/assets/fonts/OFL-Cormorant-Garamond.txt', root)));
   assert.equal(read('public/music/index.html').match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
 });
 
