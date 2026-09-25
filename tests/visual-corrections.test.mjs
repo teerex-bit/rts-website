@@ -128,10 +128,27 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.equal(headerLogo, '/assets/brand-main-footer.png');
   assert.equal(footerLogo, headerLogo, 'dark header and footer share the approved white-and-gold mark');
   assert.match(headerCss, /\.public-primary-header \.public-primary-header__inner \.public-primary-header__brand img\s*\{[^}]*width:\s*224px/);
-  assert.match(footerCss, /\.public-footer img\s*\{[^}]*width:\s*224px[^}]*filter:\s*none/);
-  assert.match(footerCss, /grid-template-areas:\s*"brand nav"\s*"tagline nav"\s*"copyright copyright"/);
-  assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*15px/);
+  assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*280px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
+  assert.match(footerCss, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
+  assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*16px/);
   assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing \.music-name\{[^}]*display:inline/);
+});
+
+test('Music closing statement and footer are grouped as a deliberate centered composition', () => {
+  const html = read('public/music/index.html');
+  const music = css('public/assets/css/music-branding.css');
+  const footer = css('public/assets/css/public-footer-branding.css');
+  const closing = html.match(/<footer class="rts-36-40__music-closing">([\s\S]*?)<\/footer>/)?.[1] ?? '';
+  const footerBlock = html.match(/<footer class="public-footer">([\s\S]*?)<\/footer>/)?.[1] ?? '';
+
+  assert.match(closing, /Let truth find you\. Let the songs speak\.<br>Let His light <span class="music-name">AIluminate<\/span> the way\./);
+  assert.match(music, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(music, /\.rts-36-40__music-closing nav>\.music-theme\{display:flex;flex-direction:column/);
+  assert.match(footerBlock, /class="public-footer__brand-block"[\s\S]*?brand-main-footer\.png[\s\S]*?Creating safe places for leaders to be honest and whole\.[\s\S]*?© 2026 Reforming the Soul/);
+  assert.match(footerBlock, /<nav[\s\S]*?About Us[\s\S]*?Contact[\s\S]*?Conversations[\s\S]*?Music/);
+  assert.match(footer, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
+  assert.match(footer, /\.public-footer__brand-block\s*\{[^}]*align-items:flex-start/);
+  assert.match(footer, /\.public-footer__brand img\s*\{[^}]*width:\s*280px/);
 });
 
 test('site-controlled Music content spells the name exactly AIluminate', () => {
