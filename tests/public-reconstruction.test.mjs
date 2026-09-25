@@ -67,7 +67,7 @@ test('curriculum Tree of Life logo links provide a route back to the public home
 test('public pages use circle flame branding and Formation pages use Tree of Life', async () => {
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
-    assert.match(source, /<header[\s\S]*?brand-main-footer\.png/);
+    assert.match(source, route === '/music/' ? /<header[\s\S]*?brand-main-footer\.png/ : /<header[\s\S]*?brand-main-transparent\.png/);
     assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
     assert.match(source, /public-footer-branding\.css/);
   }

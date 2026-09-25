@@ -15,4 +15,4 @@
 .conversation-benefits article p{margin-top:0}
 .conversation-benefits .benefit-icon.gold-heart .conversation-icon{fill:none;stroke:currentColor;stroke-width:2}
 @media(max-width:900px){.conversations-copy h1{max-width:15ch;line-height:1.08}.conversations-hero{gap:36px}}
-@media(max-width:600px){.conversations-copy h1{font-size:clamp(2.65rem,10vw,3.25rem)}.conversation-benefits article{min-height:0;align-items:stretch;text-align:left}.conversation-benefits article h2{min-height:0;justify-content:flex-start}}
+@media(max-width:600px){.conversations-copy h1{font-size:clamp(2.65rem,10vw,3.25rem)}.conversation-benefits article{display:grid;min-height:0;align-items:center;text-align:left}.conversation-benefits article h2{min-height:0;justify-content:flex-start}}
