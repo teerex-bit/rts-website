@@ -1,3 +1,11 @@
+@font-face{
+  font-family:"RTS Cinzel";
+  src:url("/assets/fonts/Cinzel-Variable.ttf") format("truetype");
+  font-style:normal;
+  font-weight:400 900;
+  font-display:swap;
+}
+
 /* Music themes share a single gold icon badge and label rhythm. */
 .rts-36-40__music-closing{height:auto;min-height:92px;padding:14px clamp(24px,4vw,60px) 18px;grid-template-columns:minmax(300px,1fr) minmax(0,2fr)}
 .rts-36-40__music-closing h2{margin-top:0;margin-bottom:14px}
@@ -13,7 +21,7 @@
 .rts-36-40--p39 .rts-36-40__music-hero>img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .rts-36-40--p39 .rts-36-40__music-hero:after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(2,14,22,.62) 0%,rgba(2,14,22,.45) 34%,rgba(2,14,22,0) 76%),linear-gradient(0deg,rgba(4,17,29,.32),transparent 34%);clip-path:none;opacity:1}
 .rts-36-40--p39 .rts-36-40__music-copy{z-index:2}
-.rts-36-40--p39 .rts-36-40__music-copy h1{font-family:"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;letter-spacing:-.045em;font-kerning:normal}
+.rts-36-40--p39 .rts-36-40__music-copy h1{font-family:"RTS Cinzel",serif;font-weight:500;letter-spacing:normal;font-kerning:normal}
 .music-spotify{display:flex;flex-direction:column;align-items:center;padding:48px 0 56px;background:#f1e9dd}
 .music-spotify h2{width:min(88vw,1280px);max-width:1280px;margin:0 auto 24px;font:32px Georgia,serif;color:#10283d;text-align:center}
 .music-spotify .rts-spotify-embed{width:min(88vw,1280px);max-width:1280px;margin:0 auto;overflow:hidden;border-radius:12px;box-shadow:0 10px 28px #0a1d2b20}

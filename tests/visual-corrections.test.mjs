@@ -166,12 +166,32 @@ test('shared public header groups the circle-flame logo and navigation responsiv
   assert.equal(styleAt(styles, navSelector, 1536).gap, 'clamp(18px, 2vw, 26px)');
 });
 
-test('AIluminate hero uses an existing editorial font and tight word-specific tracking', () => {
-  const styles = rules(css('public/assets/css/music-branding.css'));
-  const title = styleAt(styles, '.rts-36-40--p39 .rts-36-40__music-copy h1', 1536);
-  assert.equal(title['font-family'], '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif');
-  assert.equal(title['letter-spacing'], '-.045em');
+test('AIluminate hero bundles the closest Roman-inscription font and keeps natural word spacing', () => {
+  const styles = css('public/assets/css/music-branding.css');
+  const title = rules(styles).find(rule => rule.selector === '.rts-36-40--p39 .rts-36-40__music-copy h1');
+  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*['\"]RTS Cinzel['\"]/s);
+  assert.match(styles, /Cinzel-Variable\.ttf/);
+  assert.equal(title.declarations['font-family'], '"RTS Cinzel",serif');
+  assert.ok(!title.declarations['letter-spacing'] || title.declarations['letter-spacing'] === 'normal' || title.declarations['letter-spacing'] === '0');
+  assert.ok(existsSync(new URL('public/assets/fonts/Cinzel-Variable.ttf', root)));
+  assert.ok(existsSync(new URL('public/assets/fonts/OFL-Cinzel.txt', root)));
   assert.equal(read('public/music/index.html').match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
+});
+
+test('public header uses the approved H2 core and utility groups', async () => {
+  const coreRoutes = ['/formation/', '/conversations/', '/music/'];
+  const utilityRoutes = ['/about/', '/contact/'];
+  for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
+    const html = read(`public${route}index.html`);
+    const nav = html.match(/<nav id="main-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+    const core = nav.match(/class="public-primary-nav__core"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
+    const utility = nav.match(/class="public-primary-nav__utility"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '';
+    assert.deepEqual([...core.matchAll(/href="([^"]+)"/g)].map(m => m[1]), coreRoutes, `${route} core links`);
+    assert.deepEqual([...utility.matchAll(/href="([^"]+)"/g)].map(m => m[1]), utilityRoutes, `${route} utility links`);
+  }
+  const cssText = css('public/assets/css/public-header-navigation.css');
+  assert.match(cssText, /public-primary-nav__utility[^}]*border-left/s);
+  assert.match(cssText, /@media \(max-width: 840px\)[\s\S]*?public-primary-nav__utility[^}]*border-top/s);
 });
 
 test('Live With God Part 1 has deliberate responsive eyebrow, title, and intro spacing', () => {
