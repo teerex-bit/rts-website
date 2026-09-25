@@ -131,7 +131,8 @@ test('Music uses the approved high-contrast logo at native size and gives the fo
   assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*280px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
   assert.match(footerCss, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
   assert.match(footerCss, /\.public-footer nav a\s*\{[^}]*font-size:\s*16px/);
-  assert.match(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing \.music-name\{[^}]*display:inline/);
+  assert.doesNotMatch(css('public/assets/css/music-branding.css'), /\.rts-36-40__music-closing \.music-name\{/,
+    'the closing statement keeps AIluminate inline through normal text flow');
 });
 
 test('Music closing statement and footer are grouped as a deliberate centered composition', () => {
@@ -178,10 +179,10 @@ test('shared public header groups the circle-flame logo and navigation responsiv
   const menuSelector = '.public-primary-header .menu';
 
   for (const [width, logoWidth, navFontSize, navDisplay, menuDisplay, innerHeight] of [
-    [1536, '224px', '14px', 'flex', 'none', '80px'],
-    [1363, '224px', '14px', 'flex', 'none', '80px'],
-    [768, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '76px'],
-    [375, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '76px']
+    [1536, '224px', '14px', 'flex', 'none', '96px'],
+    [1363, '224px', '14px', 'flex', 'none', '96px'],
+    [768, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '88px'],
+    [375, 'min(224px, 56vw)', '1rem', 'none', 'inline-flex', '88px']
   ]) {
     const header = styleAt(styles, headerSelector, width);
     const inner = styleAt(styles, innerSelector, width);
@@ -219,7 +220,8 @@ test('AIluminate uses Public Sans with natural glyph spacing in the hero and sec
   assert.equal(title.declarations['font-family'], '"Public Sans",Arial,sans-serif');
   assert.equal(playlistTitle.declarations['font-family'], '"Public Sans",Arial,sans-serif');
   assert.equal(closingTitle.declarations['font-family'], undefined);
-  assert.match(styles, /\.rts-36-40__music-closing \.music-name\s*\{[^}]*font-family:\s*"Public Sans",Arial,sans-serif/s);
+  assert.doesNotMatch(styles, /\.rts-36-40__music-closing \.music-name\s*\{[^}]*font-family:/s,
+    'the closing AIluminate inherits the established footer typography');
   assert.match(html, /fonts\.googleapis\.com\/css2\?family=Public\+Sans:wght@500&amp;display=swap/);
   assert.equal(html.match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
   assert.match(html, /<span class="music-name">AIluminate<\/span>/);
