@@ -170,8 +170,10 @@ test('AIluminate hero uses Impact with natural word spacing', () => {
   const styles = css('public/assets/css/music-branding.css');
   const title = rules(styles).find(rule => rule.selector === '.rts-36-40--p39 .rts-36-40__music-copy h1');
   const playlistTitle = rules(styles).find(rule => rule.selector === '.music-spotify h2');
+  const closingTitle = rules(styles).find(rule => rule.selector === '.rts-36-40__music-closing h2');
   assert.equal(title.declarations['font-family'], 'Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif');
   assert.equal(playlistTitle.declarations['font-family'], 'Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif');
+  assert.equal(closingTitle.declarations['font-family'], 'Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif');
   assert.ok(!title.declarations['letter-spacing'] || title.declarations['letter-spacing'] === 'normal' || title.declarations['letter-spacing'] === '0');
   assert.equal(read('public/music/index.html').match(/<h1>([^<]+)<[/]h1>/)?.[1], 'AIluminate');
 });
