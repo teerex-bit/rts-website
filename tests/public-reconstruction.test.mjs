@@ -14,21 +14,21 @@ async function page(route) {
   return readFile(new URL(`public${route}index.html`, root), 'utf8');
 }
 
-test('all approved public routes exist and Books is outside public output', async () => {
+test('all approved public routes and Books exist', async () => {
   await Promise.all(requiredRoutes.map(route => access(new URL(`public${route}index.html`, root))));
-  await assert.rejects(access(new URL('public/books/index.html', root)));
+  await access(new URL('public/books/index.html', root));
   await access(new URL('archive/books/index.html', root));
 });
 
-test('public discovery headers expose the five approved destinations and the accessible mobile menu', async () => {
-  const destinations = ['/formation/', '/conversations/', '/music/', '/about/', '/contact/'];
-  const excluded = ['/doorway/', '/books/', '/deep-dive/', '/dashboard/', '/auth/'];
+test('public discovery headers expose the six approved destinations and the accessible mobile menu', async () => {
+  const destinations = ['/formation/', '/conversations/', '/books/', '/music/', '/about/', '/contact/'];
+  const excluded = ['/doorway/', '/deep-dive/', '/dashboard/', '/auth/'];
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
     assert.match(source, /<header[^>]*public-primary-header[^>]*>[\s\S]*?<div class=["'][^"']*public-primary-header__inner[^"']*["'][^>]*>[\s\S]*?<nav[^>]*aria-label=["']Main navigation["']/i,
       `${route} keeps the public logo and navigation inside the shared constrained header group`);
     const nav = source.match(/<nav[^>]*aria-label=["']Main navigation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1] ?? '';
-    const labels = ['Formation', 'Conversations', 'Music', 'About Us', 'Contact'];
+    const labels = ['Formation', 'Conversations', 'Books', 'Music', 'About Us', 'Contact'];
     assert.deepEqual([...nav.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/g)].map(match => [match[1], match[2]]),
       destinations.map((path, index) => [path, labels[index]]));
     for (const path of excluded) assert.doesNotMatch(nav, new RegExp(`href=["']${path.replaceAll('/', '\\/')}["']`));
@@ -45,7 +45,7 @@ test('public discovery headers expose the five approved destinations and the acc
   assert.match(menuScript, /event\.target\.closest\('a'\)/);
 });
 
-test('public header rules show five links on desktop and use the Menu control on mobile', async () => {
+test('public header rules show six links on desktop and use the Menu control on mobile', async () => {
   const stylesheet = new URL('public/assets/css/public-header-navigation.css', root);
   assert.ok(existsSync(stylesheet), 'shared public header stylesheet exists');
   const styles = await readFile(stylesheet, 'utf8');
@@ -120,7 +120,7 @@ test('Conversations value cards use matching gold circles and a shared mobile la
 test('Home exposes exactly three public resource cards', async () => {
   const source = await page('/');
   assert.equal((source.match(/class=["'][^"']*page00-resource(?:\s|["'])/g) ?? []).length, 3);
-  assert.doesNotMatch(source, /href=["']\/books\//);
+  assert.match(source, /href=["']\/books\//);
 });
 
 test('Home presents the three resources as quiet, neutral entry points', async () => {

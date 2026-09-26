@@ -231,7 +231,7 @@ test('AIluminate uses Public Sans with natural glyph spacing in the hero and sec
 });
 
 test('public header uses the approved H2 core and utility groups', async () => {
-  const coreRoutes = ['/formation/', '/conversations/', '/music/'];
+  const coreRoutes = ['/formation/', '/conversations/', '/books/', '/music/'];
   const utilityRoutes = ['/about/', '/contact/'];
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const html = read(`public${route}index.html`);

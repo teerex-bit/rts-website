@@ -1,0 +1,166 @@
+{
+  "origin": "http://127.0.0.1:4187",
+  "widths": [
+    {
+      "width": 1536,
+      "books": 24,
+      "dialogChecks": "passed",
+      "overflow": false
+    },
+    {
+      "width": 1363,
+      "books": 24,
+      "dialogChecks": "passed",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "books": 24,
+      "dialogChecks": "passed",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "books": 24,
+      "dialogChecks": "passed",
+      "overflow": false
+    }
+  ],
+  "pdfs": [
+    {
+      "title": "The Soldier’s Path: Basic Training for the Kingdom of God",
+      "bytes": 595791,
+      "url": "/books/files/the-soldiers-path.pdf"
+    },
+    {
+      "title": "The Path: A Journey to Sanctification",
+      "bytes": 545041,
+      "url": "/books/files/the-path.pdf"
+    },
+    {
+      "title": "Thy Kingdom Come",
+      "bytes": 541769,
+      "url": "/books/files/thy-kingdom-come.pdf"
+    },
+    {
+      "title": "God's Will, My Way",
+      "bytes": 628572,
+      "url": "/books/files/god-s-will-my-way.pdf"
+    },
+    {
+      "title": "The Sanctification Cycle",
+      "bytes": 985953,
+      "url": "/books/files/the-sanctification-cycle.pdf"
+    },
+    {
+      "title": "AM I a Bad god?",
+      "bytes": 590596,
+      "url": "/books/files/am-i-a-bad-god.pdf"
+    },
+    {
+      "title": "The Ache",
+      "bytes": 514181,
+      "url": "/books/files/the-ache.pdf"
+    },
+    {
+      "title": "The Awakening",
+      "bytes": 651811,
+      "url": "/books/files/the-awakening.pdf"
+    },
+    {
+      "title": "The Step",
+      "bytes": 799490,
+      "url": "/books/files/the-step.pdf"
+    },
+    {
+      "title": "The Signposts of Sin",
+      "bytes": 883038,
+      "url": "/books/files/the-signposts-of-sin.pdf"
+    },
+    {
+      "title": "The Journey Home",
+      "bytes": 445818,
+      "url": "/books/files/the-journey-home.pdf"
+    },
+    {
+      "title": "Jesus Wants to Kill You: What the Church Neglected to Mention",
+      "bytes": 489122,
+      "url": "/books/files/jesus-wants-to-kill-you.pdf"
+    },
+    {
+      "title": "Surely, This Was…",
+      "bytes": 1212648,
+      "url": "/books/files/surely-this-was.pdf"
+    },
+    {
+      "title": "The Unseen Dominion",
+      "bytes": 1465386,
+      "url": "/books/files/the-unseen-dominion.pdf"
+    },
+    {
+      "title": "Pre-Form-ing",
+      "bytes": 595170,
+      "url": "/books/files/pre-form-ing.pdf"
+    },
+    {
+      "title": "Mis-Align-ment",
+      "bytes": 722224,
+      "url": "/books/files/mis-align-ment.pdf"
+    },
+    {
+      "title": "De-Moral-ized",
+      "bytes": 641050,
+      "url": "/books/files/de-moral-ized.pdf"
+    },
+    {
+      "title": "The Scandal of Peace",
+      "bytes": 554693,
+      "url": "/books/files/the-scandal-of-peace.pdf"
+    },
+    {
+      "title": "The Scandal of Love",
+      "bytes": 492024,
+      "url": "/books/files/the-scandal-of-love.pdf"
+    },
+    {
+      "title": "The Scandal of Grace",
+      "bytes": 783494,
+      "url": "/books/files/the-scandal-of-grace.pdf"
+    },
+    {
+      "title": "The Identity Trap",
+      "bytes": 431297,
+      "url": "/books/files/the-identity-trap.pdf"
+    },
+    {
+      "title": "The \"What if\" Trap",
+      "bytes": 334394,
+      "url": "/books/files/the-what-if-trap.pdf"
+    },
+    {
+      "title": "The Pride Trap",
+      "bytes": 431341,
+      "url": "/books/files/the-pride-trap.pdf"
+    },
+    {
+      "title": "The Comparison Trap",
+      "bytes": 380864,
+      "url": "/books/files/the-comparison-trap.pdf"
+    }
+  ],
+  "openedPdfs": [
+    {
+      "url": "http://127.0.0.1:4187/books/files/the-soldiers-path.pdf",
+      "mode": "headless PDF download"
+    },
+    {
+      "url": "http://127.0.0.1:4187/books/files/the-scandal-of-grace.pdf",
+      "mode": "headless PDF download"
+    },
+    {
+      "url": "http://127.0.0.1:4187/books/files/the-what-if-trap.pdf",
+      "mode": "headless PDF download"
+    }
+  ],
+  "runtimeErrors": []
+}

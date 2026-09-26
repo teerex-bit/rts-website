@@ -60,9 +60,9 @@ test('Doorway contains all four approved movements', async () => {
   assert.match(page, /href=["']\/join\/useful\/["']/);
 });
 
-test('review hub and Books are excluded from public output', async () => {
+test('review hub is excluded and Books is public', async () => {
   await assert.rejects(access(new URL('public/review/index.html', root)));
-  await assert.rejects(access(new URL('public/books/index.html', root)));
+  await access(new URL('public/books/index.html', root));
 });
 
 test('all local href and asset targets resolve', async () => {
