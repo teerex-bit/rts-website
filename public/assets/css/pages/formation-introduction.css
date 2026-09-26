@@ -94,3 +94,6 @@
 /* Reserve enough label space when the progression column becomes narrow. */
 @media(min-width:701px) and (max-width:1100px){.formation-progression li{grid-template-columns:170px 38px minmax(0,1fr)}}
 @media(max-width:700px){.formation-progression li{grid-template-columns:130px 28px minmax(0,1fr)}}
+
+/* Carry the existing soft cream veil behind the final mobile hero statement. */
+@media(max-width:700px){.hero-overlay{background:linear-gradient(180deg,rgba(250,246,239,.97) 0%,rgba(250,246,239,.93) 48%,rgba(250,246,239,.78) 75%,rgba(250,246,239,.68) 90%,rgba(250,246,239,.45) 100%)}}

@@ -6,7 +6,7 @@ import test from 'node:test';
 const root = new URL('../', import.meta.url);
 const requiredRoutes = [
   '/', '/formation/', '/awaken/lesson-1/', '/awaken/lesson-2/',
-  '/see-clearly/', '/become/', '/join/', '/conversations/', '/music/',
+  '/see-clearly/', '/become/', '/join/', '/conversations/', '/books/', '/music/',
   '/about/', '/contact/',
 ];
 
@@ -14,21 +14,20 @@ async function page(route) {
   return readFile(new URL(`public${route}index.html`, root), 'utf8');
 }
 
-test('all approved public routes exist and Books is outside public output', async () => {
+test('all approved public routes exist, including Books', async () => {
   await Promise.all(requiredRoutes.map(route => access(new URL(`public${route}index.html`, root))));
-  await assert.rejects(access(new URL('public/books/index.html', root)));
-  await access(new URL('archive/books/index.html', root));
+  await access(new URL('public/books/index.html', root));
 });
 
 test('public discovery headers expose the five approved destinations and the accessible mobile menu', async () => {
-  const destinations = ['/formation/', '/conversations/', '/music/', '/about/', '/contact/'];
-  const excluded = ['/doorway/', '/books/', '/deep-dive/', '/dashboard/', '/auth/'];
+  const destinations = ['/formation/', '/conversations/', '/books/', '/music/', '/about/', '/contact/'];
+  const excluded = ['/doorway/', '/deep-dive/', '/dashboard/', '/auth/'];
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
     assert.match(source, /<header[^>]*public-primary-header[^>]*>[\s\S]*?<div class=["'][^"']*public-primary-header__inner[^"']*["'][^>]*>[\s\S]*?<nav[^>]*aria-label=["']Main navigation["']/i,
       `${route} keeps the public logo and navigation inside the shared constrained header group`);
     const nav = source.match(/<nav[^>]*aria-label=["']Main navigation["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1] ?? '';
-    const labels = ['Formation', 'Conversations', 'Music', 'About Us', 'Contact'];
+    const labels = ['Formation', 'Conversations', 'Books', 'Music', 'About Us', 'Contact'];
     assert.deepEqual([...nav.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/g)].map(match => [match[1], match[2]]),
       destinations.map((path, index) => [path, labels[index]]));
     for (const path of excluded) assert.doesNotMatch(nav, new RegExp(`href=["']${path.replaceAll('/', '\\/')}["']`));
@@ -119,8 +118,13 @@ test('Conversations value cards use matching gold circles and a shared mobile la
 
 test('Home exposes exactly three public resource cards', async () => {
   const source = await page('/');
-  assert.equal((source.match(/class=["'][^"']*page00-resource(?:\s|["'])/g) ?? []).length, 3);
-  assert.doesNotMatch(source, /href=["']\/books\//);
+  const cards = [...source.matchAll(/<a class="page00-resource page00-resource--[^\"]+" href="([^\"]+)">([\s\S]*?)<\/a>/g)];
+  assert.deepEqual(cards.map(([, href]) => href), ['/conversations/', '/books/', '/music/']);
+  assert.match(cards[1][2], /<h3>Books<\/h3>/);
+  assert.match(cards[1][2], /Explore formation, identity, freedom, culture, and relationships through books for the journey\./);
+  assert.match(cards[1][2], /Explore books/);
+  assert.match(source, /href=["']\/conversations\//);
+  assert.match(source, /href=["']\/music\//);
 });
 
 test('Home presents the three resources as quiet, neutral entry points', async () => {
@@ -128,22 +132,22 @@ test('Home presents the three resources as quiet, neutral entry points', async (
   const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
 
   assert.match(source, /class=["']page00-resources__intro["']/);
-  assert.match(source, /formation journey, personal conversations, and music/i);
+  assert.match(source, /formation journey, personal conversations, books, and music/i);
   assert.match(styles, /\.page00-resources__intro\{/);
   assert.match(styles, /\.page00-resource\{[^}]*background:\s*var\(--p00-paper\)/s);
   assert.match(styles, /\.page00-resource\{[^}]*border-top:\s*3px solid var\(--p00-gold\)/s);
   assert.match(styles, /\.page00-resource__icon\{[^}]*background:\s*#f3e7d2/s);
+  assert.match(styles, /@media\(max-width:680px\)[\s\S]*?\.page00-resource-grid\{grid-template-columns:1fr/);
+  assert.match(styles, /@media\(max-width:680px\)[\s\S]*?\.page00-resource(?:,|\{)[^}]*min-height:142px/);
 });
 
 test('Home hero image spans beneath a gradual overlay without a hard vertical seam', async () => {
   const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
-  const imageRules = [...styles.matchAll(/\.page00-hero__image\{([^}]*)\}/g)];
   const overlayRules = [...styles.matchAll(/(?:^|})\.page00-hero:after\{([^}]*)\}/gm)];
-  const finalImageRule = imageRules.at(-1)?.[1] ?? '';
   const finalOverlayRule = overlayRules.at(-1)?.[1] ?? '';
 
-  assert.match(finalImageRule, /width:\s*100%/);
-  assert.match(finalImageRule, /object-position:\s*center top/);
+  assert.match(styles, /\.page00-hero__image\{inset:0;width:100%;max-width:none;object-position:center top\}/);
+  assert.match(styles, /@media\(max-width:700px\)\{\.page00-hero__image\{object-position:65% top\}\}/);
   assert.match(finalOverlayRule, /linear-gradient\(90deg/);
   assert.match(finalOverlayRule, /rgba\(251,248,241,\.94\)/);
   assert.match(finalOverlayRule, /transparent\s+72%/);
@@ -196,6 +200,7 @@ test('Formation introduction hero uses a curved veil instead of a vertical washe
   assert.match(styles, /\.hero-overlay\{background:radial-gradient\(ellipse/);
   assert.match(styles, /rgba\(250,246,239,\.16\) 82%/);
   assert.match(styles, /transparent 100%/);
+  assert.match(styles, /@media\(max-width:700px\)\{\.hero-overlay\{background:linear-gradient\(180deg,[^}]*rgba\(250,246,239,\.68\) 90%/);
 });
 
 test('About and Contact are secondary links in the public footer', async () => {

@@ -95,3 +95,6 @@
 .page00-hero__image{inset:0;width:100%;max-width:none;object-position:center top}
 .page00-hero:after{background:linear-gradient(90deg,var(--p00-cream) 0%,rgba(251,248,241,.99) 25%,rgba(251,248,241,.94) 38%,rgba(251,248,241,.72) 49%,rgba(251,248,241,.32) 60%,transparent 72%)}
 @media(max-width:900px){.page00 .page00-hero:after{background:linear-gradient(90deg,rgba(251,248,241,.98) 0%,rgba(251,248,241,.92) 46%,rgba(251,248,241,.68) 72%,rgba(251,248,241,.24) 100%)}}
+
+/* On phones, bring the person into view while keeping the copy and desktop crop unchanged. */
+@media(max-width:700px){.page00-hero__image{object-position:65% top}}
