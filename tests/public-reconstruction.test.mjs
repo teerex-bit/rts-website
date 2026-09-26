@@ -121,6 +121,7 @@ test('Home exposes exactly three public resource cards', async () => {
   const cards = [...source.matchAll(/<a class="page00-resource page00-resource--[^\"]+" href="([^\"]+)">([\s\S]*?)<\/a>/g)];
   assert.deepEqual(cards.map(([, href]) => href), ['/conversations/', '/books/', '/music/']);
   assert.match(cards[1][2], /<h3>Books<\/h3>/);
+  assert.match(cards[1][2], /class="page00-books-icon"/);
   assert.match(cards[1][2], /Explore formation, identity, freedom, culture, and relationships through books for the journey\./);
   assert.match(cards[1][2], /Explore books/);
   assert.match(source, /href=["']\/conversations\//);

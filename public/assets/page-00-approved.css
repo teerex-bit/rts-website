@@ -98,3 +98,4 @@
 
 /* On phones, bring the person into view while keeping the copy and desktop crop unchanged. */
 @media(max-width:700px){.page00-hero__image{object-position:65% top}}
+.page00-resource__icon .page00-books-icon{color:var(--p00-gold)}
