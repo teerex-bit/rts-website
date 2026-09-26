@@ -75,3 +75,22 @@
   .journey-stage,.journey-stage+article{min-height:0}
   .journey-arrow{width:34px;height:34px;margin:6px auto;transform:rotate(90deg)}
 }
+/* Keep the recognition lines close to one another on the left of the scenic hero. */
+@media(min-width:701px){.hero-recognition{max-width:100%;width:max-content;grid-template-columns:max-content max-content;column-gap:12px;justify-content:start}.hero-recognition p{min-width:0}}
+/* Give the result phrases enough width and let the teaching statement use the full row. */
+@media(min-width:701px){.formation-progression li{grid-template-columns:minmax(0,.85fr) 38px minmax(0,1.4fr);gap:12px}.formation-progression strong{text-align:left}.formation-progression span{text-align:right}.formation-progression .progression-arrow{width:36px;height:36px}}
+.deeper .sequence-meaning{grid-column:1/-1;display:block;max-width:850px;padding:20px 26px}
+.deeper .sequence-meaning p{max-width:75ch;margin:0;line-height:1.5}
+@media(max-width:700px){.deeper .sequence-meaning{padding:18px 20px}.formation-progression li{grid-template-columns:minmax(0,.9fr) 28px minmax(0,1.3fr);gap:7px}.formation-progression strong{text-align:left}}
+
+/* Keep the approved title and image positions. Move the unused title line
+   to bottom padding so the subtitle and compact recognition cluster rise together. */
+@media(min-width:901px){
+  .hero-copy{padding-left:5vw;padding-top:calc(78px - clamp(20.304px,2.16vw,34.56px));padding-bottom:calc(72px + clamp(20.304px,2.16vw,34.56px))}
+  .hero-copy h1{width:max-content;max-width:100%}
+  .hero-recognition{margin-left:0}
+}
+
+/* Reserve enough label space when the progression column becomes narrow. */
+@media(min-width:701px) and (max-width:1100px){.formation-progression li{grid-template-columns:170px 38px minmax(0,1fr)}}
+@media(max-width:700px){.formation-progression li{grid-template-columns:130px 28px minmax(0,1fr)}}

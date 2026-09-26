@@ -1,0 +1,22 @@
+:root{--rts-gold:#b87525;--rts-navy:#061a2e}
+body.logo-review{margin:0;background:#fbf8f1;color:#08283f;font-family:Arial,Helvetica,sans-serif}
+.logo-review__intro{max-width:1200px;margin:0 auto;padding:36px 24px 12px}
+.logo-review__intro h1{margin:0 0 10px;font:400 clamp(30px,4vw,48px)/1.1 Georgia,serif}
+.logo-review__intro p{max-width:65ch;line-height:1.5}
+.logo-review__option{margin:0 0 44px}
+.logo-review__label{max-width:1200px;margin:0 auto;padding:22px 24px 12px;color:#08283f;font-size:16px;font-weight:700}
+.logo-review__option .public-primary-header{color:#fff;background:var(--rts-navy);border:0}
+.logo-review__option .public-primary-nav a{color:#fff}
+.logo-review__option .public-primary-nav__utility{border-left-color:rgb(255 255 255 / 30%)}
+.logo-review__option .public-primary-header .menu{border:1px solid #fff}
+.logo-review__option .public-footer{background:var(--rts-navy)}
+.logo-review__option .public-footer__brand img{filter:none}
+.logo-review__option .public-footer nav a{color:#fff}
+.logo-review__option--stacked .public-primary-header__inner{min-height:170px}
+.logo-review__option--stacked .public-primary-header .public-primary-header__inner .public-primary-header__brand img{width:128px}
+.logo-review__option--stacked .public-footer__brand img{width:128px}
+.logo-review__option--horizontal .public-primary-header__inner{min-height:104px}
+.logo-review__option--horizontal .public-primary-header .public-primary-header__inner .public-primary-header__brand img{width:230px}
+.logo-review__option--horizontal .public-footer__brand img{width:230px}
+.logo-review__context{padding:28px 24px 36px;background:#fbf8f1;text-align:center;font:26px/1.25 Georgia,serif}
+@media(max-width:840px){.logo-review__option .public-primary-header .public-primary-nav.open{background:var(--rts-navy)}.logo-review__option .public-primary-header__inner{min-height:0;padding:16px 0}.logo-review__option .public-primary-nav__utility{border-left:0;border-top-color:rgb(255 255 255 / 30%)}.logo-review__option--stacked .public-primary-header .public-primary-header__inner .public-primary-header__brand img{width:100px}.logo-review__option--horizontal .public-primary-header .public-primary-header__inner .public-primary-header__brand img{width:min(210px,55vw)}}

@@ -15,7 +15,7 @@
   justify-content: space-between;
   gap: clamp(28px, 5vw, 72px);
   width: min(calc(100% - 48px), 1200px);
-  min-height: 80px;
+  min-height: 96px;
   margin-inline: auto;
 }
 
@@ -120,7 +120,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
     width: calc(100% - 32px);
-    min-height: 76px;
+    min-height: 88px;
   }
 
   .public-primary-header .public-primary-header__inner .public-primary-header__brand img {
