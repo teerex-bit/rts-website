@@ -1,0 +1,28 @@
+/* Contact-only composition; shared public branding remains unchanged. */
+.contact-page { background:var(--cream); }
+.contact-shell { max-width:1184px; margin-inline:auto; padding:48px 32px 56px; }
+.contact-introduction h1 { max-width:27ch; margin:0; font:400 clamp(2rem,3.8vw,3.25rem)/1.12 var(--serif); letter-spacing:-.025em; }
+.contact-introduction__lead { max-width:760px; margin:20px 0 0; color:#344150; font:1.125rem/1.65 var(--serif); }
+.contact-paths { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; margin-top:32px; }
+.contact-path { display:flex; flex-direction:column; min-width:0; padding:28px; background:var(--paper); border:1px solid var(--line); border-top:2px solid var(--gold); }
+.contact-path .eyebrow { margin-bottom:14px; }
+.contact-path h2 { margin:0; font:400 clamp(1.5rem,2.15vw,1.8rem)/1.2 var(--serif); letter-spacing:-.015em; }
+.contact-path__description { margin:16px 0; color:#344150; font:1rem/1.65 var(--sans); }
+.contact-path__email { align-self:flex-start; max-width:100%; font-size:1rem; line-height:1.5; text-underline-offset:4px; overflow-wrap:anywhere; }
+.contact-path__action { margin-top:auto; padding-top:24px; }
+.contact-action { display:inline-flex; align-items:center; justify-content:space-between; gap:24px; min-height:48px; padding:14px 20px; background:var(--navy); color:var(--paper); font:700 .875rem/1.4 var(--sans); text-decoration:none; }
+.contact-action span { font-size:1.2rem; line-height:1; }
+.contact-action:hover { text-decoration:underline; text-underline-offset:4px; }
+.contact-action:focus-visible,.contact-path__email:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+@media(max-width:850px) {
+  .contact-shell { padding:36px 28px 40px; }
+  .contact-paths { gap:20px; }
+  .contact-path { padding:24px; }
+}
+@media(max-width:700px) {
+  .contact-shell { padding:32px 22px 36px; }
+  .contact-paths { grid-template-columns:minmax(0,1fr); margin-top:28px; }
+  .contact-introduction__lead { font-size:1.0625rem; }
+  .contact-path { padding:24px 20px; }
+  .contact-action { width:100%; }
+}
