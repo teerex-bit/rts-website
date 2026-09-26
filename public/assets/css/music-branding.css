@@ -3,11 +3,11 @@
 .rts-36-40__music-closing h2{width:min(100%,1080px);margin:0;font:clamp(25px,2.15vw,30px)/1.3 Georgia,serif;text-align:center;text-wrap:balance}
 .rts-36-40__music-closing h2 .music-name{display:inline;font:inherit;white-space:nowrap}
 .rts-36-40__music-closing nav{display:grid;width:min(100%,1080px);grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;justify-items:center;gap:clamp(18px,3vw,42px)}
-.rts-36-40__music-closing nav>.music-theme{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:13px;color:#fff;font-size:13px;line-height:1.4;letter-spacing:.08em;text-align:center;white-space:normal}
-.rts-36-40__music-closing .music-theme-icon{display:grid;place-items:center;flex:0 0 50px;width:50px;height:50px;border:1px solid #c28a35;border-radius:50%;color:#e0ac57}
-.rts-36-40__music-closing .music-theme-icon .rts-36-40__icon{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-@media(max-width:900px){.rts-36-40__music-closing nav{gap:16px}.rts-36-40__music-closing nav>.music-theme{gap:11px;font-size:12px}}
-@media(max-width:600px){.rts-36-40__music-closing{gap:24px;padding:36px 22px 32px}.rts-36-40__music-closing nav{width:min(100%,360px);grid-template-columns:1fr;gap:14px}.rts-36-40__music-closing nav>.music-theme{min-height:50px;flex-direction:row;justify-content:center;gap:15px;font-size:13px}.rts-36-40__music-closing h2{max-width:360px}}
+.rts-36-40__music-closing nav>.music-theme{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:13px;color:#fff;font-size:14px;line-height:1.4;letter-spacing:.06em;text-align:center;white-space:normal}
+.rts-36-40__music-closing .music-theme-icon{display:grid;place-items:center;flex:0 0 50px;width:50px;height:50px;border:1px solid #e0ac57;border-radius:50%;color:#e0ac57}
+.rts-36-40__music-closing .music-theme-icon .rts-36-40__icon{display:block;width:26px;height:26px;color:inherit;fill:none;stroke:currentColor;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:900px){.rts-36-40__music-closing nav{gap:16px}.rts-36-40__music-closing nav>.music-theme{gap:11px;font-size:14px}}
+@media(max-width:600px){.rts-36-40__music-closing{gap:24px;padding:36px 22px 32px}.rts-36-40__music-closing nav{width:min(100%,360px);grid-template-columns:1fr;gap:14px}.rts-36-40__music-closing nav>.music-theme{min-height:50px;flex-direction:row;justify-content:center;gap:15px;font-size:14px}.rts-36-40__music-closing h2{max-width:360px}}
 
 /* Restored AIluminate hero artwork from the Sep 2 approved page source. */
 .rts-36-40--p39 .rts-36-40__music-hero{height:529px;background:#06131e}
