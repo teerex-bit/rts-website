@@ -294,6 +294,6 @@ test('Conversations resource icon uses a crisp, outlined gold people mark', () =
   const home = read('public/index.html');
   const icon = css('public/assets/css/public-review-corrections.css');
   assert.match(home, /page00-resource--conversations[\s\S]*?<svg class="page00-conversations-icon" viewBox="0 0 48 48"/);
-  assert.match(icon, /\.page00-conversations-icon\{[^}]*fill:none;stroke:currentColor;stroke-width:2/);
+  assert.match(icon, /\.page00-conversations-icon\{[^}]*fill:none;stroke:var\(--p00-gold,#b87525\);stroke-width:2/);
   assert.doesNotMatch(home, /icons\.svg#relationships/);
 });

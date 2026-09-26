@@ -1,5 +1,5 @@
 /* Shared public footer: one centered row with the approved wordmark at a crisp display size. */
-.public-footer{padding:17px clamp(24px,4vw,64px);color:#fff;background:#061a2e}
+.public-footer{display:block;padding:17px clamp(24px,4vw,64px);color:#fff;background:#061a2e}
 .public-footer__inner{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(28px,5vw,72px);width:100%;max-width:1200px;margin-inline:auto}
 .public-footer__brand-block{display:flex;align-items:center;min-width:0}
 .public-footer__brand{display:block;width:max-content;max-width:100%;line-height:0;text-decoration:none}

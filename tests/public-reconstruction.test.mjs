@@ -95,6 +95,7 @@ test('Music themes use one gold circle icon system and keep the approved wording
 
 test('approved footer mark keeps its gold flame on the navy background', async () => {
   const styles = await readFile(new URL('public/assets/css/public-footer-branding.css', root), 'utf8');
+  assert.match(styles, /\.public-footer\{[^}]*display:block/, 'override the legacy three-column footer grid so the inner row can use the available width');
   assert.match(styles, /\.public-footer__brand img\{[^}]*width:190px[^}]*height:auto[^}]*filter:none\}/);
   assert.match(styles, /\.public-footer__inner\{[^}]*grid-template-columns:minmax\(0,1fr\) auto/);
   await access(new URL('public/assets/brand-main-footer.png', root));
