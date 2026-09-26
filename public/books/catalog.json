@@ -192,8 +192,8 @@
     "collection": "Scandal Collection",
     "cover": "/books/covers/the-scandal-of-dominion.jpg",
     "description": "The Scandal of Dominion examines spiritual authority through the language of covenant, agreement, legal standing, accusation, mediation, and alignment. Beginning with salvation as entry rather than the end of the story, it explores the biblical imagery of courts, contracts, authority, and dominion. The book challenges assumptions about spiritual power and asks what it means to live from the authority of Christ rather than from fear, striving, or presumption.",
-    "pdfUrl": null,
-    "pdfAvailable": false,
+    "pdfUrl": "/books/files/the-scandal-of-dominion.pdf",
+    "pdfAvailable": true,
     "luluUrl": "https://www.lulu.com/shop/trey-king/the-scandal-of-dominion/paperback/product-658jpm5.html",
     "printStatus": "available"
   },
@@ -225,8 +225,8 @@
     "collection": "Scandal Collection",
     "cover": "/books/covers/the-scandal-of-choice.jpg",
     "description": "The Scandal of Choice asks how free our choices really are when culture, stories, algorithms, advertising, institutions, and repeated narratives shape what we see and desire. Rather than dismissing human agency, the book examines the formation that happens before a decision is made. It invites readers to notice the frame around their choices, question what has shaped their desires, and pursue the deeper freedom that comes from renewed vision and conscious alignment with truth.",
-    "pdfUrl": null,
-    "pdfAvailable": false,
+    "pdfUrl": "/books/files/the-scandal-of-choice.pdf",
+    "pdfAvailable": true,
     "luluUrl": "https://www.lulu.com/shop/trey-king/the-scandal-of-choice/paperback/product-m2v5p2w.html",
     "printStatus": "available"
   },
