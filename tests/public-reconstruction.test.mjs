@@ -64,11 +64,11 @@ test('curriculum Tree of Life logo links provide a route back to the public home
   }
 });
 
-test('public pages use circle flame branding and Formation pages use Tree of Life', async () => {
+test('public pages use contextual V1 branding and Formation pages use Tree of Life', async () => {
   for (const route of ['/', '/conversations/', '/music/', '/about/', '/contact/']) {
     const source = await page(route);
-    assert.match(source, route === '/music/' ? /<header[\s\S]*?brand-main-footer\.png/ : /<header[\s\S]*?brand-main-transparent\.png/);
-    assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?brand-main-footer\.png/);
+    assert.match(source, route === '/music/' ? /<header[\s\S]*?rts-v1-logo-dark-bg\.svg/ : /<header[\s\S]*?rts-v1-logo-light-bg\.svg/);
+    assert.match(source, /<footer[\s\S]*?class=["']public-footer__brand["'][^>]*>[\s\S]*?rts-v1-logo-dark-bg\.svg/);
     assert.match(source, /public-footer-branding\.css/);
   }
   for (const route of ['/formation/', '/awaken/lesson-1/', '/see-clearly/', '/become/', '/join/']) {
@@ -98,7 +98,7 @@ test('approved footer mark keeps its gold flame on the navy background', async (
   assert.match(styles, /\.public-footer\{[^}]*display:block/, 'override the legacy three-column footer grid so the inner row can use the available width');
   assert.match(styles, /\.public-footer__brand img\{[^}]*width:190px[^}]*height:auto[^}]*filter:none\}/);
   assert.match(styles, /\.public-footer__inner\{[^}]*grid-template-columns:minmax\(0,1fr\) auto/);
-  await access(new URL('public/assets/brand-main-footer.png', root));
+  await access(new URL('public/assets/rts-v1-logo-dark-bg.svg', root));
 });
 
 test('Conversations value cards use matching gold circles and a shared mobile layout', async () => {

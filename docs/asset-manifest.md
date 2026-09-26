@@ -16,3 +16,12 @@ No clean approved asset files were present in the authorized repository. The sup
 
 The booking placeholder is defined once as `BOOKING_URL` in `public/assets/js/page-interactions.js`.
 
+
+## Approved public V1 identity — September 26, 2026
+
+Public/discovery branding now uses the centrally maintained `rts-v1-logo-*`
+SVG/PNG family in `public/assets/`. The approved source, exact palette,
+conversion method, and rendered-background placement mapping are documented in
+`design/v1/README.md`. `rts-v1-logo-master.png` is the 2400px primary raster
+master. All four SVG variants share identical artwork paths. Tree of Life
+curriculum identity is separate and unchanged.

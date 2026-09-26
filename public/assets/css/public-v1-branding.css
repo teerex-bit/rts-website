@@ -1,0 +1,19 @@
+/* Locked V1 composition; colorways are selected per placement in HTML.
+   Only public/discovery pages load this stylesheet. Curriculum is separate. */
+.public-primary-header .public-primary-header__inner .public-primary-header__brand img.rts-v1-logo,
+.public-footer .public-footer__brand img.rts-v1-logo {
+  display:block;
+  width:170px;
+  max-width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:332 / 396;
+  object-fit:contain;
+  object-position:center;
+  filter:none;
+}
+.public-primary-header:has(.rts-v1-logo) .public-primary-header__inner {padding-block:12px;}
+@media(max-width:840px) {
+  .public-primary-header .public-primary-header__inner .public-primary-header__brand img.rts-v1-logo,
+  .public-footer .public-footer__brand img.rts-v1-logo {width:150px;}
+}

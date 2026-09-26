@@ -118,14 +118,14 @@ test('Music makes the playlist a full-width warm section that transitions into t
   assert.equal(styleAt(styles, '.music-spotify', 375).width, '100%');
 });
 
-test('Music uses the approved high-contrast logo at native size and gives the footer a clear hierarchy', () => {
+test('Music uses the approved high-contrast V1 logo and gives the footer a clear hierarchy', () => {
   const html = read('public/music/index.html');
   const headerCss = css('public/assets/css/public-header-navigation.css');
   const footerCss = css('public/assets/css/public-footer-branding.css');
   const headerLogo = html.match(/<header[\s\S]*?public-primary-header__brand[\s\S]*?<img src="([^"]+)"/)?.[1] ?? '';
   const footerLogo = html.match(/class="public-footer__brand"[\s\S]*?<img src="([^"]+)"/)?.[1] ?? '';
 
-  assert.equal(headerLogo, '/assets/brand-main-footer.png');
+  assert.equal(headerLogo, '/assets/rts-v1-logo-dark-bg.svg');
   assert.equal(footerLogo, headerLogo, 'dark header and footer share the approved white-and-gold mark');
   assert.match(headerCss, /\.public-primary-header \.public-primary-header__inner \.public-primary-header__brand img\s*\{[^}]*width:\s*224px/);
   assert.match(footerCss, /\.public-footer__brand img\s*\{[^}]*width:\s*190px[^}]*object-fit:\s*contain[^}]*filter:\s*none/);
@@ -145,7 +145,7 @@ test('Music closing statement and footer are grouped as a deliberate centered co
   assert.match(closing, /Let truth find you\. Let the songs speak\.<br>Let His light <span class="music-name">AIluminate<\/span> the way\./);
   assert.match(music, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
   assert.match(music, /\.rts-36-40__music-closing nav>\.music-theme\{display:flex;flex-direction:column/);
-  assert.match(footerBlock, /class="public-footer__brand-block"[\s\S]*?brand-main-footer\.png/);
+  assert.match(footerBlock, /class="public-footer__brand-block"[\s\S]*?rts-v1-logo-dark-bg\.svg/);
   assert.doesNotMatch(footerBlock, /Creating safe places for leaders to be honest and whole\.|© 2026 Reforming the Soul|<p\b|<small\b/);
   assert.match(footerBlock, /<nav[\s\S]*?About Us[\s\S]*?Contact[\s\S]*?Conversations[\s\S]*?Music/);
   assert.match(footer, /grid-template-columns:\s*minmax\(0,1fr\) auto/);
