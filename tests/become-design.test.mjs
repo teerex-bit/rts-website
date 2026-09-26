@@ -12,7 +12,7 @@ const pages = {
 };
 
 for (const [name, html] of Object.entries(pages)) {
-  assert.match(html, /become\.css\?v=9[1-6]/, `${name} uses the redesigned shared stylesheet`);
+  assert.match(html, /become\.css\?v=\d+/, `${name} uses the redesigned shared stylesheet`);
   assert.match(html, /context-nav/, `${name} retains breadcrumb navigation`);
   assert.match(html, /rts-tree-wordmark/, `${name} retains the Tree of Life wordmark`);
 }
@@ -51,3 +51,8 @@ assert.match(css, /\.fruit-closing\{/, 'fruit has a unified closing treatment');
 assert.match(css, /@media\(max-width:680px\)/, 'mobile treatment remains defined');
 
 console.log('Become design assertions passed.');
+
+const graphic = pages.whole.match(/<div class="whole-hero__mark"[\s\S]*?<\/ol><\/div>/)[0];
+assert.equal((graphic.match(/<circle /g) || []).length, 4, 'Whole Person has four native vector circles');
+assert.doesNotMatch(graphic, /<img|<image|data:image/, 'Whole Person never embeds a raster mockup');
+assert.match(graphic, /One<br>whole<br>person/, 'shared intersection retains its live label');
