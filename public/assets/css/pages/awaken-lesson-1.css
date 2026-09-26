@@ -23,3 +23,14 @@ main{width:100%;max-width:1600px;margin:0 auto;background:var(--paper)}.hero-lan
 /* Readable wayfinding, scoped to this journey page (not the shared doorway). */
 body .context-nav{font-size:12px}
 body .context-nav a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Center the inner text measures, not only their text alignment. */
+.practice-centered{padding-top:48px;padding-bottom:48px}
+.practice-centered>div:first-child,.next-centered>div{max-width:720px;margin-left:auto;margin-right:auto}
+.practice-centered h2,.next-centered h2{margin-left:auto;margin-right:auto}
+.practice-centered>div:last-child{max-width:660px;margin-top:22px;padding-top:22px}
+.practice-centered .practice-lead{max-width:48ch;margin:0 auto 18px}
+.practice-centered .practice-note{max-width:66ch;margin:0 auto}
+.next-centered{padding-top:44px;padding-bottom:44px}
+.next-centered>div>p:last-child{max-width:60ch;margin:16px auto 0}
+.next-centered .next-link{display:table;margin:22px auto 0}
