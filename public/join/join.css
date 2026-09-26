@@ -132,3 +132,6 @@ footer p{margin:0}
 .join-preview,.join-preview:nth-child(2){margin-top:0;padding:28px clamp(24px,3vw,40px) 34px;border:1px solid var(--line);border-top:3px solid var(--gold);background:#fffdf8}
 .join-preview:nth-child(2):before{content:"→";position:absolute;top:50%;left:50%;z-index:2;display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;background:var(--cream);color:var(--gold);font:24px/1 Georgia,serif;transform:translate(-50%,-50%)}
 @media(max-width:700px){.join-previews__grid{gap:38px}.join-preview:nth-child(2):before{content:"↓";top:auto;bottom:calc(100% + 19px);left:50%;transform:translate(-50%,50%)}.join-preview,.join-preview:nth-child(2){padding:24px}}
+
+/* Let the final heading use the full available column width. */
+.journey-gathering li:last-child strong{max-width:none}
