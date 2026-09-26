@@ -13,7 +13,8 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'public/assets'
 source = Image.open(Path(__file__).with_name('approved-color-board.png')).convert('RGB')
 # Exact artwork bounds, excluding presentation headings and colorway labels.
-art = np.array(source)[84:480, 30:362]
+# Exclude the removed LIFE WITH GOD line and both flanking rules.
+art = np.array(source)[84:450, 30:362]
 foreground = art.max(axis=2) > 105
 y, x = np.indices(foreground.shape)
 symbol = foreground & ((y < 258) | ((art[:,:,0].astype(int) - art[:,:,2].astype(int)) > 45))
@@ -45,8 +46,8 @@ variants = {
 }
 for variant, (mark, text) in variants.items():
     svg = OUT / f'rts-v1-logo-{variant}.svg'
-    svg.write_text(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 332 396" width="332" height="396" role="img" aria-label="Reforming the Soul — Life with God">
-  <title>Reforming the Soul — Life with God</title>
+    svg.write_text(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 332 366" width="332" height="366" role="img" aria-label="Reforming the Soul">
+  <title>Reforming the Soul</title>
   <path fill="{mark}" fill-rule="evenodd" d="{mark_paths}"/>
   <path fill="{text}" fill-rule="evenodd" d="{text_paths}"/>
 </svg>\n''')

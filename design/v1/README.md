@@ -19,8 +19,8 @@ Existing page background colors are preserved.
 
 Central family under `public/assets/`:
 - `rts-v1-logo-master.png`: 2400px primary transparent raster master.
-- `rts-v1-logo-dark-bg.svg/.png`: gold symbol/rules, white lettering.
-- `rts-v1-logo-light-bg.svg/.png`: gold symbol/rules, navy lettering.
+- `rts-v1-logo-dark-bg.svg/.png`: gold symbol, white lettering.
+- `rts-v1-logo-light-bg.svg/.png`: gold symbol, navy lettering.
 - `rts-v1-logo-white.svg/.png`: all white, reserved for contextual need.
 - `rts-v1-logo-mono-dark.svg/.png`: all navy, reserved for monochrome use.
 
@@ -41,4 +41,8 @@ unchanged. Earlier `/logo-review/` is a historical preview, not V1 authority.
 
 The approved stacked composition requires more height than the prior wide
 wordmark. Shared sizing is 170px wide on desktop, 150px at <=840px, preserving
-the complete wordmark and LIFE WITH GOD line and the original proportions.
+the symbol and complete wordmark at their original proportions.
+
+The LIFE WITH GOD line and its flanking rules were removed from every V1
+variant at the user’s request. The source board is retained as provenance;
+the current export excludes that bottom line (viewBox 332 × 366).
