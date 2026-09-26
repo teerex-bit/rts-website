@@ -5,10 +5,26 @@
   const closeButton = document.getElementById('book-close');
   let origin;
   let scrollTop = 0;
+  const clickEndpoint = '/api/books/click';
+
+  function recordBookClick(bookId, action) {
+    const payload = JSON.stringify({ bookId, action });
+    if (navigator.sendBeacon) {
+      const queued = navigator.sendBeacon(clickEndpoint, new Blob([payload], { type: 'application/json' }));
+      if (queued) return;
+    }
+    fetch(clickEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
+  }
   const field = id => document.getElementById(id);
 
   function openBook(book, button) {
     origin = button;
+    dialog.dataset.bookId = book.id;
     field('book-title').textContent = book.title;
     field('book-description').textContent = book.description;
     field('book-collection').textContent = book.collection || 'Reforming the Soul';
@@ -44,6 +60,12 @@
   }
 
   closeButton.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    const link = event.target.closest?.('#book-pdf, #book-print');
+    if (!link || link.hidden || !link.href) return;
+    const action = link.id === 'book-pdf' ? 'pdf' : 'purchase';
+    recordBookClick(dialog.dataset.bookId, action);
+  });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const box = dialog.getBoundingClientRect();
