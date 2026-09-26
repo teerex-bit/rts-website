@@ -84,9 +84,9 @@
 @media(max-width:700px){.deeper .sequence-meaning{padding:18px 20px}.formation-progression li{grid-template-columns:minmax(0,.9fr) 28px minmax(0,1.3fr);gap:7px}.formation-progression strong{text-align:left}}
 
 /* Move only the copy; retain the image box and the recognition left edge.
-   The extra heading line replaces one line-height of vertical padding. */
+   Retain the approved title footprint so the subtitle and recognition do not move. */
 @media(min-width:901px){
   .hero-copy{padding-left:5vw;padding-top:calc(78px - clamp(20.304px,2.16vw,34.56px));padding-bottom:calc(72px - clamp(20.304px,2.16vw,34.56px))}
-  .hero-copy h1{max-width:8em}
+  .hero-copy h1{width:max-content;max-width:100%;min-height:4.32em}
   .hero-recognition{margin-left:3vw}
 }
