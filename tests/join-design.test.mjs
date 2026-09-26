@@ -15,7 +15,7 @@ for (const [name, html] of Object.entries({ intro, useful })) {
   assert.match(html, /rts-tree-wordmark/, `${name} uses the Tree of Life wordmark`);
   assert.match(html, /overview-context-nav\.css\?v=1/, `${name} uses shared breadcrumb styling`);
   assert.match(html, /class="context-nav"/, `${name} has breadcrumb navigation`);
-  assert.match(html, /join\.css\?v=1/, `${name} uses the Join stylesheet`);
+  assert.match(html, /join\.css\?v=\d+/, `${name} uses the Join stylesheet`);
 }
 
 assert.match(intro, /A restored life becomes available\./, 'Join opens with the approved premise');
