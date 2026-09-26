@@ -94,7 +94,7 @@ jobs:
               guard.pop("run", None)  # The executing validator does not inspect itself.
               if guard != {
                   "name": GUARD_NAME, "shell": "bash",
-                  "env": {"GH_TOKEN": "${{ github.token }}", "WORKFLOW_SHA": "${{ github.workflow_sha }}"},
+                  "env": {"GH_TOKEN": "$" + "{{ github.token }}", "WORKFLOW_SHA": "$" + "{{ github.workflow_sha }}"},
               }:
                   raise ValueError("Unexpected execution guard settings")
               workflow["jobs"]["validate-and-deploy-review"]["steps"] = steps[1:]

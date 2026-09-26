@@ -18,6 +18,8 @@ def accepts(workflow):
     source = yaml.safe_dump(workflow, sort_keys=False)
     if "<<'PYTHON'" in GUARD['run']:
         code = GUARD['run'].split("<<'PYTHON'\n", 1)[1].rsplit('\nPYTHON', 1)[0]
+        # GitHub expands expressions in run blocks before the shell sees them.
+        code = code.replace('${{ github.token }}', 'test-token').replace('${{ github.workflow_sha }}', '0' * 40)
         scope = {'__name__': 'guard_test'}
         exec(compile(code, str(PATH), 'exec'), scope)
         try:
