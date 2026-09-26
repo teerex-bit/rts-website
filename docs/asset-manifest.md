@@ -25,3 +25,11 @@ conversion method, and rendered-background placement mapping are documented in
 `design/v1/README.md`. `rts-v1-logo-master.png` is the 2400px primary raster
 master. All four SVG variants share identical artwork paths. Tree of Life
 curriculum identity is separate and unchanged.
+
+## V1 / V2 placement clarification — September 26, 2026
+
+Both V1 stacked and V2 horizontal are authoritative public logo lockups.
+V2 reuses the exact V1 symbol and lettering contours with the wordmark moved
+to the right. Neither contains LIFE WITH GOD. Public headers use V2; public
+footers use V1. See `design/v2/README.md` for the central asset paths,
+contextual colorways, and sizes. Tree of Life remains separate.
