@@ -40,7 +40,7 @@ not forced into any placement. Tree of Life curriculum files and assets are
 unchanged. Earlier `/logo-review/` is a historical preview, not V1 authority.
 
 The approved stacked composition requires more height than the prior wide
-wordmark. Shared sizing is 170px wide on desktop, 150px at <=840px, preserving
+wordmark. Shared sizing is 85px wide on desktop, 75px at <=840px, preserving
 the symbol and complete wordmark at their original proportions.
 
 The LIFE WITH GOD line and its flanking rules were removed from every V1
