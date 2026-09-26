@@ -18,7 +18,7 @@
 @media(max-width:680px){.dimensions-section .dimension-map{grid-template-columns:1fr}.dimensions-section .dimension{min-height:auto;padding:30px 24px}}
 
 /* Whole Person: continuous editorial layout */
-.whole-hero{min-height:620px;padding:clamp(80px,9vw,132px) clamp(24px,8vw,126px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(42px,5vw,80px);align-items:center;background:var(--deep);color:#fff}
+.whole-hero{min-height:620px;padding:clamp(80px,9vw,132px) clamp(24px,8vw,126px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(42px,5vw,80px);align-items:center;background:var(--deep);color:#fff}
 .whole-hero h1{max-width:none;margin:0 0 32px;color:#fff;font:400 clamp(3.2rem,5.1vw,5.6rem)/1.07 Georgia,serif;letter-spacing:-.012em}
 .whole-hero__copy>p:last-child{max-width:700px;margin:0;padding-top:28px;border-top:1px solid rgba(255,255,255,.35);color:#dbe5eb;font:1.2rem/1.7 Georgia,serif}
 
@@ -130,7 +130,7 @@ body .context-nav a{display:inline-flex;align-items:center;min-height:44px}
 
 
 /* Approved Whole Person line composition: four equal, overlapping circles. */
-.whole-hero__mark{position:relative;width:min(100%,520px);aspect-ratio:1;min-width:0;min-height:auto;justify-self:center;padding:0;border:0;container-type:inline-size}
+.whole-hero__mark{--gold:#e2af58;position:relative;width:min(100%,600px);aspect-ratio:1;min-width:0;min-height:auto;justify-self:center;padding:0;border:0;container-type:inline-size}
 .whole-person-circles{display:block;width:100%;height:auto;fill:none;stroke:var(--gold);stroke-width:1}
 .whole-person-circles circle{vector-effect:non-scaling-stroke}
 .whole-hero__mark .whole-hero__center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--gold);font:400 clamp(10px,2.8cqi,14px)/1.5 Arial,sans-serif;text-align:center;text-transform:uppercase;letter-spacing:.13em}
