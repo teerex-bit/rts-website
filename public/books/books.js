@@ -15,8 +15,17 @@
     field('book-cover').src = book.cover;
     field('book-cover').alt = `Cover of ${book.title}`;
     const pdf = field('book-pdf');
-    pdf.href = book.pdfUrl;
-    pdf.setAttribute('aria-label', `Read ${book.title} PDF (opens in a new tab)`);
+    const pdfAvailable = Boolean(book.pdfAvailable && book.pdfUrl);
+    pdf.hidden = !pdfAvailable;
+    field('book-pdf-pending').hidden = pdfAvailable;
+    field('book-pdf-note').hidden = !pdfAvailable;
+    if (pdfAvailable) {
+      pdf.href = book.pdfUrl;
+      pdf.setAttribute('aria-label', `Read ${book.title} PDF (opens in a new tab)`);
+    } else {
+      pdf.removeAttribute('href');
+      pdf.removeAttribute('aria-label');
+    }
     const print = field('book-print');
     const available = Boolean(book.luluUrl) && book.printStatus === 'available';
     print.hidden = !available;
@@ -53,7 +62,7 @@
   }).then(books => {
     const groups = new Map();
     for (const book of books) {
-      if (!book.pdfAvailable || !book.pdfUrl || !book.cover || !book.description) continue;
+      if (!book.cover || !book.description) continue;
       const group = book.collection || 'Books for the journey';
       if (!groups.has(group)) groups.set(group, []);
       groups.get(group).push(book);
