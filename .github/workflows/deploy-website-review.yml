@@ -25,6 +25,103 @@ jobs:
       EXPECTED_ASSET_DIRECTORY: ./public
       REVIEW_ORIGIN: https://review.reformingthesoul.com
     steps:
+      - name: Verify workflow has no unrelated infrastructure operations
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WORKFLOW_SHA: ${{ github.workflow_sha }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet --target "$RUNNER_TEMP/rts-review-guard" PyYAML==6.0.3
+          PYTHONPATH="$RUNNER_TEMP/rts-review-guard" python3 <<'PYTHON'
+          import hashlib
+          import json
+          import os
+          import re
+          import urllib.request
+          import yaml
+
+          GUARD_NAME = "Verify workflow has no unrelated infrastructure operations"
+          # Fingerprint of the reviewed execution structure, not the workflow's prose.
+          # Any new command, action, job, env override, or changed safety check fails closed.
+          APPROVED_EXECUTION_SHA256 = "8822f41327e56beb82fbd9648090cb7ce7a9cc98e993f77c6cda51d9e7a03f95"
+
+          class UniqueLoader(yaml.SafeLoader):
+              pass
+
+          def unique_mapping(loader, node):
+              result = {}
+              for key_node, value_node in node.value:
+                  key = loader.construct_object(key_node, deep=True)
+                  if key in result:
+                      raise ValueError("Duplicate workflow key")
+                  result[key] = loader.construct_object(value_node, deep=True)
+              return result
+
+          UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
+
+          def normalize(value):
+              if isinstance(value, dict):
+                  result = {}
+                  for key, item in value.items():
+                      if key == "name" and any(field in value for field in ("jobs", "runs-on", "run", "uses")):
+                          continue  # YAML display text is not executable.
+                      if key == "run" and isinstance(item, str):
+                          lines = []
+                          for line in item.splitlines():
+                              text = line.strip()
+                              if not text or text.startswith(("#", "//")):
+                                  continue
+                              # Only standalone, literal echo output; substitutions and
+                              # shell operators outside the quotes remain executable.
+                              if re.fullmatch(r'''echo (?:"[^"$`\\]*"|'[^']*')''', text):
+                                  continue
+                              lines.append(line.rstrip())
+                          result[str(key)] = "\n".join(lines)
+                      else:
+                          result[str(key)] = normalize(item)
+                  return result
+              if isinstance(value, list):
+                  return [normalize(item) for item in value]
+              return value
+
+          def validate_workflow(source):
+              workflow = yaml.load(source, Loader=UniqueLoader)
+              steps = workflow["jobs"]["validate-and-deploy-review"]["steps"]
+              if not steps or steps[0].get("name") != GUARD_NAME:
+                  raise ValueError("Execution guard must be the first step")
+              guard = dict(steps[0])
+              guard.pop("run", None)  # The executing validator does not inspect itself.
+              if guard != {
+                  "name": GUARD_NAME, "shell": "bash",
+                  "env": {"GH_TOKEN": "${{ github.token }}", "WORKFLOW_SHA": "${{ github.workflow_sha }}"},
+              }:
+                  raise ValueError("Unexpected execution guard settings")
+              workflow["jobs"]["validate-and-deploy-review"]["steps"] = steps[1:]
+              encoded = json.dumps(normalize(workflow), sort_keys=True, separators=(",", ":")).encode()
+              if hashlib.sha256(encoded).hexdigest() != APPROVED_EXECUTION_SHA256:
+                  raise ValueError("Unapproved executable command or workflow setting; refusing deployment")
+
+          if __name__ == "__main__":
+              if os.environ["GITHUB_REPOSITORY"] != "teerex-bit/rts-website":
+                  raise ValueError("Unexpected repository")
+              workflow_sha = os.environ["WORKFLOW_SHA"]
+              if not re.fullmatch(r"[0-9a-f]{40}", workflow_sha):
+                  raise ValueError("Expected exact workflow commit")
+              # Inspect the workflow that is running, not the different candidate checkout.
+              url = ("https://api.github.com/repos/teerex-bit/rts-website/contents/"
+                     ".github/workflows/deploy-website-review.yml?ref=" + workflow_sha)
+              request = urllib.request.Request(url, headers={
+                  "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                  "Accept": "application/vnd.github.raw+json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              })
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  source = response.read().decode("utf-8")
+              validate_workflow(source)
+              print("Approved review-only execution structure at workflow SHA " + workflow_sha)
+          PYTHON
+
       - name: Validate requested candidate
         shell: bash
         run: |
@@ -86,16 +183,6 @@ jobs:
           NODE
           test "$GITHUB_REPOSITORY" = "$EXPECTED_REPOSITORY"
           test -d public
-
-      - name: Verify workflow has no unrelated infrastructure operations
-        shell: bash
-        run: |
-          set -euo pipefail
-          workflow=".github/workflows/deploy-website-review.yml"
-          if grep -Eiq 'vercel|supabase|rts-deep-dive|wrangler[[:space:]].*(route|domain)|cloudflare.*(dns|zone)' "$workflow"; then
-            echo "::error::Forbidden production/domain/Deep Dive/Vercel/Supabase operation detected"
-            exit 1
-          fi
 
       - name: Run website automated tests
         shell: bash
