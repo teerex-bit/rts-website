@@ -308,6 +308,32 @@ test('Home resource grid uses desktop, tablet, and phone column counts', () => {
   assert.doesNotMatch(styleAt(formation, '.hero-overlay', 1365).background, /linear-gradient\(180deg/);
 });
 
+test('Homepage hero gives its existing copy more vertical breathing room without changing type scale', () => {
+  const home = rules(css('public/assets/page-00-approved.css'));
+  const html = read('public/index.html');
+  const question = styleAt(home, '.page00-hero__question', 1365);
+  const rule = styleAt(home, '.page00-rule', 1365);
+  const paragraph = styleAt(home, '.page00-hero__copy>p:not(.page00-hero__question)', 1365);
+  const mobileQuestion = styleAt(home, '.page00-hero__question', 390);
+  const mobileRule = styleAt(home, '.page00-rule', 390);
+  const mobileParagraph = styleAt(home, '.page00-hero__copy>p:not(.page00-hero__question)', 390);
+
+  assert.equal(question.margin, '15px 0 9px');
+  assert.equal(rule.margin, '10px 0 14px');
+  assert.equal(paragraph.margin, '10px 0');
+  assert.equal(question['font-size'], 'clamp(1.5rem,2.05vw,2rem)');
+  assert.equal(paragraph['font-size'], '.86rem');
+  assert.equal(mobileQuestion.margin, '10px 0 6px');
+  assert.equal(mobileRule.margin, '8px 0 10px');
+  assert.equal(mobileParagraph.margin, '8px 0');
+  assert.equal(mobileParagraph['font-size'], '.86rem');
+
+  assert.match(html, /<h1 id="page00-title">You’re being shaped<br>by something\.<\/h1>/);
+  assert.match(html, /<p class="page00-hero__question">Do you know what it is\?<\/p>/);
+  assert.match(html, /<h3>Awaken<\/h3>[\s\S]*?<h3>See Clearly<\/h3>[\s\S]*?<h3>Become<\/h3>[\s\S]*?<h3>Join<\/h3>/);
+  assert.doesNotMatch(html, /WALK/);
+});
+
 test('Conversations resource icon uses a crisp, outlined gold people mark', () => {
   const home = read('public/index.html');
   const icon = css('public/assets/css/public-review-corrections.css');
