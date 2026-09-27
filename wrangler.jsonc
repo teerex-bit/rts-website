@@ -8,12 +8,6 @@
     "run_worker_first": ["/api/books/click"],
     "not_found_handling": "404-page"
   },
-  "analytics_engine_datasets": [
-    {
-      "binding": "BOOK_CLICKS",
-      "dataset": "books_clicks"
-    }
-  ],
   "routes": [
     { "pattern": "reformingthesoul.com", "custom_domain": true },
     { "pattern": "www.reformingthesoul.com", "custom_domain": true }

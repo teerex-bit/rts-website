@@ -84,10 +84,20 @@ test("keeps static assets on the asset binding", async () => {
   assert.equal(await response.text(), "asset:/books/");
 });
 
-test("returns a service error if analytics cannot accept the event", async () => {
+test("accepts an event when analytics is not configured", async () => {
+  const env = makeEnv();
+  delete env.BOOK_CLICKS;
+  const response = await worker.fetch(
+    eventRequest({ bookId: catalog[0].id, action: "pdf" }),
+    env,
+  );
+  assert.equal(response.status, 204);
+});
+
+test("accepts an event if analytics cannot record it", async () => {
   const response = await worker.fetch(
     eventRequest({ bookId: catalog[0].id, action: "pdf" }),
     makeEnv(() => { throw new Error("binding failure"); }),
   );
-  assert.equal(response.status, 503);
+  assert.equal(response.status, 204);
 });

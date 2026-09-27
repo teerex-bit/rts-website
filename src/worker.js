@@ -86,7 +86,9 @@ export default {
     ) {
       return response("Invalid event", 400);
     }
-    if (!env.BOOK_CLICKS) return response("Analytics unavailable", 503);
+    // Analytics are optional: book links must continue working when the
+    // account has not enabled Analytics Engine or a write fails.
+    if (!env.BOOK_CLICKS) return response(null, 204);
 
     try {
       env.BOOK_CLICKS.writeDataPoint({
@@ -96,7 +98,7 @@ export default {
       });
     } catch {
       console.error("Books click analytics write failed");
-      return response("Analytics unavailable", 503);
+      return response(null, 204);
     }
     return response(null, 204);
   },
