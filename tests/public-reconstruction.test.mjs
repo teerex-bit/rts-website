@@ -127,7 +127,8 @@ test('Home exposes four public resource cards in the approved order', async () =
   ]);
   assert.match(cards[0][3], /<h3>Formation<\/h3>/);
   assert.match(cards[0][3], /Explore the journey of noticing what has formed you and learning to participate with God in who you are becoming\./);
-  assert.match(cards[0][3], /formation-heart-gold-circle\.png/);
+  assert.match(cards[0][3], /formation-heart-light-circle\.png/);
+  assert.ok(existsSync(new URL('public/assets/icons/formation-heart-light-circle.png', root)));
   assert.match(cards[0][3], /Explore Formation →/);
   assert.match(cards[1][3], /<h3>Conversations<\/h3>/);
   assert.match(cards[1][3], /Personal conversations to seek clarity, encouragement, and guidance in your journey with God\./);
