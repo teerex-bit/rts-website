@@ -116,19 +116,31 @@ test('Conversations value cards use matching gold circles and a shared mobile la
   assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.conversation-benefits article\{[^}]*grid-template-columns:48px minmax\(0,1fr\)/);
 });
 
-test('Home exposes exactly three public resource cards', async () => {
+test('Home exposes four public resource cards in the approved order', async () => {
   const source = await page('/');
-  const cards = [...source.matchAll(/<a class="page00-resource page00-resource--[^\"]+" href="([^\"]+)">([\s\S]*?)<\/a>/g)];
-  assert.deepEqual(cards.map(([, href]) => href), ['/conversations/', '/books/', '/music/']);
-  assert.match(cards[1][2], /<h3>Books<\/h3>/);
-  assert.match(cards[1][2], /class="page00-books-icon"/);
-  assert.match(cards[1][2], /Explore formation, identity, freedom, culture, and relationships through books for the journey\./);
-  assert.match(cards[1][2], /Explore books/);
-  assert.match(source, /href=["']\/conversations\//);
-  assert.match(source, /href=["']\/music\//);
+  const cards = [...source.matchAll(/<a class="page00-resource page00-resource--([^\"]+)" href="([^\"]+)">([\s\S]*?)<\/a>/g)];
+  assert.deepEqual(cards.map(([, type, href]) => [type, href]), [
+    ['formation', '/formation/'],
+    ['conversations', '/conversations/'],
+    ['books', '/books/'],
+    ['music', '/music/'],
+  ]);
+  assert.match(cards[0][3], /<h3>Formation<\/h3>/);
+  assert.match(cards[0][3], /Explore the journey of noticing what has formed you and learning to participate with God in who you are becoming\./);
+  assert.match(cards[0][3], /formation-heart-gold-circle\.png/);
+  assert.match(cards[0][3], /Explore Formation →/);
+  assert.match(cards[1][3], /<h3>Conversations<\/h3>/);
+  assert.match(cards[1][3], /Personal conversations to seek clarity, encouragement, and guidance in your journey with God\./);
+  assert.match(cards[2][3], /<h3>Books<\/h3>/);
+  assert.match(cards[2][3], /class="page00-books-icon"/);
+  assert.match(cards[2][3], /Explore formation, identity, freedom, culture, and relationships through books for the journey\./);
+  assert.match(cards[2][3], /Explore books/);
+  assert.match(cards[3][3], /<h3>Music<\/h3>/);
+  assert.match(cards[3][3], /Songs and resources for reflection, formation, and a life attentive to God\./);
+  assert.match(cards[3][3], /Listen now/);
 });
 
-test('Home presents the three resources as quiet, neutral entry points', async () => {
+test('Home presents resources as quiet, neutral entry points', async () => {
   const source = await page('/');
   const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
 
@@ -140,6 +152,14 @@ test('Home presents the three resources as quiet, neutral entry points', async (
   assert.match(styles, /\.page00-resource__icon\{[^}]*background:\s*#f3e7d2/s);
   assert.match(styles, /@media\(max-width:680px\)[\s\S]*?\.page00-resource-grid\{grid-template-columns:1fr/);
   assert.match(styles, /@media\(max-width:680px\)[\s\S]*?\.page00-resource(?:,|\{)[^}]*min-height:142px/);
+});
+
+test('Home resource cards use four columns on desktop, two on tablet, and one on mobile', async () => {
+  const styles = await readFile(new URL('public/assets/page-00-approved.css', root), 'utf8');
+
+  assert.match(styles, /\.page00-resource-grid\{grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+  assert.match(styles, /@media\(max-width:1100px\)\{\.page00-resource-grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}\}/);
+  assert.match(styles, /@media\(max-width:680px\)[\s\S]*?\.page00-resource-grid\{grid-template-columns:1fr/);
 });
 
 test('Home hero image spans beneath a gradual overlay without a hard vertical seam', async () => {

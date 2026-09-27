@@ -290,7 +290,7 @@ test('responsive correction rules are deliberate at 1536, 768, and 375 pixels', 
 });
 
 
-test('mobile hero and Books card rules apply only at the requested phone widths', () => {
+test('Home resource grid uses desktop, tablet, and phone column counts', () => {
   const home = rules(css('public/assets/page-00-approved.css'));
   const formation = rules(css('public/assets/css/pages/formation-introduction.css'));
   for (const width of [375, 390, 430]) {
@@ -299,8 +299,11 @@ test('mobile hero and Books card rules apply only at the requested phone widths'
     assert.match(styleAt(formation, '.hero-overlay', width).background, /linear-gradient\(180deg/);
     assert.match(styleAt(formation, '.hero-overlay', width).background, /\.68\) 90%/);
   }
+  for (const width of [768, 1024]) {
+    assert.equal(styleAt(home, '.page00-resource-grid', width)['grid-template-columns'], 'repeat(2,minmax(0,1fr))');
+  }
   assert.equal(styleAt(home, '.page00-hero__image', 1365)['object-position'], 'center top');
-  assert.equal(styleAt(home, '.page00-resource-grid', 1365)['grid-template-columns'], 'repeat(3,minmax(0,1fr))');
+  assert.equal(styleAt(home, '.page00-resource-grid', 1365)['grid-template-columns'], 'repeat(4,minmax(0,1fr))');
   assert.equal(styleAt(home, '.page00-resource__icon .page00-books-icon', 375).color, 'var(--p00-gold)');
   assert.doesNotMatch(styleAt(formation, '.hero-overlay', 1365).background, /linear-gradient\(180deg/);
 });
