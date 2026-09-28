@@ -73,36 +73,89 @@
     font-size: 0.62rem;
   }
 }
-.give-venmo-option {
+
+
+.give-payment-grid {
   display: grid;
-  justify-items: start;
-  gap: 0.75rem;
-  margin: 1.25rem 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 24px);
+  width: 100%;
+  max-width: 560px;
+  margin: 1.5rem 0;
 }
 
-.give-venmo-option > p {
-  margin: 0;
-}
-
-.give-venmo-qr {
-  display: grid;
-  justify-items: center;
-  gap: 0.6rem;
-  width: min(100%, 220px);
-  margin: 0;
-  padding: 12px;
+.give-payment-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: clamp(8px, 2vw, 16px);
   border: 1px solid rgb(8 40 63 / 16%);
   background: #fff;
+  color: #08283f;
+  text-align: center;
+  text-decoration: none;
 }
 
-.give-venmo-qr img {
+.give-payment-card:hover,
+.give-payment-card:focus-visible {
+  border-color: #08283f;
+}
+
+.give-payment-card:focus-visible {
+  outline: 3px solid #d7a43a;
+  outline-offset: 3px;
+}
+
+.give-payment-card__service {
+  font: 700 0.78rem/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.give-payment-card__handle {
+  font: 600 0.9rem/1.3 Arial, Helvetica, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.give-payment-card img {
   display: block;
   width: 100%;
+  max-width: 208px;
   height: auto;
 }
 
-.give-venmo-qr figcaption {
-  color: #08283f;
-  font: 0.82rem/1.4 Arial, Helvetica, sans-serif;
-  text-align: center;
+.give-payment-card__hint {
+  font: 0.72rem/1.3 Arial, Helvetica, sans-serif;
+  opacity: 0.68;
+}
+
+@media (max-width: 520px) {
+  .give-payment-grid {
+    width: calc(100vw - 32px);
+    margin-left: calc(50% - 50vw + 16px);
+    gap: 8px;
+  }
+
+  .give-payment-card {
+    padding: 8px 6px;
+    gap: 0.5rem;
+  }
+
+  .give-payment-card img {
+    max-width: 100%;
+  }
+
+  .give-payment-card__service {
+    font-size: 0.72rem;
+  }
+
+  .give-payment-card__handle {
+    font-size: 0.78rem;
+  }
+
+  .give-payment-card__hint {
+    font-size: 0.66rem;
+  }
 }
