@@ -16,18 +16,18 @@ test('new RTS public routes are present', async () => {
 test('public landing page links the primary navigation', async () => {
   const page = await html('/');
   for (const route of ['/formation/', '/conversations/', '/music/']) {
-    assert.match(page, new RegExp(`href=["']${route.replaceAll('/', '\\\\/')}["']`));
+    assert.match(page, new RegExp(`href=["']${route.replaceAll('/', '\\/')}["']`));
   }
 });
 
 test('Formation sends the visitor directly to Pay Attention', async () => {
-  assert.match(await html('/formation/'), /href=["']\\/awaken\\/lesson-1\\/["']/);
+  assert.match(await html('/formation/'), /href=["']\/awaken\/lesson-1\/["']/);
 });
 
 
 test('public discovery pages send visitors through the Formation introduction', async () => {
-  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/', '/give/'];
-  const journeyBypasses = /href=["']\\/(?:doorway|awaken|see-clearly|become|join)(?:\\/|["'])/g;
+  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/'];
+  const journeyBypasses = /href=["']\/(?:doorway|awaken|see-clearly|become|join)(?:\/|["'])/g;
 
   for (const route of publicRoutes) {
     const page = await html(route);
@@ -36,7 +36,7 @@ test('public discovery pages send visitors through the Formation introduction', 
       [],
       `${route} must not bypass the Formation introduction`,
     );
-    assert.match(page, /href=["']\\/formation\\/["']/);
+    assert.match(page, /href=["']\/formation\/["']/);
   }
 });
 
@@ -44,16 +44,7 @@ test('Give links lead to the Cash App and Venmo options', async () => {
   const comingSoon = await html('/coming-soon/');
   const give = await html('/give/');
 
-  assert.equal((comingSoon.match(/href=["']\\/give\\/["']>Give<\\/a>/g) ?? []).length, 2);
-  assert.match(give, /href=["']https:\\/\\/cash\\.app\\/\\$TeeRexHoldings["']/);
-  assert.match(give, /href=["']https:\\/\\/venmo\\.com\\/u\\/Teerex1066["']/);
-});
-
-test('Give links lead to the Cash App and Venmo options', async () => {
-  const comingSoon = await html('/coming-soon/');
-  const give = await html('/give/');
-
-  assert.equal((comingSoon.split('href="/give/">Give</a>').length - 1), 2);
+  assert.equal(comingSoon.split('href="/give/">Give</a>').length - 1, 2);
   assert.ok(give.includes('href="https://cash.app/$TeeRexHoldings"'));
   assert.ok(give.includes('href="https://venmo.com/u/Teerex1066"'));
 });
@@ -64,7 +55,7 @@ test('Music uses the primary navigation without a duplicate Formation button', a
 
 test('Music uses one Spotify playlist without the retired quote or manual song catalogue', async () => {
   const page = await html('/music/');
-  assert.match(page, /open\\.spotify\\.com\\/embed\\/playlist\\/6yFOgURdofxKjPEB3ev6az/);
+  assert.match(page, /open\.spotify\.com\/embed\/playlist\/6yFOgURdofxKjPEB3ev6az/);
   assert.doesNotMatch(page, /Select a song to listen|song-columns|Play All In/);
   assert.doesNotMatch(page, /He is better than we imagined|Music for every moment/);
 });
@@ -74,8 +65,8 @@ test('Doorway contains all four approved movements', async () => {
   for (const movement of ['Awaken', 'See Clearly', 'Become', 'Join']) {
     assert.match(page, new RegExp(movement));
   }
-  assert.match(page, /href=["']\\/awaken\\/lesson-1\\/["']/);
-  assert.match(page, /href=["']\\/join\\/useful\\/["']/);
+  assert.match(page, /href=["']\/awaken\/lesson-1\/["']/);
+  assert.match(page, /href=["']\/join\/useful\/["']/);
 });
 
 test('review hub and Books are excluded from public output', async () => {
@@ -101,7 +92,7 @@ test('all local href and asset targets resolve', async () => {
   const missing = [];
   for (const file of pages) {
     const source = await readFile(file, 'utf8');
-    for (const match of source.matchAll(/(?:href|src)=["'](\\/[^"'?#]*)/g)) {
+    for (const match of source.matchAll(/(?:href|src)=["'](\/[^"'?#]*)/g)) {
       const target = match[1];
       if (target === '/') continue;
       const relative = target.endsWith('/') ? `${target.slice(1)}index.html` : target.slice(1);
