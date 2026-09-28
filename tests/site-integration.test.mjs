@@ -26,7 +26,7 @@ test('Formation sends the visitor directly to Pay Attention', async () => {
 
 
 test('public discovery pages send visitors through the Formation introduction', async () => {
-  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/'];
+  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/', '/give/'];
   const journeyBypasses = /href=["']\\/(?:doorway|awaken|see-clearly|become|join)(?:\\/|["'])/g;
 
   for (const route of publicRoutes) {
@@ -47,6 +47,15 @@ test('Give links lead to the Cash App and Venmo options', async () => {
   assert.equal((comingSoon.match(/href=["']\\/give\\/["']>Give<\\/a>/g) ?? []).length, 2);
   assert.match(give, /href=["']https:\\/\\/cash\\.app\\/\\$TeeRexHoldings["']/);
   assert.match(give, /href=["']https:\\/\\/venmo\\.com\\/u\\/Teerex1066["']/);
+});
+
+test('Give links lead to the Cash App and Venmo options', async () => {
+  const comingSoon = await html('/coming-soon/');
+  const give = await html('/give/');
+
+  assert.equal((comingSoon.split('href="/give/">Give</a>').length - 1), 2);
+  assert.ok(give.includes('href="https://cash.app/$TeeRexHoldings"'));
+  assert.ok(give.includes('href="https://venmo.com/u/Teerex1066"'));
 });
 
 test('Music uses the primary navigation without a duplicate Formation button', async () => {
