@@ -61,8 +61,8 @@ test('Give is available unobtrusively in every in-scope public page header', asy
 
   for (const route of routes) {
     const page = await html(route);
-    assert.match(page, /class=["']rts-give-link["'] href=["']\\/give\\/["']/);
-    assert.match(page, /give-link\\.css\\?v=1/);
+    assert.ok(page.includes('class="rts-give-link" href="/give/"'));
+    assert.ok(page.includes('give-link.css?v=1'));
   }
 });
 
