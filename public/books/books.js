@@ -107,6 +107,7 @@
         const cover = document.createElement('img');
         cover.src = book.cover;
         cover.alt = `Cover of ${book.title}`;
+        cover.dataset.bookId = book.id;
         cover.loading = 'lazy';
         const title = document.createElement('span');
         title.className = 'book-card-title';
