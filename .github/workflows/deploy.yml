@@ -22,6 +22,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Guard production deployment target
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "teerex-bit/rts-website"
+          test "$GITHUB_REF" = "refs/heads/main"
+          requested="$(printf '%s' "$GITHUB_SHA" | tr '[:upper:]' '[:lower:]')"
+          actual="$(git rev-parse HEAD)"
+          test "$actual" = "$requested"
+
       - name: Deploy static public site to Cloudflare
         run: npx --yes wrangler@4.86.0 deploy
         env:
