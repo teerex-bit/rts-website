@@ -9,7 +9,7 @@ async function html(route) {
 }
 
 test('new RTS public routes are present', async () => {
-  const routes = ['/', '/formation/', '/doorway/', '/conversations/', '/music/', '/about/', '/contact/', '/give/'];
+  const routes = ['/', '/formation/', '/doorway/', '/conversations/', '/books/', '/music/', '/about/', '/contact/', '/give/'];
   await Promise.all(routes.map(route => access(new URL(`public${route}index.html`, root))));
 });
 
@@ -26,7 +26,7 @@ test('Formation sends the visitor directly to Pay Attention', async () => {
 
 
 test('public discovery pages send visitors through the Formation introduction', async () => {
-  const publicRoutes = ['/', '/conversations/', '/music/', '/about/', '/contact/'];
+  const publicRoutes = ['/', '/conversations/', '/books/', '/music/', '/about/', '/contact/'];
   const journeyBypasses = /href=["']\/(?:doorway|awaken|see-clearly|become|join)(?:\/|["'])/g;
 
   for (const route of publicRoutes) {
@@ -52,7 +52,7 @@ test('Give links lead to the Cash App and Venmo options', async () => {
 test('Give is available unobtrusively in every in-scope public page header', async () => {
   const routes = [
     '/', '/conversations/', '/music/', '/join/', '/formation/', '/coming-soon/',
-    '/doorway/', '/about/', '/contact/', '/see-clearly/', '/logo-review/',
+    '/doorway/', '/about/', '/contact/', '/books/', '/see-clearly/', '/logo-review/',
     '/become/', '/join/useful/', '/awaken/lesson-1/', '/awaken/lesson-2/',
     '/see-clearly/part-1/', '/see-clearly/lesson-2/', '/see-clearly/integration/',
     '/become/live-with-god/', '/become/practice-forms-the-person/',
@@ -86,9 +86,8 @@ test('Doorway contains all four approved movements', async () => {
   assert.match(page, /href=["']\/join\/useful\/["']/);
 });
 
-test('review hub and Books are excluded from public output', async () => {
+test('review hub is excluded from public output', async () => {
   await assert.rejects(access(new URL('public/review/index.html', root)));
-  await assert.rejects(access(new URL('public/books/index.html', root)));
 });
 
 test('all local href and asset targets resolve', async () => {
