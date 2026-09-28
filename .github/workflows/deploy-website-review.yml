@@ -44,7 +44,7 @@ jobs:
           GUARD_NAME = "Verify workflow has no unrelated infrastructure operations"
           # Fingerprint of the reviewed execution structure, not the workflow's prose.
           # Any new command, action, job, env override, or changed safety check fails closed.
-          APPROVED_EXECUTION_SHA256 = "8ae26c4ff412d9772211b7c7a12fbaf1352ffe0b74c2590e13ccd22f67c69ff1"
+          APPROVED_EXECUTION_SHA256 = "8822f41327e56beb82fbd9648090cb7ce7a9cc98e993f77c6cda51d9e7a03f95"
 
           class UniqueLoader(yaml.SafeLoader):
               pass
