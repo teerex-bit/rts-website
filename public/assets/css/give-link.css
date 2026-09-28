@@ -1,0 +1,63 @@
+.site-header,
+.overview-header,
+.public-primary-header {
+  position: relative;
+}
+
+.rts-give-link {
+  color: inherit;
+  font: 600 0.68rem/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.08em;
+  opacity: 0.58;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rts-give-link:hover,
+.rts-give-link:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-header > .rts-give-link,
+.overview-header > .rts-give-link {
+  position: absolute;
+  top: 0.35rem;
+  right: clamp(1rem, 3vw, 2rem);
+  z-index: 5;
+  padding: 4px 0;
+}
+
+.public-primary-header .public-primary-nav__utility > .rts-give-link {
+  min-height: 32px;
+  padding: 4px 0;
+  border-bottom: 0;
+  font-size: 0.64rem;
+  opacity: 0.52;
+}
+
+.site-header nav .rts-give-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 0;
+  font-size: 0.64rem;
+}
+
+.rts-give-only-header {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 28px;
+  padding: 6px 24px 0;
+}
+
+@media (max-width: 600px) {
+  .site-header > .rts-give-link,
+  .overview-header > .rts-give-link {
+    top: 0.25rem;
+    right: 1rem;
+    font-size: 0.62rem;
+  }
+}
