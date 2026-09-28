@@ -49,6 +49,23 @@ test('Give links lead to the Cash App and Venmo options', async () => {
   assert.ok(give.includes('href="https://venmo.com/u/Teerex1066"'));
 });
 
+test('Give is available unobtrusively in every in-scope public page header', async () => {
+  const routes = [
+    '/', '/conversations/', '/music/', '/join/', '/formation/', '/coming-soon/',
+    '/doorway/', '/about/', '/contact/', '/see-clearly/', '/logo-review/',
+    '/become/', '/join/useful/', '/awaken/lesson-1/', '/awaken/lesson-2/',
+    '/see-clearly/part-1/', '/see-clearly/lesson-2/', '/see-clearly/integration/',
+    '/become/live-with-god/', '/become/practice-forms-the-person/',
+    '/become/fruit/', '/become/whole-person/', '/give/',
+  ];
+
+  for (const route of routes) {
+    const page = await html(route);
+    assert.match(page, /class=["']rts-give-link["'] href=["']\\/give\\/["']/);
+    assert.match(page, /give-link\\.css\\?v=1/);
+  }
+});
+
 test('Music uses the primary navigation without a duplicate Formation button', async () => {
   assert.doesNotMatch(await html('/music/'), /class=["']rts-36-40__start["']/);
 });
