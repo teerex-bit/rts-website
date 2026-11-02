@@ -19,6 +19,16 @@
   saved.reflections = reflections;
   delete saved.fields;
   let current = -1;
+  // Screen addresses contain location only, never the person's reflections.
+  const screenNames = ['welcome', 'introduction-1', 'introduction-2',
+    ...Array.from({ length: 3 }, (_, i) => 'awaken-' + (i + 1)),
+    ...Array.from({ length: 7 }, (_, i) => 'see-clearly-' + (i + 1)),
+    ...Array.from({ length: 7 }, (_, i) => 'become-' + (i + 1)),
+    ...Array.from({ length: 5 }, (_, i) => 'join-' + (i + 1))];
+  function pageFromAddress() {
+    const index = screenNames.indexOf(window.location.hash.slice(1));
+    return index === -1 ? null : index - 1;
+  }
   const store = () => {
     try { localStorage.setItem(key, JSON.stringify(saved)); storageAvailable = true; }
     catch { storageAvailable = false; }
@@ -52,8 +62,15 @@
       });
     }
   }
-  function show(page, scroll = true) {
+  function show(page, scroll = true, historyMode = 'push') {
     current = Number.isInteger(page) && page >= -1 && page <= 23 ? page : -1;
+    if (historyMode !== 'none') {
+      const address = new URL(window.location.href);
+      address.hash = screenNames[current + 1];
+      const state = { rtsDeepDive: true, page: current };
+      if (historyMode === 'replace') window.history.replaceState(state, '', address.href);
+      else if (window.location.hash !== address.hash) window.history.pushState(state, '', address.href);
+    }
     screens.forEach(screen => { screen.hidden = Number(screen.dataset.screen) !== current; });
     saved.page = current;
     store();
@@ -97,6 +114,15 @@
       toggle(button, open);
     }
   });
-  show(saved.page, false);
+  window.addEventListener('popstate', () => {
+    const page = pageFromAddress();
+    if (page !== null) show(page, true, 'none');
+  });
+  window.addEventListener('hashchange', () => {
+    const page = pageFromAddress();
+    if (page !== null && page !== current) show(page, true, 'none');
+  });
+  show(pageFromAddress() ?? saved.page, false, 'replace');
 })();
+
 
