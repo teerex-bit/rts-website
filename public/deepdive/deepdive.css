@@ -1218,3 +1218,6 @@ a { color: var(--color-navy); text-underline-offset: 0.25em; }
       @media(max-width:480px){.rts-photo-banner{height:125px;padding:20px}.rts-photo-banner-label{font-size:17px}}
     
 [hidden]{display:none!important}
+/* Editorial emphasis on the Become completion screen; distinct from buttons. */
+.rts-scene--18 .rts-become-focus{background:transparent;color:#263a4a;border-left:3px solid #b18a45;border-radius:0;padding:8px 0 8px 20px;box-shadow:none}
+.rts-scene--18 .rts-become-focus p{color:#263a4a!important}
