@@ -1221,3 +1221,20 @@ a { color: var(--color-navy); text-underline-offset: 0.25em; }
 /* Editorial emphasis on the Become completion screen; distinct from buttons. */
 .rts-scene--18 .rts-become-focus{background:transparent;color:#263a4a;border-left:3px solid #b18a45;border-radius:0;padding:8px 0 8px 20px;box-shadow:none}
 .rts-scene--18 .rts-become-focus p{color:#263a4a!important}
+
+
+/* Optional personal reflection, kept visually distinct from action buttons. */
+.rts-reflection-pause{margin:32px 0;padding:24px 0;border-top:1px solid #d9d1c5;border-bottom:1px solid #d9d1c5;min-width:0}
+.rts-root .rts-reflection-pause .rts-subheading{margin-top:0}
+.rts-reflection-label{display:block;margin:20px 0 10px;font:600 16px/1.5 Arial,sans-serif;color:#263a4a}
+.rts-reflection-pause .rts-field{display:block;width:100%;box-sizing:border-box;min-height:125px;resize:vertical;font:17px/1.6 Georgia,serif}
+.rts-reflection-caption{font:600 13px/1.5 Arial,sans-serif!important;margin-bottom:8px!important;color:#526b62}
+.rts-reflection-quote{margin:0 0 20px;padding:4px 0 4px 16px;border-left:3px solid #b18a45;font:normal 17px/1.65 Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.rts-reflection-example{color:#526b62}
+.rts-reflection-summary{margin:0}
+.rts-reflection-summary-row{padding:18px 0;border-bottom:1px solid #ded7ca}
+.rts-reflection-summary-row dt{font:600 14px/1.5 Arial,sans-serif;color:#526b62;margin-bottom:10px}
+.rts-reflection-summary-row dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.rts-reflection-edit{border:0;background:transparent;color:#263a4a;padding:10px 0;min-height:44px;text-align:left;text-decoration:underline;text-underline-offset:3px;font:600 13px/1.5 Arial,sans-serif;cursor:pointer}
+@media(max-width:480px){.rts-reflection-pause{padding:20px 0}.rts-reflection-quote{padding-left:12px}}
+.rts-root .rts-reflection-pause .rts-reflection-quote{background:transparent;border-top:0;border-bottom:0;border-left:3px solid #b18a45;border-radius:0;text-align:left;padding:4px 0 4px 16px;margin:0 0 20px;font:normal 17px/1.65 Georgia,serif}
