@@ -91,11 +91,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          workflow=".github/workflows/deploy-website-review.yml"
-          if grep -Eiq 'vercel|supabase|rts-deep-dive|wrangler[[:space:]].*(route|domain)|cloudflare.*(dns|zone)' "$workflow"; then
-            echo "::error::Forbidden production/domain/Deep Dive/Vercel/Supabase operation detected"
-            exit 1
-          fi
+          node scripts/verify-review-workflow.mjs
 
       - name: Run website automated tests
         shell: bash
