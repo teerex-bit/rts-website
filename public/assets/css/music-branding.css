@@ -21,3 +21,9 @@
 .music-spotify iframe{display:block;width:100%;height:680px;border:0;border-radius:12px}
 @media(max-width:900px){.rts-36-40--p39 .rts-36-40__music-hero{height:600px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:52% center}.music-spotify{padding-top:42px;padding-bottom:52px}.music-spotify h2{font-size:29px}.music-spotify iframe{height:600px}}
 @media(max-width:600px){.rts-36-40--p39 .rts-36-40__music-hero{height:620px}.rts-36-40--p39 .rts-36-40__music-hero>img{object-position:20% center}.rts-36-40--p39 .rts-36-40__music-copy{width:auto;padding:35px 24px}.rts-36-40--p39 .rts-36-40__music-copy h1{font-size:62px}.rts-36-40--p39 .rts-36-40__music-copy>p:not(.rts-36-40__music-tagline){max-width:400px}.music-spotify{padding:34px 0 44px}.music-spotify h2{font-size:26px;margin-bottom:16px}.music-spotify iframe{height:560px}}
+
+/* Optional Spotify link follows the music content, before the site footer. */
+.music-spotify-bottom{display:flex;justify-content:center;padding:24px 20px 48px;background:#071b2b}
+.music-spotify-bottom__link{display:inline-flex;align-items:center;justify-content:center;gap:14px;max-width:100%;padding:14px 24px;border:1px solid #b98435;border-radius:8px;color:#fff7e9;text-decoration:none;font:600 16px/1.3 "Public Sans",Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.music-spotify-bottom__link:hover,.music-spotify-bottom__link:focus-visible{background:#173149;outline-offset:4px}
+.music-spotify-bottom__link .rts-36-40__icon{width:28px;height:28px;flex:none;fill:none;stroke:currentColor;stroke-width:2}
