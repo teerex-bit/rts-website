@@ -64,6 +64,23 @@ async function readSmallBody(request) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/deepdive/event") {
+      if (request.method !== "POST") return response("Method not allowed", 405, { Allow: "POST" });
+      if (Number(request.headers.get("Content-Length") || 0) > MAX_BODY_BYTES) return response("Payload too large", 413);
+      const origin = request.headers.get("Origin");
+      if (origin && new URL(origin).host !== url.host) return response("Forbidden", 403);
+      let event;
+      try { event = JSON.parse(await readSmallBody(request)); }
+      catch (error) { return response("Invalid event", error instanceof RangeError ? 413 : 400); }
+      const stages = new Set(["start", "awaken", "see-clearly", "become", "join", "complete"]);
+      if (!event || !stages.has(event.stage)) return response("Invalid stage", 400);
+      if (env.DEEPDIVE_EVENTS) {
+        try {
+          env.DEEPDIVE_EVENTS.writeDataPoint({ blobs: [event.stage], doubles: [1], indexes: ["deepdive"] });
+        } catch { console.error("Deep Dive analytics write failed"); }
+      }
+      return response(null, 204);
+    }
     if (url.pathname !== CLICK_ENDPOINT) return env.ASSETS.fetch(request);
     if (request.method !== "POST") {
       return response("Method not allowed", 405, { Allow: "POST" });
