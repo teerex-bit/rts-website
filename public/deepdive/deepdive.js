@@ -20,6 +20,23 @@
     return index === -1 ? null : index - 1;
   }
   const store = () => { try { localStorage.setItem(key, JSON.stringify({ page: saved.page })); } catch {} };
+  // Record each milestone once per browser tab session, without identifiers or reflection content.
+  const milestonePages = new Map([[0, 'start'], [3, 'awaken'], [6, 'see-clearly'], [13, 'become'], [20, 'join'], [23, 'complete']]);
+  function recordMilestone(page) {
+    const stage = milestonePages.get(page);
+    if (!stage) return;
+    const key = 'rts-deepdive-milestone-' + stage;
+    try {
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+    } catch { /* Tracking is optional. */ }
+    try {
+      fetch('/api/deepdive/event', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ stage }), keepalive: true, credentials: 'same-origin'
+      }).catch(() => {});
+    } catch { /* Never interrupt the curriculum for analytics. */ }
+  }
   function show(page, scroll = true, historyMode = 'push') {
     current = Number.isInteger(page) && page >= -1 && page <= 23 ? page : -1;
     if (historyMode !== 'none') {
@@ -32,6 +49,7 @@
     screens.forEach(screen => { screen.hidden = Number(screen.dataset.screen) !== current; });
     saved.page = current;
     store();
+    recordMilestone(current);
     if (scroll) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       const title = screens.find(screen => !screen.hidden).querySelector('h1');
