@@ -5,7 +5,7 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/books/click", "/api/deepdive/event"],
+    "run_worker_first": ["/api/books/click", "/api/deepdive/event", "/internal/deepdive-analytics", "/internal/deepdive-analytics/data"],
     "not_found_handling": "404-page"
   },
   "analytics_engine_datasets": [
