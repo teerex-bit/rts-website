@@ -32,3 +32,12 @@
 .rts-36-40--p39 .music-spotify-bottom .music-spotify-bottom__link,.rts-36-40--p39 .music-spotify-bottom .music-spotify-bottom__link:visited{color:#fff7e9 !important;background-color:#173149;border-color:#d4a459;opacity:1}
 .rts-36-40--p39 .music-spotify-bottom .music-spotify-bottom__link .rts-36-40__icon{color:#fff7e9 !important;stroke:#fff7e9 !important;opacity:1}
 .rts-36-40--p39 .music-spotify-bottom .music-spotify-bottom__link:hover,.rts-36-40--p39 .music-spotify-bottom .music-spotify-bottom__link:focus-visible{background-color:#28445d}
+
+/* Mobile: wrap the tagline and let the hero end after its copy. */
+@media(max-width:600px){
+ .rts-36-40--p39 .rts-36-40__music-hero{height:auto;min-height:0}
+ .rts-36-40--p39 .rts-36-40__music-copy{box-sizing:border-box;width:100%;max-width:100%;padding:35px 24px 42px}
+ .rts-36-40--p39 .rts-36-40__music-copy h1{font-size:clamp(44px,13vw,62px);overflow-wrap:anywhere}
+ .rts-36-40--p39 .rts-36-40__music-tagline{box-sizing:border-box;width:100%;max-width:100%;font-size:clamp(23px,6.3vw,29px);line-height:1.15;overflow-wrap:break-word}
+ .rts-36-40--p39 .rts-36-40__music-copy>p:not(.rts-36-40__music-tagline){max-width:100%}
+}
