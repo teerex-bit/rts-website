@@ -78,7 +78,7 @@
     origin?.focus({ preventScroll: true });
   });
 
-  fetch('/books/catalog.json').then(response => {
+  fetch(`/books/catalog.json?v=20261120-sin-pdf`, { cache: 'no-store' }).then(response => {
     if (!response.ok) throw new Error('Catalog unavailable');
     return response.json();
   }).then(books => {
