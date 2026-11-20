@@ -1,5 +1,16 @@
 [
   {
+    "id": "sin",
+    "title": "Sin",
+    "collection": "",
+    "cover": "/books/covers/sin.svg",
+    "description": "What if our understanding of sin has focused so much on the things we do wrong that we have missed the deeper problem Jesus came to address? Sin examines our actions, the good we leave undone, and the thoughts and desires we choose to entertain. It also explores Paul's teaching that sin ruled over humanity—and that through Christ, its mastery has been broken. Rather than treating the Christian life as an endless effort to manage wrongdoing, this book invites readers to discover what it means to live with God through His Spirit in the life they actually have.",
+    "pdfUrl": "",
+    "pdfAvailable": false,
+    "luluUrl": "",
+    "printStatus": "pending"
+  },
+  {
     "id": "the-ache",
     "title": "The Ache",
     "collection": "",
