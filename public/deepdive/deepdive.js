@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const key = 'rts-deepdive-v1';
+  const key = 'rts-deepdive-content-review-v1';
   const screens = [...document.querySelectorAll('[data-screen]')];
   let saved = {};
   let storageAvailable = true;
@@ -13,7 +13,7 @@
   const screenNames = ['welcome', 'introduction-1', 'introduction-2',
     ...Array.from({ length: 3 }, (_, i) => 'awaken-' + (i + 1)),
     ...Array.from({ length: 7 }, (_, i) => 'see-clearly-' + (i + 1)),
-    ...Array.from({ length: 7 }, (_, i) => 'become-' + (i + 1)),
+    ...Array.from({ length: 10 }, (_, i) => 'become-' + (i + 1)),
     ...Array.from({ length: 5 }, (_, i) => 'join-' + (i + 1))];
   function pageFromAddress() {
     const index = screenNames.indexOf(window.location.hash.slice(1));
@@ -38,7 +38,7 @@
     } catch { /* Never interrupt the curriculum for analytics. */ }
   }
   function show(page, scroll = true, historyMode = 'push') {
-    current = Number.isInteger(page) && page >= -1 && page <= 23 ? page : -1;
+    current = Number.isInteger(page) && page >= -1 && page <= 26 ? page : -1;
     if (historyMode !== 'none') {
       const address = new URL(window.location.href);
       address.hash = screenNames[current + 1];
@@ -49,7 +49,7 @@
     screens.forEach(screen => { screen.hidden = Number(screen.dataset.screen) !== current; });
     saved.page = current;
     store();
-    recordMilestone(current);
+    // Review copy: do not send participant analytics.
     if (scroll) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       const title = screens.find(screen => !screen.hidden).querySelector('h1');
